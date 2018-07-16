@@ -53,12 +53,11 @@
 
 
 \section{Preliminaries}
-For a bounded observation window $\Lambda_0 \in\mathcal B(\mathbb R^3)$ we define  $\Lambda := \Lambda_0 \times W \in \mathcal B(\mathbb R^3 \times W)$, where  $W:=(0,w_0]\subset \mathbb R$ is the set of possible weights. For a locally finite set $\gamma\subset \mathbb R^3\times W $, denote its Delaunay (Regular) triangulation $Del(\gamma)$ and the restriction to $\Lambda$ as  $\gamma_\Lambda = \gamma \cap \Lambda$. Denote $\pi^z$ the distribution of a homogenous Poisson process with intensity $z>0$ and $\pi^z_\Lambda$ its restriction to the observation window $\Lambda$. 
+For a bounded observation window $\Lambda_0 \in\mathcal B(\mathbb R^3)$ we \note{Probably make this a through-out-this-paper notation, since it will probably be useful often} define  $\Lambda := \Lambda_0 \times W \in \mathcal B(\mathbb R^3 \times W)$, where  $W:=(0,w_0]\subset \mathbb R$ is the set of possible weights. For a locally finite set $\gamma\subset \mathbb R^3\times W $, denote its Delaunay (Regular) triangulation $Del(\gamma)$ and the restriction to $\Lambda$ as  $\gamma_\Lambda = \gamma \cap \Lambda$. Denote $\pi^z$ the distribution of a \unsure{Is this the right way to go about it?}homogenous marked Poisson process with intensity $z>0$ and uniform mark distribution, and $\pi^z_\Lambda$ its restriction to the observation window $\Lambda$. 
 
 \note[inline]{Define a function to get points/weights from $\gamma$? Might be easier}
 \todoo[inline]{Define $\mathcal M_\infty$ etc?}
-\problem[inline]{This should probably be w.r.t. the weighted Poisson}
-The set $Del(\gamma)$ contains tetrahedra which are here defined as quadruples of points from $\gamma$, i.e. $T=\{a,b,c,d\}\subset \gamma$. A tetrahedron $T$ is said to be inside the window $\Lambda$ \problem{Program uses barycenter: rewrite?}if its circumsphere intersects $\Lambda$. Denote $Del_\Lambda(\gamma)$ the set of all tetrahedra in $Del(\gamma)$ which are in $\Lambda$. For two tetrahedra $T,T'\in Del(\gamma)$ we say $T\sim_{Del} T'$ if $T$ and $T'$ share a face, that is if $\text{card}(T\cap T') \geq 3$. 
+The set $Del(\gamma)$ contains tetrahedra which are here defined as quadruples of points from $\gamma$, i.e. $T=\{a,b,c,d\}\subset \gamma$. Denote $B(T)$ the circumsphere of a tetrahedron $T$. A tetrahedron $T$ is said to be inside the window $\Lambda$ \problem{Program uses barycenter: rewrite?}if $B(T)\cap \Lambda_0 \neq \emptyset$. Denote $Del_\Lambda(\gamma)$ the set of all tetrahedra in $Del(\gamma)$ which are in $\Lambda$. For two tetrahedra $T,T'\in Del(\gamma)$ we say $T\sim_{Del} T'$ if $T$ and $T'$ share a face, that is if $\text{card}(T\cap T') \geq 3$. 
 
 \todoo[inline]{Define Gibbs properly - DLR + finite volume, but this will do for now}
 To obtain a Gibbs point process from the Poisson process, its density with respect to the Poisson process needs to be defined. For every $\Lambda \in \mathcal B_b(\mathbb R^3\times W)$, we consider the conditional density $f_\Lambda$ with respect to the Poisson process $\pi^z_\Lambda$:
@@ -254,6 +253,8 @@ where $h_i = h^{\hat\beta,1}(x_i, \gamma)$ and $x_1,\dots,x_N$ is a random sampl
 
 After $\hat\theta$ is estimated, we then obtain the estimate $\hat z$ with $\hat\theta$ instead of $\theta$ and the integral replaced by a MC-integration approximation.
 
+
+\todoo[inline]{Citations: Make sure I cite the published article, not arxiv}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \bibliography{bibliography}{}
@@ -268,4 +269,24 @@ After $\hat\theta$ is estimated, we then obtain the estimate $\hat z$ with $\hat
     \item $\text{card}(A)$ cardinality of the set $A$
 \end{enumerate}
 
+\section*{Appendix: Notes on existing theory}
+This section has two goals
+\begin{itemize}
+\item To track the existing theory behind~\cite{DL10} and
+\item To see if extensions to our case ($d=3$, regular triangulation) are possible
+\end{itemize}
+\subsection{Logic of the procedure}
+Are we simulating a finite volume Gibbs? If so, why does that allow us to talk about infinite volume Gibbs? 
+\subsection{Existence}
+
+\subsection{Uniqueness}
+
+\subsection{Irreducibility}
+For $d=2$, it was proved in~\cite{DL10} through the saturation technique. Could it be proved for $d=3$, or even in the regular case? Perhaps if one of the parameters is removed?
+\subsection{Constincency}
+In~\cite{DL07}, consistency is proven for the two-step approach in the non-hereditary case. For $d=2$, the assumptions are checked for the Delaunay model, but only in case of one hardcore parameter - two would require "some further assumptions and proofs"
+
+
+
 \end{document}
+
