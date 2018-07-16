@@ -53,7 +53,7 @@
 
 
 \section{Preliminaries}
-For a bounded observation window $\Lambda_0 \in\mathcal B(\mathbb R^3)$ we \note{Probably make this a through-out-this-paper notation, since it will probably be useful often} define  $\Lambda := \Lambda_0 \times W \in \mathcal B(\mathbb R^3 \times W)$, where  $W:=(0,w_0]\subset \mathbb R$ is the set of possible weights. For a locally finite set $\gamma\subset \mathbb R^3\times W $, denote its Delaunay (Regular) triangulation $Del(\gamma)$ and the restriction to $\Lambda$ as  $\gamma_\Lambda = \gamma \cap \Lambda$. Denote $\pi^z$ the distribution of a \unsure{Is this the right way to go about it?}homogenous marked Poisson process with intensity $z>0$ and uniform mark distribution, and $\pi^z_\Lambda$ its restriction to the observation window $\Lambda$. 
+For a bounded observation window $\Lambda_0 \in\mathcal B(\mathbb R^3)$ we \note{Probably make this a through-out-this-paper notation, since it will probably be useful often} define  $\Lambda := \Lambda_0 \times W \in \mathcal B(\mathbb R^3 \times W)$, where  $W:=(0,w_0]\subset \mathbb R$ is the set of possible weights. For a locally finite set $\gamma\subset \mathbb R^3\times W $, denote its Delaunay (Regular) triangulation $Del(\gamma)$ and the restriction to $\Lambda$ as  $\gamma_\Lambda = \gamma \cap \Lambda$. Denote $\pi^z$ the distribution of a \unsure{Is this the right way to go about it?}homogenous marked Poisson process with intensity $z>0$ and uniform mark distribution on $W$, and $\pi^z_\Lambda$ its restriction to the observation window $\Lambda$. 
 
 \note[inline]{Define a function to get points/weights from $\gamma$? Might be easier}
 \todoo[inline]{Define $\mathcal M_\infty$ etc?}
@@ -75,14 +75,16 @@ $$E_\Lambda(\gamma_\Lambda, \gamma_\Lambda^c)= \sum_{T \in Del_\Lambda(\gamma)} 
 In our case, we introduce hardcore parameters $\epsilon$ and $\alpha$ to limit the area of the smallest face of $T$, and its circumradius respectivelly. The intensity of the Poisson process is $z$ and the functions $V_1, V_2$ are of the form:
 
 
-$$V_1(T) = 
+\begin{equation}\label{model}
+V_1(T) = 
 \left\{
     \begin{array}{ll}
         \infty & \mbox{if } a(T)\leq \epsilon, \\
         \infty & \mbox{if } R(T)\geq \alpha, \\
         \theta Sur(T) & \mbox{otherwise, }
     \end{array}
-\right. \quad \mbox{and } \quad V_2 = 0.$$
+\right. \quad \mbox{and } \quad V_2 = 0.
+\end{equation}
 
 Where $a(T)$ is the area of the smallest face of the tetrahedron $T$, $R(T)$ is the circumradius of $T$, and $Sur(T)$ is the surface area of the tetrahedron.
 
@@ -98,7 +100,7 @@ The simulations were done in CGAL~\cite{cgal},~\cite{cgal:3d-triang}.
 \unsure[inline]{We are simulating finite volume approximation, how is it connected to the infinite process, exactly?}
 
 In~\cite{DL10}, three options for the initial configuration are suggested: the empty configuration, a specific fixed outside configuration, and periodic configuration.~\cite{DL10} rejects the empty configuration because it "produces non bounded Delaunay-Voronoi cells". While this is true for a Voronoi diagram, it does not hold for the Delaunay case and so such configuration would be possible. 
-The method chosen was to fix a regular grid of points in and out of $\Lambda$ such that the resulting tessellation fulfills the hardcore conditions. This does mean that the initial configuration is dependent on the values of $\alpha$ and $\epsilon$. The reason for this choice is simple: the CGAL implementation of 3d periodic triangulations~\cite{cgal:3d-period} \unsure{Yeah, but why not empty?} runs much slower than in the non-periodic case.
+The method chosen was to fix a regular grid of points in and out of $\Lambda$ such that the resulting tessellation fulfills the hardcore conditions. This does mean that the initial configuration is dependent on the values of $\alpha$ and $\epsilon$. The reason for this choice is simple: the CGAL implementation of 3d periodic triangulations~\cite{cgal:3d-period} \unsure{Yeah, but why not empty?} \todoo{Make this less vague}runs much slower than in the non-periodic case.
 
 
 \subsection{MCMC}
@@ -109,29 +111,35 @@ First, start from a permissible initial configuration $\gamma_0$.
     \item Let $n = \text{card}(\gamma_0 \cap \Lambda)$.
     \item Draw independently $a$ and $b$ uniformly on $[0,1]$.
     \item If $a<1/3$, then generate $x$ uniformly on $A$ and set
-        $$\gamma_1 = 
+        \begin{equation}\label{birth}
+        \gamma_1 = 
         \left\{
             \begin{array}{ll}
                 \gamma_0 \cup \{x\} & \mbox{if }  b < \frac{z f(\gamma_0 \cup \{x\})}{(n+1)f(\gamma_0)}, \\
                 \gamma_0 & \mbox{otherwise. }
             \end{array}
-        \right. $$
+        \right. 
+        \end{equation}
     \item If $a>2/3$, then generate $x$ uniformly on $\gamma_0$ and set
-        $$\gamma_1 = 
+        \begin{equation}\label{death}
+        \gamma_1 = 
         \left\{
             \begin{array}{ll}
                 \gamma_0 \setminus \{x\} & \mbox{if }  b < \frac{n f(\gamma_0 \setminus \{x\})}{zf(\gamma_0)}, \\
                 \gamma_0 & \mbox{otherwise. }
             \end{array}
-        \right. $$
+        \right. 
+        \end{equation}
     \item If $1/3 < a < 2/3$, then generate $x$ uniformly on $\gamma_0$, generate $y\sim \mathcal N (x, \sigma^2 I)$ such that $y \in A$ and set
-        $$\gamma_1 = 
+        \begin{equation}\label{move}
+        \gamma_1 = 
         \left\{
             \begin{array}{ll}
                 \gamma_0 \setminus \{x\} \cup \{y\} & \mbox{if }  b < \frac{f(\gamma_0 \setminus \{x\} \cup \{y\})}{f(\gamma_0)}, \\
                 \gamma_0 & \mbox{otherwise. }
             \end{array}
-        \right. $$
+        \right. 
+        \end{equation}
     \item Set $\gamma_0 \leftarrow \gamma_1$ and go to 1.
 \end{enumerate}
 \problem[inline]{This is not true at the moment, currently the algorithm just skips points in conflict with other points.}
@@ -146,25 +154,28 @@ The idea is that a small perturbation to the point's position should not result 
 \subsection{Explicit expression for the proposal densities}
 \todoo[inline]{This section is poorly described. Notation and some new terms needs to be defined/improved for this to be understandable and precise. Improve after writing a chapter on Delaunay}
 
-Since the energy function is a simple sum over the individual tetrahedra, the density ratios can be further simplified in all three cases. Since all the density ratios in contain both density of $\gamma$ and density of $\gamma$ with point added or removed in a ratio, most terms in the sum will be canceled out. In each step some tetrahedra are removed and some added - the key is in finding which tetrahedra those are. 
+Since the energy function is a simple sum over the individual tetrahedra, the density ratios \ref{birth}, \ref{death}, \ref{move}, can be further simplified in all three cases. Since all the density ratios in contain both density of $\gamma$ and density of $\gamma$ with point added or removed in a ratio, most terms in the sum will be canceled out. In each step some tetrahedra are removed and some added - the key is in finding which tetrahedra those are. 
 
 When a point $x$ is added into $Del(\gamma)$, the tetrahedra in conflict with $x$ are precisely those that will be deleted. Likewise, the tetrahedra in $Del(\gamma\cup\{x\})$ that are adjacent to $x$ (contain $x$ as one of its vertices) are precisely those that were newly created.
 
 For $x\in \gamma$, denote $\text{DT}^\ell(x,\gamma)$ the set of tetrahedra adjacent to $x$ in $Del(\gamma)$. For $x \notin \gamma$, denote $\text{DT}^\otimes (x,\gamma)$ the set of tetrahedra conflicting with point $x$. 
+\note[inline]{Possible an easier way would be to denote those $T\in Del(\gamma): x \in T$ and $T\in Del(\gamma): x\in B(T)$}
 
-Birth step:
+
+
+Birth step \ref{birth} then becomes:
 \begin{align*}
 \frac{f(\gamma_0 \cup \{x\})}{f(\gamma_0)} &= \exp\left({\sum_{T\in Del_\Lambda(\gamma_0 \cup \{x\})} V_1(T) - \sum_{T \in Del_\Lambda(\gamma_0)}V_1(T)}\right) \\
 &= \exp\left(  \sum_{T \in \text{DT}^\otimes (x,\gamma_0)} V_1(T)  - \sum_{T\in \text{DT}^\ell (x,\gamma_0\cup\{x\})} V_1(T) \right)  
 \end{align*}
 
-Death step:
+Death step \ref{death} becomes:
 \begin{align*}
 \frac{f(\gamma_0 \setminus \{x\})}{f(\gamma_0)}&= \exp\left({\sum_{T\in Del_\Lambda(\gamma \setminus \{x\})} V_1(T)- \sum_{T \in Del_\Lambda(\gamma)}V_1(T)}\right)\\
 &= \exp\left( \sum_{T\in \text{DT}^\ell (x,\gamma_0)} V_1(T) - \sum_{T \in \text{DT}^\otimes (x,\gamma_0 \setminus \{x\})} V_1(T)   \right)
 \end{align*}
 
-Move step:
+Move step \ref{move} becomes:
 \begin{align*}
 \frac{f(\gamma_0 \setminus \{x\} \cup \{y\})}{f(\gamma_0)}&= 
 \frac{f(\gamma_0 \setminus \{x\} \cup \{y\})}{f(\gamma_0\setminus\{x\})} \frac{f(\gamma_0\setminus\{x\})}{f(\gamma_0)} \\ 
@@ -186,14 +197,14 @@ Assume now that we obtain the point configuration $\gamma$ on the observation wi
 The estimation procedure closely follows that from~\cite{DL10}. That is a two-step approach, first estimating the hardcore parameters $\beta = (\epsilon,\alpha)$ and then using the estimates to obtain the estimate of $\theta$ through maximum pseudolikelihood (MPLE). 
 \unsure[inline]{What exactly is the role of the growing window in~\cite{DL10}?}
 \subsection{Estimation of the hardcore parameters}
-Thanks to the fact that the hardcore parameter $\epsilon$ satisfies
+Thanks to the \unsure{\cite{DL10} has this the other way around?}fact that the hardcore parameter $\epsilon$ satisfies
 $$ \text{if } \epsilon < \epsilon' \text{ then  } \forall \Lambda, \; E^{\epsilon, \alpha,\theta}_\Lambda(\gamma_\Lambda,\gamma_{\Lambda^c}) < \infty \Rightarrow  E^{\epsilon',\alpha,\theta}_\Lambda(\gamma_\Lambda,\gamma_{\Lambda^c})<\infty,$$ 
 
 and the hardcore parameter $\alpha$ satisfies
 
 $$ \text{if } \alpha > \alpha' \text{ then  } \forall \Lambda, \; E^{\epsilon,\alpha,\theta}_\Lambda(\gamma_\Lambda,\gamma_{\Lambda^c}) < \infty \Rightarrow  E^{\epsilon,\alpha',\theta}_\Lambda(\gamma_\Lambda,\gamma_{\Lambda^c})<\infty,$$ 
 
-their \unsure{Why are the consistent}consistent estimators are:
+their consistent estimators are:
 $$\hat\epsilon = \inf\{\epsilon > 0, E_\Lambda(\gamma_\Lambda, \gamma_\Lambda^c) < \infty \},$$
 $$\hat\alpha = \sup\{\alpha > 0, E_\Lambda(\gamma_\Lambda, \gamma_\Lambda^c) < \infty \}.$$
 
@@ -208,34 +219,38 @@ The estimate $\hat\beta = (\hat\epsilon,\hat\alpha)$ is then used in the pseudo-
 \todoo[inline]{Equation references}
 
 
-The classical version of MPLE requires hereditarity of the interactions. Hereditarity means that for every permissible $\gamma$, the point pattern $\gamma\setminus\{x\}$ remains permissible for every $x\in\gamma$, that is any point can be removed from the point pattern. The hardcore interaction in our model does not satisfy this condition. However,~\cite{DL07} \unsure{How does it relate to my case, exactly?}extends MPLE to the non-hereditary case. 
+The classical version of MPLE requires hereditarity of the interactions. Hereditarity means that for every permissible $\gamma$, the point pattern $\gamma\setminus\{x\}$ remains permissible for every $x\in\gamma$, that is any point can be removed from the point pattern. The hardcore interaction in the model \ref{model} does not satisfy this condition. However,~\cite{DL07} \unsure{How does it relate to my case, exactly?}extends MPLE to the non-hereditary case. 
 
 Since some points cannot be removed from the tessellation, we need to introduce the notion of a removable points. A point $x\in\gamma$ is \note{The definition in~\cite{DL07} is actually different and this is given as a proposition.}\unsure{Is there any reason to define it the way~\cite{DL07} does?}removable in $\gamma$ iff $\gamma\setminus\{x\}$ is permissible. We denote $\mathcal R^\beta(\gamma)$ the set of removable points of $\gamma$. Similarly the notion of an addable point will be useful. A point $x\in\gamma$ is addable in $\gamma$ iff $\gamma \cup \{x\}$ is permissible.
 
 
-In the non-hereditary case, the pseudo-likelihood function then becomes
+In the non-hereditary case, the pseudo-likelihood function then becomes:
 
-$$PLL_{\Lambda_n}(\gamma,z,\beta, \theta) = \int_{\Lambda'_n} z \exp (-h^{\beta,\theta}(x,\gamma)) dx + \sum_{x\in\mathcal R^\beta(\gamma)\cap \Lambda_n} \big(h^{\beta,\theta}(x,\gamma\setminus\{x\}) - \ln(z)\big),$$
-where $\Lambda'_n$ is the set of all addable points in $\Lambda_n$ and $h^{\beta,\theta}(x, \gamma \setminus \{x\})$ is local energy of $x$ in $\gamma$ defined for every $x\in\mathcal R^\beta(\gamma)$ by:
+\begin{equation}\label{PLL}
+PLL_{\Lambda_n}(\gamma,z,\beta, \theta) = \int_{\Lambda'_n} z \exp (-h^{\beta,\theta}(x,\gamma)) dx + \sum_{x\in\mathcal R^\beta(\gamma)\cap \Lambda_n} \big(h^{\beta,\theta}(x,\gamma\setminus\{x\}) - \ln(z)\big),
+\end{equation}
+where $\Lambda'_n$ is the set of all addable points in $\Lambda_n$ and $h^{\beta,\theta}(x, \gamma \setminus \{x\})$ is \note{Connection between this and Papangelou could be useful}local energy of $x$ in $\gamma$ defined for every $x\in\mathcal R^\beta(\gamma)$ by:
 $$h^{\beta,\theta}(x, \gamma \setminus \{x\}) = E^{\beta,\theta}_\Lambda(\gamma_\Lambda, \gamma_{\Lambda^c}) - E^{\beta,\theta}_\Lambda(\gamma_\Lambda\setminus\{x\}, \gamma_{\Lambda^c}).$$
 
-The estimates $\hat\theta$ and $\hat z$ are obtained through minimizing the $PLL_{\Lambda_n}$ function:
+The estimates $\hat\theta$ and $\hat z$ are obtained through minimizing the $PLL_{\Lambda_n}$ function \ref{PLL}:
 $$(\hat z, \hat\theta) = \text{argmin}_{z,\theta} PLL_{\Lambda_n} (\gamma, z, \hat\beta,\theta).$$
 
-By differentiating the expressions w.r.t. $z$, respectivelly $\theta$, and setting them equal to zero, we obtain the estimate $\hat z$:
+By differentiating the PLL function \ref{PLL} with respect to $z$, respectivelly $\theta$, and setting them equal to zero, we obtain the estimate for $\hat z$,
 
-$$ \hat z = \frac{\mbox{card}(\mathcal R^\beta(\gamma)\cap \Lambda_n)}{\int_{\Lambda_n} \exp{\left( -h^{\hat\beta,\theta}(x,\gamma)\right)} dx},$$
-
+\begin{equation}\label{z_hat}
+\hat z = \frac{\mbox{card}(\mathcal R^\beta(\gamma)\cap \Lambda_n)}{\int_{\Lambda_n} \exp{\left( -h^{\hat\beta,\theta}(x,\gamma)\right)} dx},
+\end{equation}
 and the estimate $\hat\theta$ as the solution of
 
-$$ z \int_{\Lambda'_n} (h^{\hat\beta,1}(x,\gamma)\exp{\left(-h^{\hat\beta,\theta}(x,\gamma)\right)}) dx = \sum_{x \in \mathcal R^{\hat\beta}(\gamma)\cap \Lambda_n} h^{\hat\beta,1}(x,\gamma\setminus\{x\}),$$
-
+\begin{equation}\label{theta_hat} 
+z \int_{\Lambda'_n} (h^{\hat\beta,1}(x,\gamma)\exp{\left(-h^{\hat\beta,\theta}(x,\gamma)\right)}) dx = \sum_{x \in \mathcal R^{\hat\beta}(\gamma)\cap \Lambda_n} h^{\hat\beta,1}(x,\gamma\setminus\{x\}),
+\end{equation}
 where we have used the fact that the local energy depends on $\theta$ linearly, yielding
 
 $$\frac{\partial h^{\hat\beta,\theta}}{\partial \theta} (x,\gamma) = h^{\hat\beta,1}(x,\gamma).$$
 
 \subsubsection{Practical implementation}
-We obtain the estimate of $\theta$ by substituting $z$ by its estimate $\hat z$.
+We obtain the estimate of $\theta$ by substituting the expression for $\hat z$ \ref{z_hat} into \ref{theta_hat}.
 This leads to the equation
 $$ 
 \frac{\int_{\Lambda'_n} (h^{\hat\beta,1}(x,\gamma)\exp{\left(-h^{\hat\beta,\theta}(x,\gamma)\right)}) dx} {  \int_{\Lambda_n} \exp{\left( -h^{\hat\beta,\theta}(x,\gamma)\right)} dx} 
@@ -245,9 +260,11 @@ $$
 In order to simplify the estimation of $\theta$, we can simplify this equation further. First, we denote the righ-hand-side of the equation as $c$ as it  is constant with respect to $\theta$. Second, we note that $x \notin \Lambda_n'  \Rightarrow \exp{\left(-h^{\hat\beta,\theta}(x,\gamma)\right)}= 0$ which enables us to integrate over $\Lambda'_n$ instead of the whole $\Lambda_n$. Lastly we denote the local energy $h^{\hat\beta,1}(x,\gamma) =: h(x)$, yielding the expression
 $$ \int_{\Lambda'_n} h(x) \exp{\left(-\theta h(x)\right)} dx = c \int_{\Lambda'_n} \exp{\left(-\theta h(x)\right)}, $$
 leading into the final expression
-$$ \int_{\Lambda'_n} \exp{\left(-\theta h(x)\right)} (h(x) - c) dx .$$ 
+\begin{equation}\label{hat_theta_final} 
+\int_{\Lambda'_n} \exp{\left(-\theta h(x)\right)} (h(x) - c) dx .
+\end{equation}
 
-The integral is estimated using Monte-Carlo integration, i.e. is approximately equal to
+The integral \ref{hat_theta_final} is estimated using Monte-Carlo integration, i.e. is approximately equal to
 $$ \frac 1N \sum_{i=0}^N 1_{\Lambda'_n}(x_i) \exp{\left( - \theta h_i \right )} (h_i- c) dx $$
 where $h_i = h^{\hat\beta,1}(x_i, \gamma)$ and $x_1,\dots,x_N$ is a random sample from the \unsure{Do we need the indicator function if we're only sampling from $\Lambda'_n$ ?}uniform distribution on $\Lambda'_n$
 
