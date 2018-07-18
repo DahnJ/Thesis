@@ -53,19 +53,19 @@
 
 
 \section{Preliminaries}
-For a bounded observation window $\Lambda_0 \in\mathcal B(\mathbb R^3)$ we \note{Probably make this a through-out-this-paper notation, since it will probably be useful often} define  $\Lambda := \Lambda_0 \times W \in \mathcal B(\mathbb R^3 \times W)$, where  $W:=(0,w_0]\subset \mathbb R$ is the set of possible weights. For a locally finite set $\gamma\subset \mathbb R^3\times W $, denote its Delaunay (Regular) triangulation $Del(\gamma)$ and the restriction to $\Lambda$ as  $\gamma_\Lambda = \gamma \cap \Lambda$. Denote $\pi^z$ the distribution of a \unsure{Is this the right way to go about it?}homogenous marked Poisson process with intensity $z>0$ and uniform mark distribution on $W$, and $\pi^z_\Lambda$ its restriction to the observation window $\Lambda$. 
+For a bounded observation window $\Lambda_0 \in\mathcal B(\mathbb R^3)$ we \note{Probably make this a through-out-this-paper notation, since it will probably be useful often} define  $\Lambda := \Lambda_0 \times W \in \mathcal B(\mathbb R^3 \times W)$, where  $W:=(0,w_0]\subset \mathbb R$ is the set of possible weights. For a locally finite set $\gamma\subset \mathbb R^3\times W $, denote its Delaunay (Regular) triangulation $Del(\gamma)$ and the restriction to $\Lambda$ as  $\gamma_\Lambda = \gamma \cap \Lambda$. Denote $\pi$ the distribution of a \unsure{Is this the right way to go about it?}homogenous Poisson process on $\mathbb R^3 \times W$, and $\pi_\Lambda$ its restriction to the observation window $\Lambda$. 
 
 \note[inline]{Define a function to get points/weights from $\gamma$? Might be easier}
 \todoo[inline]{Define $\mathcal M_\infty$ etc?}
 The set $Del(\gamma)$ contains tetrahedra which are here defined as quadruples of points from $\gamma$, i.e. $T=\{a,b,c,d\}\subset \gamma$. Denote $B(T)$ the circumsphere of a tetrahedron $T$. A tetrahedron $T$ is said to be inside the window $\Lambda$ \problem{Program uses barycenter: rewrite?}if $B(T)\cap \Lambda_0 \neq \emptyset$. Denote $Del_\Lambda(\gamma)$ the set of all tetrahedra in $Del(\gamma)$ which are in $\Lambda$. For two tetrahedra $T,T'\in Del(\gamma)$ we say $T\sim_{Del} T'$ if $T$ and $T'$ share a face, that is if $\text{card}(T\cap T') \geq 3$. 
 
 \todoo[inline]{Define Gibbs properly - DLR + finite volume, but this will do for now}
-To obtain a Gibbs point process from the Poisson process, its density with respect to the Poisson process needs to be defined. For every $\Lambda \in \mathcal B_b(\mathbb R^3\times W)$, we consider the conditional density $f_\Lambda$ with respect to the Poisson process $\pi^z_\Lambda$:
+To obtain a Gibbs point process from the Poisson process, its density with respect to the Poisson process needs to be defined. For every $\Lambda \in \mathcal B_b(\mathbb R^3\times W)$, we consider the conditional density $f_\Lambda$ with respect to the Poisson process $\pi_\Lambda$:
 
-$$ f_\Lambda(\gamma_\Lambda, \gamma_{\Lambda^c}) = \frac 1{Z_\Lambda(\gamma_{\Lambda^c})} e^{-E_\Lambda (\gamma_\Lambda, \gamma_{\Lambda^c})},$$ 
+$$ f_\Lambda(\gamma_\Lambda, \gamma_{\Lambda^c}) = \frac 1{Z_\Lambda(\gamma_{\Lambda^c})} z^{N_\Lambda(\gamma_\Lambda)} e^{-E_\Lambda (\gamma_\Lambda, \gamma_{\Lambda^c})},$$ 
 
 \unsure[inline]{Make sure I understand in what sense the configuration is w.r.t. $\gamma_{\Lambda^c}$}
-where $E_\Lambda(\gamma_\Lambda, \gamma_{\Lambda^c})$ is the energy function of $\gamma_\Lambda$ given the outside configuration $\gamma_{\Lambda^c}$. The energy function will be specified in the next section. $Z_\Lambda(\gamma_{\Lambda^c}) := \int e^{-E_\Lambda(\gamma_\Lambda, \gamma_{\Lambda^c})} \pi^z_\Lambda(d\gamma_\Lambda)$ is the normalizing constant.
+where $E_\Lambda(\gamma_\Lambda, \gamma_{\Lambda^c})$ is the energy function of $\gamma_\Lambda$ given the outside configuration $\gamma_{\Lambda^c}$ and $N_\Lambda(\gamma_\Lambda) = card(\gamma \cap \Lambda)$. The energy function will be specified in the next section. $Z_\Lambda(\gamma_{\Lambda^c}) := \int e^{-E_\Lambda(\gamma_\Lambda, \gamma_{\Lambda^c})} \pi^z_\Lambda(d\gamma_\Lambda)$ is the normalizing constant.
 For a comprehensive introduction to Gibbs point processes, see~\cite{dereudre2017}.
 
 \subsection{Model}
@@ -198,11 +198,11 @@ The estimation procedure closely follows that from~\cite{DL10}. That is a two-st
 \unsure[inline]{What exactly is the role of the growing window in~\cite{DL10}?}
 \subsection{Estimation of the hardcore parameters}
 Thanks to the \unsure{\cite{DL10} has this the other way around?}fact that the hardcore parameter $\epsilon$ satisfies
-$$ \text{if } \epsilon < \epsilon' \text{ then  } \forall \Lambda, \; E^{\epsilon, \alpha,\theta}_\Lambda(\gamma_\Lambda,\gamma_{\Lambda^c}) < \infty \Rightarrow  E^{\epsilon',\alpha,\theta}_\Lambda(\gamma_\Lambda,\gamma_{\Lambda^c})<\infty,$$ 
+$$ \text{if } \epsilon > \epsilon' \text{ then  } \forall \Lambda, \; E^{\epsilon, \alpha,\theta}_\Lambda(\gamma_\Lambda,\gamma_{\Lambda^c}) < \infty \Rightarrow  E^{\epsilon',\alpha,\theta}_\Lambda(\gamma_\Lambda,\gamma_{\Lambda^c})<\infty,$$ 
 
 and the hardcore parameter $\alpha$ satisfies
 
-$$ \text{if } \alpha > \alpha' \text{ then  } \forall \Lambda, \; E^{\epsilon,\alpha,\theta}_\Lambda(\gamma_\Lambda,\gamma_{\Lambda^c}) < \infty \Rightarrow  E^{\epsilon,\alpha',\theta}_\Lambda(\gamma_\Lambda,\gamma_{\Lambda^c})<\infty,$$ 
+$$ \text{if } \alpha < \alpha' \text{ then  } \forall \Lambda, \; E^{\epsilon,\alpha,\theta}_\Lambda(\gamma_\Lambda,\gamma_{\Lambda^c}) < \infty \Rightarrow  E^{\epsilon,\alpha',\theta}_\Lambda(\gamma_\Lambda,\gamma_{\Lambda^c})<\infty,$$ 
 
 their consistent estimators are:
 $$\hat\epsilon = \inf\{\epsilon > 0, E_\Lambda(\gamma_\Lambda, \gamma_\Lambda^c) < \infty \},$$
