@@ -285,10 +285,12 @@ x_4 & y_4 & z_4 & 1 \\
 %%%%% Slide
 % ----------------------------------------------------------------------------------------
 \begin{frame}\frametitle{Laguerre-Delaunay triangulation}\framesubtitle{Power metric}
-Generators are not points, but \alert{spheres}.
-
-Metric is not Euclidean, but \alert{power distance}.
+\begin{itemize}
+\item Generators are not points, but \alert{spheres}. 
+\item $\gamma = \{P_1,\dots, P_n\} = \{(p_1, r_{p_1}), \dots , (p_n, r_{p_n})\}$ can be thought of as \alert{marked point process}.
+\item Metric is not Euclidean, but \alert{power distance}.
 $$ d(x,P) = d(x,p)^2 - r_P^2$$
+\end{itemize}
 
 \begin{center}
 \includegraphics[height = 3.7cm]{./FigureLayout/powerdistance.png}
@@ -300,7 +302,23 @@ $$ d(x,P) = d(x,p)^2 - r_P^2$$
 
 
 \begin{frame}\frametitle{Laguerre-Delaunay triangulation}\framesubtitle{Inscribed sphere and empty sphere property}
+\begin{small}
+\mffboxTitle{\textbf{Definition}. Inscribed sphere}{A sphere $C=(x, \rho)$ is \alert{inscribed} among $d+1$ spheres $P_1, \dots, P_{d+1}$ if
+$$ \rho^2 = d(x,P_1) = d(x,P_2) = \dots = d(x, P_{d+1})$$
+The spheres $P_1,\dots, P_{d+1}$ are \alert{cospherical} to the sphere $C$.
+}
 
+\mffboxTitle{\textbf{Definition}. Empty sphere, empty sphere property}{ The inscribed sphere is called an \alert{empty sphere} if no no sphere from $\gamma$ intersects $C$ at an acute angle and if no sphere from $\gamma$ is contained in $C$. 
+
+Spheres $P_{1}, \dots ,P_{d+1}$ satisfy the \alert{empty sphere property} if their inscribed sphere is an empty sphere.
+}
+
+$P_1, \dots, P_{d+1}$ are cospherical $\Rightarrow$ $C$ intersects $P_i, i=1,\dots,d+1$ at a right angle.
+
+\end{small}
+\begin{center}
+\includegraphics[height = 2cm]{./FigureLayout/inscribedsphere.png}
+\end{center}
 \end{frame}
 
 
@@ -528,7 +546,9 @@ However [Ref] proved that GNZ still holds if we restrict ourselves to \alert{rem
 
 We say a point $x\in \gamma$ is removable if $H(\gamma \setminus \{x\}) < \infty$. Denote $\alert {\mathcal R^\alpha(\gamma)}$ the set of removable points in $\gamma$. 
 
-
+\begin{center}
+\includegraphics[height = 4cm]{./FigureLayout/hereditarity.png}
+\end{center}
 
 \end{frame}
 
