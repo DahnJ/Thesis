@@ -473,21 +473,46 @@ The model prefers configurations with lower energy.
 \framesection{}
 
 
+
+
 \begin{frame}\frametitle{Two-step procedure}
 \begin{small}
-Thanks to the fact that the hardcore parameter $\epsilon$ satisfies
-$$ \text{if } \epsilon > \epsilon' \text{ then  } \forall \Lambda, \; E^{\epsilon, \alpha,\theta}_\Lambda(\gamma_\Lambda,\gamma_{\Lambda^c}) < \infty \Rightarrow  E^{\epsilon',\alpha,\theta}_\Lambda(\gamma_\Lambda,\gamma_{\Lambda^c})<\infty,$$ 
-and the hardcore parameter $\alpha$ satisfies
-$$ \text{if } \alpha < \alpha' \text{ then  } \forall \Lambda, \; E^{\epsilon,\alpha,\theta}_\Lambda(\gamma_\Lambda,\gamma_{\Lambda^c}) < \infty \Rightarrow  E^{\epsilon,\alpha',\theta}_\Lambda(\gamma_\Lambda,\gamma_{\Lambda^c})<\infty,$$ 
-their consistent estimators are:
-$$\hat\epsilon = \inf\{\epsilon > 0, E_\Lambda(\gamma_\Lambda, \gamma_\Lambda^c) < \infty \},$$
-\vspace{-4mm}
-$$\hat\alpha = \sup\{\alpha > 0, E_\Lambda(\gamma_\Lambda, \gamma_\Lambda^c) < \infty \}.$$
-In practice, the parameters are estimated as
-$$\hat\epsilon = \min\{a(T), T\in Del_\Lambda(\gamma)\},$$
-\vspace{-4mm}
+We have $4$ parameters to estimate
+\begin{itemize}
+\item Hard-core parameters.
+    \begin{itemize}
+    \item The minimum face area $\epsilon$,
+    \item the maximum circumradius $\alpha$.
+    \end{itemize}
+\item Smooth parameters.
+    \begin{itemize}
+    \item The multiplier of $Sur(T)$, $\theta$,
+    \item the intensity of the underlying Poisson point process, $z$.
+    \end{itemize}
+\end{itemize}
+\vspace{5mm}
+This is done through a \alert{two-step procedure}
+\begin{enumerate}
+    \item Estimate the hardcore parameters $(\epsilon, \alpha)$ directly.
+    \item Estimate the smooth parameters $(\theta,z)$ by \alert{Maximum Pseudo-Likelihood} (MPLE) using the estimates $(\hat\epsilon,\hat\alpha)$.
+\end{enumerate}
+\end{small}
+
+
+\end{frame}
+
+\begin{frame}\frametitle{Two-step procedure}\framesubtitle{1. Hardcore interaction parameters estimation}
+\begin{small}
+[Ref] only proves consistence for a single parameter (although experimentally both work).\newline
+
+Thanks to the fact that the hardcore parameter $\alpha$ satisfies
+$$ \text{if } \alpha < \alpha' \text{ then  } \forall \Lambda, \; H^{\epsilon,\alpha,\theta}_\Lambda(\gamma) < \infty \Rightarrow  H^{\epsilon,\alpha',\theta}_\Lambda(\gamma)<\infty,$$ 
+its consistent estimator is
+$$\hat\alpha = \sup\{\alpha > 0, H_\Lambda(\gamma) < \infty \},$$
+which in practice is estimated as
 $$\hat\alpha = \max\{r(T), T\in Del_\Lambda(\gamma)\}.$$
-The estimate $\hat\beta = (\hat\epsilon,\hat\alpha)$ is then used in the pseudo-likelihood function in the second estimation step.
+
+The estimate $\hat\alpha$ is then used in the pseudo-likelihood function in the second estimation step.
 
 \end{small}
 \end{frame}
@@ -495,34 +520,64 @@ The estimate $\hat\beta = (\hat\epsilon,\hat\alpha)$ is then used in the pseudo-
 
 %%%%% Slide
 % ----------------------------------------------------------------------------------------
-\begin{frame}\frametitle{Maximum pseudolikelihood}
-$\mathbb R^\beta(\gamma)$ is the set of \alert{removable points}.
+\begin{frame}\frametitle{Two-step procedure}\framesubtitle{2. Maximum pseudolikelihood}
+MPLE depends on GNZ, which works only for \alert{hereditary} energy functions.
+$$H(\gamma) < \infty \Rightarrow H(\gamma \setminus \{x\}) < \infty \quad x \in \gamma$$
 
-$$ PLL_{\Lambda_n}(\gamma,z,\beta, \theta) = \int_{\Lambda'_n} z \exp (-h^{\beta,\theta}(x,\gamma)) dx + \sum_{x\in\mathcal R^\beta(\gamma)\cap \Lambda_n} \big(h^\beta{,\theta}(x,\gamma\setminus\{x\}) - \ln(z)\big),
+However [Ref] proved that GNZ still holds if we restrict ourselves to \alert{removable points}.\newline
+
+We say a point $x\in \gamma$ is removable if $H(\gamma \setminus \{x\}) < \infty$. Denote $\alert {\mathcal R^\alpha(\gamma)}$ the set of removable points in $\gamma$. 
+
+
+
+\end{frame}
+
+%%%%% Slide
+% ----------------------------------------------------------------------------------------
+\begin{frame}\frametitle{Two-step procedure}\framesubtitle{2. Maximum pseudolikelihood}
+\begin{small}
+The pseudolikelihood function is
+$$ PLL_{\Lambda }(\gamma,z,\alpha, \theta) = \int_{\Lambda } z \exp (-h^{\alpha,\theta}(x,\gamma)) dx + \sum_{x\in\mathcal R^\alpha(\gamma)\cap \Lambda } \big(h^{\alpha,\theta}(x,\gamma\setminus\{x\}) - \ln(z)\big),
 $$
-where $\Lambda'_n$ is the set of all addable points in $\Lambda_n$ and $h^{,\theta}(x, \gamma \setminus \{x\})$ is \note{Connection between this and Papangelou could be useful}local energy of $x$ in $\gamma$ defined for every $x\in\mathcal R^\beta(\gamma)$ by:
-$$h^{\beta,\theta}(x, \gamma \setminus \{x\}) = H^{\beta,\theta}_\Lambda(\gamma_\Lambda, \gamma_{\Lambda^c}) - H^{\beta,\theta}_\Lambda(\gamma_\Lambda\setminus\{x\}, \gamma_{\Lambda^c}).$$
-The estimates $\hat\theta$ and $\hat z$ are obtained through minimizing the $PLL_{\Lambda_n}$ function. 
-$$(\hat z, \hat\theta) = \text{argmin}_{z,\theta} PLL_{\Lambda_n} (\gamma, z, \hat\beta,\theta).$$
 
+
+The estimates $\hat\theta$ and $\hat z$ are obtained through minimizing the $PLL_{\Lambda }$ function. 
+$$(\hat z, \hat\theta) = \text{argmin}_{z,\theta} PLL_{\Lambda } (\gamma, z, \hat\alpha,\theta).$$
+
+Yielding the estimate $\hat z$ 
+
+$$\hat z = \frac{\mbox{card}(\mathcal R^\alpha(\gamma)\cap \Lambda)}{\int_{\Lambda} \exp{\left( -h^{\hat\alpha,\theta}(x,\gamma)\right)} dx},$$
+and the estimate $\hat\theta$ as the solution of
+
+$$z \int_{\Lambda'} (h^{\hat\alpha,1}(x,\gamma)\exp{\left(-h^{\hat\alpha,\theta}(x,\gamma)\right)}) dx = \sum_{x \in \mathcal R^{\hat\alpha}(\gamma)\cap \Lambda} h^{\hat\alpha,1}(x,\gamma\setminus\{x\}).$$
+
+\end{small}
 \end{frame}
 
 
 
-\begin{frame}\frametitle{Practical implementation}
+\begin{frame}\frametitle{Two-step procedure}\framesubtitle{2. Maximum pseudolikelihood - practical implementation}
+\begin{small}
 We obtain the estimate of $\theta$ by substituting the expression for $\hat z$ into the equation for $\theta$. 
-This eventually leads to the equation
+This leads to the equation
+$$ 
+\frac{\int_{\Lambda } (h^{\hat\alpha,1}(x,\gamma)\exp{\left(-h^{\hat\alpha,\theta}(x,\gamma)\right)}) dx} {  \int_{\Lambda } \exp{\left( -h^{\hat\alpha,\theta}(x,\gamma)\right)} dx} 
+= \frac {\sum_{x \in \mathcal R^{\hat\alpha}(\gamma)\cap \Lambda } h^{\hat\alpha,1}(x,\gamma\setminus\{x\})} { \mbox{card}(\mathcal R^\alpha(\gamma)\cap \Lambda ) }. 
+$$
+After some manipulation, we obtain the equation
 
-$$\int_{\Lambda'_n} \exp{\left(-\theta h(x)\right)} (h(x) - c) dx = 0 .$$
+$$\int_{\Lambda} \exp{\left(-\theta h^{\hat\alpha, 1}(x,\gamma)\right)} (h^{\hat\alpha, 1}(x,\gamma) - c) dx = 0 .$$
 
 After $\hat\theta$ is estimated, we then obtain the estimate $\hat z$ with $\hat\theta$ instead of $\theta$.
 
 All integrals are estimated by MC-integration.
+\end{small}
 \end{frame}
 
 
 \begin{frame}\frametitle{Estimation results}
 are not great so far. 
+
 \end{frame}
 
 
@@ -539,10 +594,6 @@ are not great so far.
 \end{frame}
 
 
-% Questions
-% 1. Density of poisson with intensity w.r.t to unit intensity (z^N_\lambda)
-% 2. How exactly fGPP converges
-% 3. Regular trinagulation misnomer x naming collision
 
 % Notes
 % No cospherical points assumption
