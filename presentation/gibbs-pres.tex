@@ -89,21 +89,21 @@
 %%%%% Slide
 % ----------------------------------------------------------------------------------------
 \begin{frame}\frametitle{Poisson point process}
-We're on $(\mathbb R^d, \mathcal B)$.\newline
+We're on $(\mathbb R^d, \mathcal B)$, Euclidean space, $\lambda^d$ Lebesgue measure.\newline
 Denote $\mathcal B_0$ the set of bounded Borel sets. \newline
 
 \mffboxTitle{\textbf{Definition}. Poisson point process}{
 Let $\mu$ be a locally finite non-atomic measure on $\mathbb R^d$. A point process $\Phi$ satisfying 
 \begin{itemize}
     \item $\Phi(B) \sim Pois(\mu(B))$ for each $B \in \mathcal B_0$,
-    \item $\Phi(B_1), \dots, \Phi(B_n)$ for each $n \in \mathbb N$ and $B_1,\dots, B_n \in \mathcal B_0$ pairwise disjoint.
+    \item $\Phi(B_1), \dots, \Phi(B_n)$ are independent for each $n \in \mathbb N$ and $B_1,\dots, B_n \in \mathcal B_0$ pairwise disjoint.
 \end{itemize}
 is called a \alert{Poisson point process} with the \alert{intensity measure} $\mu$.
 }
 \vspace{3mm}
 If $\mu = z \lambda^d$ we call the process \alert{homogenous} and $z$ the \alert{intensity}.
 
-For $\Lambda \in \mathcal B_0$, denote the distribution of $\Theta \cap \Lambda$ as $\pi_\Lambda^z$. 
+For $\Lambda \in \mathcal B_0$, denote the distribution of $\Phi \cap \Lambda$ as $\pi_\Lambda^z$. 
 
 For the case $z=1$, use $\pi_\Lambda$.
 
@@ -143,7 +143,7 @@ Take $\Lambda \in \mathcal B_0$.
 
 \vspace{3mm}
 
-\mffboxTitle{\textbf{Definition}. Finite volume Gibbs point process}{The \alert{finite-volume Gibbs point process} (fGPP) is a point process defined by its  density with respect to $\pi_\Lambda$: 
+\mffboxTitle{\textbf{Definition}. Finite volume Gibbs point process}{The \alert{finite-volume Gibbs point process} on $\Lambda$ (fGPP) is a point process $\Gamma$ defined by its  density with respect to $\pi_\Lambda$: 
 $$f(\gamma) = \frac 1{C^{z}_\Lambda} z^{N_\Lambda(\gamma)} e^{- H(\gamma)} \quad\quad \gamma \in \mathcal F_{lf}, $$
 where
 \begin{itemize}
@@ -151,6 +151,8 @@ where
 \item $H: \mathcal F_{lf} \mapsto \mathbb R \cup \{ +\infty\}$ is a measurable function called the \alert{energy function},
 \item $C^{z}_\Lambda = \int z^{N_\Lambda} e^{- H} d \pi_\Lambda$ is the normalizing constant.
 \end{itemize}
+
+Denote $\alert P^{z}_\Lambda$ the distribution of the finite-volume Gibbs point process on $\Lambda$, called the \alert{finite Gibbs measure}.
 }
 
 % \mffboxTitle{\textbf{Proposition (Dobrushin,Landford,Ruelle)}. DLR Equations}
@@ -194,15 +196,32 @@ $$ \int \sum_{x \in \gamma} f(x, \gamma \setminus \{x\}) P^{z }_\Lambda d(\gamma
 %%%%% Slide
 % ----------------------------------------------------------------------------------------
 \begin{frame}\frametitle{Delaunay triangulation}\framesubtitle{Through empty sphere property}
-A $d+1$-tuplet $\{x_1, \dots, x_{d+1}\} \subset \gamma$ has the \alert{empty sphere property} if the open circumscribed ball $\mathcal B(T)$ does not contain any points from $\gamma$. 
+\begin{small}
 
+A $d+1$-tuplet $T=\{x_1, \dots, x_{d+1}\} \subset \gamma$ satisfies the \alert{empty sphere property} if the open circumscribed ball $\mathcal B(T)$ does not contain any points from $\gamma$. 
+\begin{minipage}[0.2\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.4\textwidth}
 \begin{center}
-\includegraphics[height = 5cm]{./FigureLayout/DelaunayGood.png}
-\includegraphics[height = 5cm]{./FigureLayout/DelaunayBad.png}
+\includegraphics[height = 3cm]{./FigureLayout/DelaunayGood.png}
+\includegraphics[height = 3cm]{./FigureLayout/DelaunayBad.png}
 \end{center}
+\end{column}
+\begin{column}{0.6\textwidth}
+\vspace{10mm}
 
-Additional assumption on $\gamma$ (\alert{No cospherical points}): no $d+2$ points $x_1, \dots, x_{d+2}$ are cospherical, i.e. there is no point $x\in \mathbb R^d$ such that $d(x,x_1)=\dots =d(x,x_2)$. 
+Additional assumption on $\gamma$ (\alert{No cospherical points}): no $d+2$ points $x_1, \dots, x_{d+2}$ are cospherical, i.e. there is no point $x\in \mathbb R^d$ such that $d(x,x_1)=\dots =d(x,x_d+2)$.\newline
 
+$d(x,y)$ is the Euclidean distance between points $x$ and $y$.
+\end{column}
+\end{columns}
+\end{minipage}
+\vspace{3mm}
+
+\mffboxTitle{\textbf{Definition}. Delaunay triangulation in $\mathbb R^d$}{A \alert{Delaunay triangulation} of $\gamma\in\mathcal F_{lf}$ is the set $Del(\gamma)$ defined by
+    $$Del(\gamma) = \{T \subset\gamma: \text{card}(T) = d+1,  T \text{ satisfies the empty sphere property } \}.$$
+}
+\end{small}
 \end{frame}
 
 
@@ -212,8 +231,9 @@ For $x \in \gamma$, the \alert{Voronoi cell} of $x$ in $\gamma$ is
 $$C(x,\gamma) = \{z \in \mathbb R^d:\; \|x-z\| \leq \|y-z\| \; \forall y \in \gamma \}.$$
 \begin{centering}\includegraphics[height = 3.8cm]{./FigureLayout/Voronoi.png}
 \includegraphics[height = 3.8cm]{./FigureLayout/VoronoiDel.png}\end{centering}
+\vspace{3mm}
 
-Then the Delaunay tessellation can be defined as 
+Then the Delaunay triangulation can be defined as 
 $$Del(\gamma) = \{ \{x,y\} \subset \gamma: \; C(x,\gamma)\cap C(y,\gamma) \neq \emptyset \}.$$
 \end{frame}
 
@@ -233,18 +253,18 @@ $$Del(\gamma) = \{ \{x,y\} \subset \gamma: \; C(x,\gamma)\cap C(y,\gamma) \neq \
 
 \end{frame}
 
-\begin{frame}\frametitle{Deulaunay triangulation}\framesubtitle{Geometric predicates, 2D}
+\begin{frame}\frametitle{Deulaunay triangulation in 2D}\framesubtitle{Geometric predicates, 2D}
 \begin{small}
-In $2D$
+In $2D$, with $p_i = (x_i, y_i)$
 
-$$INCIRCLE(P_1,P_2,P_3,P_4) = \begin{vmatrix} x_1 & y_1 & w_1 & 1 \\
+$$INCIRCLE(p_1,p_2,p_3,p_4) = \begin{vmatrix} x_1 & y_1 & w_1 & 1 \\
 x_2 & y_2 & w_2 & 1 \\
 x_3 & y_3 &  w_3 & 1 \\
 x_4 & y_4 &  w_4 & 1\end{vmatrix}$$
 
 where $w_i = x_i^2  + y_i^2, i = 1,\dots, 4$ and 
 
-$$ORIENTATION(P_1,P_2,P_3) = 
+$$ORIENTATION(p_1,p_2,p_3) = 
 \begin{vmatrix} 
 x_1 & y_1 & 1 \\
 x_2 & y_2 & 1 \\
@@ -259,11 +279,11 @@ x_3 & y_3 & 1 \\
 \end{frame}
 
 
-\begin{frame}\frametitle{Delaunay triangulation}\framesubtitle{Geometric predicates, 3D}
+\begin{frame}\frametitle{Delaunay triangulation. in 2D}\framesubtitle{Geometric predicates, 3D}
 
-In $3D$
+In $3D$, with $p_i = ( x_i, y_i, z_i)$
 
-$$INCIRCLE(P_1,P_2,P_3,P_4, P_5) = \begin{vmatrix} x_1 & y_1 & z_1 & w_1 & 1 \\
+$$INCIRCLE(p_1,p_2,p_3,p_4, p_5) = \begin{vmatrix} x_1 & y_1 & z_1 & w_1 & 1 \\
 x_2 & y_2 & z_2 & w_2 & 1 \\
 x_3 & y_3 & z_3 & w_3 & 1 \\
 x_4 & y_4 & z_4 & w_4 & 1 \\
@@ -273,7 +293,7 @@ where $w_i = x_i^2  + y_i^2 + z_i^2, i = 1,\dots, 5$
 
 if the following condition is satisfied
 
-$$ORIENTATION(P_1,P_2,P_3,P_4) = 
+$$ORIENTATION(p_1,p_2,p_3,p_4) = 
 \begin{vmatrix} 
 x_1 & y_1 & z_1 & 1 \\
 x_2 & y_2 & z_2 & 1 \\
@@ -289,7 +309,7 @@ x_4 & y_4 & z_4 & 1 \\
 \item Generators are not points, but \alert{spheres}. 
 \item $\gamma = \{P_1,\dots, P_n\} = \{(p_1, r_{p_1}), \dots , (p_n, r_{p_n})\}$ can be thought of as \alert{marked point process}.
 \item Metric is not Euclidean, but \alert{power distance}.
-$$ d(x,P) = d(x,p)^2 - r_P^2$$
+$$ d_p(x,P) = d(x,p)^2 - r_P^2$$
 \end{itemize}
 
 \begin{center}
@@ -302,27 +322,51 @@ $$ d(x,P) = d(x,p)^2 - r_P^2$$
 
 
 \begin{frame}\frametitle{Laguerre-Delaunay triangulation}\framesubtitle{Inscribed sphere and empty sphere property}
-\begin{small}
 \mffboxTitle{\textbf{Definition}. Inscribed sphere}{A sphere $C=(x, \rho)$ is \alert{inscribed} among $d+1$ spheres $P_1, \dots, P_{d+1}$ if
-$$ \rho^2 = d(x,P_1) = d(x,P_2) = \dots = d(x, P_{d+1})$$
+$$ \rho^2 = d_p(x,P_1) = d_p(x,P_2) = \dots = d_p(x, P_{d+1})$$
 The spheres $P_1,\dots, P_{d+1}$ are \alert{cospherical} to the sphere $C$.
 }
 
-\mffboxTitle{\textbf{Definition}. Empty sphere, empty sphere property}{ The inscribed sphere is called an \alert{empty sphere} if no no sphere from $\gamma$ intersects $C$ at an acute angle and if no sphere from $\gamma$ is contained in $C$. 
+\mffboxTitle{\textbf{Definition}. Empty sphere, empty sphere property}{ The inscribed sphere is called an \alert{empty sphere} if no sphere from $\gamma$ intersects $C$ at an acute angle and if no sphere from $\gamma$ is contained in $C$. 
 
 Spheres $P_{1}, \dots ,P_{d+1}$ satisfy the \alert{empty sphere property} if their inscribed sphere is an empty sphere.
 }
 
-$P_1, \dots, P_{d+1}$ are cospherical $\Rightarrow$ $C$ intersects $P_i, i=1,\dots,d+1$ at a right angle.
-
-\end{small}
-\begin{center}
-\includegraphics[height = 2cm]{./FigureLayout/inscribedsphere.png}
-\end{center}
 \end{frame}
 
 
-\begin{frame}\frametitle{Laguerre-Delaunay triangulation}\framesubtitle{Geometric predicates, 3D}
+\begin{frame}\frametitle{Laguerre-Delaunay triangulation}\framesubtitle{Definition}
+\begin{minipage}[0.2\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.4\textwidth}
+\begin{center}
+\includegraphics[height = 3.3cm]{./FigureLayout/inscribedsphere.png}
+\end{center}
+\end{column}
+\begin{column}{0.6\textwidth}
+\vspace{2cm}
+
+$P_1, \dots, P_{d+1}$ are cospherical $\Rightarrow$ $C$ intersects $P_i, i=1,\dots,d+1$ at a right angle.
+\end{column}
+\end{columns}
+\end{minipage}
+
+
+\mffboxTitle{\textbf{Definition}. Laguerre-Delaunay triangulation in $\mathbb R^d$}{A \alert{Laguerre-Delaunay triangulation} of a locally finite set $\gamma = \{(p_1, r_{p_1}), \dots , (p_n, r_{p_n})\}$ is the set $\mathcal{L}Del(\gamma)$ defined by
+\begin{align*}
+    \mathcal LDel(\gamma) &= \{T \subset \gamma:\\
+    &\text{card}(T) = d+1,  T \text{ satisfies the empty sphere property } \}.
+\end{align*}
+
+
+}
+\end{frame}
+
+
+
+
+\begin{frame}\frametitle{Laguerre-Delaunay triangulation in 3D}\framesubtitle{Geometric predicates, 3D}
+$P_i = (x_i, y_i, z_i, r_i)$
 
 $$INCIRCLE(P_1,P_2,P_3,P_4, P_5) = \begin{vmatrix} x_1 & y_1 & z_1 & w_1 & 1 \\
 x_2 & y_2 & z_2 & w_2 & 1 \\
@@ -381,7 +425,10 @@ Why? Because both are \alert{regular triangulations} - convex hulls of lifted se
 %%%%% Slide
 % ----------------------------------------------------------------------------------------
 \begin{frame}\frametitle{Poisson-Delaunay triangulation}
-For Poisson point process $\Phi$, define \alert{Poisson-Delaunay triangulation} as $Del(\Phi)$.
+
+\mffboxTitle{\textbf{Definition}. Poisson-Delaunay triangulation in $\mathbb R^d$}{The \alert{Poisson-Delaunay triangulation} of the Poisson point process $\Phi$ is the set $Del(\Phi)$.
+}
+
 \begin{center}
 \includegraphics[height = 4.2cm]{./FigureLayout/DelaunayBare.png}
 \includegraphics[height = 4.4cm]{./FigureLayout/Delaunay.png}
@@ -393,20 +440,36 @@ For Poisson point process $\Phi$, define \alert{Poisson-Delaunay triangulation} 
 %%%%% Slide
 % ----------------------------------------------------------------------------------------
 \begin{frame}\frametitle{Gibbs-Laguerre-Delaunay triangulation}
+\mffboxTitle{\textbf{Definition}. Gibbs-Laguerre-Delaunay triangulation in $\mathbb R^d$}{The \alert{Gibbs-Laguerre-Delaunay triangulation} of the Gibbs point process $\Gamma$ is the set $\mathcal LDel(\Gamma)$
+}
+\vspace{4mm}
+
 Geometric aspects of the triangulation can be used to define $H$.
 
 In general, the energy can have the form
 $$H(\gamma) = \sum_{T \in Del(\gamma)} V_1(T) + \sum_{\{T,T'\} \subset Del (\gamma)} V_2(T,T')$$
 to take interaction into account. 
-$V_1$ and $V_2$ can be any function from $d$-dimension simplices to $\mathbb R \cup \{+ \infty \}$. \newline
+$V_1$ and $V_2$ can be any functions from $d$-dimensional simplices to $\mathbb R \cup \{+ \infty \}$. \newline
 
 Add example(s)?
 
 \end{frame}
 
 
+
+
+%%%%% Slide
+% ----------------------------------------------------------------------------------------
+\section{Simulation}
+\framesection{}
+
+
+
+
+%%%%% Slide
+% ----------------------------------------------------------------------------------------
 \begin{frame}\frametitle{Specification of the GLD model}
-In the model we used, the energy function is of the form
+Our model is the GDL triangulation in $\mathbb R^3$ with  the energy function of the form
 $$H(\gamma)= \sum_{T \in Del_\Lambda(\gamma)} V_1(T),$$ 
 with $V_1$ defined as
 \begin{equation}\label{model}
@@ -426,19 +489,14 @@ where
 \item $Sur(T)$ is the surface area of the tetrahedron.
 \end{itemize}
 
+Futhermore, $W = [0,w]$ is the weight proposal interval, where $w$ is the maximum weight.
+
 \end{frame}
 
 
 %%%%% Slide
 % ----------------------------------------------------------------------------------------
-\section{Simulation}
-\framesection{}
-
-
-
-%%%%% Slide
-% ----------------------------------------------------------------------------------------
-\begin{frame}\frametitle{Simulating a GLD tessellation}\framesubtitle{Through MCMC}
+\begin{frame}\frametitle{Simulating a GLD triangulation}\framesubtitle{Through MCMC}
 % Problem: Normalizing constant, need MCMC -> BDM algorithm
 % MCMC was invented for Gibbs!
 % Initial configuration
@@ -453,15 +511,16 @@ where
 \end{itemize}
 
 
-Birth-Death-Move algorithm
+\textbf{Birth-Death-Move algorithm}\newline
+Denote $\Lambda$ the observation window and $\Delta$ the simulation window, $\Lambda \subset \Delta$. $\Lambda_W := \Lambda \times [0,W]$
 \begin{enumerate}
-    \item Start with a permissible initial configuration $\gamma_0$. 
+    \item Start with a permissible initial configuration $\gamma_0 \subset \Delta \times W$. 
     \item Denote $n=card(\gamma_0\cap \Lambda)$.
     \item In each step, with probability $1/3$:
     \begin{itemize}
-        \item \textbf{Birth}: Generate a new point $x \in \Lambda$ uniformly. Accept with probability  $ \frac{z f(\gamma_0 \cup \{x\})}{(n+1)f(\gamma_0)},$
+        \item \textbf{Birth}: Generate a new point $x \in \Lambda_W$ uniformly. Accept with probability  $ \frac{z f(\gamma_0 \cup \{x\})}{(n+1)f(\gamma_0)},$
         \item \textbf{Death}: Choose $x\in\gamma_0$ uniformly. Accept with probability $ \frac{n f(\gamma_0 \setminus \{x\})}{zf(\gamma_0)},$
-        \item \textbf{Move}: Generate a new point $y \in \Lambda$ uniformly and choose $x\in\gamma_0$ uniformly. Accept with probability $ \frac{f(\gamma_0 \setminus \{x\} \cup \{y\})}{f(\gamma_0)}.$
+        \item \textbf{Move}: Generate a new point $y \in \Lambda_W$ uniformly and choose $x\in\gamma_0$ uniformly. Accept with probability $ \frac{f(\gamma_0 \setminus \{x\} \cup \{y\})}{f(\gamma_0)}.$
     \end{itemize}
     \item Denote the new configuration $\gamma_1$, set $\gamma_0 \leftarrow \gamma_1$ and go to 2.
 
@@ -487,7 +546,7 @@ $$ P^{, z}_\Lambda \propto z^{N_\Lambda} \alert{ e^{-\theta H}} \pi_\Lambda $$
 
 
 %%%%% Slide
-----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
 \begin{frame}\frametitle{Role of the parameter $\theta$}\framesubtitle{$\theta$ positive}
 
 \begin{small}
@@ -591,19 +650,19 @@ We say a point $x\in \gamma$ is removable if $H(\gamma \setminus \{x\}) < \infty
 \begin{frame}\frametitle{Two-step procedure}\framesubtitle{2. Maximum pseudolikelihood}
 \begin{small}
 The pseudolikelihood function is
-$$ PLL_{\Lambda }(\gamma,z,\alpha, \theta) = \int_{\Lambda } z \exp (-h^{\alpha,\theta}(x,\gamma)) dx + \sum_{x\in\mathcal R^\alpha(\gamma)\cap \Lambda } \big(h^{\alpha,\theta}(x,\gamma\setminus\{x\}) - \ln(z)\big),
+$$ PLL_{\Lambda_W}(\gamma,z,\alpha, \theta) = \int_{\Lambda_W } z \exp (-h^{\alpha,\theta}(x,\gamma)) dx + \sum_{x\in\mathcal R^\alpha(\gamma)\cap \Lambda_W } \big(h^{\alpha,\theta}(x,\gamma\setminus\{x\}) - \ln(z)\big),
 $$
 
 
-The estimates $\hat\theta$ and $\hat z$ are obtained through minimizing the $PLL_{\Lambda }$ function. 
-$$(\hat z, \hat\theta) = \text{argmin}_{z,\theta} PLL_{\Lambda } (\gamma, z, \hat\alpha,\theta).$$
+The estimates $\hat\theta$ and $\hat z$ are obtained through minimizing the $PLL_{\Lambda_W }$ function. 
+$$(\hat z, \hat\theta) = \text{argmin}_{z,\theta} PLL_{\Lambda_W } (\gamma, z, \hat\alpha,\theta).$$
 
 Yielding the estimate $\hat z$ 
 
-$$\hat z = \frac{\mbox{card}(\mathcal R^\alpha(\gamma)\cap \Lambda)}{\int_{\Lambda} \exp{\left( -h^{\hat\alpha,\theta}(x,\gamma)\right)} dx},$$
+$$\hat z = \frac{\mbox{card}(\mathcal R^\alpha(\gamma)\cap \Lambda_W)}{\int_{\Lambda_W} \exp{\left( -h^{\hat\alpha,\theta}(x,\gamma)\right)} dx},$$
 and the estimate $\hat\theta$ as the solution of
 
-$$z \int_{\Lambda'} (h^{\hat\alpha,1}(x,\gamma)\exp{\left(-h^{\hat\alpha,\theta}(x,\gamma)\right)}) dx = \sum_{x \in \mathcal R^{\hat\alpha}(\gamma)\cap \Lambda} h^{\hat\alpha,1}(x,\gamma\setminus\{x\}).$$
+$$z \int_{\Lambda_W} (h^{\hat\alpha,1}(x,\gamma)\exp{\left(-h^{\hat\alpha,\theta}(x,\gamma)\right)}) dx = \sum_{x \in \mathcal R^{\hat\alpha}(\gamma)\cap \Lambda_W} h^{\hat\alpha,1}(x,\gamma\setminus\{x\}).$$
 
 \end{small}
 \end{frame}
@@ -615,12 +674,12 @@ $$z \int_{\Lambda'} (h^{\hat\alpha,1}(x,\gamma)\exp{\left(-h^{\hat\alpha,\theta}
 We obtain the estimate of $\theta$ by substituting the expression for $\hat z$ into the equation for $\theta$. 
 This leads to the equation
 $$ 
-\frac{\int_{\Lambda } (h^{\hat\alpha,1}(x,\gamma)\exp{\left(-h^{\hat\alpha,\theta}(x,\gamma)\right)}) dx} {  \int_{\Lambda } \exp{\left( -h^{\hat\alpha,\theta}(x,\gamma)\right)} dx} 
-= \frac {\sum_{x \in \mathcal R^{\hat\alpha}(\gamma)\cap \Lambda } h^{\hat\alpha,1}(x,\gamma\setminus\{x\})} { \mbox{card}(\mathcal R^\alpha(\gamma)\cap \Lambda ) }. 
+\frac{\int_{\Lambda_W } (h^{\hat\alpha,1}(x,\gamma)\exp{\left(-h^{\hat\alpha,\theta}(x,\gamma)\right)}) dx} {  \int_{\Lambda_W } \exp{\left( -h^{\hat\alpha,\theta}(x,\gamma)\right)} dx} 
+= \frac {\sum_{x \in \mathcal R^{\hat\alpha}(\gamma)\cap \Lambda_W } h^{\hat\alpha,1}(x,\gamma\setminus\{x\})} { \mbox{card}(\mathcal R^\alpha(\gamma)\cap \Lambda_W ) }. 
 $$
 After some manipulation, we obtain the equation
 
-$$\int_{\Lambda} \exp{\left(-\theta h^{\hat\alpha, 1}(x,\gamma)\right)} (h^{\hat\alpha, 1}(x,\gamma) - c) dx = 0 .$$
+$$\int_{\Lambda_W} \exp{\left(-\theta h^{\hat\alpha, 1}(x,\gamma)\right)} (h^{\hat\alpha, 1}(x,\gamma) - c) dx = 0 .$$
 
 After $\hat\theta$ is estimated, we then obtain the estimate $\hat z$ with $\hat\theta$ instead of $\theta$.
 
