@@ -76,6 +76,9 @@
 
 \begin{document}
 
+
+\setbeamertemplate{caption}{\insertcaption\par}
+
 %%%%% Title slide
 %%%%% =====================================================================================
 \frame[plain]{\titlepage}
@@ -207,6 +210,13 @@ $$ \int \sum_{x \in \gamma} f(x, \gamma \setminus \{x\}) P^{z }_\Lambda d(\gamma
 \begin{small}
 
 A $d+1$-tuplet $T=\{x_1, \dots, x_{d+1}\} \subset \gamma$ satisfies the \alert{empty sphere property} if the open circumscribed ball $\mathcal B(T)$ does not contain any points from $\gamma$. 
+
+\vspace{3mm}
+
+\mffboxTitle{\textbf{Definition}. Delaunay triangulation in $\mathbb R^d$}{A \alert{Delaunay triangulation} of $\gamma\in\mathcal F_{lf}$ is the set $Del(\gamma)$ defined by
+    $$Del(\gamma) = \{T \subset\gamma: \text{card}(T) = d+1,  T \text{ satisfies the empty sphere property } \}.$$
+}
+
 \begin{minipage}[0.2\textheight]{\textwidth}
 \begin{columns}[T]
 \begin{column}{0.4\textwidth}
@@ -224,11 +234,7 @@ $d(x,y)$ is the Euclidean distance between points $x$ and $y$.
 \end{column}
 \end{columns}
 \end{minipage}
-\vspace{3mm}
 
-\mffboxTitle{\textbf{Definition}. Delaunay triangulation in $\mathbb R^d$}{A \alert{Delaunay triangulation} of $\gamma\in\mathcal F_{lf}$ is the set $Del(\gamma)$ defined by
-    $$Del(\gamma) = \{T \subset\gamma: \text{card}(T) = d+1,  T \text{ satisfies the empty sphere property } \}.$$
-}
 \end{small}
 \end{frame}
 
@@ -329,21 +335,12 @@ $$ d_p(x,P) = d(x,p)^2 - r_P^2$$
 
 
 
-\begin{frame}\frametitle{Laguerre-Delaunay triangulation}\framesubtitle{Inscribed sphere and empty sphere property}
+\begin{frame}\frametitle{Laguerre-Delaunay triangulation}\framesubtitle{Inscribed sphere and cospherical spheres}
 \mffboxTitle{\textbf{Definition}. Inscribed sphere}{A sphere $C=(x, \rho)$ is \alert{inscribed} among $d+1$ spheres $P_1, \dots, P_{d+1}$ if
 $$ \rho^2 = d_p(x,P_1) = d_p(x,P_2) = \dots = d_p(x, P_{d+1})$$
 The spheres $P_1,\dots, P_{d+1}$ are \alert{cospherical} to the sphere $C$.
 }
 
-\mffboxTitle{\textbf{Definition}. Empty sphere, empty sphere property}{ The inscribed sphere is called an \alert{empty sphere} if no sphere from $\gamma$ intersects $C$ at an acute angle and if no sphere from $\gamma$ is contained in $C$. 
-
-Spheres $P_{1}, \dots ,P_{d+1}$ satisfy the \alert{empty sphere property} if their inscribed sphere is an empty sphere.
-}
-
-\end{frame}
-
-
-\begin{frame}\frametitle{Laguerre-Delaunay triangulation}\framesubtitle{Definition}
 \begin{minipage}[0.2\textheight]{\textwidth}
 \begin{columns}[T]
 \begin{column}{0.4\textwidth}
@@ -359,8 +356,17 @@ $P_1, \dots, P_{d+1}$ are cospherical $\Rightarrow$ $C$ intersects $P_i, i=1,\do
 \end{columns}
 \end{minipage}
 
+\end{frame}
 
-\mffboxTitle{\textbf{Definition}. Laguerre-Delaunay triangulation in $\mathbb R^d$}{A \alert{Laguerre-Delaunay triangulation} of a locally finite set $\gamma = \{(p_1, r_{p_1}), \dots , (p_n, r_{p_n})\}$ is the set $\mathcal{L}Del(\gamma)$ defined by
+
+\begin{frame}\frametitle{Laguerre-Delaunay triangulation}\framesubtitle{Definition}
+
+\mffboxTitle{\textbf{Definition}. Empty sphere, empty sphere property}{ The inscribed sphere is called an \alert{empty sphere} if no sphere from $\gamma$ intersects $C$ at an acute angle and if no sphere from $\gamma$ is contained in $C$. 
+
+Spheres $P_{1}, \dots ,P_{d+1}$ satisfy the \alert{empty sphere property} if their inscribed sphere is an empty sphere.
+}
+
+\mffboxTitle{\textbf{Definition}. Laguerre-Delaunay triangulation in $\mathbb R^d$}{A \alert{Laguerre-Delaunay triangulation} of a locally finite set\newline $\gamma = \{(p_1, r_{p_1}), \dots , (p_n, r_{p_n})\}$ is the set $\mathcal{L}Del(\gamma)$ defined by
 \begin{align*}
     \mathcal LDel(\gamma) &= \{T \subset \gamma:\\
     &\text{card}(T) = d+1,  T \text{ satisfies the empty sphere property } \}.
@@ -451,7 +457,7 @@ $$\gamma^l = \{(P_i, w_i): P_i \in \gamma, w_i = x_i^2  + y_i^2 + z_i^2 - r_i^2 
 %%%%% Slide
 % ----------------------------------------------------------------------------------------
 \begin{frame}\frametitle{Gibbs-Laguerre-Delaunay triangulation}
-\mffboxTitle{\textbf{Definition}. Gibbs-Laguerre-Delaunay triangulation in $\mathbb R^d$}{The \alert{Gibbs-Laguerre-Delaunay triangulation} of the Gibbs point process $\Gamma$ is the set $\mathcal LDel(\Gamma)$
+\mffboxTitle{\textbf{Definition}. Gibbs-Laguerre-Delaunay triangulation in $\mathbb R^d$}{The \alert{Gibbs-Laguerre-Delaunay triangulation} of the finite Gibbs point process $\Gamma$ is the set $\mathcal LDel(\Gamma).$
 }
 \vspace{4mm}
 
@@ -481,7 +487,7 @@ $V_1$ and $V_2$ can be any functions from $d$-dimensional simplices to $\mathbb 
 Our model is the GDL triangulation in $\mathbb R^3$ with  the energy function of the form
 $$H(\gamma)= \sum_{T \in Del_\Lambda(\gamma)} V_1(T),$$ 
 with $V_1$ defined as
-\begin{equation}\label{model}
+\begin{equation}
 V_1(T) = 
 \left\{
     \begin{array}{ll}
@@ -544,10 +550,14 @@ Denote $\Lambda$ the observation window and $\Delta$ the simulation window, $\La
 \begin{frame}\frametitle{Comparison with Poisson-Delaunay}
 $$ \pi_\Lambda^z \propto z^{N_\Lambda} \pi_\Lambda$$
 \vspace{-4mm}
-$$ P^{, z}_\Lambda \propto z^{N_\Lambda} \alert{ e^{-\theta H}} \pi_\Lambda $$
+$$ P^{z}_\Lambda \propto z^{N_\Lambda} \alert{ e^{-\theta H}} \pi_\Lambda $$
 \begin{small}$\theta = 0 \Rightarrow$ GPP becomes PPP with intensity $z$.\end{small}
+
 \begin{center}
-\includegraphics[height = 5.3cm]{./FigureLayout/facets_Poisson.pdf}
+\begin{figure}
+\includegraphics[height = 4.6cm]{./FigureLayout/facets_Poisson.pdf}
+\caption{\begin{scriptsize}Realization of a GLD model with parameters $\theta = 0.1, z = 500, \alpha = 0.15, \epsilon = 0, W_0 = 0.001$ \end{scriptsize}}
+\end{figure}
 \end{center}
 \end{frame}
 
@@ -563,8 +573,12 @@ The model prefers configurations with lower energy.
 
 $\theta$ multiplies the total surface area of all cells, thus with higher $\theta$, the cells are forced to become large. 
 \end{small}
+
 \begin{center}
-\includegraphics[height = 6.4cm]{./FigureLayout/facets_extr.pdf}
+\begin{figure}
+\includegraphics[height = 5.2cm]{./FigureLayout/facets_extr.pdf}
+\caption{\begin{scriptsize} Realization of two GLD models. Blue: $\theta = 0.1$, orange: $\theta = 2$. Other parameters are $z = 500, \alpha = 0.15, \epsilon = 0, W_0 = 0.001$ for both models. \end{scriptsize}}
+\end{figure}
 \end{center}
 
 \end{frame}
@@ -579,8 +593,12 @@ The model prefers configurations with lower energy.
 \end{itemize}
 \end{small}
 
+
 \begin{center}
-\includegraphics[height = 6cm]{./FigureLayout/facets_neg.pdf}
+\begin{figure}
+\includegraphics[height = 4.9cm]{./FigureLayout/facets_neg.pdf}
+\caption{\begin{scriptsize} Realization of two GLD models. Blue: $\theta = -2$, orange: $\theta = 2$. Other parameters are $z = 500, \alpha = 0.15, \epsilon = 0, W_0 = 0.001$ for both models. \end{scriptsize}}
+\end{figure}
 \end{center}
 
 
@@ -644,13 +662,14 @@ The estimate $\hat\alpha$ is then used in the pseudo-likelihood function in the 
 MPLE depends on GNZ, which works only for \alert{hereditary} energy functions.
 $$H(\gamma) < \infty \Rightarrow H(\gamma \setminus \{x\}) < \infty \quad x \in \gamma$$
 
+\begin{center}
+\includegraphics[height = 3.5cm]{./FigureLayout/hereditarity.png}
+\end{center}
+
 However [Dereudre, Lavancier (2009)] proved that GNZ still holds if we restrict ourselves to \alert{removable points}.\newline
 
 We say a point $x\in \gamma$ is removable if $H(\gamma \setminus \{x\}) < \infty$. Denote $\alert {\mathcal R^\alpha(\gamma)}$ the set of removable points in $\gamma$. 
 
-\begin{center}
-\includegraphics[height = 3.5cm]{./FigureLayout/hereditarity.png}
-\end{center}
 
 \end{frame}
 
@@ -682,13 +701,15 @@ $$z \int_{\Lambda_W} (h^{\hat\alpha,1}(x,\gamma)\exp{\left(-h^{\hat\alpha,\theta
 \begin{small}
 We obtain the estimate of $\theta$ by substituting the expression for $\hat z$ into the equation for $\theta$. 
 This leads to the equation
-$$ 
+\begin{equation}\label{eq}
 \frac{\int_{\Lambda_W } (h^{\hat\alpha,1}(x,\gamma)\exp{\left(-h^{\hat\alpha,\theta}(x,\gamma)\right)}) dx} {  \int_{\Lambda_W } \exp{\left( -h^{\hat\alpha,\theta}(x,\gamma)\right)} dx} 
 = \frac {\sum_{x \in \mathcal R^{\hat\alpha}(\gamma)\cap \Lambda_W } h^{\hat\alpha,1}(x,\gamma\setminus\{x\})} { \mbox{card}(\mathcal R^\alpha(\gamma)\cap \Lambda_W ) }. 
-$$
+\end{equation}
 After some manipulation, we obtain the equation
 
 $$\int_{\Lambda_W} \exp{\left(-\theta h^{\hat\alpha, 1}(x,\gamma)\right)} (h^{\hat\alpha, 1}(x,\gamma) - c) dx = 0 .$$
+
+where $c$ is the RHS of (\ref{eq}), which is independent of $\theta$.
 
 After $\hat\theta$ is estimated, we then obtain the estimate $\hat z$ with $\hat\theta$ instead of $\theta$.
 
@@ -698,11 +719,14 @@ All integrals are estimated by MC-integration.
 
 
 \begin{frame}\frametitle{Estimation results}\framesubtitle{For Gibbs-Delaunay}
-Estimates from $303$ simulations of a Gibbs-Delaunay model with $\theta = 5, z = 500, \alpha = 0.15, \epsilon = 0$
 
 \begin{center}
+\begin{figure}
 \includegraphics[height = 6cm]{./FigureLayout/estimates_delaunay.pdf}
+\caption{\begin{scriptsize} Estimates from $303$ simulations of a Gibbs-Delaunay model with $\theta = 5, z = 500, \alpha = 0.15, \epsilon = 0.$ \end{scriptsize}}
+\end{figure}
 \end{center}
+
 
 \end{frame}
 
