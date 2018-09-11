@@ -161,12 +161,20 @@ Denote $\alert P^{z}_\Lambda$ the distribution of the finite-volume Gibbs point 
 
 
 
-\begin{frame}\frametitle{Examples and usefulness of (f)GPP}
+\begin{frame}\frametitle{Energy function $H$}\framesubtitle{Requirements and an example}
+Typically, we require $H$ to satisfy:
 \begin{itemize}
-\item Physical motivation
-\item Other examples of energy functions
-\item Allows working explicitly with geometrical structures such as random tessellations
+\item \alert{Non-degeneracy:} $$H(\emptyset) < + \infty.$$  
+\item \alert{Hereditarity:} For any finite point configuration $\gamma \subset \mathbb R^d$ and $x\in \gamma$
+    $$H(\gamma) < + \infty \Rightarrow H(\gamma \setminus \{x\}) < + \infty.$$
+\item \alert{Stability:} There exists a constant $A$ such that for any finite point configuration $\gamma$ 
+    $$H(\gamma) \geq AN_{\mathbb R^d} (\gamma)$$
 \end{itemize}
+
+
+\textbf{Strauss interaction}: For $R>0$,
+$$H(\gamma) =  \sum_{\{x,y\} \subset \gamma } 1_{[0,R]}(\|x-y\|)$$
+
 \end{frame}
 
 
@@ -177,7 +185,7 @@ Denote $\alert P^{z}_\Lambda$ the distribution of the finite-volume Gibbs point 
 For $\gamma \in \mathcal F_{lf}$ and $x \in \mathbb R^d$, define the \alert{local energy} of $x$ in $\gamma$ by
 $$h(x,\gamma) = H(\gamma \cup \{x\}) - H(\gamma).$$
 
-\mffboxTitle{\textbf{Proposition (Georgii, Nguyen, Zessin)}. GZN equations}{For any positive measurable function $f:\mathbb R^d\times \mathcal F_{lf} \to \mathbb R$,
+\mffboxTitle{\textbf{Proposition (Georgii, Nguyen, Zessin)}. GNZ equations}{For any positive measurable function $f:\mathbb R^d\times \mathcal F_{lf} \to \mathbb R$,
 $$ \int \sum_{x \in \gamma} f(x, \gamma \setminus \{x\}) P^{z }_\Lambda d(\gamma) = z \int \int_\Lambda f(x,\gamma) e^{- h(x,\gamma)} dx P^{z}_\Lambda (d\gamma). $$
 }
 
@@ -253,7 +261,7 @@ $$Del(\gamma) = \{ \{x,y\} \subset \gamma: \; C(x,\gamma)\cap C(y,\gamma) \neq \
 
 \end{frame}
 
-\begin{frame}\frametitle{Deulaunay triangulation in 2D}\framesubtitle{Geometric predicates, 2D}
+\begin{frame}\frametitle{Delaunay triangulation in 2D}\framesubtitle{Geometric predicates, 2D}
 \begin{small}
 In $2D$, with $p_i = (x_i, y_i)$
 
@@ -279,7 +287,7 @@ x_3 & y_3 & 1 \\
 \end{frame}
 
 
-\begin{frame}\frametitle{Delaunay triangulation. in 2D}\framesubtitle{Geometric predicates, 3D}
+\begin{frame}\frametitle{Delaunay triangulation in 3D}\framesubtitle{Geometric predicates, 3D}
 
 In $3D$, with $p_i = ( x_i, y_i, z_i)$
 
@@ -366,6 +374,7 @@ $P_1, \dots, P_{d+1}$ are cospherical $\Rightarrow$ $C$ intersects $P_i, i=1,\do
 
 
 \begin{frame}\frametitle{Laguerre-Delaunay triangulation in 3D}\framesubtitle{Geometric predicates, 3D}
+\begin{small}
 $P_i = (x_i, y_i, z_i, r_i)$
 
 $$INCIRCLE(P_1,P_2,P_3,P_4, P_5) = \begin{vmatrix} x_1 & y_1 & z_1 & w_1 & 1 \\
@@ -386,8 +395,10 @@ x_3 & y_3 & z_3 & 1 \\
 x_4 & y_4 & z_4 & 1 \\
 \end{vmatrix} > 0$$
 
-Why? Because both are \alert{regular triangulations} - convex hulls of lifted sets of points.
+Why? Because both are \alert{regular triangulations} - convex hulls of lifted sets of points, that is
+$$\gamma^l = \{(P_i, w_i): P_i \in \gamma, w_i = x_i^2  + y_i^2 + z_i^2 - r_i^2 \}$$
 
+\end{small}
 \end{frame}
 
 
@@ -451,8 +462,6 @@ $$H(\gamma) = \sum_{T \in Del(\gamma)} V_1(T) + \sum_{\{T,T'\} \subset Del (\gam
 to take interaction into account. 
 $V_1$ and $V_2$ can be any functions from $d$-dimensional simplices to $\mathbb R \cup \{+ \infty \}$. \newline
 
-Add example(s)?
-
 \end{frame}
 
 
@@ -489,7 +498,7 @@ where
 \item $Sur(T)$ is the surface area of the tetrahedron.
 \end{itemize}
 
-Futhermore, $W = [0,w]$ is the weight proposal interval, where $w$ is the maximum weight.
+Futhermore, $W = [0,W_0]$ is the weight proposal interval, where $W_0>0$ is the maximum weight.
 
 \end{frame}
 
@@ -614,7 +623,7 @@ This is done through a \alert{two-step procedure}
 
 \begin{frame}\frametitle{Two-step procedure}\framesubtitle{1. Hardcore interaction parameters estimation}
 \begin{small}
-[Ref] only proves consistence for a single parameter (although experimentally both work).\newline
+[Dereudre, Lavancier (2009)] only proves consistence for a single parameter (although experimentally both work).\newline
 
 Thanks to the fact that the hardcore parameter $\alpha$ satisfies
 $$ \text{if } \alpha < \alpha' \text{ then  } \forall \Lambda, \; H^{\epsilon,\alpha,\theta}_\Lambda(\gamma) < \infty \Rightarrow  H^{\epsilon,\alpha',\theta}_\Lambda(\gamma)<\infty,$$ 
@@ -635,7 +644,7 @@ The estimate $\hat\alpha$ is then used in the pseudo-likelihood function in the 
 MPLE depends on GNZ, which works only for \alert{hereditary} energy functions.
 $$H(\gamma) < \infty \Rightarrow H(\gamma \setminus \{x\}) < \infty \quad x \in \gamma$$
 
-However [Ref] proved that GNZ still holds if we restrict ourselves to \alert{removable points}.\newline
+However [Dereudre, Lavancier (2009)] proved that GNZ still holds if we restrict ourselves to \alert{removable points}.\newline
 
 We say a point $x\in \gamma$ is removable if $H(\gamma \setminus \{x\}) < \infty$. Denote $\alert {\mathcal R^\alpha(\gamma)}$ the set of removable points in $\gamma$. 
 
@@ -688,8 +697,12 @@ All integrals are estimated by MC-integration.
 \end{frame}
 
 
-\begin{frame}\frametitle{Estimation results}
-are not great so far. 
+\begin{frame}\frametitle{Estimation results}\framesubtitle{For Gibbs-Delaunay}
+Estimates from $303$ simulations of a Gibbs-Delaunay model with $\theta = 5, z = 500, \alpha = 0.15, \epsilon = 0$
+
+\begin{center}
+\includegraphics[height = 6cm]{./FigureLayout/estimates_delaunay.pdf}
+\end{center}
 
 \end{frame}
 
@@ -699,10 +712,12 @@ are not great so far.
 
 \begin{frame}\frametitle{Possible future directions}
 \begin{itemize}
-\item Variational estimate
-\item Energy with explicit interaction
-\item Periodic outside configuration
-\item ...
+\item Variational estimator
+$$E \Bigg( \sum_{x \in \Gamma} \nabla_x f(x, \Gamma \setminus \{x\} ) \Bigg) = \theta E \Bigg(\sum_{x \in \Gamma} f(x, \Gamma \setminus \{x\}) \nabla_x h(x, \Gamma \setminus \{x\}) \Bigg).$$
+\item Energy with explicit interaction, e.g.
+$$V_2(T,T') = \theta \bigg (\frac {\max ( Vol(T), Vol(T'))}{\min(Vol(T),Vol(T'))} - 1\bigg)$$
+\item Periodic outside configuration.
+
 \end{itemize}
 \end{frame}
 
