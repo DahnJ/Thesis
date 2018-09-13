@@ -190,7 +190,7 @@ For $\gamma \in \mathcal F_{lf}$ and $x \in \mathbb R^d$, define the \alert{loca
 $$h(x,\gamma) = H(\gamma \cup \{x\}) - H(\gamma).$$
 
 \mffboxTitle{\textbf{Proposition (Georgii, Nguyen, Zessin)}. GNZ equations}{For any positive measurable function $f:\mathbb R^d\times \mathcal F_{lf} \to \mathbb R$,
-$$ \int \sum_{x \in \gamma} f(x, \gamma \setminus \{x\}) P^{z }_\Lambda d(\gamma) = z \int \int_\Lambda f(x,\gamma) e^{- h(x,\gamma)} dx P^{z}_\Lambda (d\gamma). $$
+$$ \int \sum_{x \in \gamma} f(x, \gamma \setminus \{x\}) P^{z }_\Lambda (d\gamma) = z \int \int_\Lambda f(x,\gamma) e^{- h(x,\gamma)} dx P^{z}_\Lambda (d\gamma). $$
 }
 
 
@@ -496,7 +496,7 @@ $V_1$ and $V_2$ can be any functions from $d$-dimensional simplices to $\mathbb 
 %%%%% Slide
 % ----------------------------------------------------------------------------------------
 \begin{frame}\frametitle{Specification of the GLD model}
-Our model is the GDL triangulation in $\mathbb R^3$ with  the energy function of the form
+Our model is the GLD triangulation in $\mathbb R^3$ with  the energy function of the form
 $$H(\gamma)= \sum_{T \in \mathcal LDel_\Lambda(\gamma)} V_1(T),$$ 
 with $V_1$ defined as
 \begin{equation}
@@ -661,7 +661,7 @@ $$ \text{if } \alpha < \alpha' \text{ then  } \forall \Lambda, \; H^{\epsilon,\a
 its consistent estimator is
 $$\hat\alpha = \inf\{\alpha > 0, H_\Lambda(\gamma) < \infty \},$$
 which in practice is estimated as
-$$\hat\alpha = \max\{r(T), T\in Del_\Lambda(\gamma)\}.$$
+$$\hat\alpha = \max\{r(T), T\in \mathcal LDel_\Lambda(\gamma)\}.$$
 
 The estimate $\hat\alpha$ is then used in the pseudo-likelihood function in the second estimation step.
 
@@ -714,19 +714,19 @@ $$z \int_{\Lambda_W} (h^{\hat\alpha,1}(x,\gamma)\exp{\left(-h^{\hat\alpha,\theta
 
 \begin{frame}\frametitle{Two-step procedure}\framesubtitle{2. Maximum pseudolikelihood - practical implementation}
 \begin{small}
-We obtain the estimate of $\theta$ by substituting the expression for $\hat z$ into the equation for $\theta$. 
-This leads to the equation
+
+To obtain the estimate for $\theta$, substitute the expression for $\hat z$ into the equation for $\theta$.
 \begin{equation}\label{eq}
 \frac{\int_{\Lambda_W } (h^{\hat\alpha,1}(x,\gamma)\exp{\left(-h^{\hat\alpha,\theta}(x,\gamma)\right)}) dx} {  \int_{\Lambda_W } \exp{\left( -h^{\hat\alpha,\theta}(x,\gamma)\right)} dx} 
 = \frac {\sum_{x \in \mathcal R^{\hat\alpha}(\gamma)\cap \Lambda_W } h^{\hat\alpha,1}(x,\gamma\setminus\{x\})} { \mbox{card}(\mathcal R^\alpha(\gamma)\cap \Lambda_W ) }. 
 \end{equation}
-After some manipulation, we obtain the equation
+After some algebraic manipulation, we obtain the equation
 
-$$\int_{\Lambda_W} \exp{\left(-\theta h^{\hat\alpha, 1}(x,\gamma)\right)} (h^{\hat\alpha, 1}(x,\gamma) - c) dx = 0 .$$
+$$\int_{\Lambda_W} \exp{\left(-\theta h^{\hat\alpha, 1}(x,\gamma)\right)} (h^{\hat\alpha, 1}(x,\gamma) - c) dx = 0 ,$$
 
-where $c$ is the RHS of (\ref{eq}), which is independent of $\theta$.
+where $c$ is the RHS of (\ref{eq}), which is independent of $\theta$. \newline
 
-After $\hat\theta$ is estimated, we then obtain the estimate $\hat z$ with $\hat\theta$ instead of $\theta$.
+After $\hat\theta$ is estimated, we then obtain the estimate $\hat z$ using the esitmate $\hat\theta$ instead of $\theta$.
 
 All integrals are estimated by MC-integration.
 \end{small}
