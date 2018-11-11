@@ -1,0 +1,240 @@
+\documentclass[12pt,a4paper]{report}
+\setlength\textwidth{145mm}
+\setlength\textheight{247mm}
+\setlength\oddsidemargin{15mm}
+\setlength\evensidemargin{15mm}
+\setlength\topmargin{0mm}
+\setlength\headsep{0mm}
+\setlength\headheight{0mm}
+% \openright makes the following text appear on a right-hand page
+\let\openright=\clearpage
+
+%% Settings for two-sided (duplex) printing
+% \documentclass[12pt,a4paper,twoside,openright]{report}
+% \setlength\textwidth{145mm}
+% \setlength\textheight{247mm}
+% \setlength\oddsidemargin{14.2mm}
+% \setlength\evensidemargin{0mm}
+% \setlength\topmargin{0mm}
+% \setlength\headsep{0mm}
+% \setlength\headheight{0mm}
+% \let\openright=\cleardoublepage
+
+%% Character encoding: usually latin2, cp1250 or utf8:
+\usepackage[utf8]{inputenc}
+
+
+%% Further useful packages (included in most LaTeX distributions)
+\usepackage{amsmath}        % extensions for typesetting of math
+\usepackage{amsfonts}       % math fonts
+\usepackage{amsthm}         % theorems, definitions, etc.
+\usepackage{amssymb}	    % \Subset
+\usepackage{bm}             % boldface symbols (\bm)
+\usepackage{graphicx}       % embedding of pictures
+\usepackage{fancyvrb}       % improved verbatim environment
+\usepackage{dcolumn}        % improved alignment of table columns
+\usepackage{booktabs}       % improved horizontal lines in tables
+\usepackage{paralist}       % improved enumerate and itemize
+\usepackage[pdftex,dvipsnames]{xcolor}  % typesetting in color
+
+\usepackage{cite}
+\usepackage[colorinlistoftodos,prependcaption,textsize=tiny]{todonotes}
+\usepackage{xargs}
+
+
+\newcommand{\R}{\mathbb R^3}
+
+\newcommandx{\problem}[2][1=]{\todo[linecolor=red,backgroundcolor=red!25,bordercolor=red,#1]{#2}}
+\newcommandx{\todoo}[2][1=]{\todo[linecolor=blue,backgroundcolor=blue!25,bordercolor=blue,#1]{#2}}
+\newcommandx{\note}[2][1=]{\todo[linecolor=OliveGreen,backgroundcolor=OliveGreen!25,bordercolor=OliveGreen,#1]{#2}}
+\newcommandx{\unsure}[2][1=]{\todo[linecolor=Plum,backgroundcolor=Plum!25,bordercolor=Plum,#1]{#2}}
+
+\newtheorem{theorem}{Theorem}
+
+
+
+\begin{document}
+
+\chapter{Existence of Gibbs distributions with Delaunay and Laguerre-Delaunay potentials}
+
+\section{Notation, basic terms}
+We will restrict ourselves to $(\mathbb R^3, \mathcal B)$, where $\mathcal B$ is the Borel $\sigma$-algebra. Denote $\mathcal B_0 \subset \mathcal B$ the system of bounded Borel sets, Denote $S$ the mark space with a Borel $\sigma$-algebra $\mathcal S$. In our case, $S = [0,W]$ for some $W>0$. A \textit{configuration} is a subset $\omega \in \mathbb R^3\times S$ with a locally finite projection onto $\mathbb R^3$. Individual points from $\omega$ will typically denoted $p=(x,w)$ where $x \in \mathbb R^3$ is called the \textit{center} of $p$ and $w \in S$ is called the \textit{weight} of $p$. Given the geometric interpretation \todoo{refer to a part of text}, points will be sometimes called spheres.
+
+The space of all configurations on $\mathbb R^3 \times S$ is denoted $N$. It is equipped with the $\sigma$-algebra $\mathcal N$.\todoo{Define the sigma algebra}. Let $N_f \subset N$ be the space of all configurations with finitely many points with the trace $\sigma$-algebra $\mathcal N_f$. For $\Lambda\in\mathcal B$ we write $\omega_Lambda = \omega \cap (\Lambda \times S)$ and $N_\Lambda = \{\omega \in N: \text{pr}_{\R} (\omega) \subset \Lambda\}$ and write $\mathcal F'_\Lambda$ for the corresponding trace $\sigma$-algebra.
+
+The reference measure on $(N, \mathcal N)$ is the Poisson point process $\Pi^z$ with intensity measure $z\lambda \otimes \mu$, where $\lambda$ is the Lebesgue measure on $\mathbb R^3$ and $\mu$ is a $\sigma$-finite measure on $(S,\mathcal S)$.
+
+
+Define \textit{hypergraph structure}, \textit{hyperedge}, \textit{hyperedge potential} the same way. Since $\mathcal E$ can be though of as a map giving the set of all hyperedges for a given configurations, we will use $\eta \in \mathcal E(\omega)$ to denote $(\eta,\omega)\in\mathcal E$.
+
+Hyperedge potential is \textit{shift-invariant} defined in the same way, only $\vartheta:\Omega \to \Omega$ only translates the positional part of $\omega$ and leaves marks untouched.
+
+
+\section{Delaunay and Laguerre-Delaunay hypergraph structures and potentials}
+\subsection{Hypergraph structures}
+\todoo[inline]{Define normal position}
+The two key hypergraph structures used in this text are the Delaunay and Laguerre-Delaunay tetrahedronizations. 
+\problem[inline]{Delaunay is unmarked?}
+
+We say that $(\eta,\omega)$ satisfies the \textit{empty sphere property} if there exists an open ball $B(\eta,\omega)$ with $B(\eta,\omega)\cap \omega = \emptyset$ and $\eta \subset \partial B(\eta,\omega) \cap \omega$. The sphere $\partial B(\eta,\omega)$ is called the \textit{inscribed sphere}. 
+$$\mathcal D = \left\{ (\eta,\omega) \in N_f \times N: \eta \subset \omega, \# \eta = 4, (\eta,\omega) \text{ satisfies the empty sphere property} \right\} $$ 
+\unsure{Is $B(\eta,\omega)$ even a good notation}
+Note the differences from \cite{DDG11}, namely that we're only considering \textit{tetrahedral hyperedges}, i.e. hyperedges with four points, and that $\partial B(\eta,\omega) \cap \omega$ only needs to contain $\eta$ instead of being equal to it. This definition allows e.g. points in a regular lattice to still define tetrahedral hyperedges. In \cite{DDG11}, a regular lattice would still define a hyperedge structure, but its members would not be tetrahedral. \unsure{Is this correct?}
+
+In order to define the Laugerre-Delaunay hypergraph structure, we need to introduce further concepts.
+
+Define the \textit{power distance} of the unmarked point $y \in\R$ from the point $p=(x,w) \in \R\times S$ as
+$$d(y,p) = \|y-x\|^2 - w.$$
+For two (marked) points $p=(x,w)$ and $q=(y,w')$, define their \textit{power product} by
+$$\rho(s,s') = \|y-x\|^2 - w - w'.$$
+Notice that $\rho(p,q) = d(p,y) - w' = d(q,x) - w$ and that $\rho(p,(y,0)) = d(p,y)$.
+
+
+For a tetrahedral hyperedge $\eta$, we define the \textit{characteristic point} of $\eta$ as the marked point $p_\eta = (x_\eta, w_\eta)$ such that
+$$\rho(p,p_\eta)=0 \text{ for all } p \in \eta.$$
+Note that the characteristic point can be thought of as a ball or sphere with the center $x_\eta$ and radius $\sqrt{w_\eta}$. This ball will be referred to as $B(x_\eta,\sqrt{w_\eta})$
+
+\todoo[inline]{Comment on uniqueness of this point}
+\note[inline]{It will probably by useful to talk about the geometric interpretation, orthogonality, etc - do so later}
+
+We say that $(\eta,\omega)$ is \textit{regular} if $\rho(p_\eta,p)\geq 0 $ for all $p \in \omega$.
+
+Using these terms, we are now ready to define the Laguerre-Delaunay hypergraph structure
+$$\mathcal {LD} = \left\{ (\eta,\omega) \in N_f \times N: \eta \subset \omega, \# \eta = 4, (\eta,\omega) \text{ is regular } \right\}$$
+
+\todoo[inline]{Again, comment on the geometric interpretation of this property}
+
+Note that if $\text{pr}_S (\omega) = \{0\}$, that is all the points from $\omega$ have weight 0, then the regularity property of $(\eta, \omega)$ becomes the empty sphere property. Similarly, the characteristic point then coincides with the inscribed sphere. As such, it would have been possible to simply define $\mathcal D$ as a special case of $\mathcal {LD}$.\todoo{So why haven't we}
+
+\todoo[inline]{Comment on invariance to addition in weights - the characteristic point gets smaller to counteract this. This then gives Delaunay for any mark that is equal in all points.}
+\todoo[inline]{Comment on the fact that some points might be redundant}
+For the remainder of the text, we will assume that any hyperedge $\eta$ is tetrahedral, that is $\#\eta = 4$.
+
+\subsection{Hypergraph potentials}
+Throughout this text, two potentials will mainly be used for both $\mathcal D$ and $\mathcal {LD}$. For a tetrahedral $\eta$, denote $\delta(\eta)$ the diameter of the inscribed sphere $B(\eta,\omega)$.
+\unsure[inline]{How about using the diameter of the characteristic point? Is it always bounded by the circumdiameter? If so, then we could use it, or at least comment on it.} 
+
+The first is the potential $\varphi_S$ satisfying $\varphi_S(\eta) \leq K_0 + K_1(\delta(\eta))^\alpha$ for some $K_0 \geq 0, K_1 \geq 0, \alpha > 0$.
+
+The second is the hardcore potential $\varphi_{HC}$ for which there are constants $0\leq d_0 < d_1 \leq d_2$ \unsure{How exactly does this look? Why?} such that
+$$\sup_{\eta: d_0 \leq \delta(\eta) \leq d_1} \varphi(\eta) < \infty \text{ and } \varphi(\eta)=\infty \text{ if } \delta(\eta)>l_2 .$$ 
+
+\todoo[inline]{Add other potentials? Other characteristics other than circumdiameter? What about combinations? Or interactions?} 
+
+In the remainder of this text, whenever we say a property holds for $\mathcal D$ or $\mathcal {LD}$ we mean that the property holds for the pairs $(\mathcal D,\varphi_S)$ and $(\mathcal D,\varphi_{HC})$, respectivelly $(\mathcal {LD},\varphi_S)$ and $(\mathcal {LD},\varphi_{HC})$.
+
+\section{Basic notions of hypergraph structures}
+
+\todoo[inline]{Comment on how $\varphi$ does not change for us, possibly number it as a remark or so and refer to it later}
+
+A set $\Delta \in \mathcal B_0$ is a \textit{finite horizon} for the pair $(\eta,\omega) \in \mathcal E$ and the hyperedge potential $\varphi$ if for all $\tilde\omega = \omega$ on $\Delta\times S$ 
+$$(\eta,\tilde\omega)\in\mathcal E \text{ and } \varphi(\eta,\tilde\omega) = \varphi(\eta,\omega). $$
+The pair $(\mathcal E, \varphi)$ satisfies the \textit{finite-horizon property} if each $(\eta,\omega)\in \mathcal E$ has a finite horizon.
+
+The finite horizon of $(\eta,\omega)$ delineates the region outside which points can no longer violate the regularity (or the empty sphere property) of $\eta$. 
+
+Here it is worth looking at when is the equality $\varphi(\eta,\tilde\omega) = \varphi(\eta,\omega)$ violated. It is precisely only when $\varphi(\eta,\omega)>0$ and $\eta \notin\mathcal E(\tilde\omega)$, so that $\varphi(\eta,\tilde\omega)=0$.\todoo{Comment on this better, also note somehwere that $\varphi = 0$ on $\mathcal E^c$.}
+
+For $\mathcal D$, the inscribed sphere $\bar B(\eta,\omega)$\unsure{Everything is an inscribed sphere} itself is a finite horizon for $(\eta,\omega)$.
+
+For $\mathcal {LD}$, the situation is slightly more difficult. For one, $B(x_\eta, sqrt{w_\eta})$ does not contain the points of $\eta$. To see this, take two points $p=(x_p,w_p),q=(x_q,w_q)$ with $w_p,w_q>0$ such that $\rho(p,q)=0$. Then $w_q = d(x,p) < \|q-p\|^2$ and thus the radius $\sqrt{w_q} < \|q-p\|$. More importantly, however, any point $s=(x_s,w_s)$ outside of $B(x_\eta, \sqrt{w_\eta})$ with a sufficiently large weight can violate the inequality $\rho(p_\eta,s) = \|x_\eta - x_s\|^2 - w_\eta - w_s \geq 0$. He we need to use the fact that the mark space is bounded, $S=[0,W]$. If $w_s \leq W$, then $\Delta = B(x_\eta, \sqrt{w_\eta + W})$ is sufficient as a horizon, since any point $s$ outside $\Delta$ satisfies
+$$\rho(p_\eta, s) = \|x_\eta - x_s\|^2 - w_\eta - w_s \geq (\sqrt{w_\eta+W})^2-w_\eta-W = 0.$$ 
+\unsure[inline]{Why enlarge by $W$? Wouldn't it then mean that the outside point can only touch the characteristic point?}
+
+From a practical perspective, the maximum weight $W$ limits the resulting tessellation in the sense that the difference of weights can never be greater than $W$. Marks greater than $W$ are not necessarily a problem, as \todoo{Reference elsewhere in text where this is shown} we can always find an identical tessellation with marks bounded by $W$, as long as there no two points $p,q$ with $|w_p-w_q|>W$\todoo{Make sure the notation $w_p$ for weight of point $p$ is well estabilished}.
+
+\todoo[inline]{Confine range, $\mathcal E_\Lambda$, Hamiltonian}
+
+Next we must define the set of hyperedges $\eta$ in $\omega$ for which either $\eta$ or $\varphi(\eta,\omega)$ depends on $\omega_\Lambda$.
+
+$$\mathcal E_\Lambda(\omega) := \{ \eta \in \mathcal E(\omega): \varphi(\eta,\zeta \cup \omega_{\Lambda^c}) \neq \varphi(\eta,\omega) \text{ for some } \zeta \in \Omega_\Lambda \}$$
+\note[inline]{Later in the text, these are exactly the sets of tetrahedra used for the calculation, connect those two}
+
+A hyperedge $\eta$ is in $\mathcal E_\Lambda(\omega)$ i
+For $\mathcal D$, $\eta \in \mathcal E_\Lambda(\omega)$ iff $\bar B(\eta,\omega) \cap \Lambda \neq \emptyset$. 
+For $\mathcal {LD}$ 
+
+
+
+\section{Existence assumptions}
+We will now present the assumptions needed for the existence of the Gibbs measure.
+
+\textbf{(R)}\textit{Range condition}. There exist constants $\ell_R,n_R \in \mathbb N$ and $\delta_R < \infty$ such that for all $(\eta,\omega) \in \mathcal E$ there exists a finite horizon $\Delta$ satisfying: For every $x,y \in \Delta$ there exist $\ell$ open balls $B_1, \dots, B_\ell$ (with $\ell \leq \ell_R$) such that \newline
+- the set $\cup^\ell_{i=1} \bar B_i$ is connected and contains $x$ and $y$, and \newline
+- for each $i$, either $\text{diam} B_i \leq \delta_R$ or $N_{B_i}(\omega) \leq n_R$.
+
+\todoo{Move this to the proof, since the Laguerre case is more difficult} For $\mathcal D$, the inscribed ball $\bar B(\eta,\omega)$ itself can be used with $\ell_R = 1, n_R = 0$ and $\delta_R$ arbitrary. This is because $B(\eta,\omega)$ itself acts as the open balls from \textbf{(R)} and, by definition, cannot contain any points of $\omega$.
+
+\textbf{(S)} \textit{Stability}. The hyperedge potential $\varphi$ is called \textit{stable} if there exists a constant $c_S \geq 0$ such that 
+$$H_{\Lambda,\omega}(\zeta) \geq -c_S \#(\zeta \cup \delta_\Lambda \omega)$$
+for all $\Lambda \in \mathcal B_0, \zeta \in N_\Lambda, \omega \in N^\Lambda_{\text{cr}}$.
+
+The first thing to note that when $\varphi$ is non-negative, then we can simply choose $c_S = 0$. The interesting cases therefore is when $\varphi$ can attain negative values.
+
+In $\mathbb R^2$, the argument for stability of (Laguerre)-Delaunay hypergraph structures utilizes sublinearity of the hypergraph structure. We say that a hypergraph $\mathcal E$ is \textit{sublinear} if there exists $C < \infty$ such that $\# \mathcal E(\omega) \leq C \# \omega$ for all $\omega \in N_f$. In the case of sublinearity of $\mathcal E$, it is sufficient that $\varphi$ is bounded from below, $\varphi \geq - c_\varphi$ for some $c_\varphi < \infty$, since then 
+$$\varphi(\eta,\omega) \geq -c_\varphi \#\mathcal E(\omega) \geq -c_\varphi\cdot C \# \omega$$ 
+and thus $c_S = c_\varphi \cdot C$.
+
+Sublinearity of any Laguerre-Delaunay triangulation in $\mathbb R^2$ is easily obtainable in at least two ways. One, from \todoo{reference this}Euler's formula for planar graphs for the number of vertices ($v$), edges ($e$) and faces ($f$): $v-e+f=2$, which estabilishes a linear relationship between $v$ and $f$. Second, by a direct argument using the \todoo{Reference} flipping algorithm. A point inserted into the triangulation is located within a triangle $T$. Three new triangles within $T$ are then created and $T$ itself is removed. The subsequent flips then leave the total number of triangles constant.
+
+However, in $\R$, the situation is more difficult. Any graph can be embedded in $\R$ [https://link.springer.com/chapter/10.1007%2F3-540-58950-3_351] and thus an analog to Euler's formula in three dimensions cannot exist. The number of tetrahedra also no longer remains constant under topological flipping [ref: Joe]. This is no wonder - it is well known \todoo{references} that the complexity\footnote{Complexity is the number of faces of the tetrahedronization. Asymptotically, this is of the same order as the number of tetrahedra.} of the Delaunay tetrahedronization of $n$ points is $\mathcal O(n^2)$ in general.
+
+However, it is still possible that the Poisson-Delaunay tetrahedronization, i.e. Delaunay tetrahedronization of a configuration generated by a Poisson point process, have $\mathcal O(n)$ tetrahedra with probability one. If that was the case, then the Gibbs-Delaunay tetrahedronization would inherit this property by absolute continuity. There are two indications that this could still be the case. One, the only actually known examples that attain the upper complexity bound are distributed on a one-dimensional curves such as the \textit{moment curve}\todoo{ref}. Two, the expected complexity of the Poisson-Delaunay tetrahedronization is $\mathcal O(n)$ \todoo{ref}. In fact, [http://jeffe.cs.illinois.edu/pubs/pdf/spread.pdf] even says ``For all practical purposes, three-diimensional Delaunay triangulations appear to have linear complexity.'' 
+\todoo[inline]{Simulation study}
+\todoo[inline]{Talk about Erickson's spread bounds. Or use them to show that it doesn't hold?}
+
+For now, assume that all potentials used in this text are non-negative.
+
+In order to present the upper regularity conditions, the notion of \textit{pseudo-periodic} configurations. 
+
+Let $M\in\mathbb R^{3\times 3}$ be an invertible $3\times 3$ matrix with column vectors $(M_1,M_2,M_3)$. For each $k \in \mathbb Z^3$ define the cell
+$$C(k) =  \{Mx \in \R: x-k \in \left[ -1/2, 1/2 \right)^3 \}.$$
+These cells partition $\R$ into parallelotopes. We write $C=C(0)$. Let $\Gamma \in \mathcal F'_C$ be non-empty. Then we define the \textit{pseudo-periodic} configurations as
+$$\bar \Gamma = \{ \omega \in \Omega: \vartheta_{Mk}(\omega_{C(k)\times S}) \in \Gamma \text{ for all } k \in \mathbb Z^d \}$$
+the set of all configurations whose restriction to $C(k)$, when shifted back to $C$, belongs to $\Gamma$. The prefix pseudo- refers to the fact that the configuration itself does not need to be identical in all $C(k)$, it merely needs to belong to the same class of configurations.
+
+\todoo[inline]{Add indentation etc}
+\textbf{(U)} \textit{Upper regularity}. $M$ and $\Gamma$ can be chosen so that the following holds. \newline
+(U1) \textit{Uniform confinement}: $\bar \Gamma \subset \Omega^\Lambda_\text{cr}$ for all $\Lambda \in \mathcal B_0$ and 
+$$r_\Gamma := \sup_{\Lambda\in\mathcal B_0}\sup_{\omega \in \bar\Gamma} r_{\Lambda, \omega} < \infty$$
+(U2) \textit{Uniform summability}: 
+$$c^+_\Gamma := \sup_{\omega \in \bar\Gamma}  \sum_{\eta \in \mathcal E(\omega): \eta \cap C \neq \emptyset} \frac{\varphi^+(\eta,\omega)}{\#(\hat\eta)} < \infty,$$
+where $\hat\eta := \{k \in \mathbb Z^3: \eta \cap C(k) \neq \emptyset\}$ and $\varphi^+ = \max(\varphi,0)$ is the positive part of $\varphi$.\newline
+(U3) \textit{Strong non-rigidity}: $e^{z|C|} \Pi^z_C(\Gamma) > e^{c_\Gamma}$, where $c_\Gamma$ is defined as in $(U2)$ with $\varphi$ in place of $\varphi^+$.
+
+\todoo[inline]{Remark about U3 monotonicity}
+
+\textbf{($\hat U$)} \textit{Alternative upper regularity}. $M$ and $\Gamma$ can be chosen so that the following holds.\newline
+($\hat U 1$) \textit{Lower density bound}: There exist constants $c,d > 0$ such that $\#(\zeta) \geq c|\Lambda| - d$ whenever $\zeta \in \Omega_f\cap \Omega_\Lambda$ is such that $H_{\Lambda,\omega}(\zeta)<\infty$ for some $\Lambda \in \mathcal B_0$ and some $\omega \in \bar\Gamma$.\newline
+($\hat U 2 ) = (U2)$ \textit{Uniform summability}.\newline
+($\hat U 3$) \textit{Weak non-rigidity}: $\Pi^z_C(\Gamma) > 0$.
+
+\todoo[inline]{Existence theorems}
+
+For the Delaunay and Laguerre-Delaunay models, the choice of $M$ and $\Gamma$ will be the following. We will choose $\Gamma$ to be the set of all configurations consisting of only one point in a subset of each $C$. Fix some $A \subset C$ and define
+$$\Gamma^A = \{\zeta \in \Omega_C: \zeta = \{p\}, x \in A\},$$
+\todoo[inline]{Maybe unify $x$ and $p$ in the previous definitions?}
+Let $M$ be such that $|M_i| = a > 0$ for $i=1,2,3$ and $\measuredangle(M_i,M_j) = \pi / 3$ for $i\neq j$. 
+In \cite{DDG}, $A$ is chosen to be $B(0,b)$ for \unsure{$\rho_0$ possibly conflicts with $\rho$ for the power product}$b\leq \rho_0 a$ for some sufficiently small $\rho_0 >0$. The question, however, is how to choose the mark set. It would be convenient to choose $A=B(0,b)\times\{w\}$ for some $w\in S$ and then only deal with a Delaunay triangulation, but this would mean that $\Pi^z_C(\Gamma) = 0$, conflicting with both $(U3)$ and $(\hat U3)$. The choice $A=B(0,b)\times S$ could, for a small enough $a$, result in some spheres being fully contained in their neighboring spheres, possibly resulting in redundant points, thus changing the desired properties of $\Gamma$. It is thus necessary to choose the mark space dependent on $a$. For given $a,\rho_0$, the minimum distance between individual points is $a-2\rho_0 a = a(1-2\rho_0)$. We therefore choose $A = B(0,b)\times [0, \sqrt{\frac a2(1-2\rho_0)}]$ in order for spheres to never overlap \unsure{This is perhaps unnecessarily conservative, we could widen it}. \problem{How many neighbors / cells? Don't know yet} \todoo{Comment on the choice of $M$, contrast with $M=aE$}
+
+
+
+
+
+
+
+\cite{lamport94}
+
+
+
+
+\begin{theorem}
+	pokus
+\end{theorem}
+
+
+
+\listoftodos
+
+
+\end{document}
