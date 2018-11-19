@@ -78,14 +78,16 @@
 \tableofcontents
 
 \section{Notation, basic terms}
+\todoo[inline]{Refer to remark 3.7 from \cite{DDG11} somewhere}
 
-We will restrict ourselves to $(\mathbb R^3, \mathcal B)$, where $\mathcal B$ is the Borel $\sigma$-algebra on $\R$. Denote $\mathcal B_0 \subset \mathcal B$ the system of bounded Borel sets, Denote $S$ the mark space with a Borel $\sigma$-algebra $\mathcal S$. In our case, $S = [0,W]$ for some $W>0$. A \textit{configuration} is a subset $\x \in \mathbb R^3\times S$ with a locally finite projection onto $\mathbb R^3$. Individual points from $\x$ will typically denoted $p=(p',p'')$ where $p' \in \mathbb R^3$ is called the \textit{center} of $p$ and $p'' \in S$ is called the \textit{weight} of $p$. Given the geometric interpretation (section \ref{sec:LD}),  the word \textit{point} and \textit{sphere} will be used interchangeably in this text.
+We will restrict ourselves to $(\mathbb R^3, \mathcal B)$, where $\mathcal B$ is the Borel $\sigma$-algebra on $\R$. Denote $\mathcal B_0 \subset \mathcal B$ the system of bounded Borel sets with positive Lebesgue measure, Denote $S$ the mark space with a Borel $\sigma$-algebra $\mathcal S$. In our case, $S = [0,W]$ for some $W>0$. A \textit{configuration} is a subset $\x \in \mathbb R^3\times S$ with a locally finite projection onto $\mathbb R^3$. Individual points from $\x$ will typically denoted $p=(p',p'')$ where $p' \in \mathbb R^3$ is called the \textit{center} of $p$ and $p'' \in S$ is called the \textit{weight} of $p$. Given the geometric interpretation (section \ref{sec:LD}),  the word \textit{point} and \textit{sphere} will be used interchangeably in this text.
 
-Since this text also deals with the Delaunay triangulation, which does not take into account the marks, we will often tacitly identify a point $p'\in\R$ with the marked point $p=(p',0)$ with $p''=0$. In that sense, these ``unmarked'' points are still elements of $\R\times S$ and other terms do not have to be define twice for marked and unmarked configurations. We will use the word ``unmarked'' to mean \textit{with marks set to $0$}. \unsure{This is possibly a temporary solution} Sometimes it will be useful to denote that a whole configuration is unmarked in this manner. For that purpose we will use the notation $(\eta', \x')$. 
+Since this text also deals with the Delaunay triangulation, which does not take into account the marks, we will often tacitly identify a point $p'\in\R$ with the marked point $p=(p',0)$ with $p''=0$. In that sense, these ``unmarked'' points are still elements of $\R\times S$ and other terms do not have to be define twice for marked and unmarked configurations. We will use the word ``unmarked'' to mean \textit{with marks set to $0$}. \unsure{Once the text is finished, see how I used this notation and comment on it better.} 
+% Sometimes it will be useful to denote that a whole configuration is unmarked in this manner. For that purpose we will use the notation $(\eta', \x')$. 
 
-The space of all configurations on $\mathbb R^3 \times S$ is denoted $N$. It is equipped with the \todoo{Define the sigma algebra}standard $\sigma$-algebra $\mathcal N$. Let $N_f \subset N$ be the space of all configurations with finitely many points with the trace $\sigma$-algebra $\mathcal N_f$. For $\Lambda\in\mathcal B$ we write $\x_{\Lambda} = \x \cap (\Lambda \times S)$ and $N_\Lambda = \{\x \in N: \text{pr}_{\R} (\x) \subset \Lambda\}$, where $\text{pr}_\R$ denotes the projection on $\R$, and write $\mathcal N'_\Lambda$ for the corresponding trace $\sigma$-algebra.
+The space of all configurations on $\mathbb R^3 \times S$ is denoted $N$. It is equipped with the \todoo{Define the sigma algebra}standard $\sigma$-algebra $\mathcal N$. Let $N_f \subset N$ be the space of all configurations with finitely many points with the trace $\sigma$-algebra $\mathcal N_f$. For $\Lambda\in\mathcal B$ we write $\x_{\Lambda} = \x \cap (\Lambda \times S)$ and $N_\Lambda = \{\x \in N: \x = \x_\Lambda\}$, the set of configurations contained entirely in $\Lambda$, and write \todoo{The notation $\mathcal N'$ is problematic, since dash suggests unmarked point patterns} $\mathcal N'_\Lambda$ for the corresponding trace $\sigma$-algebra.
 
-The reference measure on $(N, \mathcal N)$ is the Poisson point process $\Pi^z$ with intensity measure $z\lambda \otimes \mu$, where $z>0$ is called the \textit{activity}, $\lambda$ is the Lebesgue measure on $\mathbb R^3$ and $\mu$ is a $\sigma$-finite measure on $(S,\mathcal S)$. For $(N_\Lambda, \mathcal N_\Lambda)$, the reference measure will be $\Pi^z_\Lambda := \Pi^z \circ \text{pr}^{-1}_{\Lambda\times S}$.
+The reference measure on $(N, \mathcal N)$ is the Poisson point process $\Pi^z$ with intensity measure $z\lambda \otimes \mu$, where $z>0$ is called the \textit{activity}, $\lambda$ is the Lebesgue measure on $\mathbb R^3$ and $\mu$ is a $\sigma$-finite measure on $(S,\mathcal S)$. For $(N_\Lambda, \mathcal N_\Lambda)$, the reference measure will be $\Pi^z_\Lambda := \Pi^z \circ \text{pr}^{-1}_{\Lambda\times S}$, where $\text{pr}_{\Lambda \times S}$ denotes the projection onto $\Lambda \times S$.
 
 \begin{definition}
 	\begin{itemize}
@@ -106,7 +108,7 @@ The two key hypergraph structures used in this text are the Delaunay and Laguerr
 
 \subsubsection{Delaunay hypergraph structure}
 \begin{definition}
-	We say that $(\eta,\x)$ satisfies the \textit{empty sphere property} if there exists an open ball $B(\eta,\x)$ with \note{Perhaps use $\x'$ for the point locations?}$B(\eta,\x)\cap \text{pr}_\R \x = \emptyset$ and $\eta \subset \partial B(\eta,\x) \cap \text{pr}_\R \x$. The sphere $\partial B(\eta,\x)$ is called the \textit{circumsphere}. 
+	We say that $(\eta,\x)$ satisfies the \textit{empty sphere property} if there exists an open ball $B(\eta,\x)$ with \note{Perhaps use $\x'$ for the point locations?}$B(\eta,\x)\cap \text{pr}_\R \x = \emptyset$ and $\eta \subset \partial B(\eta,\x) \cap \text{pr}_\R \x$. The sphere $\partial B(\eta,\x)$ \unsure{Maybe define $B(\eta,\x)$ before empty sphere, so it's always defined} is called the \textit{circumsphere}, the ball $B(\eta,\x)$ is the \textit{circumball}. 
 \end{definition}
 Note that the definition completely ignores the marks of $\x$, which are important only for the Laguerre-Delaunay case.
 
@@ -163,7 +165,7 @@ Using these terms, we are now ready to define the Laguerre-Delaunay hypergraph s
 
 
 \todoo[inline]{Finish these remarks}
-\begin{remark}[Invariance in weights] \label{r:invariance} Tessellation is invariant in addition in weights $\Rightarrow$ Delauanay is obtained for any configuration with equal marks \tbd
+\begin{remark}[Invariance in weights] \label{r:invariance} Tessellation is invariant in addition in weights $\Rightarrow$ Delaunay is obtained for any configuration with equal marks \tbd
 \end{remark}
 
 \begin{remark}[Redundant points]
@@ -185,13 +187,14 @@ Throughout this text, \note{For now}two potentials will mainly be used for both 
 % \end{remark}
 
 \begin{definition}
-	The first potential is the \textit{smooth-interaction} potential $\varphi_S$ satisfying $$\varphi_S(\eta,\x) \leq K_0 + K_1(\delta(\eta))^\beta$$for some $K_0 \geq 0, K_1 \geq 0, \beta > 0$.
+	The \textit{smooth-interaction potential} $\varphi_S$ is a hyperedge potential satisfying $$\varphi_S(\eta,\x) \leq K_0 + K_1(\delta(\eta))^\beta$$for some $K_0 \geq 0, K_1 \geq 0, \beta > 0$.
 
-The second is the \textit{hardcore interaction} potential $\varphi_{HC}$ for which there are constants $0\leq d_0 < d_1 \leq \alpha$ \unsure{How exactly does this look? Why?} such that
-$$\sup_{\eta: d_0 \leq \delta(\eta) \leq d_1} \varphi(\eta,\x) < \infty \text{ and } \varphi(\eta,\x)=\infty \text{ if } \delta(\eta)>\alpha.$$ 
+	The \textit{hardcore interaction potential} $\varphi_{HC}$ for which there are constants $0\leq d_0 < d_1 \leq \alpha$ \unsure{How exactly does this look? Why?} such that
+	$$\sup_{\eta: d_0 \leq \delta(\eta) \leq d_1} \varphi_{HC}(\eta,\x) < \infty \text{ and } \varphi_{HC}(\eta,\x)=\infty \text{ if } \delta(\eta)>\alpha.$$ 
 \end{definition}
 For simplicity, we assume that $\varphi_{HC}$ depends only on the points of $\eta$ in the sense of remark \ref{r:potential} below.
 
+\problem[inline]{Define the dependence on $\eta$ clearly. Also the remark does not actually follow from the definition, since we're only bounding $\varphi_S$, it could still depend on neighbors}
 \todoo[inline]{Talk a bit about $\varphi_{HC}$ - can be $\infty$ below $d_0$, requires infinity later,..}
 
 \begin{remark}[Potentials' dependence on $\x$]\label{r:potential}
@@ -209,7 +212,7 @@ In the remainder of this text, whenever we say a property holds for $\mathcal D$
 \section{Basic notions of hypergraph structures}
 
 \begin{definition}
-A set $\Delta \in \mathcal B_0$ is a \textit{finite horizon} for the pair $(\eta,\x) \in \mathcal E$ and the hyperedge potential $\varphi$ if for all $\tilde{\x} = \x$ on $\Delta\times S$ 
+	A set $\Delta \in \mathcal B_0$ is a \textit{finite horizon} for the pair $(\eta,\x) \in \mathcal E$ and the hyperedge potential $\varphi$ if for all $\tilde{\x} \in N, \tilde{\x} = \x$ on $\Delta\times S$ 
 $$(\eta,\tilde{\x})\in\mathcal E \text{ and } \varphi(\eta,\tilde{\x}) = \varphi(\eta,\x). $$
 The pair $(\mathcal E, \varphi)$ satisfies the \textit{finite-horizon property} if each $(\eta,\x)\in \mathcal E$ has a finite horizon.
 \end{definition}
@@ -217,7 +220,7 @@ The pair $(\mathcal E, \varphi)$ satisfies the \textit{finite-horizon property} 
 The finite horizon of $(\eta,\x)$ delineates the region outside which points can no longer violate the regularity (or the empty sphere property) of $\eta$. 
 
 \begin{remark} [Finite horizons for $\mathcal D$ and $\mathcal {LD}$]
-For $\mathcal D$, the circumsphere $\bar B(\eta,\x)$\unsure{Everything is a circumsphere..} itself is a finite horizon for $(\eta,\x)$.
+For $\mathcal D$, the closed circumball $\bar B(\eta,\x)$ itself is a finite horizon for $(\eta,\x)$.
 
 For $\mathcal {LD}$, the situation is slightly more difficult. For one, $B(p'_\eta, \sqrt{p''_\eta})$ does not contain the points of $\eta$. To see this, take two points $p,q$ with $p'',q''>0$ such that $\rho(p,q)=0$. Then $q'' = d(q',p) < \|q'-p'\|^2$ and thus $\sqrt{q''} < \|q'-p'\|$. More importantly, however, any point $s$ outside of $B(p'_\eta, \sqrt{p''_\eta})$ with a sufficiently large weight can violate the inequality $\rho(p_\eta,s) = \|p'_\eta - x'\|^2 - p''_\eta - s'' \geq 0$. 
 
@@ -231,6 +234,8 @@ From a practical perspective, the maximum weight $W$ limits the resulting tessel
 \begin{definition} Hamiltonian \tbd
 \end{definition}
 
+\todoo[inline]{Talk about $\x_{\Lambda^c}$ essentially being the boundary condition}
+	
 Next we must define the set of hyperedges $\eta$ in $\x$ for which either $\eta$ or $\varphi(\eta,\x)$ depends on $\x_\Lambda$.
 
 \begin{definition} 
@@ -244,7 +249,7 @@ For \todoo{Explain why}$\mathcal {LD}$, $\eta \in \mathcal {LD}_\Lambda(\x) \iff
 The final basic term again characterizes a type of finite-range property, this time as a property of the configuration $\x$.
 
 \begin{definition}
-	Let $\Lambda \in \mathcal B_0$ be given. We say a configuration $\x\ \in N$ \textit{confines the range of $\varphi$ from $\Lambda$} if there exists a set $\partial \Lambda(\x) \in \mathcal B_0$ such that $\varphi(\eta,\zeta \cup \tilde{\x}_{\Lambda^c}) = \varphi(\eta,\zeta\cup\x_{\Lambda^c})$ whenever $\tilde{\x} = \x$ on $\partial \Lambda(\x)\times S$, $\eta \in N_\Lambda$ and $\eta \in \mathcal E_\Lambda(\zeta\cup\x_{\Lambda^c})$. In this case we write $\x \in \Omega^\Lambda_\text{cr}$. We denote $r_{\Lambda,\x}$ the smallest possible $r$ such that $(\Lambda + B(0,r))\setminus \Lambda$ satisfies the definition of $\partial \Lambda(\x)$. We will use the abbreviation $\partial_\Lambda \x = \x_{\partial \Lambda(\x)}$.
+	Let $\Lambda \in \mathcal B_0$ be given. We say a configuration $\x\ \in N$ \textit{confines the range of $\varphi$ from $\Lambda$} if there exists a set $\partial \Lambda(\x) \in \mathcal B_0$ such that $\varphi(\eta,\zeta \cup \tilde{\x}_{\Lambda^c}) = \varphi(\eta,\zeta\cup\x_{\Lambda^c})$ whenever $\tilde{\x} = \x$ on $\partial \Lambda(\x)\times S$, $\zeta \in N_\Lambda$ and $\eta \in \mathcal E_\Lambda(\zeta\cup\x_{\Lambda^c})$. In this case we write $\x \in N^\Lambda_\text{cr}$. We denote $r_{\Lambda,\x}$ the smallest possible $r$ such that $(\Lambda + B(0,r))\setminus \Lambda$ satisfies the definition of $\partial \Lambda(\x)$. We will use the abbreviation $\partial_\Lambda \x = \x_{\partial \Lambda(\x)}$.
 \end{definition}
 
 \todoo[inline]{Comment on the definition and what it means for $\mathcal D$ and $\mathcal {LD}$.}
@@ -291,18 +296,18 @@ For now, assume that all potentials used in this text are non-negative.
 
 \subsection{Upper regularity}
 
-In order to present the upper regularity conditions, the introduce the notion of \textit{pseudo-periodic} configurations. 
+In order to present the upper regularity conditions, we introduce the notion of \textit{pseudo-periodic} configurations. 
 
 Let $M\in\mathbb R^{3\times 3}$ be an invertible $3\times 3$ matrix with column vectors $(M_1,M_2,M_3)$. For each $k \in \mathbb Z^3$ define the cell
 $$C(k) =  \{Mx \in \R: x-k \in \left[ -1/2, 1/2 \right)^3 \}.$$
 These cells partition $\R$ into parallelotopes. We write $C=C(0)$. Let $\Gamma \in \mathcal N'_C$ be non-empty. Then we define the \textit{pseudo-periodic} configurations $\bar \Gamma$ as
-$$\bar \Gamma = \{ \x \in \Omega: \vartheta_{Mk}(\x_{C(k)}) \in \Gamma \text{ for all } k \in \mathbb Z^d \},$$
+$$\bar \Gamma = \{ \x \in N: \vartheta_{Mk}(\x_{C(k)}) \in \Gamma \text{ for all } k \in \mathbb Z^3 \},$$
 the set of all configurations whose restriction to $C(k)$, when shifted back to $C$, belongs to $\Gamma$. The prefix pseudo- refers to the fact that the configuration itself does not need to be identical in all $C(k)$, it merely needs to belong to the same class of configurations.
 
 \begin{enumerate}[\textbf{(U)}] 
 	\item \textit{Upper regularity}. $M$ and $\Gamma$ can be chosen so that the following holds. 
 		\begin{enumerate}[(U1)]
-			\item \textit{Uniform confinement}: $\bar \Gamma \subset \Omega^\Lambda_\text{cr}$ for all $\Lambda \in \mathcal B_0$ and 
+			\item \textit{Uniform confinement}: $\bar \Gamma \subset N^\Lambda_\text{cr}$ for all $\Lambda \in \mathcal B_0$ and 
 			$$r_\Gamma := \sup_{\Lambda\in\mathcal B_0}\sup_{\x \in \bar\Gamma} r_{\Lambda, \x} < \infty$$
 			\item \textit{Uniform summability}: 
 			$$c^+_\Gamma := \sup_{\x \in \bar\Gamma}  \sum_{\eta \in \mathcal E(\x): \eta \cap C \neq \emptyset} \frac{\varphi^+(\eta,\x)}{\#(\hat\eta)} < \infty,$$
@@ -311,6 +316,8 @@ where $\hat\eta := \{k \in \mathbb Z^3: \eta \cap C(k) \neq \emptyset\}$ and $\v
 		\end{enumerate}
 \end{enumerate}
 
+
+\problem[inline]{The remark is wrong in general (in particular finitely many summands don't imply finite supremum, and indeed that's not the case here), have this only after introducing $\Gamma^A$}
 \begin{remark}[(U2)]\label{r:U2}
 	For $\mathcal D$ and $\mathcal {LD}$ it always holds that $\#\{\eta \in \mathcal E(\x): \eta \cap C \neq \emptyset\}<\infty$. Therefore the only quantity in (U2) which could be infinite is $\varphi^+(\eta,\x)$ and the condition reduces to $\varphi^+(\eta,\x) <  \infty$. This then means that the condition (U2) is non-trivial only for hardcore-interaction models.
 \end{remark}
@@ -324,7 +331,7 @@ For some models it is possible to replace the upper regularity assumptions by th
 \begin{enumerate}[(\textbf{\^{U}})]
 	\item \textit{Alternative upper regularity}. $M$ and $\Gamma$ can be chosen so that the following holds.
 	\begin{enumerate}[(\^U1)]
-		\item \textit{Lower density bound}: There exist constants $c,d > 0$ such that $\#(\zeta) \geq c|\Lambda| - d$ whenever $\zeta \in \Omega_f\cap \Omega_\Lambda$ is such that $H_{\Lambda,\x}(\zeta)<\infty$ for some $\Lambda \in \mathcal B_0$ and some $\x \in \bar\Gamma$.
+		\item \textit{Lower density bound}: There exist constants $c,d > 0$ such that $\#(\zeta) \geq c|\Lambda| - d$ whenever $\zeta \in N_f\cap N_\Lambda$ is such that $H_{\Lambda,\x}(\zeta)<\infty$ for some $\Lambda \in \mathcal B_0$ and some $\x \in \bar\Gamma$.
 		\item = (U2) \textit{Uniform summability}.
 		\item \textit{Weak non-rigidity}: $\Pi^z_C(\Gamma) > 0$.
 	\end{enumerate}
@@ -347,13 +354,13 @@ For some models it is possible to replace the upper regularity assumptions by th
 
 
 \subsection{$M$ and $\Gamma$ for Laguerre-Delaunay models}\label{sec:MGamma}
-For the Delaunay and Laguerre-Delaunay models, the choice of $M$ and $\Gamma$ will be the following. Fix some $A \subset C$ and define
+For the Delaunay and Laguerre-Delaunay models, the choice of $M$ and $\Gamma$ will be the following. Fix some $A \subset C\times S$ and define
 $$\Gamma^A = \{\zeta \in N_C: \zeta = \{p\}, p \in A\},$$
 the set of configurations consisting of exactly one point in the set $A$.
 
 Let $M$ be such that $|M_i| = a > 0$ for $i=1,2,3$ and $\measuredangle(M_i,M_j) = \pi / 3$ for $i\neq j$.\todoo{Comment better on why this choice}
 
-In \cite{DDG12}, $A$ is chosen to be $B(0,b)$ for \unsure{$\rho_0$ possibly conflicts with $\rho$ for the power product}$b\leq \rho_0 a$ for some \unsure{The vagueness about $\rho_0$ is not satisfactory, though it's the way DDG did it. If possible, change this} sufficiently small $\rho_0 >0$. We will use this form as well - the question, however, is how to choose the mark set. It would be convenient to choose $A=B(0,b)\times\{w\}$ for some $w\in S$ and then only deal with a Delaunay triangulation, but this would mean that $\Pi^z_C(\Gamma) = 0$, conflicting with both $(U3)$ and $(\hat U3)$. The choice $A=B(0,b)\times S$ could, for a small enough $a$, result in some spheres being fully contained in their neighboring spheres, possibly resulting in redundant points, thus changing the desired properties of $\Gamma$. It is thus necessary to choose the mark space dependent on $a$. For given $a,\rho_0$, the minimum distance between individual points is $a-2\rho_0 a = a(1-2\rho_0)$. We therefore choose $A = B(0,b)\times [0, \sqrt{\frac a2(1-2\rho_0)}]$ in order for spheres to never overlap \unsure{This is perhaps unnecessarily conservative, we could widen it}. 
+In \cite{DDG12}, $A$ is chosen to be $B(0,b)$ for \unsure{$\rho_0$ possibly conflicts with $\rho$ for the power product}$b\leq \rho_0 a$ for some \unsure{The vagueness about $\rho_0$ is not satisfactory, though it's the way DDG did it. If possible, change this} sufficiently small $\rho_0 >0$. We will use this form as well - the question, however, is how to choose the mark set. It would be convenient to choose $A=B(0,b)\times\{w\}$ for some $w\in S$ and then only deal with a Delaunay triangulation, but this \problem{Only true if $\mu$ is non-atomic. But we could use an atomic $\mu$ for working with Delaunay.} would mean that $\Pi^z_C(\Gamma) = 0$, conflicting with both $(U3)$ and $(\hat U3)$. The choice $A=B(0,b)\times S$ could, for a small enough $a$, result in some spheres being fully contained in their neighboring spheres, possibly resulting in redundant points, thus changing the desired properties of $\Gamma$. It is thus necessary to choose the mark space dependent on $a$. For given $a,\rho_0$, the minimum distance between individual points is $a-2\rho_0 a = a(1-2\rho_0)$. We therefore choose $A = B(0,b)\times [0, \sqrt{\frac a2(1-2\rho_0)}]$ in order for spheres to never overlap \unsure{This is perhaps unnecessarily conservative, we could widen it}. 
 
 \begin{remark}[Simplification of (U2) and (U3)]\label{r:UA}
 	Using the set $\Gamma^A$, we can simplify the assumptions (U2) and (U3).
@@ -383,7 +390,7 @@ In order to be able to check the assumptions of the existence theorems, we must 
 \begin{enumerate}
 	\item The number of tetrahedra incident to the point in $C$,  
 		$$n_T := \# \{\eta \in \mathcal E(\x): \eta \cap C \neq \emptyset\}.$$
-	\item The behaviour of the circumdiameter $\delta(\eta)$ for $\eta \in \mathcal {LD}(\x)$ and $\x \in \Gamma^A$.
+	\item The behaviour of the hyperedge potentials $\varphi_{S}$ and $\varphi_{HC}$ for $\eta \in \mathcal {LD}(\x)$ and $\x \in \Gamma^A$.
 \end{enumerate}
 
 Let $\x' \in \Gamma_A$ be such that each point is in the center of $A$ with marks set to $0$. In $\mathbb R^2$, such configuration generates a tessellation composed of equilateral triangles with side lengths $a$. In $\R$, the situation is more complex. The vectors $M_1,M_2,M_3$ do in fact form a regular tetrahedron, as all its faces are necessarily equilateral triangles, but the entire tesselation cannot be composed of merely regular tetrahedra, as they alone do not tessellate, as Aristotle famously claimed\cite{Lagarias12}. To be able to characterize the tessellation $\mathcal {LD}(\x')=\mathcal D(\x')$, it will be useful to use a concrete example of the matrix $M$:
@@ -435,7 +442,7 @@ If we connect all the nearest-neighbors, we will obtain a tessellation of $\R$. 
 % http://cosmometry.net/vector-equilibrium-&-isotropic-vector-matrix
 
 
-However, this tessellation is not yet a Delaunay tetrahedronization, as we still have to tetrahedronize the regular octahedron $O=(p_2,\dots, p_7)$. A regular octahedron is a Platonic solid an as such all of its vertices are cocircular. As a result, all of $\binom{6}{4}=15$ quadruples form a tetrahedron, resulting in a degenerate case which is nevertheless alowed in our definition of $\mathcal D$. \todoo{This is an important point, probably come back to it later. It's quite likely it will be possible to turn this into a formal argument..} In most (in fact almost surely w.r.t. $\Pi^z$) configurations in $\Gamma^A$ this won't be the case as the tetrahedron won't be regular. However, since we're interested in the supremum, we must consider this extreme case.
+However, this tessellation is not yet a Delaunay tetrahedronization, as we still have to tetrahedronize the regular octahedron $O=(p_2,\dots, p_7)$. A regular octahedron is a Platonic solid an as such all of its vertices are cocircular. As a result, all of $\binom{6}{4}=15$ \problem{Not true, coplanar points don't} quadruples form a tetrahedron, resulting in a degenerate case which is nevertheless alowed in our definition of $\mathcal D$. \todoo{This is an important point, probably come back to it later. It's quite likely it will be possible to turn this into a formal argument..} In most (in fact almost surely w.r.t. $\Pi^z$) configurations in $\Gamma^A$ this won't be the case as the tetrahedron won't be regular. However, since we're interested in the supremum, we must consider this extreme case.
 
 In $\mathcal D(\x')$, we therefore have two types of tetrahedra. The first is the regular tetrahedron itself. The second is the tetrahedron used to tessellate the octahedron with all side lengths equal to $a$ except for the diagonal which is equal to $\sqrt{2}a$.
 
@@ -465,7 +472,7 @@ Now we turn to the combinatorial structure of $\mathcal D(\x)$. In the tetrahedr
 
 \todoo{It might be useful to have such a general theorem anyway, but formulated properly} Until the exact bounds for $\varphi_S$ over $\bar\Gamma^A$ are found, it will be more illustrative to use a universal unary $\varphi_U(\eta,\x)=f(\eta)$, where $f$ is nonnegative and finite and e.g. equal to or bounded by (a power of, etc.) circumradius, volume, surface area, sum of edge lengths, \dots
 
-
+\problem[inline]{It's nonsense to have to include the mark set, it only increases the bound for $z$}
 \begin{proposition}
 	The exists at least one gibbs measure for the model $(\mathcal D,\varphi_U)$ and every activity
 	$$z > \frac{3\sqrt{2}}{4\pi \cdot \rho_0^3 \sqrt{1-2\rho_0}} e^{17 \varphi_{\text{max}}(a_{\text{min}})} / {a_{\text{min}}}^{7/2}.$$
@@ -476,7 +483,7 @@ Now we turn to the combinatorial structure of $\mathcal D(\x)$. In the tetrahedr
 	\item \textbf{(S)} Stability is satisfied because of $\varphi$ is non-negative.
 	\item \textbf{(U)} We choose $M$ and $\Gamma$ as in section \ref{sec:MGamma}.
 		\begin{enumerate}[(U1)]
-			\item For a small enough $\rho_0$, such that any three points in $\bar \Gamma$ cannot be coplanar, the class $\bar\Gamma$ provides an upper bound $d_{\text{max}}$ for $\text{diam} B(\eta,\x)$ for all $\eta \in \mathcal D(\x)$ for all $\x \in \bar \Gamma$ and we have $r_{\Gamma^A} \leq d_{\text{max}} / 2$. \todoo{Talk about this more clearly} 
+			\item For a small enough $\rho_0$, such that any three points in $\bar \Gamma$ cannot be coplanar, the class $\bar\Gamma$ provides an upper bound $d_{\text{max}}$ for $\text{diam} B(\eta,\x)$ for all $\eta \in \mathcal D(\x)$ for all $\x \in \bar \Gamma$ and we have $r_{\Gamma^A} \leq d_{\text{max}} $. \todoo{Talk about this more clearly} 
 			\item Is trivially satisfied since $n_T < \infty$ and $\varphi(\eta,\x)<\infty$ for all $(\eta,\x)\in\mathcal D$ (see remark \ref{r:U2}).
 			\item Using remark \ref{r:UA}, we want to find $z$ as small as possible such that $z|A| > e^{c_{\Gamma^A}}$. We can bound $c_{\Gamma^A} \leq \frac {n_T}4 \varphi_{\text{max}}(a) $ where $\varphi_{\text{max}}(a) = \sup_{(\eta,\x) \in D} \varphi_U(\eta,\x)$ where $D=\{ (\eta,\x): \x \in \bar\Gamma^A, \eta \in \mathcal D(\x): \eta\cap C \neq \emptyset\}$.  This gives us the bound
 				\begin{equation}z > K e^{\frac{n_T}{4} \varphi_{\text{max}}(a)}/a^{7/2}\label{eq:prop1z}\end{equation}
