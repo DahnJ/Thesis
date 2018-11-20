@@ -1,0 +1,158 @@
+%%%  Template to prepare a defense of Bc./Mgr./... thesis
+%%%  to be presented at MFF
+%%%  (unofficial)
+%%%
+%%%  AUTHOR:  ArnoÅ¡t KomÃ¡rek
+%%%           Department of Probability and Mathematical Statistics
+%%%           Faculty of Mathematics and Physics, Charles University in Prague
+%%%
+%%%  LOG:    20150505  created by modification of some previous personal presentations
+%%%          20170522  update related to new MFF logo
+%%%  
+%%%  ===========================================================================
+\documentclass[c, 10pt]{beamer}
+
+
+%%%%% Package needed if some accented letters in the presentation
+%%%%% -------------------------------------------------------------
+\usepackage[utf8]{inputenc}
+
+
+%%%%% Most beamer settings and other LaTeX commands
+%%%%% are provided in the file below
+%%%%% -----------------------------------------------------
+\input{MFF_Present.sty}
+
+
+%%%%% \ifCZversion is defined inside MFF_Present.sty
+%%%%% to distinguish between Czech and English presentations
+%%%%% ------------------------------------------------------
+%\CZversiontrue       %% for presentations in Czech (Slovak)
+\CZversionfalse      %% for presentations in English
+
+
+%%%%% Uncomment appropriate choice below if you wish to create
+%%%%% notes for audience having 2 or 4 slides on each (A4) page.
+%%%%% -------------------------------------------------------------
+\usepackage{pgfpages}
+%\pgfpagesuselayout{4 on 1}[a4paper, landscape, border shrink=5mm]
+%\pgfpagesuselayout{2 on 1}[a4paper, border shrink=5mm]
+
+
+%%%%% Basic settings of the document
+%%%%% (will be automatically used to create a title page, foots etc.)
+%%%%% --------------------------------------------------------------------
+
+  %%% Main title
+  %%% - short and long version
+  %%%   --> will appear on place where \inserttitle and \insertshorttitle commands used
+  %%%   --> if the full title is short enough, both short and long versions might be the same
+\title[Existence of Gibbs-Laguerre-Delaunay Tetrahedrizations]{%                       
+       Existence of Gibbs-Laguerre-Delaunay Tetrahedrizations}
+
+  %%% Subtitle (comment it if you do not want to have it)
+  %%%   --> will appear on place where \insertsubtitle and \insertshortsubtitle commands used
+%  \subtitle[]{Simulation and estimation}
+
+  %%% Author
+  %%% - as "short" version, link to the author's webpage is used
+  %%%   (e.g., e-mail is also a useful alternative)
+  %%%   --> will appear on places where \insertauthor and \insertshortauthor commands used
+\author[jahn@karlin.mff.cuni.cz]{%
+        Daniel Jahn}
+
+  %%% Author's affiliation
+  %%% - can be fully commented for defense presentation
+  %%%   --> will appear on places where \insertinstitute and \insertshortinstitute commands used
+\institute[KPMS]{%
+           Department of Probability and Mathematical Statistics}
+
+  %%% Date of presentation
+  %%% - replace it by real date in case of a defense presentation
+  %%%   --> will appear on places where \insertdate and \insertshortdate commands used
+\date[20.11.2018]{%
+      20 November 2018}
+
+      \newcommand{\x}{{\mathbbm{x}}}
+
+\begin{document}
+
+
+\setbeamertemplate{caption}{\insertcaption\par}
+
+%%%%% Title slide
+%%%%% =====================================================================================
+\frame[plain]{\titlepage}
+
+
+\begin{frame}\frametitle{Point and empty sphere property}\framesubtitle{Geometrical interpretation}
+
+
+\begin{centering}\includegraphics[height = 4.2cm]{./FigureLayout/point.PNG}
+\includegraphics[height = 4.2cm]{./FigureLayout/power.PNG}\end{centering}
+\vspace{3mm}
+
+where for $p,q \in \mathbb R^3 \times S$
+$$\text{Prod}(p,q) = \|p'-q'\|^2 - p'' - q''.$$
+
+\end{frame}
+
+
+
+
+
+
+\begin{frame}\frametitle{Range condition}
+\begin{enumerate}[\textbf{(R)}]
+	\item \textit{Range condition}. There exist constants $\ell_R,n_R \in \mathbb N$ and $\delta_R < \infty$ such that for all $(\eta,\x) \in \mathcal E$ there exists a finite horizon $\Delta$ satisfying: For every $x,y \in \Delta$ there exist $\ell$ open balls $B_1, \dots, B_\ell$ (with $\ell \leq \ell_R$) such that
+	\begin{enumerate}[-]
+		\item the set $\cup^\ell_{i=1} \bar B_i$ is connected and contains $x$ and $y$, and 
+		\item for each $i$, either $\text{diam} B_i \leq \delta_R$ or $N_{B_i}(\x) \leq n_R$.
+	\end{enumerate}
+\end{enumerate}
+\end{frame}
+
+
+\begin{frame}\frametitle{Stability}
+\begin{enumerate}[\textbf{(S)}] 
+	\item \textit{Stability}. The hyperedge potential $\varphi$ is called \textit{stable} if there exists a constant $c_S \geq 0$ such that 
+$$H_{\Lambda,\x}(\zeta) \geq -c_S \#(\zeta \cup \partial_\Lambda \x)$$
+for all $\Lambda \in \mathcal B_0, \zeta \in N_\Lambda, \x \in N^\Lambda_{\text{cr}}$.
+\end{enumerate}
+\end{frame}
+
+\begin{frame}\frametitle{Upper regularity}
+\begin{enumerate}[\textbf{(U)}] 
+	\item \textit{Upper regularity}. $M$ and $\Gamma$ can be chosen so that the following holds. 
+		\begin{enumerate}[(U1)]
+			\item \textit{Uniform confinement}: $\bar \Gamma \subset N^\Lambda_\text{cr}$ for all $\Lambda \in \mathcal B_0$ and 
+			$$r_\Gamma := \sup_{\Lambda\in\mathcal B_0}\sup_{\x \in \bar\Gamma} r_{\Lambda, \x} < \infty$$
+			\item \textit{Uniform summability}: 
+			$$c^+_\Gamma := \sup_{\x \in \bar\Gamma}  \sum_{\eta \in \mathcal E(\x): \eta \cap C \neq \emptyset} \frac{\varphi^+(\eta,\x)}{\#(\hat\eta)} < \infty,$$
+where $\hat\eta := \{k \in \mathbb Z^3: \eta \cap C(k) \neq \emptyset\}$ and $\varphi^+ = \max(\varphi,0)$ is the positive part of $\varphi$.
+\item \textit{Strong non-rigidity}: $e^{z|C|} \Pi^z_C(\Gamma) > e^{c_\Gamma}$, where $c_\Gamma$ is defined as in (U2) with $\varphi$ in place of $\varphi^+$.
+		\end{enumerate}
+\end{enumerate}
+\end{frame}
+
+
+\begin{frame}\frametitle{$M$ and $\Gamma^A$ in $\mathbb R^3$}\framesubtitle{Creates a octahedral-tetrahedral honeycomb tessellation}
+
+\begin{centering}\includegraphics[height = 3.8cm]{./FigureLayout/tetra-exploded.PNG}
+\includegraphics[height = 3.8cm]{./FigureLayout/tetra-tess.png}\end{centering}
+\vspace{3mm}
+
+\end{frame}
+
+\begin{frame}\frametitle{Alternative upper regularity}
+\begin{enumerate}[(\textbf{\^{U}})]
+	\item \textit{Alternative upper regularity}. $M$ and $\Gamma$ can be chosen so that the following holds.
+	\begin{enumerate}[(\^U1)]
+		\item \textit{Lower density bound}: There exist constants $c,d > 0$ such that $\#(\zeta) \geq c|\Lambda| - d$ whenever $\zeta \in N_f\cap N_\Lambda$ is such that $H_{\Lambda,\x}(\zeta)<\infty$ for some $\Lambda \in \mathcal B_0$ and some $\x \in \bar\Gamma$.
+		\item = (U2) \textit{Uniform summability}.
+		\item \textit{Weak non-rigidity}: $\Pi^z_C(\Gamma) > 0$.
+	\end{enumerate}
+\end{enumerate}
+\end{frame}
+
+\end{document}
