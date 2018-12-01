@@ -1,0 +1,11 @@
+*.aux
+*.lof
+*.log
+*.lot
+*.nav
+*.out
+*.snm
+*.tex~
+*.toc
+*.un~
+
