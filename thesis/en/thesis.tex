@@ -51,39 +51,78 @@
 \usepackage{paralist}       % improved enumerate and itemize
 \usepackage[usenames]{xcolor}  % typesetting in color
 
+
+% Packages added by Dahn
+\usepackage{cite}
+\usepackage[colorinlistoftodos,prependcaption,textsize=tiny]{todonotes}
+\usepackage{xargs}
+\usepackage{bbm}	% For lowercase blackboard bold
+\usepackage{multicol}  	% ultiple columns
+\usepackage{enumerate}
+
+
+% Dahn commands
+\newcommand{\Rd}{{\mathbb R^d}}
+
+\newcommandx{\problem}[2][1=]{\todo[linecolor=red,backgroundcolor=red!25,bordercolor=red,#1]{#2}}
+\newcommandx{\todoo}[2][1=]{\todo[linecolor=blue,backgroundcolor=blue!25,bordercolor=blue,#1]{#2}}
+\newcommandx{\note}[2][1=]{\todo[linecolor=OliveGreen,backgroundcolor=OliveGreen!25,bordercolor=OliveGreen,#1]{#2}}
+\newcommandx{\unsure}[2][1=]{\todo[linecolor=Plum,backgroundcolor=Plum!25,bordercolor=Plum,#1]{#2}}
+
+\newtheorem{theorem}{Theorem}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}
+
+\theoremstyle{theorem}
+\newtheorem{proposition}{Proposition}
+
+
+\newcommand{\tbd}{\textbf{{\color{red}~ TO BE DONE ~}}}
+
+\newcommand{\x}{{\mathbbm{x}}}
+
 %%% Basic information on the thesis
 
 % Thesis title in English (exactly as in the formal assignment)
-\def\ThesisTitle{Thesis title}
+
+\def\ThesisTitle{Generalized Random Tessellations}
 
 % Author of the thesis
-\def\ThesisAuthor{Name Surname}
+\def\ThesisAuthor{Daniel Jahn}
 
 % Year when the thesis is submitted
-\def\YearSubmitted{YEAR}
+\def\YearSubmitted{2019}
 
 % Name of the department or institute, where the work was officially assigned
 % (according to the Organizational Structure of MFF UK in English,
 % or a full name of a department outside MFF)
-\def\Department{Name of the department}
+\def\Department{Department of Probability and Mathematical Statistics}
 
 % Is it a department (katedra), or an institute (ústav)?
 \def\DeptType{Department}
 
 % Thesis supervisor: name, surname and titles
-\def\Supervisor{Supervisor's Name}
+\def\Supervisor{prof. RNDr. Viktor Bene\v{s}, DrSc.}
 
 % Supervisor's department (again according to Organizational structure of MFF)
-\def\SupervisorsDepartment{department}
+\def\SupervisorsDepartment{Department of Probability and Mathematical Statistics}
 
 % Study programme and specialization
-\def\StudyProgramme{study programme}
-\def\StudyBranch{study branch}
+\def\StudyProgramme{Mathematics}
+\def\StudyBranch{Probability, mathematical statistics and econometrics}
 
 % An optional dedication: you can thank whomever you wish (your supervisor,
 % consultant, a person who lent the software, etc.)
 \def\Dedication{%
-Dedication.
+Benes
+A
+Nohic
+Dereudre
+SE
 }
 
 % Abstract (recommended length around 80-200 words; this is not a copy of your thesis assignment!)
@@ -109,7 +148,7 @@ Abstract.
 \begin{document}
 \include{title}
 
-%%% A page with automatically generated table of contents of the bachelor thesis
+%%% A page with automatically generated table of contents of the master thesis
 
 \tableofcontents
 
@@ -117,6 +156,9 @@ Abstract.
 \include{preface}
 \include{chap01}
 \include{chap02}
+\include{chap03}
+\include{chap04}
+\include{chap05}
 
 \include{epilog}
 
@@ -130,11 +172,15 @@ Abstract.
 %%% In mathematical theses, it could be better to move the list of tables to the beginning of the thesis.
 \listoftables
 
+\appendix
+\chapter{Appendix}
+
+\section{Section}
 %%% Abbreviations used in the thesis, if any, including their explanation
 %%% In mathematical theses, it could be better to move the list of abbreviations to the beginning of the thesis.
 \chapwithtoc{List of Abbreviations}
 
-%%% Attachments to the bachelor thesis, if any. Each attachment must be
+%%% Attachments to the master thesis, if any. Each attachment must be
 %%% referred to at least once from the text of the thesis. Attachments
 %%% are numbered.
 %%%
@@ -145,10 +191,6 @@ Abstract.
 %%% source code, data files, interactive charts, etc.). Electronic attachments
 %%% should be uploaded to SIS and optionally also included in the thesis on a~CD/DVD.
 %%% Allowed file formats are specified in provision of the rector no. 72/2017.
-\appendix
-\chapter{Attachments}
-
-\section{First Attachment}
 
 \openright
 \end{document}
