@@ -1,11 +1,12 @@
 *.aux
+*.bbl
+*.blg
 *.lof
 *.log
 *.lot
 *.nav
 *.out
 *.snm
-*.tex~
+*.swp
 *.toc
-*.un~
-
+*~

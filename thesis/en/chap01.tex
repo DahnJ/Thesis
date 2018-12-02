@@ -1,6 +1,63 @@
 \chapter{Geometric preliminaries}
+\unsure[inline]{Are graphs geometric? I mean, geometric graphs are geometric. But graphs in general? Are potentials part of this?}
+Before diving into the mathematics of Gibbs-Laguerre-Delaunay tetrihedrization models, we must first lay out the fundamentals of their geometric and combinatorial structure. The key geometric component is the empty sphere property [...] which determines the edge structure, which is in turn analyzed in terms of hypergraphs.
+\unsure[inline]{$\mathcal F$ or $\mathcal N$}
+Let $\mathcal F_{lf}$ be the set of locally finite sets on $\Rt$, and $\mathcal F_{f} \subset \mathcal F_{lf}$ the set of all finite sets on $\Rt$. An elements of $F_{lf}$ will be usually denoted $\x$ and called a \textit{configuration} and its subset $\eta$. If $|\eta|=4$, as will be the case for the majority of this text, then $\eta$ will be called \textit{tetrahedron}.
+
+\section{Tetrahedrizations}
+The aim of this section is to introduce the geometric concepts necessary for the definition of the hypergraph structures in the following section. Definitions might be postponed. 
+This text is concerned with two types of tetrihedrizations. 
 
 
-\section{Triangulations}
+We introduce the notion of (reinforced) general position. This requirement will be later relaxed.
 
-\section{Hypergraph structuers}
+\begin{definition}
+Let $\x \in \mathcal F_{lf}$. We say $\x$ is in \textbf{general position} if 
+$$ \eta \subset \x, 2 \leq |\eta| \leq 3 \Rightarrow \eta \text{ is affinely independent.} $$   
+Denote $\mathcal F_{gp}\subset \mathcal F_{lf}$ the set of all locally finite configurations in general position.
+\end{definition}
+\todoo[inline]{Commment on measurability of the set of locally finite sets in general position. This comes from cite[Zessin2008] and the $\mathcal F$ $\mathcal M$ equivalence?}
+\todoo[inline]{Also comment on the fact that we need a vector space with measurable inner product etc?}
+\note[inline]{It's sufficient to check only subsets with $d+1$ points}
+ 
+\begin{definition}
+Let $\x \in \mathcal F_{gp}$. We say $\x$ is in \textbf{reinforced general position} if 
+$$ \eta \subset \x, 3 \leq |\eta| \leq 4 \Rightarrow \eta \text{ is non-circular.} $$   
+Denote $\mathcal F_{rgp}$ the set of all locally finite configurations in reinforced general position.
+\end{definition}
+\todoo[inline]{Define cocircular in general}
+\todoo[inline]{Again, only need to check $d+2$}
+
+
+\subsection{Delaunay tetrihedrization}
+
+\begin{definition}
+	Let $\eta \in \mathcal F_{gp}$, $|\eta|=4$ be a tetrahedron. The open ball $B(\eta)$ such that $\eta \subset \partial B(\eta)$ is called a \textit{circumball}. The boundary $\partial B(\eta)$ is called a \textit{circumsphere}.
+\end{definition}	
+
+Note that the circumball is uniquely defined by $\eta$. 
+
+\begin{definition}
+	Let $\x \in \mathcal F_{lf}$ and $\eta \subset \x$. We say that $(\eta,\x)$ satisfies the \textit{empty sphere property} if $B(\eta) \cap \x = \emptyset$. 
+\end{definition}
+
+\todoo[inline]{Existence and uniqueness}
+
+
+
+\subsection{Laguerre tetrihedrization}
+
+
+\unsure[inline]{Restrict on non-redundant points? Measurability?}
+
+
+\section{Hypergraph structures}
+Both Delaunay and Laguerre tetrihedrizations can be seen as graphs where two points $p,q\in\x$ are joined if they are part of the same tetrahedron\todoo{satisfying ESP or sth}. For the purposes of this text, a more natural structure will be the hypergraph.
+ 
+\begin{definition}
+	A \textit{hypergraph structure} is a measurable subset $\mathcal E$ of $(F_f\times N, \mathcal F_f \otimes \mathcal F)$ such that $\eta \subset \x$ for all $(\eta,\x)\in\mathcal E$. We call $\eta$ a \textit{hyperedge} of $\x$ and write $\eta \in \mathcal E(\x)$, where $\mathcal E(\x) = \{\eta: (\eta,\x) \in \mathcal E\}$. For a given $\x \in \mathcal F_{lf}$, the pair $(\x, \mathcal E(\x))$ is called a \textit{hypergraph}.
+\end{definition}
+A hypergraph is thus a generalization of a graph in the sense that edges are now allowed to "join" any number of points. A hypergraph structure can be thought of as a rule that turns a configuration $\x$ into the hypergraph $(\x,\mathcal E(\x))$. 
+
+
+
