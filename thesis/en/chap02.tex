@@ -1,5 +1,66 @@
 \chapter{Stochastic geometry}
+Ultimately we want to study the behaviour of hypergraph structures and hyperedge potentials under some probabilistic assumptions on the distribution of the configuration $\x$. This chapter introduces the theory of point processes and random tessellations, both examples of the area of stochastic geometry, the concepts that will allow us to introduce randomness into hypergraphs. The main goal of this chapter is to introduce the Gibbs-type tessellation, where the location of the points are allowed to interact with the geometric properties of the tesssellation, giving us a great freedom in the specification of our models.
 
-\section{Gibbs point process}
+\section{Point processes}
+
+Follow Schneider and Weil. Introduce basic concepts and theorems as well as point out useful calculation techniques.
+
+\subsection{Random measures and point processes}
+\todoo[inline]{Random measure, $\sigma$-algebra, point process, $\sigma$-algebra, introduce simple pp as configurations by abuse of notation, comment on $\mathcal N_{gp}$ (zessin), Intensity, factorial measure,.. }
+\todoo[inline]{Introduce some basic theorems and relations so we can function, e.g. rewriting campbell-like stuff} 
+
+\subsubsection{Poisson point process}
+\todoo[inline]{Poisson process and basic properties, mainly connection to binomial pp and the way we can use it to calculate}
+Before we define the Poisson point process, we first define a process closely related it.
+
+\begin{definition} Let $B \in \mathcal B_0$. For $n\in \mathbb N$ let $X_1,\dots,X_n$ be independent and uniformly distributed random variables on $B$, that is
+$$P(X_i \in A) = \frac{|A|}{|B|}.$$
+Then we define the \textit{binomial point process} of $n$ points in $B$ as
+$$\Phi_n = \sum^{n}_{i=1}  \delta_{X_i}.$$
+\end{definition}
+
+\begin{proposition}\label{bincalc}
+Let $\Phi_n = \sum^{n}_{i=1}  \delta_{X_i}$ be a binomial point process on $B\in\mathcal B_0$. Then for a non-negative measurable $f$ we have
+\begin{equation}\label{binom}
+Ef(X_1,\dots, X_k) = \frac 1{|B|^k} \int_B \cdots \int_B f(x_1,\dots, x_k) dx_1 \cdots dx_k, \quad k = 1,\dots, n
+\end{equation}
+\end{proposition}
+\begin{proof}
+From the definition of $\Phi_n$, we have for Borel $A_i \subset B, i=1,\dots,k$ that
+\begin{align*}
+P(X_1 \in A_1, \dots, X_k \in A_k) &= P(X_1\in A_1)\cdots P(X_k\in A_k) \\ 
+& = \frac 1{|B|^k} \int_B \cdots \int_B 1_{A_1}(x_1) \cdots 1_{A_k}(x_k) dx_1 \cdots dx_k \\
+\end{align*}
+That is \ref{binom} for $f(x_1,\dots,x_k)=1_{A_1}(x_1)\dots 1_{A_k}(x_k)$. By a standard argument, we first extend this to a general set $C \in \mathcal B^k, C\subset B^k$ using the Dynkin system 
+$$\{C \in \mathcal B^k: E 1_C (x_1,\dots,x_k) = \int \cdots \int 1_C(x_1,\dots, x_k) dx_1 \cdots dx_k \}$$
+ and then from indicators to any non-negative measurable function.
+\end{proof}
+
+\problem[inline]{The $\mathcal B^k$ is weird there, considering that we have $\mathcal B^3=\mathcal B$ elsewhere}
+
+
+
+\begin{definition} Let $\nu$ be a diffuse measure on $E$. A point process $\Phi$ satisfying
+\begin{enumerate}
+\item $\Phi(B)$ has a Poisson distribution with parameter $\nu(B)$ for each $B\in \mathcal B_0$,
+\item Conditonally on $\Phi_B=n, n\in\mathbb N$,  $\Phi|_B$ is the Binomial point process of $n$ points in $B$, $B \in \mathcal B_0$.
+\end{enumerate}
+Specially if $\nu = z|\cdot |$, then we call the Poisson point process \textit{homogenous}.
+\end{definition}
+
+
+
+
+
+
+
+\subsection{Point processes with density}
+\todoo[inline]{Analogy with random variables, why Poisson is the best, stability}
+
+
+
+\subsubsection{Gibbs measure and Gibss point process}
+\todoo[inline]{Talk about hereditarity too, mention Markov processes and connection maybe.}
 
 \section{Random tessellations}
+\todoo[inline]{In general x Gibbs-type}
