@@ -1,0 +1,204 @@
+\appendix
+
+\problem[inline]{This chapter needs better notation. E.g. $S(p_1,p_2,p_3,p_4)$ for a sphere defined by those points, etc.}
+
+\chapter{Appendix}
+\section{Calculating the circumdiameter}
+Consider the points $p_1,\dots, p_5 \in \mathbb R^4$ which form a $4$-simplex. Denote $d_{ij} = \|p_i - p_j\|, i,j=1,\dots,5$. Then its area $A$ is given by the \textbf{Cayley-Menger determinant}[ref sommervile]. 
+
+$$
+-9216 A^2 =
+\begin{vmatrix}
+0 & 1 & 1 & 1 & 1 & 1 \\
+1 & 0 & d^2_{12} & d^2_{13} & d^2_{14} & d^2_{15} \\
+1 & d^2_{21} & 0 & d^2_{23} & d^2_{24} & d^2_{25}  \\
+1 & d^2_{31} & d^2_{32} & 0 & d^2_{34} & d^2_{35} \\ 
+1 & d^2_{41} & d^2_{42} & d^2_{43} & 0 & d^2_{44} \\
+1 & d^2_{51} & d^2_{52} & d^2_{53} & d^2_{54} & 0 
+\end{vmatrix} 
+$$
+
+Now consider non-coplanar points $p_1,\dots, p_4 \in \Rt$ forming a $3$-simplex, i.e. a tetrahedron. To obtain the circumradius of this tetrahedron, we imagine $p_1,\dots, p_4$ to lie on a $3$-dimensional hyperplane $H$ in $\mathbb R^4$ and we consider the point $c \in H$ such that $\|c-p_i\| = r \forall i=1,\dots,4$ $d\in \mathbb R$. The point $c$ is, by definition, the center of the circumsphere of $p_1,\dots,p_4$ and $d$ is the circumradius. The circumradius $r$ can be obtain by the Cayley-Menger determinant, because $p_1,\dots,p_4,c$ now form a $4$-dimensional simplex of volume $0$. We therefore have 
+
+
+$$
+0 = 
+\begin{vmatrix}
+0 & 1 & 1 & 1 & 1 & 1 \\
+1 & 0 & d^2_{12} & d^2_{13} & d^2_{14} & r^2 \\
+1 & d^2_{21} & 0 & d^2_{23} & d^2_{24} & r^2 \\
+1 & d^2_{31} & d^2_{32} & 0 & d^2_{34} & r^2 \\ 
+1 & d^2_{41} & d^2_{42} & d^2_{43} & 0 & r^2 \\
+1 & r^2 & r^2 & r^2 & r^2 & 0 \\
+\end{vmatrix}, 
+$$
+
+where we have again  $d_{ij} = \|p_i - p_j\|, i,j=1,\dots,4$. 
+
+It would be possible to solve this as an equation of $r$. We can however do better. We can subtract $r^2$ times the first row from last and subtract $r^2$ of the first column from the last to obtain the determinant. 
+
+
+$$
+\begin{vmatrix}
+0 & 1 & 1 & 1 & 1 & 1 \\
+1 & 0 & d^2_{12} & d^2_{13} & d^2_{14} & 0 \\
+1 & d^2_{21} & 0 & d^2_{23} & d^2_{24} & 0 \\
+1 & d^2_{31} & d^2_{32} & 0 & d^2_{34} & 0 \\ 
+1 & d^2_{41} & d^2_{42} & d^2_{43} & 0 & 0 \\
+1 & 0 & 0 & 0 & 0 & -2r^2 \\
+\end{vmatrix}, 
+$$
+
+and expand by the last row, to obtain the equation
+
+$$
+2r^2 \begin{vmatrix}
+0 & 1 & 1 & 1 & 1 \\
+1 & 0 & d^2_{12} & d^2_{13} & d^2_{14} \\
+1 & d^2_{21} & 0 & d^2_{23} & d^2_{24} \\
+1 & d^2_{31} & d^2_{32} & 0 & d^2_{34} \\ 
+1 & d^2_{41} & d^2_{42} & d^2_{43} & 0 \\
+\end{vmatrix} 
+-
+\begin{vmatrix}
+1 & 1 & 1 & 1 & 1 \\
+0 & d^2_{12} & d^2_{13} & d^2_{14} & 0 \\
+d^2_{21} & 0 & d^2_{23} & d^2_{24} & 0 \\
+d^2_{31} & d^2_{32} & 0 & d^2_{34} & 0 \\ 
+d^2_{41} & d^2_{42} & d^2_{43} & 0 & 0 \\
+\end{vmatrix} = 0 
+$$
+
+, from which $r^2$ is directly expressible
+
+\begin{equation}\label{eq:Cayley-Menger-expanded}
+r^2 
+=
+\frac{
+\begin{vmatrix}
+1 & 1 & 1 & 1 & 1 \\
+0 & d^2_{12} & d^2_{13} & d^2_{14} & 0 \\
+d^2_{21} & 0 & d^2_{23} & d^2_{24} & 0 \\
+d^2_{31} & d^2_{32} & 0 & d^2_{34} & 0 \\ 
+d^2_{41} & d^2_{42} & d^2_{43} & 0 & 0 \\
+\end{vmatrix}}
+{2 \begin{vmatrix}
+0 & 1 & 1 & 1 & 1 \\
+1 & 0 & d^2_{12} & d^2_{13} & d^2_{14} \\
+1 & d^2_{21} & 0 & d^2_{23} & d^2_{24} \\
+1 & d^2_{31} & d^2_{32} & 0 & d^2_{34} \\ 
+1 & d^2_{41} & d^2_{42} & d^2_{43} & 0 \\
+\end{vmatrix} 
+}.
+\end{equation}
+
+It is worth noting that the determinant cannot equal zero, since it is again a Cayley-Menger determinant and we assumed $p_1,\dots,p_4$ to be non-coplanar. 
+
+
+
+\section{Bounding the circumdiameter hyperedge potential}
+
+We have the following optimization problems.
+
+For the regular tetrahedron, the problem is 
+\begin{equation}\label{prob:tetra1}
+\begin{aligned}
+& \underset{p_1,p_2,p_3,p_4\in \Rt}{\text{maximize}}
+& & \delta(\{p_1,p_2,p_3,p_4\}) \\
+& \text{subject to}
+& & \| p_i - t_i\| \leq \rho_0 a, t_i\in \Rt i=1,2,3,4, \\
+& & &\|t_i - t_j\| = a, i=1,2,3,4. 
+\end{aligned}
+\end{equation}
+
+To state the second problem, first denote 
+$$D = \begin{pmatrix}
+0 & \sqrt a & a & a \\
+\sqrt a & 0 & a & a \\
+a & a & 0 & a\\
+a & a & a & 0
+\end{pmatrix}.
+$$
+
+Denote the entries of matrix $D$ as $d_{ij}, i,j=1,2,3,4$. Then the statement is:
+\begin{equation}\label{prob:tetra2}
+\begin{aligned}
+& \underset{p_1,p_2,p_3,p_4\in \Rt}{\text{maximize}}
+& & \delta(\{p_1,p_2,p_3,p_4\}) \\
+& \text{subject to}
+& & p_i \in \bar B(t_i, \rho_0 a), t_i\in \Rt i=1,2,3,4, \\
+& & & \|t_i-t_j\| = d_{ij}, i,j=1,2,3,4.\\
+\end{aligned}
+\end{equation}
+
+
+This is a non-linear optimization problem. We can arrive at its solution through some careful geometric arguments.
+
+
+First, define the \textit{circumdiameter function} of point $p \in \Rt$ with respect to non-coplanar points $p_1,p_2,p_3 \in \Rt$:
+$$c(p) = \delta(\{p,p_1,p_2,p_3\}).$$
+Denote $(x_i,y_i,z_i)$ the coordinates of $p_i, i=1,\dots,3$. The following lemma describes the properties of $c(p)$.
+
+
+\begin{lemma} $c(p)$ is continuous, has a global minimum $c_{min} := \delta(\{p_1,p_2,p_3\})$ and 
+$$L_a := \{p \in \Rt: c(p)=a\} = S_{a1} \cup S_{a2}, a \geq c_{min}$$ 
+where $S_{a1}$ and $S_{a2}$ are two spheres with diameter $a$ such that $p_1,p_2,p_3 \in S_{a1}\cap S_{a2}$. Furthermore, the centers $c_1, c_2$ of $S_{a1},S_{a2}$ respectivelly, lie in the halfspaces
+$$H_+ = \{x \in \Rt: Ax \geq 0 \}, H_- = \{x \in \Rt: Ax \leq 0\},$$
+where $A$ defines the hyperplane $H=\{x\in\Rt: Ax = 0\}$ on which $p_1,p_2,p_3$ lie.
+\end{lemma}
+\begin{proof}
+Continuity: From \ref{Cayley-Menger-expanded} we see that $c(p)$ can be seen as a composition of a norm, determinants and division. Determinant is continuous as a function of elements of the matrix since it's a polynomial function. Thus $c(p)$ is continuous.
+
+
+The we can rewrite $L_a$ as
+$$\{p \in \Rt: \exists \text{ sphere } S \text{ s.t. } p_1,p_2,p_3,p \in S \text{ and diam}S = a\}.$$
+We must therefore find the number of spheres going through the points $p_1,p_2,p_3$ with the diameter $a$. Denote $S$ a sphere such that $\{p_1,p_2,p_3\}\subset S$. Then $S\cap H = C$ where $C$ is the (uniquely defined) circumcircle of $p_1,p_2,p_3$. \tbd 
+% If we denote $(x,y,z)$ the coordinates of any such sphere, they must satisfy the equations
+% $$(x-x_i)^2 + (y-y_i)^2 + (z-z_i)^2 = a^2,\quad i=1,2,3.$$
+% By expanding the parentheses, subtracting second equation from first and third from second, we obtain a system of two linear and one quadratic equation. We can express $z$ in 
+
+Minimum: the smallest sphere containing $p_1,p_2,p_3$ has a great circle equal to the circumcircle of $p_1,p_2,p_3$. 
+
+To see that $c_1$ and $c_2$ must be (non-strictly) separated by the hyperplane $H$, assume WLOG $\{c_1,c_2\}\subset H_+, c_1\neq c_2$. Let $p \in S_{a1}$ and let  $p_R\in \Rt$ be the reflection of $p$ through the hyperplane $H$. The tetrahedron $p_1,p_2,p_3,p_R$ then is a reflection of the tetrahedron $p_1,p_2,\dots, p$ and therefore its circumsphere has diameter $a$ and centre in $H_-$, which is a contradiction. 
+
+\end{proof}
+
+Note that $S_{a1}$ and $S_{a2}$ are not necessarily distinct. In fact, the case $S_{a1}=S_{a2}$ is precisely when $a$ is the global minimum of $c(p)$. Then the centre of $S_{a1}$ lies on the hyperplane $H$.
+
+
+
+\begin{proposition}
+Any solution $(p_1,p_2,p_3,p_4)$ of the problem \ref{prob:tetra1} will lie on a sphere $S$ that is (internally or externally) tangent to the spheres $\partial B(t_i,\rho_0 a), i =1,2,3,4$.
+\end{proposition}
+\begin{proof}
+Denote $c(p_1)=\delta(\{p_1,p_2,p_3,p_4\})=c$ and $S$ the sphere such that $\{p_1,\dots,p_4\}$. 
+First, WLOG assume that $p_1 \in B(t_1,\rho_0 a)$ Because $p_1$ maximizes the function $c(p)$, we have $c(p_1)\geq c(p), p\in U$, where $U$ is some small neighborhood of $p_1$. Choose two points, $p_O,p_I\in U\setminus S$ such that 
+\begin{enumerate} 
+\item $c(p_O)=c(p_I)=b$,
+\item $p_I$ is on the inside of $S$ and $p_0$ on the outside of $S$ 
+\item $S(p_I,p_2,p_3,p_4)$ and $S(p_O,p_2,p_3,p_4)$ do not equal and their centers lie on the same halfspace ($H_+$ or $H_-$) as $S$. 
+\end{enumerate}
+Such choice is possible due to continuity of $c(p)$. Yet we arrive at a contradiction, as the level-set $L_b$ now contains two distinct spheres with centres in the same halfspace. 
+
+Assume now that $p_1 \in \partial B(t_1,\rho_0 a)=: S_1$. We now choose $p_I$ and $p_O$ with the additional requirement that they must both lie on $\partial B(t_1,\rho_0 a)$. This fails precisely when $S_1$ and $S$ are tangent, since then \todoo{Make sure "inside" a sphere has a clear meaning} $S_1$ lies either completely inside or outside $S$ and it is no longer possible to choose points both outside and inside. 
+\end{proof}
+
+We have found that the solutions to \ref{prob:tetra1} and \ref{prob:tetra2} must lie on a sphere that tangent to the spheres within which points can move. This is a major improvement. One, because now the space of possible solution narrows down to just $2^4=16$ possible quadruples of points (and even less beacause of symmetries), and two, because the two-dimensional equivalent of this problem is a well known \textbf{Apollonius problem}.
+
+First note that if two externally tangent spheres $S_1=((x_1,y_1,z_1),r_1), S_2=((x_2,y_2,z_2),r_2)$  satisfy
+$$\|(x_1,y_1,z_1) - (x_2,y_2,z_2)\| = r_1+r_2,$$
+similarly, two externally tangent spheres satisfy
+$$\|(x_1,y_1,z_1) - (x_2,y_2,z_2)\| = |r_1 - r_2|.$$
+By squaring, we obtain the equality
+$$(x_1-x_2)^2 + (y_1-y_2)^2 + (z_1-z_2)^2 = (r_1 \pm r_2)^2$$
+Where we use $+$ for externally and $-$ for internally tangent spheres.
+
+This means, that the Apollonius problem for spheres $S_1,S_2,S_3,S_4$ is solved by any $S=((x,y,z),r)$ such that
+\begin{align}
+  (x_1-x)^2 + (y_1-y)^2 + (z_1-z)^2 &= (r_1 \pm r)^2 \\
+  (x_2-x)^2 + (y_2-y)^2 + (z_2-z)^2 &= (r_2 \pm r)^2 \\
+  (x_3-x)^2 + (y_3-y)^2 + (z_3-z)^2 &= (r_3 \pm r)^2 \\
+  (x_4-x)^2 + (y_4-y)^2 + (z_4-z)^2 &= (r_4 \pm r)^2 
+\end{align}
+
+where we can take any combination of $+$ or $-$, yielding altogether $16$ possible solutions. This excludes degenerate cases, which are not relevant in our case.

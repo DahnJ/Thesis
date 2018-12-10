@@ -83,6 +83,7 @@
 \newcommand{\tbd}{\textbf{{\color{red}~ TO BE DONE ~}}}
 
 \newcommand{\x}{{\mathbbm{x}}}
+\newcommand{\p}{{\mathbbm{p}}}
 
 %% Augumented matrix 
 \newenvironment{amatrix}[1]{%
@@ -125,7 +126,7 @@
 % consultant, a person who lent the software, etc.)
 \def\Dedication{%
 Benes
-A
+A?s
 Nohic
 Dereudre
 Volker
@@ -182,10 +183,7 @@ Abstract.
 %%% In mathematical theses, it could be better to move the list of tables to the beginning of the thesis.
 \listoftables
 
-\appendix
-\chapter{Appendix}
-
-\section{Section}
+\include{appendix}
 %%% Abbreviations used in the thesis, if any, including their explanation
 %%% In mathematical theses, it could be better to move the list of abbreviations to the beginning of the thesis.
 \chapwithtoc{List of Abbreviations}
@@ -202,5 +200,7 @@ Abstract.
 %%% should be uploaded to SIS and optionally also included in the thesis on a~CD/DVD.
 %%% Allowed file formats are specified in provision of the rector no. 72/2017.
 
+
+\listoftodos
 \openright
 \end{document}

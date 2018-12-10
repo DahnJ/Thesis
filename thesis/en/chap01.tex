@@ -1,9 +1,10 @@
 \chapter{Geometric preliminaries}
 \unsure[inline]{Are graphs geometric? I mean, geometric graphs are geometric. But graphs in general? Are potentials part of this?}
-Before diving into the mathematics of Gibbs-Laguerre-Delaunay tetrihedrization models, we must first lay out the fundamentals of their geometric and combinatorial structure. The key geometric component is the empty sphere property [...] which determines the edge structure, which is in turn analyzed in terms of hypergraphs.
+Before diving into the mathematics of Gibbs-Laguerre-Delaunay tetrihedrization models, we must first lay out the fundamentals of their geometric and combinatorial structure. The key geometric component is the empty ball property [...] which determines the edge structure, which is in turn analyzed in terms of hypergraphs.
 \unsure[inline]{$\mathcal F$ or $\mathcal N$}
 Let $\mathcal F_{lf}$ be the set of locally finite sets on $\Rt$, and $\mathcal F_{f} \subset \mathcal F_{lf}$ the set of all finite sets on $\Rt$. An elements of $F_{lf}$ will be usually denoted $\x$ and called a \textit{configuration} and its subset $\eta$. If $|\eta|=4$, as will be the case for the majority of this text, then $\eta$ will be called \textit{tetrahedron}.
 
+\todoo[inline]{Possibly define notation for spheres and then use it, it might be useful}
 
 \section{Tetrahedrizations}
 The aim of this section is to introduce the geometric concepts necessary for the definition of the hypergraph structures in the following section. Definitions might be postponed. Note that although this text focuses solely on the three dimensional case, most ideas remain valid for a triangulation in any dimension. Furthermore, many facts have an analogous result in the case of Delaunay and Laguerre tessellations\todoo{Say this better and reference where to read about them}.
@@ -22,7 +23,7 @@ Denote $\mathcal F_{gp}\subset \mathcal F_{lf}$ the set of all locally finite co
  
 \begin{definition}
 Let $\x \in \mathcal F_{gp}$. We say $\x$ is in \textbf{reinforced general position} if 
-$$ \eta \subset \x, 3 \leq |\eta| \leq 4 \Rightarrow \eta \text{ is non-circular.} $$   
+$$ \eta \subset \x, 3 \leq |\eta| \leq 4 \Rightarrow \eta \text{ is not cocircular.} $$   
 Denote $\mathcal F_{rgp}$ the set of all locally finite configurations in reinforced general position.
 \end{definition}
 \todoo[inline]{Define cocircular in general}
@@ -42,12 +43,13 @@ This section will shortly introduce the well known Delaunay tetrihedrization. Th
 Note that the circumball is uniquely defined by $\eta$. 
 
 \begin{definition}
-	Let $\x \in \mathcal F_{lf}$ and $\eta \subset \x$. We say that $(\eta,\x)$ satisfies the \textit{empty sphere property} if $B(\eta) \cap \x = \emptyset$. 
+	Let $\x \in \mathcal F_{gp}$ and $\eta \subset \x$. We say that $(\eta,\x)$ satisfies the \textit{empty ball property} if $B(\eta) \cap \x = \emptyset$. 
+	For convenience, for $\x \in \mathcal F_{lf}\setminus \mathcal F_{gp}$, we define any $\eta\subset \x$ that does not satisfy the assumptions of general position as not satisfying the empty ball property.
 \end{definition}
 
 \begin{definition}
 	Let $\x \in \mathcal F_{lf}$. Define the set 
-	$$\mathcal {D}(\x) := \{\eta\subset \x: \eta \text{ satisfies the empty sphere property }\}.$$
+	$$\mathcal {D}(\x) := \{\eta\subset \x: \eta \text{ satisfies the empty ball property }\}.$$
 	and its subsets
 	$$\mathcal {D}_k(\x) := \{\eta \in \mathcal {D}(\x): |\eta|=k \},\quad k = 1,\dots,4.$$
 	We then define the \textit{Delaunay tetrihedrization of $\x$} as the set $\mathcal D_4$. 
@@ -59,6 +61,17 @@ The set $\mathcal D_4$ contains the structure we would expect from the name tetr
 
 \todoo[inline]{Existence and uniqueness}
 
+
+The following proposition shows one important property of the set $\mathcal D_2(\x)$ for any $\x \in \mathcal F_lf$ --- it contains the edges of the (undirected) nearest neighbor graph.
+\begin{proposition}\label{prop:nng}
+	Define 
+	$$\text{NNG}(\x) = \{ \{p,q\}\subset \x \times \x: p\neq q, \|p-q\| \leq \|p-s\|, s\in \x\setminus\{p\}  \}.$$
+	Then 
+	$$\text{NNG}(\x) \subset \mathcal D_2(\x).$$
+\end{proposition}
+\begin{proof}
+	Let $x\in\mathcal F_{lf}$ and $\eta =\{p,q\} \in \text{NNG}(\x)$. WLOG assume that $q$ is the nearest neighbor of $p$. Then $ B(p,\|p-q\|)\cap \x = \{p\}$. Then $\eta$ satisfies the empty ball property with the \note{$x \in B(\eta,\x)$ implies $\|x-a\| < \text{diam}(B(\eta,\x)) = \|p-q\|/2$}circumball $ B(\eta,\x) := B((p+q)/2,\|p-q\|/2) \subset B(p,\|p-q\|)$.
+\end{proof}
 
 
 \subsection{Laguerre tetrihedrization}
@@ -104,17 +117,22 @@ The above observations allow us to interpret the power product as a kind of dist
 We are now well-equiped to define the central terms necessary for the definition of the Laguerre tetrihedrization.
 
 \begin{definition}
-	Let $\eta\in\mathcal F_{gp}$. Define the \textit{characteristic point} of $\eta$ as the point $p_{\eta} = (p'_\eta, p''_\eta)$ which is orthogonal to every $p\in \eta$. If such point exists, we call $\eta$ \textit{Laguerre-coocircular}. 
+	Let $\eta\in\mathcal F_{gp}$. Define the \textit{characteristic point} of $\eta$ as the point $p_{\eta} = (p'_\eta, p''_\eta) \in \Rt \times \mathbb R$ which is orthogonal to every $p\in \eta$. If such point exists, we call $\eta$ \textit{Laguerre-coocircular}. 
 \end{definition}
+An alternative way to describe the characteristic point is by the equality 
+\begin{equation}\label{eq:charpoint}
+	d(p'_\eta,p)=p''_\eta \text{ for each } p \in \eta.
+\end{equation}
+Note that the mark of the characteristic point can be any real number and thus isn't limited to $S=[0,W]$ as the points of $\x$.
+\problem[inline]{But it doesn't exist if it lies inside any of the spheres - it would require a negative weight / imaginary radius}
 \todoo[inline]{Possibly add the characterization through power distance}
-The characteristic point can thus be interpreted as a sphere that intersects each sphere $S_p, p\in\eta$ at a right angle. Note also that for each $p\in\eta$, we have
-$$d(p'_\eta,p)=p''_\eta.$$
+If its weight is positive, the characteristic point can thus be interpreted as a sphere that intersects each sphere $S_p, p\in\eta$ at a right angle. If negative, [ref] has suggested $p_\eta$ to be thought of as a sphere with an imaginary radius, though as far as we are aware, there is no further advantage to be gained from such interpretation. \newline
 
 The following proposition looks at the existence and uniqueness of the characteristic point. Its proof is crucial.
 
 \todoo[inline]{Existence and uniqueness}
 
-\begin{proposition}[Existence and uniqueness of the characteristic point]
+\begin{proposition}[Existence and uniqueness of the characteristic point]\label{prop:charpoint}
 	Let $\eta\in\mathcal F_{gp}$. Then the following holds for the characteristic point $p_\eta$.
 	\begin{enumerate}
 		\item  If $|\eta|<4$, then the $p_\eta$ exists and is not unique.
@@ -165,6 +183,24 @@ The following proposition looks at the existence and uniqueness of the character
 \end{proof}
 \todoo[inline]{Connect this to incircle?}
 
+\begin{definition} Let $p,q \in \Rt\times S$. We call the set 
+	$$H(p,q) = \{ x\in \Rt: d(x,p) = d(x,q) \}$$
+	the \textit{radical hyperplane}.
+\end{definition}
+
+\begin{proposition} Let $p,q \in \Rt\times S$. $H(p,q)$ is a hyperplane in $\Rt$.
+\end{proposition}
+\begin{proof}
+	By simple calculation we have
+	$$H(p,q) = \{x \in \Rt: 2 \langle q'-p',x \rangle  - 2\langle p', x \rangle  = \|q'\|^2 - \|p'\|^2  - q'' + p''.$$
+\end{proof}
+
+Notice that changing the weight of either of the points ammounts to translation of the hyperplane. Notice also that the characteristic point $p_\eta$ of $\eta$, by \ref{eq:charpoint}, lies on the intersection of the hyperplanes
+$$\bigcap_{p,q\in\eta} H(p,q).$$
+
+		
+
+
 \begin{definition}
 	Let $x\in \mathcal F_{gp}$ be a configuration, $\eta \subset \x$ and $p_\eta$ its characteristic point. We say that the pair $(\eta,\x)$ is \textit{regular}, or that $\eta$ is \textit{regular in} $\x$, if $\rho(p_\eta,p)\geq 0$ for all $p\in\x$.	
 	For convenience, for $\x \in \mathcal F_{lf}\setminus \mathcal F_{gp}$, we define any $\eta\subset \x$ that does not satisfy the assumptions of general position as not regular.
@@ -172,7 +208,10 @@ The following proposition looks at the existence and uniqueness of the character
 The definition can also be equivalently stated as 
 $$\text{There is no point } q\in\x \text{ such that } d(p'_\eta,q)<p''_\eta$$
 
-The regularity property ensures that no point of $\x$ is closer to the characteristic point $p_\eta$ in the power distance than the points of $\eta$. This is analogous to the empty sphere property in Delaunay tetrihedrization, where the circumball plays the role of the characteristic point. \todoo{c.f. remark that comes later}  
+The regularity property ensures that no point of $\x$ is closer to the characteristic point $p_\eta$ in the power distance than the points of $\eta$. This is analogous to the empty ball property in Delaunay tetrihedrization, where the circumball plays the role of the characteristic point. \todoo{c.f. remark that comes later}  
+
+
+
 
 \begin{definition}
 	Let $\x \in \mathcal F_{lf}$. Define the set 
@@ -183,15 +222,21 @@ The regularity property ensures that no point of $\x$ is closer to the character
 \end{definition}
 
 
+\begin{remark}[Constructing Laguerre and Delaunay tetrihedrization]\label{r:construct}
+	The proof of proposition \ref{prop:charpoint} also gives a hint on how to check whether $\eta$ is regular. [ref: gavrilova]\tbd 
+\end{remark}
+
+
 \todoo[inline]{Talk about how cocircular points create multiplicities in the cliques - no they don't, since we're limiting $k$ to max $4$}
 
 \begin{remark}[Invariance in weights]
 	\todoo{Why? Also write a bit more}Notice that adding or subtracting weights to all points in $\x$ does not change regularity of any $\eta \subset \x$. This implies that the Laguere tetrihedrization is invariant under this operation.  
 \end{remark}
 
-\begin{remark}[Delaunay as a special case of Laguerre]
+\begin{remark}[Delaunay as a special case of Laguerre]\label{rem:LaguerreToDelaunay}
 \tbd
 \end{remark}
+
 
 \subsubsection{Redundant points}
 
@@ -235,6 +280,8 @@ To interpret this fact intuitively see fig. [fig]. \todoo{Perhaps talk a bit mor
 
 \unsure[inline]{Restrict on non-redundant points? Measurability?}
 
+\todoo[inline]{Talk about lifting - additional intuition on how this stuff works}
+%https://link.springer.com/content/pdf/10.1007/BF01975867.pdf
 
 \section{Hypergraph structures}
 Both Delaunay and Laguerre tetrihedrizations can be seen as graphs where two points $p,q\in\x$ are joined if they are part of the same tetrahedron\todoo{satisfying ESP or sth}. For the purposes of this text, a more natural structure will be the hypergraph.
@@ -290,7 +337,7 @@ $$\varphi(\eta,\x) = \theta \bigg (\frac {\max ( Vol(C_p), Vol(C_q))}{\min(Vol(C
 where the potential now depends on the size of neighboring Laguerre cells. Notice that $\theta$ can be negative, yielding a negative potential. \newline
 \textbf{Tetrahedral interaction}: In the present setting, we cannot specify interaction between tetrahedra in $\mathcal D_4$ or $\mathcal {LD}_4$ as easily as between Laguerre cells. This can be solved by for example defining a new hypergraph structure
 $$\mathcal {LD}^2_4 = \{(\eta,\x): \exists \eta_1,\eta_2\in\mathcal {LD}_4(\x), |\eta_1 \cap \eta_2|=3, \eta = \eta_1 \cup \eta_2\}$$
-Which contains the quintuples of points which form adjacent tetrahedra in $\mathcal {LD}_4(\x)$. 
+Which contains the quintuples of points which form adjacent tetrahedra in $\mathcal {LD}_4(\x)$. \problem{Yeah but what if the 5 points actually describe 3 tetrahedra, as can be the case? This needs improving}
 	
 \end{example}
 
@@ -305,7 +352,7 @@ The words \textit{potential} and \textit{energy} suggest a connection with stati
 
 
 \subsection{Hypergraph potentials and locality}
-A natural question to ask is ``How do the points of $\x$ influence each other?''. We've seen that there is a type of locality at play, for example in $\mathcal D_4$ the empty sphere property of a tetrahedron $\eta$ is dependent solely on presence of points of $\x$ inside $B(\eta)$. The question is further complicated by the presence of the hyperedge potential. This section will refine the question by definining different locality properties.
+A natural question to ask is ``How do the points of $\x$ influence each other?''. We've seen that there is a type of locality at play, for example in $\mathcal D_4$ the empty ball property of a tetrahedron $\eta$ is dependent solely on presence of points of $\x$ inside $B(\eta)$. The question is further complicated by the presence of the hyperedge potential. This section will refine the question by definining different locality properties.
 
 As we will see in chapter [ref], this locality is essential for the existence of our models and Gibbs measures in general.
 
@@ -315,7 +362,7 @@ $$(\eta,\tilde{\x})\in\mathcal E \text{ and } \varphi(\eta,\tilde{\x}) = \varphi
 The pair $(\mathcal E, \varphi)$ satisfies the \textit{finite-horizon property} if each $(\eta,\x)\in \mathcal E$ has a finite horizon.
 \end{definition}
 
-The finite horizon of $(\eta,\x)$ delineates the region outside which points can no longer violate the regularity (or the empty sphere property) of $\eta$. 
+The finite horizon of $(\eta,\x)$ delineates the region outside which points can no longer violate the regularity (or the empty ball property) of $\eta$. 
 
 \begin{remark} [Finite horizons for $\mathcal D$ and $\mathcal {LD}$]
 For $\mathcal D$, the closed circumball $\bar B(\eta,\x)$ itself is a finite horizon for $(\eta,\x)$.
