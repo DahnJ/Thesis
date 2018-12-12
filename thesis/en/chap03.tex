@@ -1,4 +1,4 @@
-\chapter{Existence of Gibbs-type models}
+\chapter{Existence of Gibbs-type models}\label{ch:3}
 In this chapter, the theorem from \cite{DL07} will be presented and then we will proceed to check its assumptions for our models.
 
 \section{Existence theorem}
@@ -35,7 +35,7 @@ The first thing to note that when $\varphi$ is non-negative, then we can simply 
 \subsection{Range condition} \label{sec:range}
 As stated previously, the fact that the hyergraph structures posses a type of locality property is crucial for the existence of Gibbs measures. The simplest such assumption is the \textit{finite range} assumption, see e.g. [intro def7], which roughly states that there exists $R>0$ such that the energy of $\x$ in $\Delta$ only depends on points in $\Delta + b(0,R)$. This is a strong assumption and one that is not fulfilled by our models. 
 
-This is reflected in part in the range condition introduced here and later in the uniform confinement condition [ref].
+This is reflected in part in the range condition introduced here and later in the uniform confinement condition \ref{eq:U1}.
 
 \begin{enumerate}[\textbf{(R)}]
 	\item \textit{Range condition}. There exist constants $\ell_R,n_R \in \mathbb N$ and $\delta_R < \infty$ such that for all $(\eta,\x) \in \mathcal E$ there exists a finite horizon $\Delta$ satisfying: For every $x,y \in \Delta$ there exist $\ell$ open balls $B_1, \dots, B_\ell$ (with $\ell \leq \ell_R$) such that
@@ -60,7 +60,7 @@ the set of all configurations whose restriction to $C(k)$, when shifted back to 
 	\item \textit{Upper regularity}. $M$ and $\Gamma$ can be chosen so that the following holds. 
 		\begin{enumerate}[(U1)]
 			\item \textit{Uniform confinement}: $\bar \Gamma \subset N^\Lambda_\text{cr}$ for all $\Lambda \in \mathcal B_0$ and 
-			$$r_\Gamma := \sup_{\Lambda\in\mathcal B_0}\sup_{\x \in \bar\Gamma} r_{\Lambda, \x} < \infty$$
+			\begin{equation}\label{eq:U1}r_\Gamma := \sup_{\Lambda\in\mathcal B_0}\sup_{\x \in \bar\Gamma} r_{\Lambda, \x} < \infty\end{equation}
 			\item \textit{Uniform summability}: 
 			$$c^+_\Gamma := \sup_{\x \in \bar\Gamma}  \sum_{\eta \in \mathcal E(\x): \eta \cap C \neq \emptyset} \frac{\varphi^+(\eta,\x)}{\#(\hat\eta)} < \infty,$$
 where $\hat\eta := \{k \in \mathbb Z^3: \eta \cap C(k) \neq \emptyset\}$ and $\varphi^+ = \max(\varphi,0)$ is the positive part of $\varphi$.
@@ -159,7 +159,7 @@ Before we investigate the structure of the resulting tetrihedrizations, we list 
 \end{enumerate}
 
 \problem[inline]{There's now a double use of the word regular. Do something about this. Perhaps call them Platonic}
-As noted previously, the using an analogous definition in $\mathbb R^2$ forms a triangulation containing equilateral triangles. Sadly, the three dimensional case is not as simple\footnote{And it couldn't be, because the analogue of the two-dimensional equilateral triangle, the regular tetrahedron, does not tessellate, as Archimedes famously wrongly claimed [ref]}.
+As noted previously, the using an analogous definition in $\mathbb R^2$ forms a triangulation containing equilateral triangles. Sadly, the three dimensional case is not as simple\footnote{And it couldn't be, because the analogue of the two-dimensional equilateral triangle, the regular tetrahedron, does not tessellate, as Aristotle famously wrongly claimed \cite{Lagarias12}}.
 To better understand the structure of the resulting tetrahedrizations, we choose a particular example of a configuration from $\tilde\Gamma^a$. 
 $$\x_0 = \{(M_ak,0) \in \Rt\times S: k \in \mathbb Z^3\} \in \tilde\Gamma,$$ 
 the set of zero-weight points lying in the center of their respective cells $C(k)$, where
@@ -188,8 +188,8 @@ $$\begin{matrix}
 
 	p_5: & (0,0,1) & \rightarrow & a(1/2,1/(2\sqrt{3}),\sqrt{2/3})\\
 	p_6: & (1,0,1) & \rightarrow & a(3/2,1/(2\sqrt{3}),\sqrt{2/3})\\
-	p_7: & (0,1,1) & \rightarrow & a(1,2/\sqrt(3), \sqrt{2/3})\\
-	p_8: & (1,1,1) & \rightarrow & a(2,2/\sqrt(3), \sqrt{2/3})\\
+	p_7: & (0,1,1) & \rightarrow & a(1,2/\sqrt3, \sqrt{2/3})\\
+	p_8: & (1,1,1) & \rightarrow & a(2,2/\sqrt3, \sqrt{2/3})\\
 \end{matrix}$$
 
 To obtain the tetrihedrization of the parallelohedron formed by $\p_0$, we could mechanically perform the INCIRCLE test on all quintuples of points in $\p_0$ (see remark \ref{r:construct}). We can also use our knowledge of the Delaunay tetrahedrization and geometry to deduce the structure of the tetrihedrization.
@@ -211,25 +211,20 @@ The bound on circumdiameters of the circumballs and characteristic point weights
 $$T_1: (a,a,a,a,a,a) \quad T_2:(a,a,a,a,a,\sqrt 2a)$$
 \end{proposition}
 \begin{proof}
-We know that $\text{NNG}(\p_0)$ is composed of two regular tetrahedra and one regular octahedron $O$ with all edge lengths equal to $a$. By the symmetry of the regular octahedron, all the tetrahedra inside $O$ must be the same up to rotation. Each tetrahedron has five out of six edge lengths equal to $a$, therefore we only need to determine the remaining edge length. We can take e.g. any four points forming a square with side lengths $a$ to see that the remaining edge length is $\sqrt a$.
+We know that $\text{NNG}(\p_0)$ is composed of two regular tetrahedra and one regular octahedron $O$ with all edge lengths equal to $a$. By the symmetry of the regular octahedron, all the tetrahedra inside $O$ must be the same up to rotation. Each tetrahedron has five out of six edge lengths equal to $a$, therefore we only need to determine the remaining edge length. We can take e.g. any four points forming a square with side lengths $a$ to see that the remaining edge length is $\sqrt 2a$.
 Since $\mathcal D_4(\x_0)$ is tessellated by copies of $\mathcal D_4(\p_0)$ translated by vectors $k\in\mathbb Z^3$, we have fully characterized the tetrahedra of $\mathcal D_4(\x_0)$. 
 \end{proof}
 
 With this knowledge we are ready to investigate the 
+\begin{proposition}
+Let $\x \in \tilde\Gamma^A$. Then there exists $C>0$ such that $p_\eta'' \leq C$ for all $\eta \in \mathcal {LD}_4(\x)$. 
+\end{proposition}
+\begin{proof}
+Denote $\eta=\{p_1,p_2,p_3,p_4\}$, denote their positions $\eta'$ and weights $\eta''$. From proposition \ref{prop:charpointHyperplane} and the remark below it, we know that $p'\eta = H(p_1,p_2)\cap H(p_1,p_3) \cap H(p_1,p_4)$.
 
-% Need to prove p''_\eta is bounded and need explicit bound for diam B(\eta)
-
-
-
-% Radical hyperplane is a hyperplane
-% Characteristic point is their intersection [by definition, basically]
-% Changing a weight in a point translates the hyperplane
-% Limited weight => Limited translation => Only care about general position
-
-% Maximum rho  
-
-
-
+Fix the positions $\eta'$.  Changing any of the points' weights ammounts to translation of the radical hyperplanes defined by that point (see note after proposition \ref{prop:charpointHyperplane2}). Given the fact that weights are bounded, $S=[0,W]$, we find that there exists $B_{\eta'}>0$ such that for given positions $\eta'$, we have $p''_\eta \leq B_{\eta'}$ regardless of the weights.
+It remains to prove that $\sup_{\eta'} B_{\eta'} < \infty$, i.e. changing the points' positions can produce only bounded $p''_\eta$. This ammounts to proving that the points of $\eta$ are not allowed to come arbitrarily close to (or even attain) a non-general position. This is equivalent with boundedness of the circumsphere of $\eta'$, which is proved for $\rho<$\tbd in the appendix [ref].
+\end{proof}
 
 
 

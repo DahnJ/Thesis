@@ -135,7 +135,7 @@ Denote the entries of matrix $D$ as $d_{ij}, i,j=1,2,3,4$. Then the statement is
 This is a non-linear optimization problem. We can arrive at its solution through some careful geometric arguments.
 
 
-First, define the \textit{circumdiameter function} of point $p \in \Rt$ with respect to non-coplanar points $p_1,p_2,p_3 \in \Rt$:
+First, define the \textit{circumdiameter function} of point $p \in \Rt$ with respect to non-collinear points $p_1,p_2,p_3 \in \Rt$:
 $$c(p) = \delta(\{p,p_1,p_2,p_3\}).$$
 Denote $(x_i,y_i,z_i)$ the coordinates of $p_i, i=1,\dots,3$. The following lemma describes the properties of $c(p)$.
 
@@ -152,18 +152,18 @@ Continuity: From \ref{Cayley-Menger-expanded} we see that $c(p)$ can be seen as 
 
 The we can rewrite $L_a$ as
 $$\{p \in \Rt: \exists \text{ sphere } S \text{ s.t. } p_1,p_2,p_3,p \in S \text{ and diam}S = a\}.$$
-We must therefore find the number of spheres going through the points $p_1,p_2,p_3$ with the diameter $a$. Denote $S$ a sphere such that $\{p_1,p_2,p_3\}\subset S$. Then $S\cap H = C$ where $C$ is the (uniquely defined) circumcircle of $p_1,p_2,p_3$. \tbd 
-% If we denote $(x,y,z)$ the coordinates of any such sphere, they must satisfy the equations
-% $$(x-x_i)^2 + (y-y_i)^2 + (z-z_i)^2 = a^2,\quad i=1,2,3.$$
-% By expanding the parentheses, subtracting second equation from first and third from second, we obtain a system of two linear and one quadratic equation. We can express $z$ in 
+We must therefore find the number of spheres going through the points $p_1,p_2,p_3$ with the diameter $a$. Denote $S$ a sphere such that $\{p_1,p_2,p_3\}\subset S$ with diameter $a$. Define the hyperplanes
+$$H_{12} = \{x\in\Rt: \|x-p_1\| = \|x-p_2\|\}, \;\; H_{23} = \{x\in\Rt: \|x-p_2\|=\|x-p_3\|\}.$$
+Then their intersection $H_{12}\cap H_{23}$ is a line $L$, as $p_1,p_2,p_3$ are non-collinear.  The center of $S$ is at distance $a/2$ from all three points and thus lies on $L$. For any point, there are at most two points on a line at a given distance from the point. This proves that there are at most two spheres satisfying the definition of $S$.
 
-Minimum: the smallest sphere containing $p_1,p_2,p_3$ has a great circle equal to the circumcircle of $p_1,p_2,p_3$. 
+Using line $L$, we can also deduce the rest of the proposition. The point on $L$ at a minimum distance to $p_1,p_2,p_3$ is the point $p_{min}:=L\cap H$. We know that $p_{min}$ is equidistant from $p_1,p_2,p_3$ and that it lies on the hyperplane $H$, therefore we have $c(p_{min}) = \delta(\{p_1,p_2,p_3\})$.  
 
+\todoo[inline]{Improve the last bit, possibly simplify}
 To see that $c_1$ and $c_2$ must be (non-strictly) separated by the hyperplane $H$, assume WLOG $\{c_1,c_2\}\subset H_+, c_1\neq c_2$. Let $p \in S_{a1}$ and let  $p_R\in \Rt$ be the reflection of $p$ through the hyperplane $H$. The tetrahedron $p_1,p_2,p_3,p_R$ then is a reflection of the tetrahedron $p_1,p_2,\dots, p$ and therefore its circumsphere has diameter $a$ and centre in $H_-$, which is a contradiction. 
 
 \end{proof}
 
-Note that $S_{a1}$ and $S_{a2}$ are not necessarily distinct. In fact, the case $S_{a1}=S_{a2}$ is precisely when $a$ is the global minimum of $c(p)$. Then the centre of $S_{a1}$ lies on the hyperplane $H$.
+Note that $S_{a1}$ and $S_{a2}$ are not necessarily distinct. In fact, we can see from the proof that the case $S_{a1}=S_{a2}$ is precisely when $a=c_{min}$.
 
 
 
@@ -201,4 +201,7 @@ This means, that the Apollonius problem for spheres $S_1,S_2,S_3,S_4$ is solved 
   (x_4-x)^2 + (y_4-y)^2 + (z_4-z)^2 &= (r_4 \pm r)^2 
 \end{align}
 
-where we can take any combination of $+$ or $-$, yielding altogether $16$ possible solutions. This excludes degenerate cases, which are not relevant in our case.
+where we can take any combination of $+$ or $-$, yielding altogether $16$ possible solutions. This excludes degenerate cases, which are not relevant in our case. As noted previously, the number of solutions for both $T_1$ and $T_2$ will reduce significantly. For $T_1$, the spheres are completely interchangeable and thus only solutions with different number of $+$ will differ. This yields $5$ possible solutions. Geometrically the number of $+$ can be seen as the number of spheres the solution is externally tangent to. For $T_2$ the situation is more complex -  
+
+
+

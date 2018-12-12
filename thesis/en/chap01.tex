@@ -6,7 +6,7 @@ Let $\mathcal F_{lf}$ be the set of locally finite sets on $\Rt$, and $\mathcal 
 
 \todoo[inline]{Possibly define notation for spheres and then use it, it might be useful}
 
-\section{Tetrahedrizations}
+\section{Tetrahedrizations}\label{sec:tetrahedrizations}
 The aim of this section is to introduce the geometric concepts necessary for the definition of the hypergraph structures in the following section. Definitions might be postponed. Note that although this text focuses solely on the three dimensional case, most ideas remain valid for a triangulation in any dimension. Furthermore, many facts have an analogous result in the case of Delaunay and Laguerre tessellations\todoo{Say this better and reference where to read about them}.
 This text is concerned with two types of tetrihedrizations. 
 
@@ -126,7 +126,7 @@ An alternative way to describe the characteristic point is by the equality
 Note that the mark of the characteristic point can be any real number and thus isn't limited to $S=[0,W]$ as the points of $\x$.
 \problem[inline]{But it doesn't exist if it lies inside any of the spheres - it would require a negative weight / imaginary radius}
 \todoo[inline]{Possibly add the characterization through power distance}
-If its weight is positive, the characteristic point can thus be interpreted as a sphere that intersects each sphere $S_p, p\in\eta$ at a right angle. If negative, [ref] has suggested $p_\eta$ to be thought of as a sphere with an imaginary radius, though as far as we are aware, there is no further advantage to be gained from such interpretation. \newline
+If its weight is positive, the characteristic point can thus be interpreted as a sphere that intersects each sphere $S_p, p\in\eta$ at a right angle. If negative, \ref{Edelsbrunner1996} has suggested $p_\eta$ to be thought of as a sphere with an imaginary radius, though as far as we are aware, there is no further advantage to be gained from such interpretation. \newline
 
 The following proposition looks at the existence and uniqueness of the characteristic point. Its proof is crucial.
 
@@ -181,24 +181,27 @@ The following proposition looks at the existence and uniqueness of the character
 	$$
 	However, this is equivalent to saying that there exists $p_\eta$ such that $\rho(p_\eta,p_i)=0$, i.e. that $\eta$ is Laguerre-cocircular.
 \end{proof}
-\todoo[inline]{Connect this to incircle?}
 
 \begin{definition} Let $p,q \in \Rt\times S$. We call the set 
 	$$H(p,q) = \{ x\in \Rt: d(x,p) = d(x,q) \}$$
 	the \textit{radical hyperplane}.
 \end{definition}
 
-\begin{proposition} Let $p,q \in \Rt\times S$. $H(p,q)$ is a hyperplane in $\Rt$.
+\begin{proposition}\label{prop:charpointHyperplane} $H(p,q)$ is a hyperplane in $\Rt$ for any $p,q\in\Rt\times S$. Let $\{p_1,\dots,p_k\} =\eta\subset\x\in\mathcal F{gp}, k=2,3,4$. If 
+	\begin{equation}\label{eq:charpointHyperplane1}p'\in\bigcap_{i,j=1,\dots,4} H(p_i,p_j),\end{equation}
+	then $p'$ is a characteristic point of $\eta$. Lastly, if $|\eta|=4$, then the uniquely defined characteristic point $p_\eta$ is characterized by
+	\begin{equation}\label{eq:charpointHyperplane2}p'_\eta = H(p_1,p_2)\cap H(p_1,p_3) \cap H(p_1,p_4).\end{equation}
 \end{proposition}
 \begin{proof}
 	By simple calculation we have
 	$$H(p,q) = \{x \in \Rt: 2 \langle q'-p',x \rangle  - 2\langle p', x \rangle  = \|q'\|^2 - \|p'\|^2  - q'' + p''.$$
+
+		From \ref{eq:charpoint} we obtain the characterization \ref{eq:charpointHyperplane2}. 
+
+		For a tetrahedral $\eta$, we know from \ref{prop:charpoint} that $p_\eta$ is uniquely defined. To obtain \ref{eq:charpointHyperplane2}, we only need to realize that three hyperplanes are sufficient to specify that .
 \end{proof}
 
-Notice that changing the weight of either of the points ammounts to translation of the hyperplane. Notice also that the characteristic point $p_\eta$ of $\eta$, by \ref{eq:charpoint}, lies on the intersection of the hyperplanes
-$$\bigcap_{p,q\in\eta} H(p,q).$$
-
-		
+Notice that changing the weight of either of the points ammounts to translation of the hyperplane. 
 
 
 \begin{definition}
@@ -223,7 +226,7 @@ The regularity property ensures that no point of $\x$ is closer to the character
 
 
 \begin{remark}[Constructing Laguerre and Delaunay tetrihedrization]\label{r:construct}
-	The proof of proposition \ref{prop:charpoint} also gives a hint on how to check whether $\eta$ is regular. [ref: gavrilova]\tbd 
+	The proof of proposition \ref{prop:charpoint} also gives a hint on how to check whether $\eta$ is regular. \ref{Gavrilova}\tbd 
 \end{remark}
 
 
@@ -354,7 +357,7 @@ The words \textit{potential} and \textit{energy} suggest a connection with stati
 \subsection{Hypergraph potentials and locality}
 A natural question to ask is ``How do the points of $\x$ influence each other?''. We've seen that there is a type of locality at play, for example in $\mathcal D_4$ the empty ball property of a tetrahedron $\eta$ is dependent solely on presence of points of $\x$ inside $B(\eta)$. The question is further complicated by the presence of the hyperedge potential. This section will refine the question by definining different locality properties.
 
-As we will see in chapter [ref], this locality is essential for the existence of our models and Gibbs measures in general.
+As we will see in chapter \ref{ch:3}, this locality is essential for the existence of our models and Gibbs measures in general.
 
 \begin{definition}
 	A set $\Delta \in \mathcal B_0$ is a \textit{finite horizon} for the pair $(\eta,\x) \in \mathcal E$ and the hyperedge potential $\varphi$ if for all $\tilde{\x} \in N, \tilde{\x} = \x$ on $\Delta\times S$ 

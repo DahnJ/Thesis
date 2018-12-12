@@ -2,21 +2,53 @@
 Ultimately we want to study the behaviour of hypergraph structures and hyperedge potentials under some probabilistic assumptions on the distribution of the configuration $\x$. This chapter introduces the theory of point processes and random tessellations, both examples of the area of stochastic geometry, the concepts that will allow us to introduce randomness into hypergraphs. The main goal of this chapter is to introduce the Gibbs-type tessellation, where the location of the points are allowed to interact with the geometric properties of the tesssellation, giving us a great freedom in the specification of our models.
 
 \section{Point processes}
+This section will develop the bare minimum of the theory necessary to define and use Gibbs point processes. For a comprehensive introductory text, we recommend \cite{MollerWaagepetersen2003}, as it is the most relevant text. 
 
-Follow Schneider and Weil. Introduce basic concepts and theorems as well as point out useful calculation techniques.
 
-\subsection{Random measures and point processes}
-\todoo[inline]{Random measure, $\sigma$-algebra, point process, $\sigma$-algebra, introduce simple pp as configurations by abuse of notation, comment on $\mathcal N_{gp}$ (zessin), Intensity, factorial measure,.. }
-\todoo[inline]{Introduce some basic theorems and relations so we can function, e.g. rewriting campbell-like stuff} 
+Let $E$ be a locally compact complete separable metric space. For our purposes, $E$ will always be one of two cases
+\begin{itemize}
+	\item Unmarked case: $E = \Rt$ with the Lebesgue measure $\lambda$. Often we write $|B|$ instead of $\lambda(B)$, $B\in \mathcal B(E)$.
+	\item Marked case: $E = \Rt\times S$, where $S=[0,W],W>0$ is the space of marks, with $\lambda \otimes \mu$, where $\mu$ is a non-atomic distribution of the marks. 
+\end{itemize}
+
+\subsection{Basic terms}
+\begin{definition}\label{def:measures}
+Define a \textit{counting measure} on $E$ as a measure $\nu$ on $E$ for which
+$$\nu(B)\in\mathbb N \cup \{0,\infty\}, B\in\mathcal B_0(E)\;\;\text{ and } \; \; \nu(\{x\})\leq 1, x\in E.$$
+We say a measure $\nu$ is \textit{locally finite} if $\nu(B)<\infty$ for any $B\in \mathcal  B_0(E)$. Denote $N_{lf}(E)$ the space of all locally finite counting measures on $E$.
+We equip the space $N_{lf}(E)$ with the $\sigma$-algebra
+$$\mathcal N_{lf}(E)=\sigma(\{\nu \in N_{lf}(E): \nu(B)=n\}: B \in \mathcal B_0(E), m\in \mathbb N_0).$$
+\unsure{Maybe pospone this to a later section?}Finally we define the set $N_f(E) \subset N_{lf}(E)$ of finite measures on $E$ by
+$$N_f(E) = \{\nu \in N_{lf}(E): \nu(E)<\infty\}$$
+with the $\sigma$-algebra $\mathcal N_{f}$ defined as the trace $\sigma$-algebra of $N_{f}(E)$ on $(N_{lf}(E),\mathcal N_{lf}(E))$.
+\end{definition}
+
+
+\begin{remark}[Duality of locally finite counting measures and configurations]
+In chapter 1, we introduced the sets $N_{lf}$ and $N_f$ as spaces of (finite) configurations --- locally finite sets. This abuse of notation is justified by the fact that there is a measurable bijection between the space of locally finite counting measures as defined here and locally finite sets. For details and a proof, see lemma 3.1.4. in \cite{SchneiderWeil2008}.   
+\end{remark}
+
+In line with the first chapter, we will use the notation $N_{f},\mathcal N_{f}, N_{lf}, \mathcal N_{lf}$ for the case $E=\Rt\times S$ and the dashed letters $N'_{f},\mathcal N'_{f}, N'_{lf}, \mathcal N'_{lf}$ for the unmarked case $E=\Rt$. 
+
+
+\begin{definition}
+A \textit{point process} on $E$ is a measurable mapping $\Phi:(\Omega,\mathcal A, P) \to (N_{lf}(E),\mathcal N_{lf}(E))$. \newline
+A \textit{marked point process} $\Phi_m$ as a point process on $\Rt\times S$ for which the projection $\Phi(B)=\Phi_m(B\times S), B \in \mathcal B$ is a point process on $\Rt$.
+
+\end{definition}
+Note that this definition requires the realizations of the projection of the marked point process to be locally finite counting measures in the sense of definition \ref{def:measures}.
+
+\unsure[inline]{Do we need anything else?}
+% History of Campbell: https://www.jstor.org/stable/3621649?seq=4#metadata_info_tab_contents
 
 \subsubsection{Poisson point process}
-\todoo[inline]{Poisson process and basic properties, mainly connection to binomial pp and the way we can use it to calculate}
 Before we define the Poisson point process, we first define a process closely related it.
 
 \begin{definition} Let $B \in \mathcal B_0$. For $n\in \mathbb N$ let $X_1,\dots,X_n$ be independent and uniformly distributed random variables on $B$, that is
 $$P(X_i \in A) = \frac{|A|}{|B|}.$$
 Then we define the \textit{binomial point process} of $n$ points in $B$ as
 $$\Phi_n = \sum^{n}_{i=1}  \delta_{X_i}.$$
+We use the convention $\sum^0_{i=1} \delta_{X_i} = \varnothing$, where $\varnothing(B)=0$ for any $B\in \Rt$ is the empty point process.
 \end{definition}
 
 \begin{proposition}\label{bincalc}
@@ -36,31 +68,70 @@ $$\{C \in \mathcal B^k: E 1_C (x_1,\dots,x_k) = \int \cdots \int 1_C(x_1,\dots, 
  and then from indicators to any non-negative measurable function.
 \end{proof}
 
-\problem[inline]{The $\mathcal B^k$ is weird there, considering that we have $\mathcal B^3=\mathcal B$ elsewhere}
+\problem[inline]{The $\mathcal B^k$ is weird there, considering that we kinda have $\mathcal B^3=\mathcal B$ elsewhere}
 
 
 
-\begin{definition} Let $\nu$ be a diffuse measure on $E$. A point process $\Phi$ satisfying
+\begin{definition} Let $\nu$ be a non-atomic measure on $E$. A point process $\Phi$ satisfying
 \begin{enumerate}
 \item $\Phi(B)$ has a Poisson distribution with parameter $\nu(B)$ for each $B\in \mathcal B_0$,
 \item Conditonally on $\Phi_B=n, n\in\mathbb N$,  $\Phi|_B$ is the Binomial point process of $n$ points in $B$, $B \in \mathcal B_0$.
 \end{enumerate}
-Specially if $\nu = z|\cdot |$, then we call the Poisson point process \textit{homogenous}.
+is a \textit{Poisson process} with \textit{intesity measure} $\nu$.
+
+Specially if $\nu = z|\cdot |$, then we call $z$ the \textit{intensity} and the Poisson point process \textit{homogenous}. \newline
+For $\Lambda \in \mathcal B_0$, denote $\Pi^z_\Lambda$ the distribution of a homogenous Poisson point process with intensity $z$ restricted to $\Lambda$.  For $z=1$, we lose the $z$ and denote the distribution simply $\Pi_\Lambda$.
 \end{definition}
 
+Note that thanks to \ref{bincalc} we have for a homogenous Poisson process $\Phi$ and $\Gamma \in \mathcal N_{lf}$ 
+
+\begin{align*}\label{eq:poiscalc}
+	\Pi^z_\Lambda(\Gamma) &= P(\Phi \in \Gamma) = \sum^\infty_{k=0} P(\Phi \in \Gamma | \Phi(\Lambda) = k) P(\Phi(\Lambda)=k) \\
+	& = \sum^\infty_{k=0} \frac{(z|\Lambda|)^k}{k!} e^{-z|\Lambda|} P(\Phi^{(k)}\in \Gamma)\\ 
+	& = \sum^\infty_{k=0} \frac{z^k}{k!} e^{-z|\Lambda|} \int_\Lambda \cdots \int_\Lambda 1_{\Gamma} \left(\sum^k_{i=1} \delta_{X_i}\right) dx_1, \dots, dx_k\\
+\end{align*}
+where $\Phi^{(k)} = \sum^k_{i=1}\delta_{X_i}$ denotes the Binomial point process of $k$ points in $C$ and $\Phi^{(0)} = \delta_\emptyset$. 
 
 
-
-
+\begin{remark}[Points in general position]
+In section \ref{sec:tetrahedrizations} we introduced the sets $N_{gp}$ and $N_{rpp}$
+\end{remark}
 
 
 \subsection{Point processes with density}
 \todoo[inline]{Analogy with random variables, why Poisson is the best, stability}
+\problem[inline]{Restriction to finite set? Define Nf properly. Other problems with this..? Define finite point processes?}
+
+\begin{definition}
+We say that a point process $\Psi$ \textit{has the density $p$ with respect to the Poisson process} if its distribution is absolutely continuous w.r.t. $\Pi_\Lambda$ with density function $p$. That is there exists a measurable function $p:\mathcal N_f \to \mathbb R^+$ such that $\int p(\gamma) \Pi_\Lambda (\gamma)=1$ and
+$$P(\Psi \in \Gamma) = \int_\Gamma p(\gamma) \Pi_\Lambda(d\gamma), \; \Gamma \in \mathcal N_{f}$$
+\end{definition}
+
+\todoo[inline]{These calculations are overly complicated now, make them clearer}
+Notice that using the calculations in \ref{bincalc} and \ref{eq:poiscalc} we have
+$$P(\Psi \in \Gamma) =  \sum^\infty_{k=0} \frac{1}{k!} e^{-|\Lambda|} \int_\Lambda \cdots \int_\Lambda 1_{\Gamma} \left(\sum^k_{i=1} \delta_{X_i}\right) p\left(\sum^k_{i=1} \delta_{X_i}\right) dx_1, \dots, dx_k$$
+which is a special case of 
+$$Eh(\Psi)=Eh(\Phi)p(\Phi)$$
+for $\Pi_\Lambda$-measurable function $h$.
 
 
+\begin{proposition} $\Pi_\Lambda^z \ll \Pi_\Lambda$ with density $p(\x)=z^{|\x|} \exp(|\Lambda|(1-z))$
+\end{proposition}
+\begin{proof}
+Again, simplify the stuff before so that this is nearly obvious.
+\end{proof}
 
-\subsubsection{Gibbs measure and Gibss point process}
+
+\subsection{Gibss point processes and Gibbs measure}
+\todoo[inline]{Mention Georgii's illuminating introduction, also read it again}
 \todoo[inline]{Talk about hereditarity too, mention Markov processes and connection maybe.}
+
+\begin{definition}
+The \textit{finite volume Gibbs measure} on $\Lambda$ with activity $z>0$ is the distribution
+$$P^{z}_\Lambda = \frac 1{Z^{z}_\Lambda} z^{N_\Lambda} e^{-H} \Pi_\Lambda$$
+\end{definition}
+
+
 
 \section{Random tessellations}
 \todoo[inline]{In general x Gibbs-type}
