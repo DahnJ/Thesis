@@ -18,7 +18,7 @@ Proofs of both theorems can be found in \cite{DL07}.
 A standard assumption without which it is impossible to define the Gibbs measure is the stability assumption.
 
 \begin{enumerate}[\textbf{(S)}] 
-	\item \textit{Stability}. The hyperedge potential $\varphi$ is called \textit{stable} if there exists a constant $c_S \geq 0$ such that 
+	\item \textit{Stability}. The energy function $H$ is called \textit{stable} if there exists a constant $c_S \geq 0$ such that 
 $$H_{\Lambda,\x}(\zeta) \geq -c_S \#(\zeta \cup \partial_\Lambda \x)$$
 for all $\Lambda \in \mathcal B_0, \zeta \in N_\Lambda, \x \in N^\Lambda_{\text{cr}}$.
 \end{enumerate}
@@ -33,11 +33,11 @@ The first thing to note that when $\varphi$ is non-negative, then we can simply 
 \note[inline]{Could we at least use spread for gibbs with limited distance between points?}
 
 \subsection{Range condition} \label{sec:range}
-As stated previously, the fact that the hyergraph structures posses a type of locality property is crucial for the existence of Gibbs measures. The simplest such assumption is the \textit{finite range} assumption, see e.g. [intro def7], which roughly states that there exists $R>0$ such that the energy of $\x$ in $\Delta$ only depends on points in $\Delta + b(0,R)$. This is a strong assumption and one that is not fulfilled by our models. 
+As stated previously, the fact that the hyergraph structures posses a type of locality property is crucial for the existence of Gibbs measures. The simplest such assumption is the \textit{finite range} assumption, see definition 7 in \cite{Dereudre2017}, which roughly states that there exists $R>0$ such that the energy of $\x$ in $\Delta$ only depends on points in $\Delta + b(0,R)$. This is a strong assumption and one that is not fulfilled by our models. 
 
 This is reflected in part in the range condition introduced here and later in the uniform confinement condition \ref{eq:U1}.
 
-\begin{enumerate}[\textbf{(R)}]
+\begin{enumerate}[\textbf{(R)}]\label{(R)}
 	\item \textit{Range condition}. There exist constants $\ell_R,n_R \in \mathbb N$ and $\delta_R < \infty$ such that for all $(\eta,\x) \in \mathcal E$ there exists a finite horizon $\Delta$ satisfying: For every $x,y \in \Delta$ there exist $\ell$ open balls $B_1, \dots, B_\ell$ (with $\ell \leq \ell_R$) such that
 	\begin{enumerate}[-]
 		\item the set $\cup^\ell_{i=1} \bar B_i$ is connected and contains $x$ and $y$, and 
@@ -229,4 +229,5 @@ It remains to prove that $\sup_{\eta'} B_{\eta'} < \infty$, i.e. changing the po
 
 
 \end{remark}
+
 

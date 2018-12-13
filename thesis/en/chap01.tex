@@ -314,7 +314,7 @@ The beauty in this approach is that we do not need to impose any additional stru
 \subsubsection{Hyperedge potentials}
 The set $\mathcal E$ defines the structure of the hypergraph. What we are ultimately interest in is assigning a numeric value to each hyperedge and thus to (a region of) the hypergraph. To this end, we define the \textit{hyperedge potential}.
 kkk
-\begin{definition}
+\begin{definition}\label{def:potential}
 A \textit{hyperedge potential} is a measurable function $\varphi:\mathcal E\to \mathbb R \cup \{+\infty\}$. 
 
 Hyperedge potential is \todoo{Define $\vartheta_x$} \textit{shift-invariant} if 
@@ -326,7 +326,7 @@ For notational convenience, we set $\vartheta = 0$ on $\mathcal E^c$.
 
 The fact that the hyperedge potential contains $\x$ as a second argument suggests that it is allowed to depend on points of $\x$ other than those in $\eta$.
 
-\begin{example}[Hyperedge potentials]
+\begin{example}\label{ex:potentials}[Hyperedge potentials]
 	The hyperedge potential can take various forms. As we will see later, its specification radically alters the distribution of the resulting Gibbs measure thus alowing a great freedom in the types of hypergraphs we can obtain.\newline
 	\textbf{Volume of tetrahedron}: $\eta\in\mathcal E(\x)$ on $\mathcal D_4$ or $\mathcal {LD}_4$
 	$$\varphi(\eta,\x) = |\text{conv}(\eta)| .$$
@@ -345,7 +345,7 @@ Which contains the quintuples of points which form adjacent tetrahedra in $\math
 \end{example}
 
 
-For a given hypergraph structure $\mathcal E$, the \textit{energy} of a finite configuration $\x\in\mathcal F_{f}$ is defined as the function\footnote{The letter $H$ is often used for the energy in statistical mechanics, possibly stemming from the fact that it is also often called the Hamiltonian}
+For a given hypergraph structure $\mathcal E$, the \textit{energy function} of a finite configuration $\x\in\mathcal F_{f}$ is defined as the function\footnote{The letter $H$ is often used for the energy in statistical mechanics, possibly stemming from the fact that it is also often called the Hamiltonian}
 $$H(\x) = \sum_{\eta \in \mathcal E(\x)} \varphi(\eta,\x).$$
 However, in our case, we will typically deal with $\x\in \mathcal F_{lf}$, for this such potentials would typically be equal to $\pm \infty$. We will therefore be interested in the energy for only a bounded window $\Delta \in \mathcal B_0$. Currently, we don't have the necessary terms to describe such energy function precisely, thus we will postpose its definition to the next section. 
 
@@ -392,10 +392,11 @@ Notice that $\x_\Lambda$ does not play any role in the definition. The configura
 
 With this definition, we are now ready for the desired definition of the energy function.
 
-\begin{definition}
+\begin{definition}\label{def:energy}
 The \textit{energy of $\zeta$ in $\Lambda$ with boundary condition $\x$} is given by the formula
-$$E_{\Lambda,\x}(\zeta) = \sum_{\eta \in \mathcal E_\Lambda(\zeta \cup \x_{\Lambda^c})} \varphi(\eta, \zeta \cup \x_{\Lambda^C})$$
-for $\zeta \in \mathcal F_{\Lambda}$, provided the sum is well-defined.
+$$H_{\Lambda,\x}(\zeta) = \sum_{\eta \in \mathcal E_\Lambda(\zeta \cup \x_{\Lambda^c})} \varphi(\eta, \zeta \cup \x_{\Lambda^C})$$
+for $\zeta \in \mathcal F_{\Lambda}$, provided the sum is well-defined. \newline
+If $\zeta = \x_\Lambda$, then we use the shortened notation $H_\Lambda(\x)$.
 \end{definition}
 
 \begin{remark}[$\mathcal E_\Lambda(\x)$ for $\mathcal D$ and $\mathcal {LD}$]
@@ -405,13 +406,13 @@ For \todoo{Explain why}$\mathcal {LD}$, $\eta \in \mathcal {LD}_\Lambda(\x) \iff
 
 The final basic term again characterizes a type of finite-range property, this time as a property of the configuration $\x$.
 
-\begin{definition}
+\begin{definition}\label{def:cr}
 	Let $\Lambda \in \mathcal B_0$ be given. We say a configuration $\x\ \in N$ \textit{confines the range of $\varphi$ from $\Lambda$} if there exists a set $\partial \Lambda(\x) \in \mathcal B_0$ such that $\varphi(\eta,\zeta \cup \tilde{\x}_{\Lambda^c}) = \varphi(\eta,\zeta\cup\x_{\Lambda^c})$ whenever $\tilde{\x} = \x$ on $\partial \Lambda(\x)\times S$, $\zeta \in N_\Lambda$ and $\eta \in \mathcal E_\Lambda(\zeta\cup\x_{\Lambda^c})$. In this case we write $\x \in N^\Lambda_\text{cr}$. We denote $r_{\Lambda,\x}$ the smallest possible $r$ such that $(\Lambda + B(0,r))\setminus \Lambda$ satisfies the definition of $\partial \Lambda(\x)$. We will use the abbreviation $\partial_\Lambda \x = \x_{\partial \Lambda(\x)}$.
 \end{definition}
 
 While the set $\mathcal E_\Lambda(\x)$ contains hyperedges $\eta$ which can be influenced by points in $\Lambda$, the set $\partial_\Lambda \x$  contains those points of $\x$ that influence the value of those $\eta$. This allows us to express $H_{\Lambda,\x}$ truly locally.
 
-\begin{proposition}Let $\x\in N^\Lambda_\text{cr}$. Then 
+\begin{proposition}\label{prop:Hcr}Let $\x\in N^\Lambda_\text{cr}$. Then 
 	$$H_{\Lambda,\x}(\zeta) = \sum_{\eta \in \mathcal E_\Lambda(\zeta \cup \partial_\Lambda \x)} \varphi(\eta, \zeta \cup \partial_\Lambda \x).$$
 \end{proposition}
 \begin{proof} The definition of $N^\Lambda_\text{cr}$ implies the hyperedge potential does not depend on the points $\x \setminus \partial_\Lambda \x$ and $\mathcal E_\Lambda(\x)$ inherits this property by its definition.
