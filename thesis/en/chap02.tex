@@ -7,7 +7,7 @@ This section will develop the bare minimum of the theory necessary to define and
 
 In general, we assume $E$ to be a locally compact complete separable space. This is the setting in many texts, such as \cite{SchneiderWeil2008}\unsure{Really? Check it}.
 
-The main aim of this text is to build Gibbs point processes with interactions based on the Laguerre tetrihedrizaion. As such, the focus is on marked points. At the same time, we do treat the Delaunay case here, too. To avoid having a dual marked and unmarked theory, we will treat unmarked point as a special case of marked points in the following way. 
+The main aim of this text is to build Gibbs point processes with interactions based on the Laguerre tetrihedrizaion. As such, the focus is on marked points and the Delaunay case is treated as secondary. To avoid having a dual marked and unmarked theory, we will treat unmarked point as a special case of marked points in the following way. 
 
 \begin{itemize}
 	\item Marked case: We take $E=\Rt\times S$ where $S=[0,W],W>0$ is the space of marks. The measure on $E$ is $z\lambda \otimes \mu$, where $\mu$ is a non-atomic probability distribution of marks, $z>0$. 
@@ -208,12 +208,13 @@ Luckily, the approach in \unsure{Possibly cite the later edition? What's the app
 \subsubsection{Infinite volume Gibbs measures}
 \todoo[inline]{maybe connect this with the discussion already writte in the energy section - it doesn't make sense for infinite sets etc}
 
+\todoo[inline]{Perhaps instead of saying all this, just assume $\gamma \in N^\Lambda_{cr}$ and say it will be clarified later}
 First, define $\Theta=(\vartheta_x)_{x\in \Rt}$ be a group of translations $\vartheta_x$ defined in definition \label{def:potential}. The set $\mathcal P_\Theta$ denotes the set of all $\Theta$-invariant probability measures on $(N_{lf},\mathcal N_{lf})$ with $\int N_{[0,1]^3 \times S} dP< \infty $ \todoo{maybe connect this to intensity, i.e. define intensity etc}. Under an additional assumption presented in the next chapter, we then obtain that $\Theta$-invariant measures are already concentrated on $N^\Lambda_{cr}$.
 
 \problem[inline]{The set $\Lambda$ should probably always have positive measure. Check this and write it somewhere}
 \todoo[inline]{References to assumptions clear}
 \begin{proposition}
-	Let $\Lambda in \mathcal B_0(\Rt)$. Under the assumption \ref{(R)}, there exists a set \todoo{Define $N_\Lambda$}$\hat N^\Lambda_{cr} \in N_{\Lambda^c}$ such that $\hat N^\Lambda_{cr} \subset N^\Lambda_{cr}$ and $P(\hat N^\Lambda_{cr})=1$ for all $P \in \mathcal P_\Theta$ with $P(\varnothing)=0$.
+	Let $\Lambda \in \mathcal B_0(\Rt)$. Under the assumption \ref{(R)}, there exists a set \todoo{Define $N_\Lambda$}$\hat N^\Lambda_{cr} \in N_{\Lambda^c}$ such that $\hat N^\Lambda_{cr} \subset N^\Lambda_{cr}$ and $P(\hat N^\Lambda_{cr})=1$ for all $P \in \mathcal P_\Theta$ with $P(\varnothing)=0$.
 \end{proposition}
 \begin{proof}
 	Can be found in proposition 5.4. in \cite{DDG12}. See also remark 3.7. in connection to the marked case.
@@ -241,20 +242,25 @@ $$N_\infty = \{\x \in N_{lf}: \forall \Lambda \in B_0(\Rt): H_\Lambda(\x)< \inft
 \end{definition}
 
 
-\begin{lemma}
+\begin{lemma}\label{lemma:DL07}
 	There exists a measurable function $\psi_{\Delta,\Lambda}:N_{lf}\to \mathbb R\cup\{+\infty\}$ such that
-	$$\forall \gamma \in N_{lf},\quad H_\Lambda(\gamma) = H_\Delta(\gamma) + \psi_{\Delta,\Lambda}(\gamma_\Delta^c)$$
+	$$\forall \gamma \in N_{lf},\quad H_\Lambda(\gamma) = H_\Delta(\gamma) + \psi_{\Delta,\Lambda}(\gamma_{\Delta^c})$$
 \end{lemma}
 \begin{proof}
-	
+	To find such function, we only need to realize that
+	$$H_\Lambda(\gamma) - H_\Delta(\gamma) = \sum_{\eta \in \mathcal E_\Lambda(\gamma) \setminus \mathcal E_\Delta(\gamma)} \varphi(\eta,\gamma)$$
+	depends only on $\gamma_{\Delta^c}$. As noted below the definition \ref{def:Eset}, both $\mathcal E_\Delta(\gamma)$ and $\mathcal E_\Lambda(\gamma)$ depend only on $\gamma$ outside the window $\Lambda$ and $\Delta$ respectivelly.By $\eta \notin \mathcal E_{\Delta}(\gamma)$ we have that $\forall \zeta \in N_\Delta: \varphi(\eta,\gamma)=\varphi(\eta,\zeta \cup \gamma_{\Delta^c})$ and thus we can set
+	$$\psi_{\Delta,\Lambda}(\gamma_{\Delta^c}) = \sum_{\eta \in \mathcal E_\Lambda(\gamma_{\Delta^c}) \setminus \mathcal E_\Delta(\gamma_{\Delta^c})} \varphi(\eta,\gamma_{\Delta^c}).$$
 \end{proof}
+
+\todoo[inline]{Say what the set is equal to for us}
 
 
 \begin{proposition}
 	Let $\gamma \in N_\infty$, then $x\in\gamma$ is removable if and only if $\gamma - \delta_x \in N_\infty$.
 \end{proposition}
 \begin{proof}
-	Proposition 1 in \cite{DereudreLavancier2007}.	
+	Follows from lemma \ref{lemma:DL07} above and proposition 1 in \cite{DereudreLavancier2007}.	
 \end{proof}
 
 
@@ -263,10 +269,18 @@ $$N_\infty = \{\x \in N_{lf}: \forall \Lambda \in B_0(\Rt): H_\Lambda(\x)< \inft
 	$$h(x,\gamma - \delta_x) = H_\Lambda (\gamma) - H_\Lambda(\gamma - \delta_x)$$
 	where $\Lambda \in \mathcal B_0(\Rt)$
 \end{definition}
+Let us remark that such set always exists by definition and that the value of $h(x,\gamma-\delta_x)$ does not depend on the choice of $\Lambda$ as a consequence of $\ref{lemma:DL07}$.
+
+
 \begin{proposition}
-
+	Let $P$ be a stationary Gibbs measure. For every bounded non-negative measurable $f:(\Rt\times S) \times N_{lf}\to\mathbb R$ we have
+	$$\int 1_{N_\infty}(\gamma) \sum_{x \in \gamma} f(x,\gamma -\delta_x) P(d\gamma) = z \int \int f(x,\gamma)e^{-h(x,\gamma)} dx P(d\gamma).$$
 \end{proposition}
+\begin{proof}
+	See proposition $2$ \unsure{But what about marks, does it work?}in \cite{DereudreLavancier2007}.
+\end{proof}
 
+Note that we lose the converse implication. That is the GNZ equations no longer characterize Gibbs point process with non-hereditary energy function. Imagine a measure $P$ under which $\gamma$ a.s. does not contain any removable points. The equation then becomes the trivial equation $0=0$.
 
 
 \todoo[inline]{Measurability!}

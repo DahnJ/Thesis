@@ -1,1 +1,83 @@
-\chapter{Simulation results}
+\chapter{Estimation}
+\section{Maximum pseudolikelihood}
+Assume now that we obtain the point configuration $\gamma$ on the observation window $\Lambda_n = [-n,n]^3\times W$ and wish to estimate the model parameters.
+\unsure[inline]{Boundary problems. Do they simply exist because we're assuming to *only* know the configuration on $\Lambda_n$?}
+The estimation procedure closely follows that from~\cite{DL10}. That is a two-step approach, first estimating the hardcore parameters $\beta = (\epsilon,\alpha)$ and then using the estimates to obtain the estimate of $\theta$ through maximum pseudolikelihood (MPLE). 
+\unsure[inline]{What exactly is the role of the growing window in~\cite{DL10}?}
+\subsection{Estimation of the hardcore parameters}
+Thanks to the \unsure{\cite{DL10} has this the other way around?}fact that the hardcore parameter $\epsilon$ satisfies
+$$ \text{if } \epsilon > \epsilon' \text{ then  } \forall \Lambda, \; E^{\epsilon, \alpha,\theta}_\Lambda(\gamma_\Lambda,\gamma_{\Lambda^c}) < \infty \Rightarrow  E^{\epsilon',\alpha,\theta}_\Lambda(\gamma_\Lambda,\gamma_{\Lambda^c})<\infty,$$ 
+
+and the hardcore parameter $\alpha$ satisfies
+
+$$ \text{if } \alpha < \alpha' \text{ then  } \forall \Lambda, \; E^{\epsilon,\alpha,\theta}_\Lambda(\gamma_\Lambda,\gamma_{\Lambda^c}) < \infty \Rightarrow  E^{\epsilon,\alpha',\theta}_\Lambda(\gamma_\Lambda,\gamma_{\Lambda^c})<\infty,$$ 
+
+their consistent estimators are:
+$$\hat\epsilon = \inf\{\epsilon > 0, E_\Lambda(\gamma_\Lambda, \gamma_\Lambda^c) < \infty \},$$
+$$\hat\alpha = \sup\{\alpha > 0, E_\Lambda(\gamma_\Lambda, \gamma_\Lambda^c) < \infty \}.$$
+
+\unsure{Are these consistent? Why?}In practice, the parameters are estimated as
+$$\hat\epsilon = \min\{a(T), T\in Del_\Lambda(\gamma)\},$$
+$$\hat\alpha = \max\{r(T), T\in Del_\Lambda(\gamma)\}.$$
+
+The estimate $\hat\beta = (\hat\epsilon,\hat\alpha)$ is then used in the pseudo-likelihood function in the second estimation step.
+
+
+\subsection{Estimation of the smooth interaction parameters}
+\todoo[inline]{Equation references}
+
+
+The classical version of MPLE requires hereditarity of the interactions. Hereditarity means that for every permissible $\gamma$, the point pattern $\gamma\setminus\{x\}$ remains permissible for every $x\in\gamma$, that is any point can be removed from the point pattern. The hardcore interaction in the model \ref{model} does not satisfy this condition. However,~\cite{DL07} \unsure{How does it relate to my case, exactly?}extends MPLE to the non-hereditary case. 
+
+Since some points cannot be removed from the tessellation, we need to introduce the notion of a removable points. A point $x\in\gamma$ is \note{The definition in~\cite{DL07} is actually different and this is given as a proposition.}\unsure{Is there any reason to define it the way~\cite{DL07} does?}removable in $\gamma$ iff $\gamma\setminus\{x\}$ is permissible. We denote $\mathcal R^\beta(\gamma)$ the set of removable points of $\gamma$. Similarly the notion of an addable point will be useful. A point $x\in\gamma$ is addable in $\gamma$ iff $\gamma \cup \{x\}$ is permissible.
+
+
+In the non-hereditary case, the pseudo-likelihood function then becomes:
+
+\begin{equation}\label{PLL}
+PLL_{\Lambda_n}(\gamma,z,\beta, \theta) = \int_{\Lambda'_n} z \exp (-h^{\beta,\theta}(x,\gamma)) dx + \sum_{x\in\mathcal R^\beta(\gamma)\cap \Lambda_n} \big(h^{\beta,\theta}(x,\gamma\setminus\{x\}) - \ln(z)\big),
+\end{equation}
+where $\Lambda'_n$ is the set of all addable points in $\Lambda_n$ and $h^{\beta,\theta}(x, \gamma \setminus \{x\})$ is \note{Connection between this and Papangelou could be useful}local energy of $x$ in $\gamma$ defined for every $x\in\mathcal R^\beta(\gamma)$ by:
+$$h^{\beta,\theta}(x, \gamma \setminus \{x\}) = E^{\beta,\theta}_\Lambda(\gamma_\Lambda, \gamma_{\Lambda^c}) - E^{\beta,\theta}_\Lambda(\gamma_\Lambda\setminus\{x\}, \gamma_{\Lambda^c}).$$
+
+The estimates $\hat\theta$ and $\hat z$ are obtained through minimizing the $PLL_{\Lambda_n}$ function \ref{PLL}:
+$$(\hat z, \hat\theta) = \text{argmin}_{z,\theta} PLL_{\Lambda_n} (\gamma, z, \hat\beta,\theta).$$
+
+By differentiating the PLL function \ref{PLL} with respect to $z$, respectivelly $\theta$, and setting them equal to zero, we obtain the estimate for $\hat z$,
+
+\begin{equation}\label{z_hat}
+\hat z = \frac{\mbox{card}(\mathcal R^\beta(\gamma)\cap \Lambda_n)}{\int_{\Lambda_n} \exp{\left( -h^{\hat\beta,\theta}(x,\gamma)\right)} dx},
+\end{equation}
+and the estimate $\hat\theta$ as the solution of
+
+\begin{equation}\label{theta_hat} 
+z \int_{\Lambda'_n} (h^{\hat\beta,1}(x,\gamma)\exp{\left(-h^{\hat\beta,\theta}(x,\gamma)\right)}) dx = \sum_{x \in \mathcal R^{\hat\beta}(\gamma)\cap \Lambda_n} h^{\hat\beta,1}(x,\gamma\setminus\{x\}),
+\end{equation}
+where we have used the fact that the local energy depends on $\theta$ linearly, yielding
+
+$$\frac{\partial h^{\hat\beta,\theta}}{\partial \theta} (x,\gamma) = h^{\hat\beta,1}(x,\gamma).$$
+
+\subsubsection{Practical implementation}
+We obtain the estimate of $\theta$ by substituting the expression for $\hat z$ \ref{z_hat} into \ref{theta_hat}.
+This leads to the equation
+$$ 
+\frac{\int_{\Lambda'_n} (h^{\hat\beta,1}(x,\gamma)\exp{\left(-h^{\hat\beta,\theta}(x,\gamma)\right)}) dx} {  \int_{\Lambda_n} \exp{\left( -h^{\hat\beta,\theta}(x,\gamma)\right)} dx} 
+= \frac {\sum_{x \in \mathcal R^{\hat\beta}(\gamma)\cap \Lambda_n} h^{\hat\beta,1}(x,\gamma\setminus\{x\})} { \mbox{card}(\mathcal R^\beta(\gamma)\cap \Lambda_n) }. 
+$$
+
+In order to simplify the estimation of $\theta$, we can simplify this equation further. First, we denote the righ-hand-side of the equation as $c$ as it  is constant with respect to $\theta$. Second, we note that $x \notin \Lambda_n'  \Rightarrow \exp{\left(-h^{\hat\beta,\theta}(x,\gamma)\right)}= 0$ which enables us to integrate over $\Lambda'_n$ instead of the whole $\Lambda_n$. Lastly we denote the local energy $h^{\hat\beta,1}(x,\gamma) =: h(x)$, yielding the expression
+$$ \int_{\Lambda'_n} h(x) \exp{\left(-\theta h(x)\right)} dx = c \int_{\Lambda'_n} \exp{\left(-\theta h(x)\right)}, $$
+leading into the final expression
+\begin{equation}\label{hat_theta_final} 
+\int_{\Lambda'_n} \exp{\left(-\theta h(x)\right)} (h(x) - c) dx .
+\end{equation}
+
+The integral \ref{hat_theta_final} is estimated using Monte-Carlo integration, i.e. is approximately equal to
+$$ \frac 1N \sum_{i=0}^N 1_{\Lambda'_n}(x_i) \exp{\left( - \theta h_i \right )} (h_i- c) dx $$
+where $h_i = h^{\hat\beta,1}(x_i, \gamma)$ and $x_1,\dots,x_N$ is a random sample from the \unsure{Do we need the indicator function if we're only sampling from $\Lambda'_n$ ?}uniform distribution on $\Lambda'_n$
+
+After $\hat\theta$ is estimated, we then obtain the estimate $\hat z$ with $\hat\theta$ instead of $\theta$ and the integral replaced by a MC-integration approximation.
+
+
+\subsection{Consistency}
+\tbd

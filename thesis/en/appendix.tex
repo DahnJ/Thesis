@@ -1,8 +1,8 @@
 \appendix
 
-\problem[inline]{This chapter needs better notation. E.g. $S(p_1,p_2,p_3,p_4)$ for a sphere defined by those points, etc.}
 
-\chapter{Appendix}
+\chapter{Appendix: Geometry}\label{appendix}
+\problem[inline]{This chapter needs better notation. E.g. $S(p_1,p_2,p_3,p_4)$ for a sphere defined by those points, etc.}
 \section{Calculating the circumdiameter}
 Consider the points $p_1,\dots, p_5 \in \mathbb R^4$ which form a $4$-simplex. Denote $d_{ij} = \|p_i - p_j\|, i,j=1,\dots,5$. Then its area $A$ is given by the \textbf{Cayley-Menger determinant}[ref sommervile]. 
 
@@ -183,7 +183,7 @@ Such choice is possible due to continuity of $c(p)$. Yet we arrive at a contradi
 Assume now that $p_1 \in \partial B(t_1,\rho_0 a)=: S_1$. We now choose $p_I$ and $p_O$ with the additional requirement that they must both lie on $\partial B(t_1,\rho_0 a)$. This fails precisely when $S_1$ and $S$ are tangent, since then \todoo{Make sure "inside" a sphere has a clear meaning} $S_1$ lies either completely inside or outside $S$ and it is no longer possible to choose points both outside and inside. 
 \end{proof}
 
-We have found that the solutions to \ref{prob:tetra1} and \ref{prob:tetra2} must lie on a sphere that tangent to the spheres within which points can move. This is a major improvement. One, because now the space of possible solution narrows down to just $2^4=16$ possible quadruples of points (and even less beacause of symmetries), and two, because the two-dimensional equivalent of this problem is a well known \textbf{Apollonius problem}.
+We have found that the solutions to \ref{prob:tetra1} and \ref{prob:tetra2} must lie on a sphere that tangent to the spheres within which points can move. This is a major improvement. The space of possible solution narrows down to just $2^4=16$ possible quadruples of points (and even less beacause of symmetries), which are all the solution of a three-dimensional equivalent of the famous \textbf{Apollonius problem}.
 
 First note that if two externally tangent spheres $S_1=((x_1,y_1,z_1),r_1), S_2=((x_2,y_2,z_2),r_2)$  satisfy
 $$\|(x_1,y_1,z_1) - (x_2,y_2,z_2)\| = r_1+r_2,$$
@@ -201,7 +201,7 @@ This means, that the Apollonius problem for spheres $S_1,S_2,S_3,S_4$ is solved 
   (x_4-x)^2 + (y_4-y)^2 + (z_4-z)^2 &= (r_4 \pm r)^2 \nonumber  
 \end{align}
 
-where we can take any combination of $+$ or $-$, yielding altogether $16$ possible solutions. This excludes degenerate cases, which are not relevant in our case. As noted previously, the number of solutions for both $T_1$ and $T_2$ will reduce significantly. For $T_1$, the spheres are completely interchangeable and thus only solutions with different number of $+$ will differ. This yields $5$ possible solutions. Geometrically the number of $+$ can be seen as the number of spheres the solution is externally tangent to. For $T_2$ the situation is more complex -  
+where we can take any combination of $+$ or $-$, yielding altogether $16$ possible solutions. This excludes degenerate cases, which are not relevant in our case. As noted previously, the number of solutions for both $T_1$ and $T_2$ will reduce significantly. For $T_1$, the spheres are completely interchangeable and thus only solutions with different number of $+$ will differ. This yields $5$ possible solutions. Geometrically the number of $+$ can be seen as the number of spheres the solution is externally tangent to. For $T_2$ the situation is more complex, as the problem isn't entirely symmetric with respect to the four points.  
 
 Sadly, for most choices of $+$ and $-$, these equations still seem to be too complex for Mathematica to solve. Luckily, we can simplify them further. 
 
@@ -215,3 +215,22 @@ This system can be solved to obtain expression of $x,y,z$ in terms of $r$. We th
 
 Note that exact solutions of $x,y,z$, which we are not interested in, could then by obtained through the linear system.
 
+All the solutions can be seen in \ref{fig:Apollonius1} and \ref{fig:Apollonius2}. We can see that for $T_1, \rho < 1/\sqrt 6$, we have the two solutions
+$$a(\sqrt 6 / 4 + \rho), a \frac{\rho - \sqrt 6 (4\rho^2 - 1)}{4-24 \rho^2}$$
+which itersect at $\rho =1/(2\sqrt 6)$. We will therefore assume $\rho < 1/(2\sqrt 6)$ and thus the solution to problem is $a(\sqrt 6/4 + \rho)$. The simple linear form of the solution is not actually surprising --- it is precisely the sphere which is internally tangent to all four spheres. This sphere has the same center as the circumsphere of tetrahedron $\{t_1,t_2,t_3,t_4\}$. Thus the solution is a sum of circumradius of the tetrahedron, $\sqrt 6 /4$, and the radius of the four spheres, $\rho$. We can see similar behaviour in the solution that is externally tangent to all four spheres.
+
+For $T_2$, the linear solution will no longer be the largest, as now we obtain a larger circumradius by using a sphere that is externally tangent to some of the spheres. Indeed the solution, for $\rho<1/4$, is
+$$a \frac{2\rho + \sqrt{2 - 32\rho^2 + 64 \rho^4}}{2-32\rho^2}$$
+
+From the form of the solutions one can also obtain the necessary bound for points to remain in general position. The bound is $\rho < 1/4$.
+
+
+\begin{figure}
+	\includegraphics[width=1\textwidth]{../img/t1.pdf}
+	\caption{All solutions to Apollonius problem with $T_1$, $a=1$.}\label{fig:Apollonius1}
+\end{figure}
+
+\begin{figure}
+	\includegraphics[width=1\textwidth]{../img/t2.pdf}
+	\caption{All solutions to Apollonius problem with $T_2$,$a=1$}\label{fig:Apollonius2}
+\end{figure}

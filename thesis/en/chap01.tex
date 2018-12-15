@@ -380,15 +380,30 @@ From a practical perspective, the maximum weight $W$ limits the resulting tessel
 
 Let us now return again to the task of defining an energy function $H$ that depends on the configuration in some bounded window $\Lambda \in \mathcal B_0$. To that end, we must define the set of hyperedges for which the hyperedge potential depends on the configuration inside $\Lambda$. 
 
-\begin{definition} 
+\begin{definition}\label{def:Eset} Let $\Lambda \in \mathcal B_0$
 $$\mathcal E_\Lambda(\x) := \{ \eta \in \mathcal E(\x): \varphi(\eta,\zeta \cup \x_{\Lambda^c}) \neq \varphi(\eta,\x) \text{ for some } \zeta \in N_\Lambda \}$$
 \end{definition}
 \note[inline]{Later in the text, these are exactly the sets of tetrahedra used for the calculation, connect those two}
+\note[inline]{In the Laguerre case, we could also distinguish marks, but we won't do so, maybe comment on it}
 
 Recall that we defined $\varphi=0$ on $\mathcal E^c$. This means that for $\eta \in \mathcal E(\x)$ such that $\varphi(\eta,\x)\neq 0$ we have
 $$\eta \notin \mathcal E(\zeta \cup \x_{\Lambda^c})\text{ for some }\zeta \in \mathcal F_{\Lambda} \Rightarrow \eta \in \mathcal E_{\Lambda}(\x)$$ 
 
 Notice that $\x_\Lambda$ does not play any role in the definition. The configuration $\x$ thus only plays the role of a boundary condition.
+
+To further characterize $\mathcal E_\Lambda(\x)$, we have the following lemma
+\begin{lemma}\label{lemma:horizEset}Let $\eta \in \mathcal E(\x)$ have the finite horizon $\Delta$. Then
+	$$\eta \in \mathcal E_\Lambda(\x) \Rightarrow \Delta \cap \Lambda \neq \emptyset$$
+\end{lemma}
+\begin{proof}
+	\begin{align*}
+		\eta \in \mathcal E_\Lambda(\x) & \iff \exists \zeta \in N_\Lambda: \varphi(\eta,\x) \neq \varphi(\eta,\zeta \cup \x_{\Lambda^c}) \\
+			& \Rightarrow \exists \zeta \in N_\Lambda: \zeta \cap \Delta \neq \emptyset \\
+			& \Rightarrow \Lambda \cap \Delta \neq \emptyset
+	\end{align*}
+\end{proof}
+
+\todoo[inline]{The fact that we don't have equivalence is a consequence of the fact that $\zeta \in \Delta$ does not imply that it changes $\eta$. But this fact is true the unary potentials, so comment on that}
 
 With this definition, we are now ready for the desired definition of the energy function.
 
@@ -396,7 +411,7 @@ With this definition, we are now ready for the desired definition of the energy 
 The \textit{energy of $\zeta$ in $\Lambda$ with boundary condition $\x$} is given by the formula
 $$H_{\Lambda,\x}(\zeta) = \sum_{\eta \in \mathcal E_\Lambda(\zeta \cup \x_{\Lambda^c})} \varphi(\eta, \zeta \cup \x_{\Lambda^C})$$
 for $\zeta \in \mathcal F_{\Lambda}$, provided the sum is well-defined. \newline
-If $\zeta = \x_\Lambda$, then we use the shortened notation $H_\Lambda(\x)$.
+If $\zeta = \x_\Lambda$, then we use the shortened notation $H_\Lambda(\x):=H_{\Lambda,\x}(\x_\Lambda)$.
 \end{definition}
 
 \begin{remark}[$\mathcal E_\Lambda(\x)$ for $\mathcal D$ and $\mathcal {LD}$]
@@ -421,5 +436,23 @@ While the set $\mathcal E_\Lambda(\x)$ contains hyperedges $\eta$ which can be i
 \todoo[inline]{Comment on the definition and what it means for $\mathcal D$ and $\mathcal {LD}$.}
 
 
+
+\begin{remark}[Adding and removing points in $\mathcal D_4$ and $\mathcal {LD}_4$]
+	Let $\x\in N_{lf}$ be a configuration and $x\in\Rt \times S \setminus \x$ a point outside the configuration. The question is: how does $\mathcal {LD}_4(\x \cup \{x\})$ differ from $\mathcal {LD}_4(\x)$?
+	First imagine we want to add the point $x$ to $\x$. Denote the sets 
+	$$\mathcal {LD}_4^\otimes(x,\x) = \{\eta \in \mathcal {LD}_4(\x): \rho(p_\eta,x) < 0\}.$$
+	Then this set contains precisely those tetrahedra, which cannot be present in $\mathcal {LD}_4(\x \cup \{x\})$, that is
+	$$ \mathcal {LD}_4 (\x) \setminus \mathcal {LD}_4(\x \cup \{x\}) = \mathcal {LD}_4^\otimes.$$
+	Now take $\eta \in \mathcal {LD}_4(\x \cup \{x\})$ such that $x \notin \eta$. Then $\eta \notin \mathcal {LD}_4^\otimes(x,\x)$ and thus $\eta \in \mathcal {LD}_4(\x)$, yielding
+	$$\mathcal {LD}_4 (\x \cup \{x\}) \setminus \mathcal {LD}_4(\x) = \{ \eta \in \mathcal {LD}_4(\x\cup\{x\}): x \in \eta\} =: \mathcal {LD}_4^\ell(\x \cup \{x\},x).$$
+
+	Using the same logic we can now remove the point $x$ from $\x \cup \{x\}$. This means we remove $\eta \in \mathcal {LD}_4^\ell(\x\cup\{x\},x)$ and add $\eta \in \mathcal {LD}_4^\otimes(\x,x)$.
+
+	In $\mathcal D_4$, we obtain similar sets
+	$$\mathcal D_4^\otimes(x,\x) = \{\eta \in \mathcal D_4(\x): x \in B(\eta)\},$$
+	$$\mathcal D_4^\ell(x,\x) = \{\eta \in \mathcal D_4(\x): x\in \eta \}.$$
+\end{remark}
+
+	\todoo[inline]{Cite CG papers here?}
 
 \todoo[inline]{Measurability}

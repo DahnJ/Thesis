@@ -1,10 +1,54 @@
-\chapter{Simulation and Estimation}
-\section{Simulation}
-\subsection{Monte Chain Markov Carlo}
-\subsection{Practical implementation}
-\todoo[inline]{Convergence}
+\chapter{Simulation}
+The Gibbs point process allows us a great flexibility in specifying the energy function. One of the disadvantages is that both simulating the GPP and estimating its parameters is computationally demanding. This chapter outlines the approach taken. This (and the following chapter) is a direct extension of \cite{DereudreLavancier2010} to the Laguerre case in three dimensions.
+The principal issue in simulating GPP is that we do not know the value of the partition function $Z^z_\Lambda$. To that end, we emply Money Chain Markov Carlo (MCMC) techniques.
+\section{Monte Chain Markov Carlo}
+Before formulating the algorithm used to simulate our models, we first present some basic theory of Markov chains and their use in Monte Carlo techniques. For an introduction to these techniques with respect to point processes with density, see chapter $7$ in \cite{MollerWaagepetersen2003}. For a more comprehensive text, we refer to \cite{MeynTweedie1993}.
 
-\section{Estimation}
-\subsection{Maximum pseudolikelihood}
+\tbd
+
+\section{Simulating Gibbs-Laguerre-Delaunay tessellations}
+\subsection{Birth-Death-Move Metropolis-Hastings algorithm}
+We first describe the algorithm in general, adapted from \cite{MollerWaagepetersen2003}.
+
+
+\subsection{Simplified form of proposal densities}
+The Hastings ratios require us to calculate a ratio of densities $f$ both containing the energy function. Such calculation would be lengthy and would render the whole approach infeasible. However, here again the locality of the tetrahedrization allows us to express the Hastings ratios with only those tetrahedra which are affected by the added, removed, or moved point.
+
+Birth step \ref{birth} then becomes:
+\begin{align*}
+\frac{f(\gamma_0 + \delta_x)}{f(\gamma_0)} &= \exp\left({\sum_{\eta\in \mathcal E_\Lambda(\gamma_0 + \delta_x)} V_1(T) - \sum_{\eta\in \mathcal E_\Lambda(\gamma_0)}V_1(T)}\right) \\
+&= \exp\left(  \sum_{T \in \text{DT}^\otimes (x,\gamma_0)} V_1(T)  - \sum_{T\in \text{DT}^\ell (x,\gamma_0\cup\{x\})} V_1(T) \right)  
+\end{align*}
+
+Death step \ref{death} becomes:
+\begin{align*}
+\frac{f(\gamma_0 - \delta_x)}{f(\gamma_0)}&= \exp\left({\sum_{\eta\in \mathcal E_\Lambda(\gamma - \delta_x)} V_1(T)- \sum_{\eta\in \mathcal E_\Lambda(\gamma)}V_1(T)}\right)\\
+&= \exp\left( \sum_{T\in \text{DT}^\ell (x,\gamma_0)} V_1(T) - \sum_{T \in \text{DT}^\otimes (x,\gamma_0 \setminus \{x\})} V_1(T)   \right)
+\end{align*}
+
+Move step \ref{move} becomes:
+\begin{align*}
+\frac{f(\gamma_0 - \delta_x + \delta_y)}{f(\gamma_0)}&= 
+\frac{f(\gamma_0 \setminus \{x\} \cup \{y\})}{f(\gamma_0\setminus\{x\})} \frac{f(\gamma_0\setminus\{x\})}{f(\gamma_0)} \\ 
+&= \exp \Bigg(  \sum_{T \in \text{DT}^\otimes (x,\gamma_0\setminus\{x\})} V_1(T)  - \sum_{T\in \text{DT}^\ell (x,\gamma_0\setminus\{x\}\cup\{y\})} V_1(T)  \\
+&+ \sum_{T\in \text{DT}^\ell (x,\gamma_0)} V_1(T) - \sum_{T \in \text{DT}^\otimes (x,\gamma_0\setminus\{x\})} V_1(T)   
+\Bigg)
+\end{align*}
+
+
+
+These expressions simplify the energy calculation immensely. Whereas calculating the energy for the whole tessellation requires all the tetrahedra, and thus depends on $\text{card}(\gamma\cap\Lambda)$, the final expressions only contain the tetrahedra local to $x$, and thus the energy can be calculated in constant time.
+
+
 \subsection{Practical implementation}
-\todoo[inline]{Consistency}
+All simulations were done in C++ using CGAL \cite{cgal},\cite{cgal:3d-triang}\todoo{Definitely sell this more later}. More details can be found in appendix \ref{appendix:implementation}.
+\subsubsection{Initial configuration}
+In~\cite{DereudreLavancier2010}, three options for the initial configuration are suggested: the empty configuration, a specific fixed outside configuration, and periodic configuration.
+We ruled out periodic configuration since the CGAL implementation of 3d periodic triangulations~\cite{cgal:3d-period} has a much longer running time than in the non-periodic case. 
+\cite{DereudreLavancier2010} rejects the empty configuration on the basis that it "produces non bounded Delaunay-Voronoi cells". While this is true for a Voronoi diagram, it does not hold for the Delaunay or Laguerre case and so such configuration would in fact be possible in our case.
+However, the method chosen was to fix a regular grid of points in and out of $\Lambda$ such that the resulting tessellation fulfills the hardcore conditions. This does mean that the initial configuration is dependent on the values of $\alpha$ and $\epsilon$. 
+
+
+\subsection{Irreducibility}
+\tbd
+
