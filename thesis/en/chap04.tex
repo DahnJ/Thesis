@@ -8,8 +8,11 @@ Before formulating the algorithm used to simulate our models, we first present s
 
 \section{Simulating Gibbs-Laguerre-Delaunay tessellations}
 \subsection{Birth-Death-Move Metropolis-Hastings algorithm}
+\subsubsection{General description of the algorithm}
 We first describe the algorithm in general, adapted from \cite{MollerWaagepetersen2003}.
+\tbd
 
+\subsubsection{Use in our models}
 
 \subsection{Simplified form of proposal densities}
 The Hastings ratios require us to calculate a ratio of densities $f$ both containing the energy function. Such calculation would be lengthy and would render the whole approach infeasible. However, here again the locality of the tetrahedrization allows us to express the Hastings ratios with only those tetrahedra which are affected by the added, removed, or moved point.
