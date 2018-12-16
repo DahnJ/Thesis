@@ -1,9 +1,13 @@
 \appendix
 
-
 \chapter{Appendix: Geometry}\label{appendix}
+This appendix investigates some facts and proposition about geometry in $\mathbb R^3$. Since marked points are not present here, the dashed notation introduced in chapter \ref{ch:1} will be dropped.
+
 \problem[inline]{This chapter needs better notation. E.g. $S(p_1,p_2,p_3,p_4)$ for a sphere defined by those points, etc.}
 \section{Calculating the circumdiameter}
+\todoo[inline]{Check circumdiameter x circumradius, it's a bit confusing in many places}
+Here we describe how to calculate the circumdiameter of a $3-$simplex through the Cayley-Menger determinant\cite{Cayley1841}, \cite{Menger28}, \cite{Uspensky48} \todoo{Improve the references (chapter, placement,..)}.
+
 Consider the points $p_1,\dots, p_5 \in \mathbb R^4$ which form a $4$-simplex. Denote $d_{ij} = \|p_i - p_j\|, i,j=1,\dots,5$. Then its area $A$ is given by the \textbf{Cayley-Menger determinant}[ref sommervile]. 
 
 $$
@@ -18,10 +22,10 @@ $$
 \end{vmatrix} 
 $$
 
-Now consider non-coplanar points $p_1,\dots, p_4 \in \Rt$ forming a $3$-simplex, i.e. a tetrahedron. To obtain the circumradius of this tetrahedron, we imagine $p_1,\dots, p_4$ to lie on a $3$-dimensional hyperplane $H$ in $\mathbb R^4$ and we consider the point $c \in H$ such that $\|c-p_i\| = r \forall i=1,\dots,4$ $d\in \mathbb R$. The point $c$ is, by definition, the center of the circumsphere of $p_1,\dots,p_4$ and $d$ is the circumradius. The circumradius $r$ can be obtain by the Cayley-Menger determinant, because $p_1,\dots,p_4,c$ now form a $4$-dimensional simplex of volume $0$. We therefore have 
+Now consider non-coplanar points $p_1,\dots, p_4 \in \Rt$ forming a $3$-simplex, i.e. a tetrahedron. To obtain the circumradius of this tetrahedron, we imagine $p_1,\dots, p_4$ to lie on a $3$-dimensional hyperplane $H$ in $\mathbb R^4$ and we consider the point $c \in H$ such that $\|c-p_i\| = r \;\forall i=1,\dots,4$ $r\in \mathbb R$. The point $c$ is, by definition, the center of the circumsphere of $p_1,\dots,p_4$ and $d$ is the circumradius. The circumradius $r$ can be obtained using the Cayley-Menger determinant, since $p_1,\dots,p_4,c$ now form a $4$-dimensional simplex of volume $0$. We therefore have 
 
 
-$$
+\begin{equation}\label{eq:CMeq}
 0 = 
 \begin{vmatrix}
 0 & 1 & 1 & 1 & 1 & 1 \\
@@ -31,11 +35,12 @@ $$
 1 & d^2_{41} & d^2_{42} & d^2_{43} & 0 & r^2 \\
 1 & r^2 & r^2 & r^2 & r^2 & 0 \\
 \end{vmatrix}, 
-$$
+\end{equation}
 
-where we have again  $d_{ij} = \|p_i - p_j\|, i,j=1,\dots,4$. 
+where we again have   $d_{ij} = \|p_i - p_j\|, i,j=1,\dots,4$.\newline  
 
-It would be possible to solve this as an equation of $r$. We can however do better. We can subtract $r^2$ times the first row from last and subtract $r^2$ of the first column from the last to obtain the determinant. 
+It would be possible to solve \ref{eq:CMeq} as an equation of $r$. A better approach is to  subtract $r^2$ times the first row from last and subtract $r^2$ times the first column from the last to obtain the determinant 
+
 
 
 $$
@@ -46,10 +51,10 @@ $$
 1 & d^2_{31} & d^2_{32} & 0 & d^2_{34} & 0 \\ 
 1 & d^2_{41} & d^2_{42} & d^2_{43} & 0 & 0 \\
 1 & 0 & 0 & 0 & 0 & -2r^2 \\
-\end{vmatrix}, 
+\end{vmatrix}. 
 $$
 
-and expand by the last row, to obtain the equation
+By expanding by the last row, we obtain the equation
 
 $$
 2r^2 \begin{vmatrix}
@@ -66,10 +71,10 @@ $$
 d^2_{21} & 0 & d^2_{23} & d^2_{24} & 0 \\
 d^2_{31} & d^2_{32} & 0 & d^2_{34} & 0 \\ 
 d^2_{41} & d^2_{42} & d^2_{43} & 0 & 0 \\
-\end{vmatrix} = 0 
+\end{vmatrix} = 0,
 $$
 
-, from which $r^2$ is directly expressible
+from which $r^2$ is directly expressible.
 
 \begin{equation}\label{eq:Cayley-Menger-expanded}
 r^2 
@@ -92,142 +97,164 @@ d^2_{41} & d^2_{42} & d^2_{43} & 0 & 0 \\
 }.
 \end{equation}
 
-It is worth noting that the determinant cannot equal zero, since it is again a Cayley-Menger determinant and we assumed $p_1,\dots,p_4$ to be non-coplanar. 
+It is worth noting that the determinant in the quotient cannot equal zero, since it is again a Cayley-Menger determinant and we assumed $p_1,\dots,p_4$ to be non-coplanar. 
 
 
 
-\section{Bounding the circumdiameter hyperedge potential}
+\section{Bounding the circumdiameter}
+This section proves the bound used in [ref].
 
-We have the following optimization problems.
+\subsection{Statement of the problem}
 
-For the regular tetrahedron, the problem is 
+The problem of founding the bounds can be stated as the following two optimization problems. \newline
+
+\noindent For the tetrahedron $T_1$, the problem is 
 \begin{equation}\label{prob:tetra1}
 \begin{aligned}
 & \underset{p_1,p_2,p_3,p_4\in \Rt}{\text{maximize}}
 & & \delta(\{p_1,p_2,p_3,p_4\}) \\
 & \text{subject to}
-& & \| p_i - t_i\| \leq \rho_0 a, t_i\in \Rt i=1,2,3,4, \\
+& & \| p_i - t_i\| \leq \rho a, t_i\in \Rt, i=1,2,3,4, \\
 & & &\|t_i - t_j\| = a, i=1,2,3,4. 
 \end{aligned}
 \end{equation}
 
-To state the second problem, first denote 
+\noindent To state the problem for the tetrahedron $T_2$, first denote 
 $$D = \begin{pmatrix}
 0 & \sqrt a & a & a \\
 \sqrt a & 0 & a & a \\
 a & a & 0 & a\\
 a & a & a & 0
-\end{pmatrix}.
+\end{pmatrix},
 $$
-
-Denote the entries of matrix $D$ as $d_{ij}, i,j=1,2,3,4$. Then the statement is:
+and denote the entries of matrix $D$ as $d_{ij}, i,j=1,2,3,4$. Then the statement is:
 \begin{equation}\label{prob:tetra2}
 \begin{aligned}
 & \underset{p_1,p_2,p_3,p_4\in \Rt}{\text{maximize}}
 & & \delta(\{p_1,p_2,p_3,p_4\}) \\
 & \text{subject to}
-& & p_i \in \bar B(t_i, \rho_0 a), t_i\in \Rt i=1,2,3,4, \\
+& & \|p_i - t_i\| \leq \rho a, t_i\in \Rt, i=1,2,3,4, \\
 & & & \|t_i-t_j\| = d_{ij}, i,j=1,2,3,4.\\
 \end{aligned}
 \end{equation}
-
-
 This is a non-linear optimization problem. We can arrive at its solution through some careful geometric arguments.
 
-
+\subsection{Solution to the problem}
 First, define the \textit{circumdiameter function} of point $p \in \Rt$ with respect to non-collinear points $p_1,p_2,p_3 \in \Rt$:
 $$c(p) = \delta(\{p,p_1,p_2,p_3\}).$$
 Denote $(x_i,y_i,z_i)$ the coordinates of $p_i, i=1,\dots,3$. The following lemma describes the properties of $c(p)$.
 
-
-\begin{lemma} $c(p)$ is continuous, has a global minimum $c_{min} := \delta(\{p_1,p_2,p_3\})$ and 
-$$L_a := \{p \in \Rt: c(p)=a\} = S_{a1} \cup S_{a2}, a \geq c_{min}$$ 
-where $S_{a1}$ and $S_{a2}$ are two spheres with diameter $a$ such that $p_1,p_2,p_3 \in S_{a1}\cap S_{a2}$. Furthermore, the centers $c_1, c_2$ of $S_{a1},S_{a2}$ respectivelly, lie in the halfspaces
-$$H_+ = \{x \in \Rt: Ax \geq 0 \}, H_- = \{x \in \Rt: Ax \leq 0\},$$
+\todoo[inline]{Define $\delta$ for triangles, too}
+\begin{lemma} $c(p)$ is continuous, has a global minimum $c_{min} := \delta(\{p_1,p_2,p_3\})$ and level sets 
+	$$L_a := \{p \in \Rt: c(p)=a\} = S_{a1} \cup S_{a2}, \quad a \geq c_{min},$$ 
+	where $S_{a1}$ and $S_{a2}$ are two spheres with diameter $a$ such that $p_1,p_2,p_3 \in S_{a1}\cap S_{a2}$. Furthermore, the centers $c_1, c_2$ of $S_{a1},S_{a2}$ respectivelly, lie \todoo{Improve the wording}in the halfspaces
+$$H_+ = \{x \in \Rt: Ax \geq 0 \},\; H_- = \{x \in \Rt: Ax \leq 0\},$$
 where $A$ defines the hyperplane $H=\{x\in\Rt: Ax = 0\}$ on which $p_1,p_2,p_3$ lie.
 \end{lemma}
 \begin{proof}
-Continuity: From \ref{Cayley-Menger-expanded} we see that $c(p)$ can be seen as a composition of a norm, determinants and division. Determinant is continuous as a function of elements of the matrix since it's a polynomial function. Thus $c(p)$ is continuous.
+	Continuity: From \ref{eq:Cayley-Menger-expanded} we see that $c(p)$ can be seen as a composition of a norm, determinants and division. Determinant is continuous as a function of elements of the matrix since it is a polynomial function. Thus $c(p)$ is continuous.\newline
 
-
-The we can rewrite $L_a$ as
+\noindent We can rewrite $L_a$ as
 $$\{p \in \Rt: \exists \text{ sphere } S \text{ s.t. } p_1,p_2,p_3,p \in S \text{ and diam}S = a\}.$$
-We must therefore find the number of spheres going through the points $p_1,p_2,p_3$ with the diameter $a$. Denote $S$ a sphere such that $\{p_1,p_2,p_3\}\subset S$ with diameter $a$. Define the hyperplanes
+We must therefore find the number of spheres going through the points $p_1,p_2,p_3$ with the diameter $a$. Denote $S$ a sphere such that $\{p_1,p_2,p_3\}\subset S$ with $\mathrm{diam}(S)=a$. Define the hyperplanes
 $$H_{12} = \{x\in\Rt: \|x-p_1\| = \|x-p_2\|\}, \;\; H_{23} = \{x\in\Rt: \|x-p_2\|=\|x-p_3\|\}.$$
-Then their intersection $H_{12}\cap H_{23}$ is a line $L$, as $p_1,p_2,p_3$ are non-collinear.  The center of $S$ is at distance $a/2$ from all three points and thus lies on $L$. For any point, there are at most two points on a line at a given distance from the point. This proves that there are at most two spheres satisfying the definition of $S$.
+The intersection $H_{12}\cap H_{23}$ is a line $L$, as $p_1,p_2,p_3$ are non-collinear.  The center of $S$ is at distance $a/2$ from all three points and thus lies on $L$. For any point, there are at most two points on the line $L$ at a given distance from the point. This proves that there are at most two spheres satisfying the definition of $S$.
 
-Using line $L$, we can also deduce the rest of the proposition. The point on $L$ at a minimum distance to $p_1,p_2,p_3$ is the point $p_{min}:=L\cap H$. We know that $p_{min}$ is equidistant from $p_1,p_2,p_3$ and that it lies on the hyperplane $H$, therefore we have $c(p_{min}) = \delta(\{p_1,p_2,p_3\})$.  
+Using the line $L$, we can also deduce the rest of the proposition. The point on $L$ at a minimum distance to $p_1,p_2,p_3$ is the point $p_{min}:=L\cap H$. We know that $p_{min}$ is equidistant from $p_1,p_2,p_3$ and that it lies on the hyperplane $H$, therefore it is the circmradius of the triangle defined by $p_1,p_2,p_3$ and we have $c(p_{min}) = \delta(\{p_1,p_2,p_3\})$.  
 
-\todoo[inline]{Improve the last bit, possibly simplify}
-To see that $c_1$ and $c_2$ must be (non-strictly) separated by the hyperplane $H$, assume WLOG $\{c_1,c_2\}\subset H_+, c_1\neq c_2$. Let $p \in S_{a1}$ and let  $p_R\in \Rt$ be the reflection of $p$ through the hyperplane $H$. The tetrahedron $p_1,p_2,p_3,p_R$ then is a reflection of the tetrahedron $p_1,p_2,\dots, p$ and therefore its circumsphere has diameter $a$ and centre in $H_-$, which is a contradiction. 
-
+\todoo[inline]{If possible, simplify this argument}
+To see that $c_1$ and $c_2$ must be (non-strictly) separated by the hyperplane $H$, assume WLOG $\{c_1,c_2\}\subset H_+, c_1\neq c_2$. Let $p \in S_{a1}$ and let  $p_R\in \Rt$ be the reflection of $p$ through the hyperplane $H$. The tetrahedron $p_1,p_2,p_3,p_R$ then is a reflection of the tetrahedron $p_1,p_2,\dots, p$ and therefore its circumsphere has diameter $a$. However, its centre lies in $H_-$, which is a contradiction. 
 \end{proof}
 
-Note that $S_{a1}$ and $S_{a2}$ are not necessarily distinct. In fact, we can see from the proof that the case $S_{a1}=S_{a2}$ is precisely when $a=c_{min}$.
+Note that $S_{a1}$ and $S_{a2}$ are not necessarily distinct. In fact, we can see from the proof that $S_{a1}=S_{a2}$ precisely when $a=c_{min}$.
 
 
+We are now ready to characterize the set of solutions to \ref{prob:tetra1} and \ref{prob:tetra2}. For the next proposition, we say a point lies ``inside'' or ``outside'' of the sphere $S$ if the the point lies in $B$ or in $B^c$ respectivelly, where $B$ is the closed ball such that $\partial B = S$.
 
-\begin{proposition}
-Any solution $(p_1,p_2,p_3,p_4)$ of the problem \ref{prob:tetra1} will lie on a sphere $S$ that is (internally or externally) tangent to the spheres $\partial B(t_i,\rho_0 a), i =1,2,3,4$.
+
+\begin{proposition}\label{prop:Apollonius}
+Any solution $(p_1,p_2,p_3,p_4)$ of the problem \ref{prob:tetra1} will lie on a sphere $S$ that is (internally or externally) tangent to the spheres $\partial B(t_i,\rho a), i =1,2,3,4$. 
 \end{proposition}
 \begin{proof}
-Denote $c(p_1)=\delta(\{p_1,p_2,p_3,p_4\})=c$ and $S$ the sphere such that $\{p_1,\dots,p_4\}$. 
-First, WLOG assume that $p_1 \in B(t_1,\rho_0 a)$ Because $p_1$ maximizes the function $c(p)$, we have $c(p_1)\geq c(p), p\in U$, where $U$ is some small neighborhood of $p_1$. Choose two points, $p_O,p_I\in U\setminus S$ such that 
+	Let $(p_1,p_2,p_3,p_4)$ be a solution of \ref{prob:tetra1}. Denote $c(p_1)=\delta(\{p_1,p_2,p_3,p_4\})=c$ and $S$ the circumshphere of $\{p_1,\dots,p_4\}\subset S$. 
+	First, WLOG assume that $p_1 \in B(t_1,\rho a)$. Because $p_1$ maximizes the function $c(p)$, we have $c(p_1)\geq c(p), p\in U$, where $U$ is some small neighborhood of $p_1$. Choose two points, $p_O,p_I\in U\setminus S$ such that 
 \begin{enumerate} 
 \item $c(p_O)=c(p_I)=b$,
 \item $p_I$ is on the inside of $S$ and $p_0$ on the outside of $S$ 
-\item $S(p_I,p_2,p_3,p_4)$ and $S(p_O,p_2,p_3,p_4)$ do not equal and their centers lie on the same halfspace ($H_+$ or $H_-$) as $S$. 
+\item \todoo{Define this notation}$S(p_I,p_2,p_3,p_4)$ and $S(p_O,p_2,p_3,p_4)$ do not equal and their centers lie on the same halfspace ($H_+$ or $H_-$) as $S$. 
 \end{enumerate}
-Such choice is possible due to continuity of $c(p)$. Yet we arrive at a contradiction, as the level-set $L_b$ now contains two distinct spheres with centres in the same halfspace. 
+Such choice is possible due to continuity of $c(p)$. Yet we arrive at a contradiction, as the level set $L_b$ now contains two distinct spheres with centres in the same halfspace. 
 
-Assume now that $p_1 \in \partial B(t_1,\rho_0 a)=: S_1$. We now choose $p_I$ and $p_O$ with the additional requirement that they must both lie on $\partial B(t_1,\rho_0 a)$. This fails precisely when $S_1$ and $S$ are tangent, since then \todoo{Make sure "inside" a sphere has a clear meaning} $S_1$ lies either completely inside or outside $S$ and it is no longer possible to choose points both outside and inside. 
+Assume now that $p_1 \in \partial B(t_1,\rho a)=: S_1$. We now choose $p_I$ and $p_O$ with the additional requirement that they must both lie on $\partial B(t_1,\rho a)$. Such choise is not possible precisely when $S_1$ and $S$ are tangent, since then \todoo{Make sure "inside" a sphere has a clear meaning} $S_1$ lies either completely inside or outside $S$ and it is no longer possible to choose points both outside and inside. 
 \end{proof}
+\unsure{Is this a good way of proceeding?}Note that proposition \ref{prop:Apollonius} is formulated for problem \ref{prob:tetra1}. However, we could repeat the same exact argument for \ref{prob:tetra2} and thus the same holds for both problems.\newline
 
-We have found that the solutions to \ref{prob:tetra1} and \ref{prob:tetra2} must lie on a sphere that tangent to the spheres within which points can move. This is a major improvement. The space of possible solution narrows down to just $2^4=16$ possible quadruples of points (and even less beacause of symmetries), which are all the solution of a three-dimensional equivalent of the famous \textbf{Apollonius problem}.
+We have found that the solutions to \ref{prob:tetra1} and \ref{prob:tetra2} must lie on a sphere that tangent to the spheres within which points can move. This is a dramatic improvement --- we have narrowed the previously infinite space of possible solutions down to just $2^4=16$ possible quadruples of points (and even less beacause of symmetries). We also note that the set of solutions to our problem is precisely the set of solutions of a three-dimensional equivalent of the more than two thousand years old \todoo{Encoding problem} \textbf{Apollonius problem} 
+% \cite{GischRibando2006}.
 
-First note that if two externally tangent spheres $S_1=((x_1,y_1,z_1),r_1), S_2=((x_2,y_2,z_2),r_2)$  satisfy
-$$\|(x_1,y_1,z_1) - (x_2,y_2,z_2)\| = r_1+r_2,$$
-similarly, two externally tangent spheres satisfy
+
+\subsection{Apollonius problem in $\mathbb R^3$}
+We want to find all the spheres that are externally or internally tangent to the spheres $\partial B(t_i,\rho a), i=2,3,4$ as defined in problems \ref{prob:tetra1} and \ref{prob:tetra2}.
+
+First note that two externally tangent spheres $S_1=((x_1,y_1,z_1),r_1), S_2=((x_2,y_2,z_2),r_2)$  satisfy
+$$\|(x_1,y_1,z_1) - (x_2,y_2,z_2)\| = r_1+r_2.$$
+Similarly, two externally tangent spheres satisfy
 $$\|(x_1,y_1,z_1) - (x_2,y_2,z_2)\| = |r_1 - r_2|.$$
-By squaring, we obtain the equality
+By squaring both equations, we obtain the equality
 $$(x_1-x_2)^2 + (y_1-y_2)^2 + (z_1-z_2)^2 = (r_1 \pm r_2)^2$$
 Where we use $+$ for externally and $-$ for internally tangent spheres.
 
-This means, that the Apollonius problem for spheres $S_1,S_2,S_3,S_4$ is solved by any $S=((x,y,z),r)$ such that
+The Apollonius problem for spheres $S_1,S_2,S_3,S_4$ is therefore solved by any $S=((x,y,z),r)$ such that
 \begin{align}\label{eq:Apollonius}
   (x_1-x)^2 + (y_1-y)^2 + (z_1-z)^2 &= (r_1 \pm r)^2 \\
   (x_2-x)^2 + (y_2-y)^2 + (z_2-z)^2 &= (r_2 \pm r)^2 \nonumber \\
   (x_3-x)^2 + (y_3-y)^2 + (z_3-z)^2 &= (r_3 \pm r)^2 \nonumber \\
-  (x_4-x)^2 + (y_4-y)^2 + (z_4-z)^2 &= (r_4 \pm r)^2 \nonumber  
+  (x_4-x)^2 + (y_4-y)^2 + (z_4-z)^2 &= (r_4 \pm r)^2, \nonumber  
 \end{align}
 
-where we can take any combination of $+$ or $-$, yielding altogether $16$ possible solutions. This excludes degenerate cases, which are not relevant in our case. As noted previously, the number of solutions for both $T_1$ and $T_2$ will reduce significantly. For $T_1$, the spheres are completely interchangeable and thus only solutions with different number of $+$ will differ. This yields $5$ possible solutions. Geometrically the number of $+$ can be seen as the number of spheres the solution is externally tangent to. For $T_2$ the situation is more complex, as the problem isn't entirely symmetric with respect to the four points.  
+where we can take any combination of $+$ or $-$, yielding altogether $16$ possible solutions. We do not consider degenerate cases as they cannot happen in our setting. 
+
+As noted previously, the number of solutions for both $T_1$ and $T_2$ will reduce significantly. For $T_1$, the spheres are completely interchangeable and thus only solutions with different number of $+$ will differ. This yields $5$ possible solutions. Geometrically the number of $+$ can be seen as the number of spheres the solution is externally tangent to. For $T_2$ the situation is more complex, as the problem isn't entirely symmetric with respect to the four points. Still, symmetries do exist and the number of solution will be reduced.  
 
 Sadly, for most choices of $+$ and $-$, these equations still seem to be too complex for Mathematica to solve. Luckily, we can simplify them further. 
+
+\subsubsection{Solving the equations \ref{eq:Apollonius} by linearizing}
+
+We formulate the solution as a proposition.
+\begin{proposition}\label{prop:Apollonius}
+	For $\rho < 1/(2\sqrt 6)$, the maximum in \ref{prob:tetra1} is
+	$$\delta_1 := 2a(\sqrt 6/4 + \rho).$$
+	For $\rho < 1/4$, the maximum in \ref{prob:tetra2} is
+	$$\delta_2 := 2a \frac{2\rho + \sqrt{2 - 32\rho^2 + 64 \rho^4}}{2-32\rho^2}.$$
+
+\end{proposition}
+\begin{proof}
+	Recall that the solution must lie on a sphere solving the equations \ref{eq:Apollonius}. We must therefore solve them and find the solution with the largest circumdiameter.
 
 First, for clarity, we define the variables $s_i\in\{+1,-1\},i=1,\dots,4$ instead of relying on the notation $\pm$. We begin by expanding the parentheses to obtain the equations
 $$x^2+y^2+z^2 + x_i^2 + y_i^2 + z_i^2 - 2xx_i - 2yy_i - 2zz_i = r^2 + r_i^2 + 2(s_1 r_1 - s_2 r_2)r,\quad i=1,2,3,4$$
 
 By subtracting the $2,3,4$-th equation from the first, we get rid of the quadratic terms and obtain a system of linear equations with four variables and three equations:
-$$-2(x_1-x_i)x - 2(y_1-y_i)y -2 (z_1-z_i)z - 2(s_1r_1 - s_2r_2)r + x_1^2-x_i^2 + y_1^2-y_i^2 + z_1^2 - z_i^2 -r_1^2 + r_i^2 = 0, \quad i=2,3,4$$
+\begin{align*}-&2(x_1-x_i)x - 2(y_1-y_i)y -2 (z_1-z_i)z - 2(s_1r_1 - s_2r_2)r \\
+	& + x_1^2-x_i^2 + y_1^2-y_i^2 + z_1^2 - z_i^2 -r_1^2 + r_i^2 = 0, \quad i=2,3,4
+\end{align*}
+This system can be solved to obtain expression of $x,y,z$ in terms of $r$. We then substitute those expression into \ref{eq:Apollonius} to obtain $r$\footnote{Note that exact solutions of $x,y,z$, which we are not interested in, could then by obtained through substituting $r$ back into the linear system.}. 
 
-This system can be solved to obtain expression of $x,y,z$ in terms of $r$. We then substitute those expression into \ref{eq:Apollonius} to obtain $r$. 
+We have used Wolfram Mathematica \cite{Mathematica} to find the solutions. The full implementation can be found in the file \texttt{ApolloniusProblem.nb}. By comparing the circumdiameters of the solutions, we obtain the proposition.
 
-Note that exact solutions of $x,y,z$, which we are not interested in, could then by obtained through the linear system.
-
-All the solutions can be seen in \ref{fig:Apollonius1} and \ref{fig:Apollonius2}. We can see that for $T_1, \rho < 1/\sqrt 6$, we have the two solutions
+\end{proof}
+All the solutions for the choice $a=1$ can be seen in figures \ref{fig:Apollonius1} and \ref{fig:Apollonius2}. We can see that for $T_1, \rho < 1/\sqrt 6$, we have the two solutions
 $$a(\sqrt 6 / 4 + \rho), a \frac{\rho - \sqrt 6 (4\rho^2 - 1)}{4-24 \rho^2}$$
-which itersect at $\rho =1/(2\sqrt 6)$. We will therefore assume $\rho < 1/(2\sqrt 6)$ and thus the solution to problem is $a(\sqrt 6/4 + \rho)$. The simple linear form of the solution is not actually surprising --- it is precisely the sphere which is internally tangent to all four spheres. This sphere has the same center as the circumsphere of tetrahedron $\{t_1,t_2,t_3,t_4\}$. Thus the solution is a sum of circumradius of the tetrahedron, $\sqrt 6 /4$, and the radius of the four spheres, $\rho$. We can see similar behaviour in the solution that is externally tangent to all four spheres.
+which itersect at $\rho =1/(2\sqrt 6)$. 
 
-For $T_2$, the linear solution will no longer be the largest, as now we obtain a larger circumradius by using a sphere that is externally tangent to some of the spheres. Indeed the solution, for $\rho<1/4$, is
-$$a \frac{2\rho + \sqrt{2 - 32\rho^2 + 64 \rho^4}}{2-32\rho^2}$$
+Notice the simple linear form of the first solution --- it is precisely the sphere which is internally tangent to all four spheres. This sphere has the same center as the circumsphere of tetrahedron $\{t_1,t_2,t_3,t_4\}$. Thus the solution is a sum of circumradius of the tetrahedron, $\sqrt 6 /4$, and the radius of the four spheres, $\rho$. We can see similar behaviour in the solution that is externally tangent to all four spheres.
 
-Denote
-$$\delta^{max}_1(\rho) := (\sqrt 6 / 4 + \rho).$$
-$$\delta^{max}_2(\rho) := \frac{2\rho + \sqrt{2 - 32\rho^2 + 64 \rho^4}}{2-32\rho^2}.$$
+For $T_2$, the linear solution will no longer be the largest, as now we obtain a larger circumradius by using a sphere that is externally tangent to some of the spheres. 
 
 
-From the form of the solutions one can also obtain the necessary bound for points to remain in general position. The bound is $\rho < 1/4$.
+\begin{remark}\label{rem:GP}[General position]
+	From the form of the solutions one can also obtain the necessary bounds for $\rho$ for the points to remain in general position. The points cease to be in general position precisely when any one of the solutions becomes infinite. This gives us $\rho < 1/(2\sqrt 6)$ for $T_1$ and $\rho<1/4$ for $T_2$. Since we must control the circumdiamteter for all tetrahedra, we must assume $\rho < 1/4$.
+\end{remark}
 
 
 \begin{figure}
@@ -237,5 +264,5 @@ From the form of the solutions one can also obtain the necessary bound for point
 
 \begin{figure}
 	\includegraphics[width=1\textwidth]{../img/t2.pdf}
-	\caption{All solutions to Apollonius problem with $T_2$,$a=1$}\label{fig:Apollonius2}
+	\caption{All solutions to Apollonius problem with $T_2$, $a=1$}\label{fig:Apollonius2}
 \end{figure}
