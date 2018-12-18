@@ -362,7 +362,7 @@ In \todoo{Broken reference} example \ref{ex:potentials}, only the first two pote
 
 For a given hypergraph structure $\mathcal E$, the \textit{energy function} of a finite configuration $\x\in \mathbf N_{f}$ is defined as the function\footnote{The energy $H$ is often also called \textit{Hamiltonian} in statistical mechanics.}
 $$H(\x) = \sum_{\eta \in \mathcal E(\x)} \varphi(\eta,\x).$$
-However, in our case, we will typically deal with $\x\in \mathbf N_{lf}$, for this such potentials would typically be equal to $\pm \infty$. We will therefore be interested in the energy for only a bounded window $\Lambda \in \mathcal B_0'$. Currently, we don't have the necessary terms to describe such energy function precisely, thus we will postpose its definition to the next section. 
+However, in our case, we will typically deal with $\x\in \mathbf N_{lf}$, for this such potentials would typically be equal to $\pm \infty$ or even be undefined. We will therefore be interested in the energy for only a bounded window $\Lambda \in \mathcal B_0'$. Currently, we don't have the necessary terms to describe such energy function precisely, thus we will postpose its definition to the next section. 
 
 The words \textit{potential} and \textit{energy} point to a connection with statistical mechanics, which gave rise to many of the concepts used in this text. Indeed, Gibbs measure and concepts related to them continue to be an area with a rich interplay between statistical mechanics and probability theory\footnote{In fact, Gibbs measures, named after Josiah Willard Gibbs, stood at the forefront of emergence of statistical mechanics --- Gibbs, who coined the term ``statistical mechanics'' was one of the founders of the field.}.
 
@@ -381,6 +381,7 @@ The pair $(\mathcal E, \varphi)$ satisfies the \textit{finite-horizon property} 
 
 The finite horizon of $(\eta,\x)$ delineates the region outside which points can no longer violate the regularity (or the empty ball property) of $\eta$. 
 Note also that for an unary potential, the finite horizon of $(\eta,\x)\in \mathcal E$ depends only on $\eta$.
+\todoo[inline]{Assume potentials are unary, since that's what I am talking about after this point}
 
 \begin{remark} [Finite horizons for $\mathcal D$ and $\mathcal {LD}$]
 For $\mathcal D$, the closed circumball $\bar B(\eta,\x)$ itself is a finite horizon for $(\eta,\x)$.
@@ -452,21 +453,25 @@ While the set $\mathcal E_\Lambda(\x)$ contains hyperedges $\eta$ which can be i
 
 
 \todoo[inline]{Comment on the definition and what it means for $\mathcal D$ and $\mathcal {LD}$.}
+\problem[inline]{It probably is unclear that we're going to be talking about $\mathcal D_4$ afterwards, i.e. tetrihedrizations only}
 
 
 
-\begin{remark}[Adding and removing points in $\mathcal D_4$ and $\mathcal {LD}_4$]
+\begin{remark}\label{r:addremove}[Adding and removing points in $\mathcal D_4$ and $\mathcal {LD}_4$]
 	Let $\x\in \mathbf N_{lf}$ be a configuration and $x\in(\Rt \times S) \setminus \x$ a point outside the configuration. The question is: how does $\mathcal {LD}_4(\x \cup \{x\})$ differ from $\mathcal {LD}_4(\x)$?
 	First imagine we want to add the point $x$ to $\x$. Denote the set 
 	$$\mathcal {LD}_4^\otimes(x,\x) := \{\eta \in \mathcal {LD}_4(\x): \rho(p_\eta,x) < 0\}.$$
 	Then this set contains precisely those tetrahedra, which cannot be present in $\mathcal {LD}_4(\x \cup \{x\})$, that is
 	$$ \mathcal {LD}_4 (\x) \setminus \mathcal {LD}_4(\x \cup \{x\}) = \mathcal {LD}_4^\otimes(x,\x).$$
 	Now take $\eta \in \mathcal {LD}_4(\x \cup \{x\})$ such that $x \notin \eta$. Then $\eta \notin \mathcal {LD}_4^\otimes(x,\x)$ and thus $\eta \in \mathcal {LD}_4(\x)$, yielding
-	$$\mathcal {LD}_4 (\x \cup \{x\}) \setminus \mathcal {LD}_4(\x) = \{ \eta \in \mathcal {LD}_4(\x\cup\{x\}): x \in \eta\} =: \mathcal {LD}_4^\ell(\x \cup \{x\},x).$$
+	$$\mathcal {LD}_4 (\x \cup \{x\}) \setminus \mathcal {LD}_4(\x) = \{ \eta \in \mathcal {LD}_4(\x\cup\{x\}): x \in \eta\} =: \mathcal {LD}_4^\ell(x, \x \cup \{x\}).$$
 
-	Using the same logic we can now remove the point $x$ from $\x \cup \{x\}$. This means we remove $\eta \in \mathcal {LD}_4^\ell(\x\cup\{x\},x)$ and add $\eta \in \mathcal {LD}_4^\otimes(\x,x)$.
+	Using the same logic we can now remove the point $x$ from $\x \cup \{x\}$. This means we remove $\eta \in \mathcal {LD}_4^\ell(x,\x\cup\{x\})$ and add $\eta \in \mathcal {LD}_4^\otimes(x,\x)$.
 
 	In $\mathcal D_4$, we obtain similar sets
 	$$\mathcal D_4^\otimes(x,\x) := \{\eta \in \mathcal D_4(\x): x \in B(\eta)\},$$
 	$$\mathcal D_4^\ell(x,\x) := \{\eta \in \mathcal D_4(\x): x\in \eta \}.$$
+
+	We note that the sets denoted with $\otimes$ stand for \textit{conflicting} tetrahedra and the $\ell$ stands for tetrahedra \textit{linked} to $x$. 
+
 \end{remark}

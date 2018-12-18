@@ -172,7 +172,7 @@ Note that $S_{a1}$ and $S_{a2}$ are not necessarily distinct. In fact, we can se
 We are now ready to characterize the set of solutions to \ref{prob:tetra1} and \ref{prob:tetra2}. For the next proposition, we say a point lies ``inside'' or ``outside'' of the sphere $S$ if the the point lies in $B$ or in $B^c$ respectivelly, where $B$ is the closed ball such that $\partial B = S$.
 
 
-\begin{proposition}\label{prop:Apollonius}
+\begin{proposition}\label{prop:ApolloniusSet}
 Any solution $(p_1,p_2,p_3,p_4)$ of the problem \ref{prob:tetra1} will lie on a sphere $S$ that is (internally or externally) tangent to the spheres $\partial B(t_i,\rho a), i =1,2,3,4$. 
 \end{proposition}
 \begin{proof}
@@ -187,7 +187,7 @@ Such choice is possible due to continuity of $c(p)$. Yet we arrive at a contradi
 
 Assume now that $p_1 \in \partial B(t_1,\rho a)=: S_1$. We now choose $p_I$ and $p_O$ with the additional requirement that they must both lie on $\partial B(t_1,\rho a)$. Such choise is not possible precisely when $S_1$ and $S$ are tangent, since then \todoo{Make sure "inside" a sphere has a clear meaning} $S_1$ lies either completely inside or outside $S$ and it is no longer possible to choose points both outside and inside. 
 \end{proof}
-\unsure{Is this a good way of proceeding?}Note that proposition \ref{prop:Apollonius} is formulated for problem \ref{prob:tetra1}. However, we could repeat the same exact argument for \ref{prob:tetra2} and thus the same holds for both problems.\newline
+\unsure{Is this a good way of proceeding?}Note that proposition \ref{prop:ApolloniusSet} is formulated for problem \ref{prob:tetra1}. However, we could repeat the same exact argument for \ref{prob:tetra2} and thus the same holds for both problems.\newline
 
 We have found that the solutions to \ref{prob:tetra1} and \ref{prob:tetra2} must lie on a sphere that tangent to the spheres within which points can move. This is a dramatic improvement --- we have narrowed the previously infinite space of possible solutions down to just $2^4=16$ possible quadruples of points (and even less beacause of symmetries). We also note that the set of solutions to our problem is precisely the set of solutions of a three-dimensional equivalent of the more than two thousand years old \todoo{Encoding problem} \textbf{Apollonius problem} 
 % \cite{GischRibando2006}.
