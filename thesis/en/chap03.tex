@@ -36,7 +36,7 @@ The first thing to note that when $\varphi$ is non-negative, then we can simply 
 \noindent \textbf{Assumption 1}: All hyperedge potentials in the remained of this text are assumed to be non-negative.
 
 \subsection{Range condition} \label{sec:range}
-As stated previously, the fact that the hyergraph structures posses a type of locality property is crucial for the existence of Gibbs measures. The simplest such assumption is the \textit{finite range} assumption, see definition 7 in \cite{Dereudre2017}, which roughly states that there exists $R>0$ such that the energy of $\x$ in $\Lambda$ only depends on points in $\Lambda + b(0,R)$. This is a strong assumption and one that is not fulfilled by our models. 
+As stated previously, the fact that the hyergraph structures posses a type of locality property is crucial for the existence of Gibbs measures. The simplest such assumption is the \textit{finite range} assumption, see Definition 7 in \cite{Dereudre2017}, which roughly states that there exists $R>0$ such that the energy of $\x$ in $\Lambda$ only depends on points in $\Lambda + b(0,R)$. This is a strong assumption and one that is not fulfilled by our models. 
 
 This is reflected in part in the range condition introduced here and later in the uniform confinement condition \ref{eq:U1}.
 
@@ -55,7 +55,7 @@ Apart from being one of the assumptions necessary for the existence, the range c
 	Let $\Lambda \in \mathcal B_0(\Rt)$. Under the assumption \ref{(R)}, there exists a set $\hat {\mathbf N}^\Lambda_{cr} \in \mathbf N_{\Lambda^c}$ such that $\hat {\mathbf N}^\Lambda_{cr} \subset \mathbf N^\Lambda_{cr}$ and $P(\hat {\mathbf N}^\Lambda_{cr})=1$ for all $P \in \mathcal P_\Theta$ with $P(\varnothing)=0$.
 \end{proposition}
 \begin{proof}
-	Can be found in proposition 5.4. in \cite{DDG12}. See also remark 3.7. in connection to the marked case.
+	Can be found in Theorem 5.4. in \cite{DDG12}. See also remark 3.7. in connection to the marked case.
 \end{proof}
 \problem[inline]{This is wrong, since we're using the wrong set $\mathbf N_\Lambda$}
 
@@ -84,7 +84,7 @@ where $\hat\eta := \{k \in \mathbb Z^3: \eta \cap C(k) \neq \emptyset\}$ and $\v
 		\end{enumerate}
 \end{enumerate}
 
-Notice that (U1) is very close to the classic finite range property mentioned at the beginning of section \ref{sec:range}. The major difference is that here the property is only required of the pseudo-periodic configuration.
+Notice that (U1) is very close to the classic finite range property mentioned at the beginning of Section \ref{sec:range}. The major difference is that here the property is only required of the pseudo-periodic configuration.
 
 
 As long as $\Pi^z_C (\Gamma) >0$, (U3) will always hold for all $z$ exceeding some threshold $z_0 \geq 0$. This is because the left hand side is an increasing function of $z$, as can be seen from the equality 
@@ -151,11 +151,11 @@ in order for balls to never overlap \unsure{This is perhaps unnecessarily conser
 \end{remark}
 
 
-\subsection{Geometrical structure of the tetrihedrizations defined by $\Gamma^A$ and $M$}
-\problem[inline]{Am I talking about tetrihedrization or hypergraph? Check and unify this}
+\subsection{Geometric properties of the tetrahedrizations defined by $\Gamma^A$ and $M$}
+\problem[inline]{Am I talking about tetrahedrization or hypergraph? Check and unify this}
 To understand the advantage of the particular choice of $M$ and $\Gamma^A$ we first turn to the two-dimensional case. For $\mathbb R^2$, the two column vectors with angle $\pi/3$ define a triangulation made of equilateral triangles. Depending on the bound for $\rho$, the points never become collinear ($\sqrt 3/4$), have a bound for the circumradius that is linear in $\rho$ ($\sqrt 3/6$) or even always generate the same triangultaion ($(\sqrt 3 - 1)/4$) up to the movement of points within their respective set $A$. Thus the resulting triangulation has many desirable properties. \newline
 
-It is not however obvious that the desirable properties carry over to $\mathbb R^3$. Before we investigate the structure of the resulting tetrihedrizations, we list the properties we are interested in obtaining.
+It is not however obvious that the desirable properties carry over to $\mathbb R^3$. Before we investigate the structure of the resulting tetrahedrizations, we list the properties we are interested in obtaining.
 \begin{enumerate}
 	\item A description of the tetrahedra present in the tetrahedrization.
 	\item The number of tetrahedra incident to the point in $C$,  
@@ -183,7 +183,7 @@ $$
 
 is a particular example of the matrix $M$. \newline
 
-\noindent From remark \ref{rem:LaguerreToDelaunay} we know that $\mathcal {LD}_4(\x_0) = \mathcal D_4(\x_0)$, therefore we can work with its Delaunay tetrihedrization.
+\noindent From Remark \ref{rem:LaguerreToDelaunay} we know that $\mathcal {LD}_4(\x_0) = \mathcal D_4(\x_0)$, therefore we can work with its Delaunay tetrahedrization.
 \problem[inline]{Again we're not using marks without comment}
 
 To further simplify the line of reasoning, we will look at only a subset $\x_1\subset \x_0$ of the points whose preimage under $M_a$ are the boundary points of the unit cube $[0,1]^3$. The points of $\x_1$, denoted $p_1, \dots, p_8$ then are:
@@ -201,14 +201,14 @@ $$\begin{matrix}
 	p_7: & (0,1,1) & \longmapsto & a(1,2/\sqrt3, \sqrt{2/3})\\
 	p_8: & (1,1,1) & \longmapsto & a(2,2/\sqrt3, \sqrt{2/3})\\
 \end{matrix}$$
-To obtain the tetrihedrization of the parallelopiped formed by $\x_1$, we could mechanically perform the INCIRCLE test on all quintuples of points in $\x_1$ (see remark \ref{r:construct}). Such approach is lengthy and ultimately not very illuminative. We will therefore derive its structure through a few geometric observations.
+To obtain the tetrahedrization of the parallelepiped formed by $\x_1$, we could mechanically perform the INCIRCLE test on all quintuples of points in $\x_1$ (see Remark \ref{r:construct}). Such approach is lengthy and ultimately not very illuminative. We will therefore derive its structure through a few geometric observations.
 
 \todoo[inline]{These lemmas are almost impossible to follow without figures}
 \begin{lemma}
 	$\mathrm{NNG}(\x_1)$ is formed by two regular tetrahedra, $\{p_1,p_2,p_3,p_5\}$ and $\{p_4,p_6,p_7,p_8\}$, and an regular octahedron $\{p_2,\dots,p_7\}$.
 \end{lemma}
 \begin{proof}
-	Any invertible linear transformation maps a parallelepiped onto a parallelepiped. Since $\|p_2 - p_1\| = \|p_3-p_1\| = \|p_5-p_1\|=a$ by definition of $M$, we obtain that all the edges of the parallelepiped $\{p_1,\dots,p_8\}$ have length $a$. Furthermore, each face of the parallelopiped can be split into two equilateral triangles, e.g. $\|p_3-p_2\|=a$. Consequently $\{p_1,p_2,p_3,p_5\}$ and $\{p_4,p_6,p_7,p_8\}$ are regular tetrahedra, the regularity coming from the fact that all edges have length $a$. Similarly, the sextuple $\{p_2,\dots,p_7\}$ is a regular octahedron, as all its edges have length $a$.
+	Any invertible linear transformation maps a parallelepiped onto a parallelepiped. Since $\|p_2 - p_1\| = \|p_3-p_1\| = \|p_5-p_1\|=a$ by definition of $M$, we obtain that all the edges of the parallelepiped $\{p_1,\dots,p_8\}$ have length $a$. Furthermore, each face of the parallelepiped can be split into two equilateral triangles, e.g. $\|p_3-p_2\|=a$. Consequently $\{p_1,p_2,p_3,p_5\}$ and $\{p_4,p_6,p_7,p_8\}$ are regular tetrahedra, the regularity coming from the fact that all edges have length $a$. Similarly, the sextuple $\{p_2,\dots,p_7\}$ is a regular octahedron, as all its edges have length $a$.
 \end{proof}
 
 This polyhedral configuration is well known to tessellate\footnote{ The tessellation is of great importance to many fields and thus is known under many names. In mathematics, it is most commonly called the \textit{tetrahedral-octahedral honeycomb}, or the \textit{alternated cubic honeycomb}. In structural engineering, it is known as the \textit{octet truss}, as named by Buckminster Fuller, or the \textit{isotropic vector matrix}. It is stored as \textit{fcu} in the Reticular Chemistry Structure Resource\cite{RCSR}. It is also the nearest-neighbor-graph of the face-centered cubic (fcc) crystal in crystallography\cite{Gabbrielli12}.  }. The knowledge of $\mathrm{NNG}(\x_1)$ allows us to fully categorize the tetrahedra in $\mathcal D_4(\x_0)$.
@@ -217,7 +217,7 @@ This polyhedral configuration is well known to tessellate\footnote{ The tessella
 $$T_1: (a,a,a,a,a,a) \quad T_2:(a,a,a,a,a,\sqrt 2a)$$
 \end{proposition}
 \begin{proof}
-From proposition \ref{prop:nng} we know that $\mathrm{NNG}(\x_1) \subset \mathcal D_2(\x_1)$. 
+From Theorem \ref{prop:nng} we know that $\mathrm{NNG}(\x_1) \subset \mathcal D_2(\x_1)$. 
 
 We know that $\text{NNG}(\x_1)$ is composed of two regular tetrahedra and one regular octahedron $O$ with all edge lengths equal to $a$. Therefore all that remains to be done is to tetrahedronize the octahedron. By the symmetry of the regular octahedron, all the tetrahedra inside $O$ must be the same up to rotation. Each tetrahedron has five out of six edge lengths equal to $a$, therefore we only need to determine the remaining edge length. We can take e.g. any four points forming a square with side lengths $a$ to see that the remaining edge length is $\sqrt 2a$.
 
@@ -229,24 +229,27 @@ We note that the circumradii of the tetrahedra can be calculated using the Cayle
 \subsubsection{Combinatorial structure of $\mathcal D_4(\x_0)$}\label{sec:combinatorial}
 Now we turn to the combinatorial structure of $\mathcal D_4(\x_0)$. In the tetrahedronized regular octahedron, each vertex is incident to $\binom{5}{3}-2=8$ tetrahedra. In the tetrahedron-octahedron tessellation, each \todoo{Reference, possibly using Schlafli symbols} vertex is incident to eight regular tetrahedra and six regular octahedra. This gives us $n_T = 8 + 6\cdot 8 = 56$. While still large, this is less than quarter of \problem{Overcounting degenerate cases}$8\cdot \binom{7}{3} = 280$ for the case of regular cube tessellation induced by the choice $M=aE$. Note that $n_T$ is much smaller for the non-degenerate case, when $O$ contains only $4$ tetrahedra and its vertices are incident either to $2$ or $4$ tetrahedra. In this case, $n_T\leq 8+6\cdot 4 = 32$.
 
+\todoo[inline]{Make it clear that the whole thing is proved in appendix. Also, make this whole thing clearer.}
 
 \subsubsection{Circumdiameter and characteristic point weight}
 The bound on circumdiameters of the circumballs and characteristic point weights is crucial for the assumption (U1) as well as (U2) and (U3) for potentials that include them. Without such a bound, we have no uniform confinement and the hyperege potential can grow to infinity. We therefore have to investigate the shape of the tetrahedra that are possible with $\x \in \bar\Gamma$. 
 
 \begin{proposition}\label{prop:maxPeta}
-Let $\x \in \bar\Gamma^A$ with $\rho < 1/4$. Then there exists $C>0$ such that $p_\eta'' \leq C$ for all $\eta \in \mathcal {LD}_4(\x)$. 
+	Let $\x \in \bar\Gamma^A$ with $\rho < 1/4$. Then the weight of the characteristic point is uniformly bounded. That is there exists $C>0$ such that $p_\eta'' \leq C$ for all $\eta \in \mathcal {LD}_4(\x)$. 
 \end{proposition}
 \begin{proof}
-Denote $\eta=\{p_1,p_2,p_3,p_4\}$, denote their positions $\eta'$ and weights $\eta''$. From proposition \ref{prop:charpointHyperplane} and the remark below it, we know that $p'_\eta = H(p_1,p_2)\cap H(p_1,p_3) \cap H(p_1,p_4)$.
+Denote $\eta=\{p_1,p_2,p_3,p_4\}$, denote their positions $\eta'$ and weights $\eta''$. From Theorem \ref{prop:charpointHyperplane} and the remark below it, we know that $p'_\eta = H(p_1,p_2)\cap H(p_1,p_3) \cap H(p_1,p_4)$.
 
-Fix the positions $\eta'$.  Changing any of the points' weights ammounts to translation of the radical hyperplanes defined by that point (see note after proposition \ref{prop:charpointHyperplane}). Given the fact that weights are bounded, $S=[0,W]$, we find that for given positions $\eta'$ there exists $W_{\eta'}>0$ such that , we have $p''_\eta \leq W_{\eta'}$ regardless of the weights.
+Fix the positions $\eta'$.  Changing any of the points' weights ammounts to translation of the radical hyperplanes defined by that point (see note after Theorem \ref{prop:charpointHyperplane}). Given the fact that weights are bounded, $S=[0,W]$, we find that for given positions $\eta'$ there exists $W_{\eta'}>0$ such that , we have $p''_\eta \leq W_{\eta'}$ regardless of the weights.
 
-It remains to prove that $\sup_{\eta'} W_{\eta'} < \infty$, i.e. changing the points' positions can produce only bounded $p''_\eta$. This amounts to proving that the points of $\eta$ are not allowed to come arbitrarily close to (or even attain) a non-general position. This is equivalent with boundedness of the circumsphere of $\eta'$, which is proved for $\rho<1/4$ in the appendix \ref{appendix}.
+It remains to prove that $\sup_{\eta'} W_{\eta'} < \infty$, i.e. changing the points' positions can produce only bounded $p''_\eta$. This amounts to proving that the points of $\eta$ are not allowed to come arbitrarily close to (or even attain) a non-general position. This is equivalent with boundedness of the circumsphere of $\eta'$, which is proved for $\rho<1/4$ in the Appendix \ref{appendix}.
 \end{proof}
 
+\todoo[inline]{Improve references to appendix}
 
 
-\subsection{Existence propositions}\label{sec:Existence}
+
+\subsection{Existence theorems}\label{sec:Existence}
 \todoo[inline]{Specify these things as ``models'' of the form $(\mathcal D_4, \varphi_S)$.Specify the measure $\mu$ in there, too}
 In this section, we will verify the assumptions for the existence of Gibbs measures with the energy function defined on the hypergraphs $\mathcal D_4$ and $\mathcal {LD}_4$. We use the general letter $\mathcal E$ when we mean either $\mathcal D$ or $\mathcal {LD}$. Two potentials will be considered
 
@@ -254,7 +257,7 @@ In this section, we will verify the assumptions for the existence of Gibbs measu
 $$\varphi_S(\eta,\x) \leq K_0 + K_1 \delta(\eta)^{\alpha}$$
 for some $K_0,K_1 \geq 0, \alpha >0$\newline
 \textbf{Hard-core interaction}: For $\eta\in\mathcal E_4(\x)$ define the potential $\varphi_{HC}$ as an unary potential such that
-$$\sup_{\eta: d_0 \leq \delta(\eta) \leq d_1} \varphi_{HC}(\eta,\x) = < \infty \text{ and } \varphi_{HC}(\eta,\x)=\infty \text{ if } \delta(\eta)>\alpha.$$ 
+$$\sup_{\eta: d_0 \leq \delta(\eta) \leq d_1} \varphi_{HC}(\eta,\x)  < \infty \text{ and } \varphi_{HC}(\eta,\x)=\infty \text{ if } \delta(\eta)>\alpha.$$ 
 for some $0\leq d_0 < d_1 \leq \alpha$ \unsure{How exactly does this look? Why?}
 
 We assume by Assumption 1 that $\varphi_S,\varphi_{HC}\geq 0$.
@@ -272,19 +275,19 @@ We first present a general lemma. Recall the definition of $r_\Gamma$ from (U1).
 \end{proof}
 
 
-\begin{proposition}\label{prop:E1}
+\begin{theorem}\label{thm:E1}
 	There exists at least one Gibbs measure for the model $(\mathcal D_4,\varphi_S)$ and every activity 
 	$$z> \frac{3}{4\pi}e^{14 K_0}   (2K_1 \alpha e^3/3)^{1/\alpha} \frac{(\delta_1(\rho)^\alpha + \delta_2(\rho)^\alpha)^{1/\alpha}}{\rho^3}.$$
-\end{proposition}
+\end{theorem}
 \begin{proof}
 \begin{enumerate}[]
 	\item \textbf{(R)} The finite-horizon $\Lambda = \bar B(\eta,\x)$ with $\ell_R = 1, n_R = 0$ and $\delta_R$ arbitrary can be used. This is because it itself contains no points of $\x$ by definition of $\mathcal D$ and acts as the open ball from the definition of the range condition.
 	\item \textbf{(S)} Stability is satisfied because of $\varphi$ is non-negative.
 	\item \textbf{(U)} We choose $M$ and $\Gamma$ as in section \ref{sec:MGamma}.
 		\begin{enumerate}[(U1)]
-			\item We know from \ref{prop:Apollonius} that the exists $d_{max}>0$ such that $\text{diam}B(\eta)\leq d_{max}$. By lemma \ref{lemma:U1} $r_\Gamma\leq d_{max}.$
-			\item is trivially satisfied since $n_T < 58$ and $\varphi_S$ is bounded by \ref{prop:Apollonius}.
-			\item By remark \ref{r:UA} we want to find $z$ as small as possible such that $z|A|>e^{c_A}.$ We know from \ref{sec:combinatorial} that there are $8$ $T_1$ and $48$ $T_2$ tetrahedra intersecting $C$, therefore from [ref]
+			\item We know from \ref{thm:Apollonius} that the exists $d_{max}>0$ such that $\text{diam}B(\eta)\leq d_{max}$. By lemma \ref{lemma:U1} $r_\Gamma\leq d_{max}.$
+			\item is trivially satisfied since $n_T < 58$ and $\varphi_S$ is bounded by \ref{thm:Apollonius}.
+			\item By remark \ref{r:UA} we want to find $z$ as small as possible such that $z|A|>e^{c_A}.$ We know from \ref{sec:combinatorial} that there are $8$ $T_1$ and $48$ $T_2$ tetrahedra intersecting $C$, therefore from \ref{thm:Apollonius}
 				$$c_A \leq \frac a4 (8\cdot \delta_1 + 48\cdot \delta_2 )$$
 				This yield the bound
 				\begin{align*}z &> \frac{4\pi\rho^3}{3} e^{2(K_0 + K_1 (a\delta_1)^\alpha) + 12(K_0 + K_1(a \delta_2)^\alpha)} / a^3  \\
@@ -300,9 +303,9 @@ We first present a general lemma. Recall the definition of $r_\Gamma$ from (U1).
 
 
 
-\begin{proposition}\label{prop:E2}
+\begin{theorem}\label{thm:E2}
 	There exists at least one Gibbs measure for the model $(\mathcal D_4,\varphi_{HC})$ and every activity $z>0.$
-\end{proposition}
+\end{theorem}
 \begin{proof}
 \begin{enumerate}[]
 	\item \textbf{(R)} Again, $\Lambda = \bar B(\eta,\x)$ with $\ell_R = 1, n_R = 0$. Because of the hard-core condition, we can also take $\delta_R = 2\alpha$.
@@ -310,7 +313,7 @@ We first present a general lemma. Recall the definition of $r_\Gamma$ from (U1).
 	\item \textbf{(\^U)} We choose $M$ and $\Gamma$ as in section \ref{sec:MGamma}.
 		\begin{enumerate}[(\^U1)]
 			\item For all $\eta \in \mathcal D_4(\x)$ for $\x\in\Gamma^A$ such that $H_\Lambda(\x)<\infty$ we have $\delta(\eta) < \alpha$. This imposes a minimum density of points, since e.g. no ball with diameter $\alpha$ can be empty. 
-			\item We have $n_T<56$ and thus the only quantity in question is $\varphi_{HC}$. By \ref{prop:Apollonius}, we have $\delta(\eta)\leq a\delta^{max}_2(\rho)$, thus we only need to choose $a$ such that $\delta^{max}_2(\rho) \leq \alpha / a$.
+			\item We have $n_T<56$ and thus the only quantity in question is $\varphi_{HC}$. By \ref{thm:Apollonius}, we have $\delta(\eta)\leq a\delta^{max}_2(\rho)$, thus we only need to choose $a$ such that $\delta^{max}_2(\rho) \leq \alpha / a$.
 			\item $\Pi^z_\Lambda(\Gamma)>0$ by remark \ref{r:UA}.
 		\end{enumerate}
 \end{enumerate}
@@ -318,19 +321,19 @@ We first present a general lemma. Recall the definition of $r_\Gamma$ from (U1).
 
 
 
-\begin{proposition}\label{prop:E3}
+\begin{theorem}\label{thm:E3}
 	There exists at least one Gibbs measure for the model $(\mathcal {LD}_4,\varphi_S)$ and every activity 
 	$$z> \frac{3\sqrt 2}{4\pi}e^{14 K_0}   (2K_1 \alpha e^{7/2}/(7/2))^{1/\alpha} \frac{(\delta_1(\rho)^\alpha + \delta_2(\rho)^\alpha)^{1/\alpha}}{\rho^3 \sqrt{1-2\rho}}.$$
-\end{proposition}
+\end{theorem}
 \begin{proof}
 \begin{enumerate}[]
 	\item \textbf{(R)} Take the horizon set $\Delta = B(p'_\eta, \sqrt{p''_\eta + W})$. $\Delta$ can be decomposed into the sphere $p_\eta$ and $\Delta \setminus p_\eta$, a 3-dimensional annulus with width $\sqrt{p''_\eta+W} -\sqrt{p''_\eta}=W/(\sqrt{p''_\eta+W} + \sqrt{p''_\eta})$. By definition of $\mathcal {LD}$ and remark, $p_\eta$  cannot contain any points of $\x$. \todoo{Ugly line placements, improve} Although the annulus $\Delta \setminus p_\eta$ does not have any bound on the number of points, its width is bounded by $\sqrt W \geq  W/(\sqrt{p''_\eta+W} + \sqrt{p''_\eta})$. This means that any $x,y\in \Delta$ can be connected by the spheres $B(x,\sqrt W), p_\eta, B(y,\sqrt W)$, yielding the parameters $\ell_R = 3,n_R=0,\delta_R=2\sqrt W$.
 	\item \textbf{(S)} Stability is satisfied because of $\varphi$ is non-negative.
 	\item \textbf{(U)} We choose $M$ and $\Gamma$ as in section \ref{sec:MGamma}.
 		\begin{enumerate}[(U1)]
-			\item By proposition \ref{prop:maxPeta} there is $C>0$ such that $p''_\eta\leq C$ for all $\eta \in \mathcal {LD}_4(\x), \x \in \bar\Gamma^A$. By lemma \ref{lemma:U1} we have $r_\Gamma\leq \sqrt{C + W}$.
+			\item By Theorem \ref{prop:maxPeta} there is $C>0$ such that $p''_\eta\leq C$ for all $\eta \in \mathcal {LD}_4(\x), \x \in \bar\Gamma^A$. By lemma \ref{lemma:U1} we have $r_\Gamma\leq \sqrt{C + W}$.
 			\item is trivial since $n_T<56$ and $\varphi_{S}$ is bounded by \ref{sec:combinatorial}.
-			\item We proceed similarly as in \ref{prop:E1} and obtain
+			\item We proceed similarly as in \ref{thm:E1} and obtain
 				$$z>C_0 e^{C_1 a^\alpha} / a^{7/2}$$
 				where $C_0=3 \sqrt 2 e^{14K_0} / (4\pi \rho^2 \sqrt{1-2\rho})$, $C_1 = 2K_1(\delta_1^\alpha + 6\delta_2^\alpha)$. Optimizing over $a$ we obtain $a=(7/(2C_1\alpha))^{1/\alpha}$ arriving at the bound
 				$$z> C_0 (C_1 \alpha e^{7/2} / (7/2))^{1/\alpha}.$$
@@ -340,17 +343,17 @@ We first present a general lemma. Recall the definition of $r_\Gamma$ from (U1).
 
 
 
-\begin{proposition}\label{prop:E4}
-	There exists at least one Gibbs measure for the model $(\mathcal D_4,\varphi_S)$ and every activity $$z>0.$$
-\end{proposition}
+\begin{theorem}\label{thm:E4}
+	There exists at least one Gibbs measure for the model $(\mathcal {LD}_4,\varphi_{HC})$ and every activity $$z>0.$$
+\end{theorem}
 \begin{proof}
 \begin{enumerate}[]
-	\item \textbf{(R)} The horizon set is $\Delta = B(p'_\eta,\sqrt{p''_\eta +W})$. Parameters can be chosen as in proposition 3. \unsure{Is it a problem that there's no $n_R$ circle? Cause the proof suggested something like that?}
+	\item \textbf{(R)} The horizon set is $\Delta = B(p'_\eta,\sqrt{p''_\eta +W})$. Parameters can be chosen as in Theorem \ref{thm:E3}. \unsure{Is it a problem that there's no $n_R$ circle? Cause the proof suggested something like that?}
 	\item \textbf{(S)} Stability is satisfied because of $\varphi$ is non-negative.
 	\item \textbf{(U)} We choose $M$ and $\Gamma$ as in section \ref{sec:MGamma}.
 		\begin{enumerate}[(U1)]
-			\item Same as in proposition \ref{prop:E2}. Although the underlying structure is different, the potential still depends on $\delta(\eta)$ and (\^U1) requires the configuration to have non-infinite energy.
-			\item Same as in proposition \ref{prop:E2}, $n_T<56$ and we choose an appropriate $a$.
+			\item Same as in Theorem \ref{thm:E2}. Although the underlying structure is different, the potential still depends on $\delta(\eta)$ and (\^U1) requires the configuration to have non-infinite energy.
+			\item Same as in Theorem \ref{thm:E2}, $n_T<56$ and we choose an appropriate $a$.
 			\item $\Pi^z_\Lambda(\Gamma)>0$ by remark \ref{r:UA}
 		\end{enumerate}
 \end{enumerate}
@@ -363,3 +366,7 @@ We first present a general lemma. Recall the definition of $r_\Gamma$ from (U1).
 \note[inline]{Directly obtainable results: 1) Smooth interaction for other unary potentials such as $k$-facet volume (use Hadamard inequality to bound them). 2) Adding additional constraints to hardcore models as long as we can find $a$ to satisfy the constraints.}
 \end{remark}
 
+
+\begin{remark}[Concrete values of $z$]
+	\tbd
+\end{remark}

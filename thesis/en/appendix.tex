@@ -1,7 +1,7 @@
 \appendix
 
 \chapter{Appendix: Geometry}\label{appendix}
-This appendix investigates some facts and proposition about geometry in $\mathbb R^3$. Since marked points are not present here, the dashed notation introduced in chapter \ref{ch:1} will be dropped.
+This appendix investigates some facts and proposition about geometry in $\mathbb R^3$. Since marked points are not present here, the dashed notation introduced in Chapter \ref{ch:1} will be dropped.
 
 \problem[inline]{This chapter needs better notation. E.g. $S(p_1,p_2,p_3,p_4)$ for a sphere defined by those points, etc.}
 \section{Calculating the circumdiameter}
@@ -17,7 +17,7 @@ $$
 1 & 0 & d^2_{12} & d^2_{13} & d^2_{14} & d^2_{15} \\
 1 & d^2_{21} & 0 & d^2_{23} & d^2_{24} & d^2_{25}  \\
 1 & d^2_{31} & d^2_{32} & 0 & d^2_{34} & d^2_{35} \\ 
-1 & d^2_{41} & d^2_{42} & d^2_{43} & 0 & d^2_{44} \\
+1 & d^2_{41} & d^2_{42} & d^2_{43} & 0 & d^2_{45} \\
 1 & d^2_{51} & d^2_{52} & d^2_{53} & d^2_{54} & 0 
 \end{vmatrix} 
 $$
@@ -102,7 +102,8 @@ It is worth noting that the determinant in the quotient cannot equal zero, since
 
 
 \section{Bounding the circumdiameter}
-This section proves the bound used in [ref].
+\todoo[inline]{Say a bit more about what this is}
+This section proves the bound used in Theorems \ref{thm:E1} \ref{thm:E2} \ref{thm:E3} \ref{thm:E4} and Proposition \ref{prop:maxPeta}. 
 
 \subsection{Statement of the problem}
 
@@ -121,8 +122,8 @@ The problem of founding the bounds can be stated as the following two optimizati
 
 \noindent To state the problem for the tetrahedron $T_2$, first denote 
 $$D = \begin{pmatrix}
-0 & \sqrt a & a & a \\
-\sqrt a & 0 & a & a \\
+0 & \sqrt 2  a & a & a \\
+\sqrt 2 a & 0 & a & a \\
 a & a & 0 & a\\
 a & a & a & 0
 \end{pmatrix},
@@ -187,7 +188,7 @@ Such choice is possible due to continuity of $c(p)$. Yet we arrive at a contradi
 
 Assume now that $p_1 \in \partial B(t_1,\rho a)=: S_1$. We now choose $p_I$ and $p_O$ with the additional requirement that they must both lie on $\partial B(t_1,\rho a)$. Such choise is not possible precisely when $S_1$ and $S$ are tangent, since then \todoo{Make sure "inside" a sphere has a clear meaning} $S_1$ lies either completely inside or outside $S$ and it is no longer possible to choose points both outside and inside. 
 \end{proof}
-\unsure{Is this a good way of proceeding?}Note that proposition \ref{prop:ApolloniusSet} is formulated for problem \ref{prob:tetra1}. However, we could repeat the same exact argument for \ref{prob:tetra2} and thus the same holds for both problems.\newline
+\unsure{Is this a good way of proceeding?}Note that Proposition \ref{prop:ApolloniusSet} is formulated for problem \ref{prob:tetra1}. However, we could repeat the same exact argument for \ref{prob:tetra2} and thus the same holds for both problems.\newline
 
 We have found that the solutions to \ref{prob:tetra1} and \ref{prob:tetra2} must lie on a sphere that tangent to the spheres within which points can move. This is a dramatic improvement --- we have narrowed the previously infinite space of possible solutions down to just $2^4=16$ possible quadruples of points (and even less beacause of symmetries). We also note that the set of solutions to our problem is precisely the set of solutions of a three-dimensional equivalent of the more than two thousand years old \todoo{Encoding problem} \textbf{Apollonius problem} 
 % \cite{GischRibando2006}.
@@ -220,14 +221,14 @@ Sadly, for most choices of $+$ and $-$, these equations still seem to be too com
 
 \subsubsection{Solving the equations \ref{eq:Apollonius} by linearizing}
 
-We formulate the solution as a proposition.
-\begin{proposition}\label{prop:Apollonius}
+We formulate the solution as a theorem.
+\begin{theorem}\label{thm:Apollonius}
 	For $\rho < 1/(2\sqrt 6)$, the maximum in \ref{prob:tetra1} is
 	$$\delta_1 := 2a(\sqrt 6/4 + \rho).$$
 	For $\rho < 1/4$, the maximum in \ref{prob:tetra2} is
 	$$\delta_2 := 2a \frac{2\rho + \sqrt{2 - 32\rho^2 + 64 \rho^4}}{2-32\rho^2}.$$
 
-\end{proposition}
+\end{theorem}
 \begin{proof}
 	Recall that the solution must lie on a sphere solving the equations \ref{eq:Apollonius}. We must therefore solve them and find the solution with the largest circumdiameter.
 
@@ -243,7 +244,7 @@ This system can be solved to obtain expression of $x,y,z$ in terms of $r$. We th
 We have used Wolfram Mathematica \cite{Mathematica} to find the solutions. The full implementation can be found in the file \texttt{ApolloniusProblem.nb}. By comparing the circumdiameters of the solutions, we obtain the proposition.
 
 \end{proof}
-All the solutions for the choice $a=1$ can be seen in figures \ref{fig:Apollonius1} and \ref{fig:Apollonius2}. We can see that for $T_1, \rho < 1/\sqrt 6$, we have the two solutions
+All the solutions for the choice $a=1$ can be seen in Figures \ref{fig:Apollonius1} and \ref{fig:Apollonius2}. We can see that for $T_1, \rho < 1/\sqrt 6$, we have the two solutions
 $$a(\sqrt 6 / 4 + \rho), a \frac{\rho - \sqrt 6 (4\rho^2 - 1)}{4-24 \rho^2}$$
 which itersect at $\rho =1/(2\sqrt 6)$. 
 

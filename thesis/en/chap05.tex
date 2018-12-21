@@ -1,44 +1,39 @@
 \chapter{Estimation}
-\section{Maximum pseudolikelihood}
-Assume now that we obtain the point configuration $\gamma$ on the observation window $\Lambda_n = [-n,n]^3\times W$ and wish to estimate the model parameters.
-\unsure[inline]{Boundary problems. Do they simply exist because we're assuming to *only* know the configuration on $\Lambda_n$?}
-The estimation procedure closely follows that from~\cite{DL10}. That is a two-step approach, first estimating the hardcore parameters $\beta = (\epsilon,\alpha)$ and then using the estimates to obtain the estimate of $\theta$ through maximum pseudolikelihood (MPLE). 
-\unsure[inline]{What exactly is the role of the growing window in~\cite{DL10}?}
-\subsection{Estimation of the hardcore parameters}
-Thanks to the \unsure{\cite{DL10} has this the other way around?}fact that the hardcore parameter $\epsilon$ satisfies
-$$ \text{if } \epsilon > \epsilon' \text{ then  } \forall \Lambda, \; E^{\epsilon, \alpha,\theta}_\Lambda(\gamma_\Lambda,\gamma_{\Lambda^c}) < \infty \Rightarrow  E^{\epsilon',\alpha,\theta}_\Lambda(\gamma_\Lambda,\gamma_{\Lambda^c})<\infty,$$ 
+Assume now that we obtain the point configuration $\gamma$ from model $(\varphi^{\theta,\alpha}_{HC},\mathcal {LD}_4)$ on the observation window $\Lambda^M_n = [-n,n]^3\times S$ and wish to estimate the model parameters $(\theta,\alpha)$. We use the superscript $M$ in $\Lambda^M_n$ to differentiate from the unmarked window.
 
-and the hardcore parameter $\alpha$ satisfies
+The estimation procedure closely follows that from~\cite{DereudreLavancier2010}. That is a two-step approach, first estimating the hardcore parameter $\alpha$ and then using the estimates to obtain the estimate of $\theta$ through maximum pseudolikelihood (MPLE). 
 
-$$ \text{if } \alpha < \alpha' \text{ then  } \forall \Lambda, \; E^{\epsilon,\alpha,\theta}_\Lambda(\gamma_\Lambda,\gamma_{\Lambda^c}) < \infty \Rightarrow  E^{\epsilon,\alpha',\theta}_\Lambda(\gamma_\Lambda,\gamma_{\Lambda^c})<\infty,$$ 
+To underscore the dependence on the maximum circumdiameter $\alpha$ and smooth interaction parameter $\theta$, we now denote the energy $H^{\theta,\alpha}$.
+\section{Estimation of the hardcore parameter}
+In the first step we estimate the hardcore parameter $\alpha$. 
+ Thanks to the fact that the hardcore parameter $\alpha$ satisfies
 
-their consistent estimators are:
-$$\hat\epsilon = \inf\{\epsilon > 0, E_\Lambda(\gamma_\Lambda, \gamma_\Lambda^c) < \infty \},$$
-$$\hat\alpha = \sup\{\alpha > 0, E_\Lambda(\gamma_\Lambda, \gamma_\Lambda^c) < \infty \}.$$
+ $$ \text{if } \alpha < \alpha' \text{ then  } \forall \Lambda \in \mathcal B_0(\Rt), \; H^{\theta,\alpha}_\Lambda(\gamma) < \infty \Rightarrow  H^{\theta,\alpha'}_\Lambda(\gamma)<\infty,$$ 
 
-\unsure{Are these consistent? Why?}In practice, the parameters are estimated as
-$$\hat\epsilon = \min\{a(T), T\in Del_\Lambda(\gamma)\},$$
-$$\hat\alpha = \max\{r(T), T\in Del_\Lambda(\gamma)\}.$$
+we can estimate it as
+$$\hat\alpha = \sup\{\alpha > 0, H^{\theta,\alpha}_\Lambda(\gamma) < \infty \}.$$
 
-The estimate $\hat\beta = (\hat\epsilon,\hat\alpha)$ is then used in the pseudo-likelihood function in the second estimation step.
+\unsure{Are these consistent? Why?}In practice, the parameter can be estimated as
+$$\hat\alpha = \max\{\delta(\eta), \eta\in \mathcal {LD}_{4\Lambda}(\gamma)\}.$$
+
+The estimate $\hat\alpha$ is then used in the pseudo-likelihood function in the second estimation step.
 
 
-\subsection{Estimation of the smooth interaction parameters}
+\section{Estimation of the smooth interaction parameters}
+In the second step we estimate the smooth interaction parameters through maximum pseudolikelihood.
+\todoo[inline]{Improve handling of the Models - as of now they're sort of scattered}
 \todoo[inline]{Equation references}
+The classical version of MPLE requires hereditarity of the energy function. Hereditarity means that for every permissible $\gamma$, the point pattern $\gamma\setminus\{x\}$ remains permissible for every $x\in\gamma$, see Section \ref{sec:energyfunction} for definition and discussion. The hardcore interaction in the model $(\mathcal {LD}_4,\varphi_HC)$\todoo{again, references, clear model definitions,..} does not satisfy this condition. For that purpose, Section \ref{sec-non-hereditarity} presented the extension to the non-hereditary case from \cite{DereudreLavancier2007}. 
 
-
-The classical version of MPLE requires hereditarity of the interactions. Hereditarity means that for every permissible $\gamma$, the point pattern $\gamma\setminus\{x\}$ remains permissible for every $x\in\gamma$, that is any point can be removed from the point pattern. The hardcore interaction in the model \ref{model} does not satisfy this condition. However,~\cite{DL07} \unsure{How does it relate to my case, exactly?}extends MPLE to the non-hereditary case. 
-
-Since some points cannot be removed from the tessellation, we need to introduce the notion of a removable points. A point $x\in\gamma$ is \note{The definition in~\cite{DL07} is actually different and this is given as a proposition.}\unsure{Is there any reason to define it the way~\cite{DL07} does?}removable in $\gamma$ iff $\gamma\setminus\{x\}$ is permissible. We denote $\mathcal R^\beta(\gamma)$ the set of removable points of $\gamma$. Similarly the notion of an addable point will be useful. A point $x\in\gamma$ is addable in $\gamma$ iff $\gamma \cup \{x\}$ is permissible.
-
+Recall that a point $x\in\gamma$ is removable in a configuration $\gamma\in\mathbf N_{lf}$ if $\gamma\setminus\{x\}$ is permissible. We denote $\mathcal R^\alpha(\gamma)$ the set of removable points of $\gamma$. Similarly the notion of an addable point will be useful. A point $x\in\gamma$ is \textit{addable} in $\gamma$ if $\gamma \cup \{x\}$ is permissible and we denote $\mathcal A^\alpha(gamma)$.
 
 In the non-hereditary case, the pseudo-likelihood function then becomes:
 
 \begin{equation}\label{PLL}
-PLL_{\Lambda_n}(\gamma,z,\beta, \theta) = \int_{\Lambda'_n} z \exp (-h^{\beta,\theta}(x,\gamma)) dx + \sum_{x\in\mathcal R^\beta(\gamma)\cap \Lambda_n} \big(h^{\beta,\theta}(x,\gamma\setminus\{x\}) - \ln(z)\big),
+	PLL_{\Lambda_n}(\gamma,z,\theta, \alpha) = \int_{\mathcal A^\alpha(\gamma)\cap (\Lambda_n\times S)} z \exp (-h^{\theta,\alpha}(x,\gamma)) dx + \sum_{x\in\mathcal R^\beta(\gamma)\cap (\Lambda_n\times S} \big(h^{\theta,\alpha}(x,\gamma\setminus\{x\}) - \ln(z)\big),
 \end{equation}
-where $\Lambda'_n$ is the set of all addable points in $\Lambda_n$ and $h^{\beta,\theta}(x, \gamma \setminus \{x\})$ is \note{Connection between this and Papangelou could be useful}local energy of $x$ in $\gamma$ defined for every $x\in\mathcal R^\beta(\gamma)$ by:
-$$h^{\beta,\theta}(x, \gamma \setminus \{x\}) = E^{\beta,\theta}_\Lambda(\gamma_\Lambda, \gamma_{\Lambda^c}) - E^{\beta,\theta}_\Lambda(\gamma_\Lambda\setminus\{x\}, \gamma_{\Lambda^c}).$$
+where $\Lambda'_n$ is the set of all addable points in $\Lambda_n$ and $h^{\theta,\alpha}(x, \gamma \setminus \{x\})$ is \note{Connection between this and Papangelou could be useful}local energy of $x$ in $\gamma$ defined for every $x\in\mathcal R^\beta(\gamma)$ by:
+$$h^{\theta,\alpha}(x, \gamma \setminus \{x\}) = E^{\theta,\alpha}_\Lambda(\gamma_\Lambda, \gamma_{\Lambda^c}) - E^{\theta,\alpha}_\Lambda(\gamma_\Lambda\setminus\{x\}, \gamma_{\Lambda^c}).$$
 
 The estimates $\hat\theta$ and $\hat z$ are obtained through minimizing the $PLL_{\Lambda_n}$ function \ref{PLL}:
 $$(\hat z, \hat\theta) = \text{argmin}_{z,\theta} PLL_{\Lambda_n} (\gamma, z, \hat\beta,\theta).$$
@@ -57,7 +52,7 @@ where we have used the fact that the local energy depends on $\theta$ linearly, 
 
 $$\frac{\partial h^{\hat\beta,\theta}}{\partial \theta} (x,\gamma) = h^{\hat\beta,1}(x,\gamma).$$
 
-\subsubsection{Practical implementation}
+\subsection{Practical implementation}
 We obtain the estimate of $\theta$ by substituting the expression for $\hat z$ \ref{z_hat} into \ref{theta_hat}.
 This leads to the equation
 $$ 
@@ -79,5 +74,5 @@ where $h_i = h^{\hat\beta,1}(x_i, \gamma)$ and $x_1,\dots,x_N$ is a random sampl
 After $\hat\theta$ is estimated, we then obtain the estimate $\hat z$ with $\hat\theta$ instead of $\theta$ and the integral replaced by a MC-integration approximation.
 
 
-\subsection{Consistency}
+\section{Consistency}
 \tbd
