@@ -1,5 +1,5 @@
 \chapter{Estimation}
-Assume now that we obtain the point configuration $\gamma$ from model $(\varphi^{\theta,\alpha}_{HC},\mathcal {LD}_4)$ on the observation window $\Lambda_n = [-n,n]^3$ and wish to estimate the model parameters $(z,\theta,\alpha)$.  
+Assume now that we obtain the point configuration $\gamma$ from model $(\varphi^{\theta,\alpha}_{HC},\mathcal {LD}_4)$ on the observation window $\Lambda_n = [-n,n]^3$ and wish to estimate the model parameters $(z,\theta,\alpha)$. To simplify the notation, we introduce the set $\Lambda^S_n = \Lambda_n \times S$.
 
 The estimation procedure closely follows that from~\cite{DereudreLavancier2010}. That is a two-step approach, first estimating the hardcore parameter $\alpha$ and then using the estimates to obtain the estimates of $\theta$ and $z$ through maximum pseudolikelihood (MPLE). 
 
@@ -26,13 +26,12 @@ In the second step we estimate the smooth interaction parameters through maximum
 \todoo[inline]{Equation references}
 The classical version of MPLE requires hereditarity of the energy function. Hereditarity means that for every permissible $\gamma$, the point pattern $\gamma\setminus\{x\}$ remains permissible for every $x\in\gamma$, see Section \ref{sec:energyfunction} for definition and discussion. The hardcore interaction in the model $(\mathcal {LD}_4,\varphi_HC)$\todoo{again, references, clear model definitions,..} does not satisfy this condition. For that purpose, Section \ref{sec:non-hereditary} presented the extension to the non-hereditary case from \cite{DereudreLavancier2007}. 
 
-Recall that a point $x\in\gamma$ is removable in a configuration $\gamma\in\mathbf N_{lf}$ if $\gamma\setminus\{x\}$ is permissible. We denote $\mathcal R^\alpha(\gamma)$ the set of removable points of $\gamma$. Similarly the notion of an addable point will be useful. A point $x\in\gamma$ is \textit{addable} in $\gamma$ if $\gamma \cup \{x\}$ is permissible and we denote $\mathcal A^\alpha(\gamma)$.
+Recall that a point $x\in\gamma$ is removable in a configuration $\gamma\in\mathbf N_{lf}$ if $\gamma\setminus\{x\}$ is permissible. We denote $\mathcal R^\alpha(\gamma)$ the set of removable points of $\gamma$. Similarly the notion of an addable point will be useful. A point $x\in\gamma$ is \textit{addable} in $\gamma$ if $\gamma \cup \{x\}$ is permissible and we denote $\tilde\Lambda^S_n$ the set of addable points in $\Lambda^S_n$. 
 
 In the non-hereditary case, the pseudo-likelihood function then becomes:
 
-\todoo[inline]{Can the notation be improved? This is clunky}
 \begin{equation}\label{PLL}
-	PLL_{\Lambda_n}(\gamma,z,\theta, \alpha) = \int_{\Lambda_n\times S} 1_{\mathcal A^\alpha(\gamma)}(x) z \exp (-h^{\theta,\alpha}(x,\gamma)) dx + \sum_{x\in\mathcal R^\alpha(\gamma)\cap (\Lambda_n\times S)} \big(h^{\theta,\alpha}(x,\gamma\setminus\{x\}) - \ln(z)\big),
+	PLL_{\Lambda_n}(\gamma,z,\theta, \alpha) = \int_{\tilde\Lambda^S_n} z \exp (-h^{\theta,\alpha}(x,\gamma)) dx + \sum_{x\in\mathcal R^\alpha(\gamma)\cap \Lambda^S_n} \big(h^{\theta,\alpha}(x,\gamma\setminus\{x\}) - \ln(z)\big),
 \end{equation}
 \todoo[inline]{Connect it to GNZ}
 where $h^{\theta,\alpha}(x, \gamma \setminus \{x\})$ is local energy of $x$ in $\gamma$ defined in \ref{def:localenergy}. 
@@ -43,12 +42,12 @@ $$(\hat z, \hat\theta) = \text{argmin}_{z,\theta} PLL_{\Lambda_n} (\gamma, z, \h
 By \unsure{Is the function convex?} differentiating the PLL function \ref{PLL} with respect to $z$, respectivelly $\theta$, and setting them equal to zero, we obtain the estimate for $\hat z$,
 
 \begin{equation}\label{z_hat}
-	\hat z = \frac{\mbox{card}(\mathcal R^{\hat\alpha}(\gamma)\cap (\Lambda_n\times S))}{\int_{\Lambda_n\times S} \exp{\left( -h^{\hat\alpha,\theta}(x,\gamma)\right)} dx},
+	\hat z = \frac{\mbox{card}(\mathcal R^{\hat\alpha}(\gamma)\cap \Lambda^S_n)}{\int_{\Lambda^S_n} \exp{\left( -h^{\hat\alpha,\theta}(x,\gamma)\right)} dx},
 \end{equation}
 and the estimate $\hat\theta$ as the solution of
 
 \begin{equation}\label{theta_hat} 
-	z \int_{\Lambda_n\times S} 1_{\mathcal A^\alpha(\gamma)}(x) (h^{\hat\alpha,1}(x,\gamma)\exp{\left(-h^{\hat\alpha,\theta}(x,\gamma)\right)}) dx = \sum_{x \in \mathcal R^{\hat\alpha}(\gamma)\cap (\Lambda_n\times S)} h^{\hat\alpha,1}(x,\gamma\setminus\{x\}),
+	z \int_{\tilde\Lambda^S_n}  h^{\hat\alpha,1}(x,\gamma)\exp{\left(-h^{\hat\alpha,\theta}(x,\gamma)\right)} dx = \sum_{x \in \mathcal R^{\hat\alpha}(\gamma)\cap \Lambda^S_n} h^{\hat\alpha,1}(x,\gamma\setminus\{x\}),
 \end{equation}
 where we have used the fact that the local energy depends on $\theta$ linearly, yielding
 
@@ -58,19 +57,19 @@ $$\frac{\partial h^{\hat\alpha,\theta}}{\partial \theta} (x,\gamma) = h^{\hat\al
 We obtain the estimate of $\theta$ by substituting the expression for $\hat z$ (\ref{z_hat}) into \ref{theta_hat}.
 This leads to the equation
 $$ 
-\frac{\int_{\Lambda_n\times S} 1_{\mathcal A^\alpha (\gamma)}(x) (h^{\hat\alpha,1}(x,\gamma)\exp{\left(-h^{\hat\alpha,\theta}(x,\gamma)\right)}) dx} {  \int_{\Lambda_n\times S} \exp{\left( -h^{\hat\alpha,\theta}(x,\gamma)\right)} dx} 
-= \frac {\sum_{x \in \mathcal R^{\hat\alpha}(\gamma)\cap (\Lambda_n\times S)} h^{\hat\alpha,1}(x,\gamma\setminus\{x\})} { \mbox{card}(\mathcal R^{\hat\alpha}(\gamma)\cap (\Lambda_n\times S)) }. 
+\frac{\int_{\tilde\Lambda^S_n}  h^{\hat\alpha,1}(x,\gamma)\exp{\left(-h^{\hat\alpha,\theta}(x,\gamma)\right)} dx} {  \int_{\Lambda^S_n} \exp{\left( -h^{\hat\alpha,\theta}(x,\gamma)\right)} dx} 
+= \frac {\sum_{x \in \mathcal R^{\hat\alpha}(\gamma)\cap \Lambda^S_n} h^{\hat\alpha,1}(x,\gamma\setminus\{x\})} { \mbox{card}(\mathcal R^{\hat\alpha}(\gamma)\cap \Lambda^S_n) }. 
 $$
 
-In order to simplify the estimation of $\theta$, we can simplify this equation further. First, we denote the righ-hand-side of the equation as $c$ as it  is constant with respect to $\theta$. Second, we note that $x \notin \mathcal A^\alpha(\gamma)\cap(\Lambda_n\times S)  \Rightarrow \exp{\left(-h^{\hat\alpha,\theta}(x,\gamma)\right)}= 0$ which enables us to integrate over $\mathcal A^{\hat\alpha}(\gamma) \cap (\Lambda_n\times S)$ instead of the whole window $\Lambda_n\times S$. Lastly we denote the local energy $h^{\hat\alpha,1}(x,\gamma) =: h(x)$, yielding the expression
-$$ \int_{\Lambda_n\times S} 1_{\mathcal A^\alpha (\gamma)}(x)h(x) \exp{\left(-\theta h(x)\right)} dx = c \int_{\Lambda_n\times S} 1_{\mathcal A^\alpha (\gamma)}(x)\exp{\left(-\theta h(x)\right)}\;dx, $$
+In order to simplify the estimation of $\theta$, we can simplify this equation further. First, we denote the righ-hand-side of the equation as $c$ as it  is constant with respect to $\theta$. Second, we note that $x \notin \mathcal A^\alpha(\gamma)\cap\tilde\Lambda^S_n  \Rightarrow \exp{\left(-h^{\hat\alpha,\theta}(x,\gamma)\right)}= 0$ which enables us to integrate over $\tilde\Lambda^S_n$ instead of the whole window $\Lambda^S_n$. Lastly we denote the local energy $h^{\hat\alpha,1}(x,\gamma) =: h(x)$, yielding the expression
+$$ \int_{\tilde\Lambda^S_n} h(x) \exp{\left(-\theta h(x)\right)} dx = c \int_{\tilde\Lambda^S_n} \exp{\left(-\theta h(x)\right)}\;dx, $$
 leading into the final equation
 \begin{equation}\label{hat_theta_final} 
-\int_{\Lambda_n\times S} 1_{\mathcal A^\alpha (\gamma)}(x)\exp{\left(-\theta h(x)\right)} (h(x) - c) dx .
+\int_{\tilde\Lambda^S_n} \exp{\left(-\theta h(x)\right)} (h(x) - c) dx .
 \end{equation}
 
 The integral \ref{hat_theta_final} is estimated using Monte-Carlo integration, i.e. is approximately equal to
-$$ \frac 1N \sum_{i=0}^N 1_{1_{\mathcal A^\alpha (\gamma)}(x)\cap(\Lambda_n\times S)}(x_i) \exp{\left( - \theta h_i \right )} (h_i- c) dx $$
+$$ \frac 1N \sum_{i=0}^N 1_{\tilde\Lambda^S_n}(x_i) \exp{\left( - \theta h_i \right )} (h_i- c) dx $$
 where $h_i = h^{\hat\alpha,1}(x_i, \gamma)$ and $x_1,\dots,x_N$ is a random sample from the \unsure{Do we need the indicator function if we're only sampling from $\Lambda'_n$ ?}uniform distribution on $\Lambda'_n$
 
 After $\hat\theta$ is estimated, we then obtain the estimate $\hat z$ with $\hat\theta$ instead of $\theta$ and the integral replaced by a Monte-cardlo integration approximation.
