@@ -1,5 +1,5 @@
 \chapter{Estimation}
-Assume now that we obtain the point configuration $\gamma$ from model $(\varphi^{\theta,\alpha}_{HC},\mathcal {LD}_4)$ on the observation window $\Lambda^M_n = [-n,n]^3\times S$ and wish to estimate the model parameters $(\theta,\alpha)$. We use the superscript $M$ in $\Lambda^M_n$ to differentiate from the unmarked window.
+Assume now that we obtain the point configuration $\gamma$ from model $(\varphi^{\theta,\alpha}_{HC},\mathcal {LD}_4)$ on the observation window $\Lambda_n = [-n,n]^3$ and wish to estimate the model parameters $(\theta,\alpha)$.  
 
 The estimation procedure closely follows that from~\cite{DereudreLavancier2010}. That is a two-step approach, first estimating the hardcore parameter $\alpha$ and then using the estimates to obtain the estimate of $\theta$ through maximum pseudolikelihood (MPLE). 
 
@@ -25,12 +25,12 @@ In the second step we estimate the smooth interaction parameters through maximum
 \todoo[inline]{Equation references}
 The classical version of MPLE requires hereditarity of the energy function. Hereditarity means that for every permissible $\gamma$, the point pattern $\gamma\setminus\{x\}$ remains permissible for every $x\in\gamma$, see Section \ref{sec:energyfunction} for definition and discussion. The hardcore interaction in the model $(\mathcal {LD}_4,\varphi_HC)$\todoo{again, references, clear model definitions,..} does not satisfy this condition. For that purpose, Section \ref{sec-non-hereditarity} presented the extension to the non-hereditary case from \cite{DereudreLavancier2007}. 
 
-Recall that a point $x\in\gamma$ is removable in a configuration $\gamma\in\mathbf N_{lf}$ if $\gamma\setminus\{x\}$ is permissible. We denote $\mathcal R^\alpha(\gamma)$ the set of removable points of $\gamma$. Similarly the notion of an addable point will be useful. A point $x\in\gamma$ is \textit{addable} in $\gamma$ if $\gamma \cup \{x\}$ is permissible and we denote $\mathcal A^\alpha(gamma)$.
+Recall that a point $x\in\gamma$ is removable in a configuration $\gamma\in\mathbf N_{lf}$ if $\gamma\setminus\{x\}$ is permissible. We denote $\mathcal R^\alpha(\gamma)$ the set of removable points of $\gamma$. Similarly the notion of an addable point will be useful. A point $x\in\gamma$ is \textit{addable} in $\gamma$ if $\gamma \cup \{x\}$ is permissible and we denote $\mathcal A^\alpha(\gamma)$.
 
 In the non-hereditary case, the pseudo-likelihood function then becomes:
 
 \begin{equation}\label{PLL}
-	PLL_{\Lambda_n}(\gamma,z,\theta, \alpha) = \int_{\mathcal A^\alpha(\gamma)\cap (\Lambda_n\times S)} z \exp (-h^{\theta,\alpha}(x,\gamma)) dx + \sum_{x\in\mathcal R^\beta(\gamma)\cap (\Lambda_n\times S} \big(h^{\theta,\alpha}(x,\gamma\setminus\{x\}) - \ln(z)\big),
+	PLL_{\Lambda_n}(\gamma,z,\theta, \alpha) = \int_{\Lambda_n\times S} 1_{\mathcal A^\alpha(\gamma)} z \exp (-h^{\theta,\alpha}(x,\gamma)) dx + \sum_{x\in\mathcal R^\beta(\gamma)\cap (\Lambda_n\times S)} \big(h^{\theta,\alpha}(x,\gamma\setminus\{x\}) - \ln(z)\big),
 \end{equation}
 where $\Lambda'_n$ is the set of all addable points in $\Lambda_n$ and $h^{\theta,\alpha}(x, \gamma \setminus \{x\})$ is \note{Connection between this and Papangelou could be useful}local energy of $x$ in $\gamma$ defined for every $x\in\mathcal R^\beta(\gamma)$ by:
 $$h^{\theta,\alpha}(x, \gamma \setminus \{x\}) = E^{\theta,\alpha}_\Lambda(\gamma_\Lambda, \gamma_{\Lambda^c}) - E^{\theta,\alpha}_\Lambda(\gamma_\Lambda\setminus\{x\}, \gamma_{\Lambda^c}).$$
