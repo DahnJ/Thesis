@@ -31,12 +31,12 @@ The first thing to note that when $\varphi$ is non-negative, then we can simply 
 \subsubsection{Stability in $\mathbb R^3$}
 \tbd
 \note[inline]{Possibly move the discussion to an appendix}
-\note[inline]{Could we at least use spread for gibbs with limited distance between points?}
+\note[inline]{Could we at least use spread for Gibbs with limited distance between points?}
 
 \noindent \textbf{Assumption 1}: All hyperedge potentials in the remained of this text are assumed to be non-negative.
 
 \subsection{Range condition} \label{sec:range}
-As stated previously, the fact that the hyergraph structures posses a type of locality property is crucial for the existence of Gibbs measures. The simplest such assumption is the \textit{finite range} assumption, see Definition 7 in \cite{Dereudre2017}, which roughly states that there exists $R>0$ such that the energy of $\x$ in $\Lambda$ only depends on points in $\Lambda + b(0,R)$. This is a strong assumption and one that is not fulfilled by our models. 
+As stated previously, the fact that the hypergraph structures posses a type of locality property is crucial for the existence of Gibbs measures. The simplest such assumption is the \textit{finite range} assumption, see Definition 7 in \cite{Dereudre2017}, which roughly states that there exists $R>0$ such that the energy of $\x$ in $\Lambda$ only depends on points in $\Lambda + b(0,R)$. This is a strong assumption and one that is not fulfilled by our models. 
 
 This is reflected in part in the range condition introduced here and later in the uniform confinement condition \ref{eq:U1}.
 
@@ -153,7 +153,7 @@ in order for balls to never overlap \unsure{This is perhaps unnecessarily conser
 
 \subsection{Geometric properties of the tetrahedrizations defined by $\Gamma^A$ and $M$}
 \problem[inline]{Am I talking about tetrahedrization or hypergraph? Check and unify this}
-To understand the advantage of the particular choice of $M$ and $\Gamma^A$ we first turn to the two-dimensional case. For $\mathbb R^2$, the two column vectors with angle $\pi/3$ define a triangulation made of equilateral triangles. Depending on the bound for $\rho$, the points never become collinear ($\sqrt 3/4$), have a bound for the circumradius that is linear in $\rho$ ($\sqrt 3/6$) or even always generate the same triangultaion ($(\sqrt 3 - 1)/4$) up to the movement of points within their respective set $A$. Thus the resulting triangulation has many desirable properties. \newline
+To understand the advantage of the particular choice of $M$ and $\Gamma^A$ we first turn to the two-dimensional case. For $\mathbb R^2$, the two column vectors with angle $\pi/3$ define a triangulation made of equilateral triangles. Depending on the bound for $\rho$, the points never become collinear ($\sqrt 3/4$), have a bound for the circumradius that is linear in $\rho$ ($\sqrt 3/6$) or even always generate the same triangulation ($(\sqrt 3 - 1)/4$) up to the movement of points within their respective set $A$. Thus the resulting triangulation has many desirable properties. \newline
 
 It is not however obvious that the desirable properties carry over to $\mathbb R^3$. Before we investigate the structure of the resulting tetrahedrizations, we list the properties we are interested in obtaining.
 \begin{enumerate}
@@ -240,7 +240,7 @@ The bound on circumdiameters of the circumballs and characteristic point weights
 \begin{proof}
 Denote $\eta=\{p_1,p_2,p_3,p_4\}$, denote their positions $\eta'$ and weights $\eta''$. From Theorem \ref{prop:charpointHyperplane} and the remark below it, we know that $p'_\eta = H(p_1,p_2)\cap H(p_1,p_3) \cap H(p_1,p_4)$.
 
-Fix the positions $\eta'$.  Changing any of the points' weights ammounts to translation of the radical hyperplanes defined by that point (see note after Theorem \ref{prop:charpointHyperplane}). Given the fact that weights are bounded, $S=[0,W]$, we find that for given positions $\eta'$ there exists $W_{\eta'}>0$ such that , we have $p''_\eta \leq W_{\eta'}$ regardless of the weights.
+Fix the positions $\eta'$.  Changing any of the points' weights amounts to translation of the radical hyperplanes defined by that point (see note after Theorem \ref{prop:charpointHyperplane}). Given the fact that weights are bounded, $S=[0,W]$, we find that for given positions $\eta'$ there exists $W_{\eta'}>0$ such that , we have $p''_\eta \leq W_{\eta'}$ regardless of the weights.
 
 It remains to prove that $\sup_{\eta'} W_{\eta'} < \infty$, i.e. changing the points' positions can produce only bounded $p''_\eta$. This amounts to proving that the points of $\eta$ are not allowed to come arbitrarily close to (or even attain) a non-general position. This is equivalent with boundedness of the circumsphere of $\eta'$, which is proved for $\rho<1/4$ in the Appendix \ref{appendix}.
 \end{proof}
@@ -295,7 +295,7 @@ We first present a general lemma. Recall the definition of $r_\Gamma$ from (U1).
 				\end{align*}
 				where $C_0 = 3e^{14K_0}/(4\pi \rho^3),  C_1 = 2k_1(\delta_1^\alpha + 6 \delta_2^\alpha)$.
 
-				We now choose $a$ to minize the expression above. By optimizing over $a$ we obtain $a=(3/(C_1 \alpha))^{1/\alpha}$ which yields the bound 
+				We now choose $a$ to minimize the expression above. By optimizing over $a$ we obtain $a=(3/(C_1 \alpha))^{1/\alpha}$ which yields the bound 
 				$$z> C_0(C_1 \alpha e^3/ 3 )^{1/\alpha}.$$
 		\end{enumerate}
 \end{enumerate}

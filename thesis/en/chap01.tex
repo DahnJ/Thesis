@@ -147,7 +147,7 @@ The following proposition looks at the existence and uniqueness of the character
 	$$\|p'_\eta - p'_i\|^2 - p''_\eta - p''_i =0 \quad i=1,\dots,4$$
 	If we denote $\alpha = x_\eta^2+y_\eta^2+z_\eta^2-p''_\eta$, where $(x_\eta,y_\eta,z_\eta)$ are the coordinates of $p'_\eta$, we obtain the equations
 	$$\alpha - 2x_i x_\eta - 2y_i y_\eta - 2z_i z_\eta   = w_i - x^2_i - y^2_i - z^2, $$
-	a system of equations which is linear with respect to $(\alpha,x_\eta,y_\eta,z_\eta)$. In an augumented matrix form, the system is written as
+	a system of equations which is linear with respect to $(\alpha,x_\eta,y_\eta,z_\eta)$. In an augmented matrix form, the system is written as
 	\begin{equation}\label{augmat}
 		\begin{amatrix}{4}
 		1 & -2x_1 & -2y_1 & -2z_1 & p''_1 - x_1^2 - y_1^2 \\
@@ -156,7 +156,7 @@ The following proposition looks at the existence and uniqueness of the character
 		1 & -2x_4 & -2y_4 & -2z_4 & p''_4 - x_4^2 - y_4^2 \\
 	\end{amatrix}
 	\end{equation}
-	The fact that $\eta\in \mathbf N_{gp}$ implies that $p'_1, \dots, p'_4$ are affinely independent, i.e. not coplanar. This means that the homogenous system of linear equations defined by the matrix
+	The fact that $\eta\in \mathbf N_{gp}$ implies that $p'_1, \dots, p'_4$ are affinely independent, i.e. not coplanar. This means that the homogeneous system of linear equations defined by the matrix
 	\begin{equation}\label{hommat}
 	\begin{pmatrix}
 		1 & x_1 & y_1 & z_1 \\
@@ -167,10 +167,10 @@ The following proposition looks at the existence and uniqueness of the character
 	\end{equation}
 	does not have a solution, that is, the matrix has full rank. If it did, the points $p'_1,\dots,p'_4$ would all satisfy the equation $Ax+By+Cz+D=0$ for some $A,B,C,D \in \R$. The matrix \ref{hommat} has the same column space as the left hand side of \ref{augmat} and therefore the system has a unique solution.
 
-	If $\mathrm{card}(\eta)<4$, we would obtain an underdetermined system, having either infinitely many or no solutions. \todoo{Write clearer later} Here, again, the general position property gives us full row rank of the left side of the augumented matrix, implying that there are infinitely many solutions. For $\mathrm{card}(\eta)=2$, general position implies that the points are unequal. For $\mathrm{card}(\eta) =3$, general position implies that the points are not collinear.
+	If $\mathrm{card}(\eta)<4$, we would obtain an underdetermined system, having either infinitely many or no solutions. \todoo{Write clearer later} Here, again, the general position property gives us full row rank of the left side of the augmented matrix, implying that there are infinitely many solutions. For $\mathrm{card}(\eta)=2$, general position implies that the points are unequal. For $\mathrm{card}(\eta) =3$, general position implies that the points are not collinear.
 
 
-	If $\mathrm{card}(\eta)>4$, the system is overdetermined and has no solution, unless the whole augumented matrix has rank $4$. For e.g. $|\eta|=5$, this means that the homogenous system given by the matrix 
+	If $\mathrm{card}(\eta)>4$, the system is overdetermined and has no solution, unless the whole augmented matrix has rank $4$. For e.g. $|\eta|=5$, this means that the homogeneous system given by the matrix 
 	$$
 	\begin{pmatrix}\label{circmat}
 		1 & x_1 & y_1 & z_1 & x_1^2 + y_1^2 + z_1^2 - p''_1  \\
