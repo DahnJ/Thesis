@@ -164,7 +164,7 @@ The intersection $H_{12}\cap H_{23}$ is a line $L$, as $p_1,p_2,p_3$ are non-col
 Using the line $L$, we can also deduce the rest of the proposition. The point on $L$ at a minimum distance to $p_1,p_2,p_3$ is the point $p_{min}:=L\cap H$. We know that $p_{min}$ is equidistant from $p_1,p_2,p_3$ and that it lies on the hyperplane $H$, therefore it is the circmradius of the triangle defined by $p_1,p_2,p_3$ and we have $c(p_{min}) = \delta(\{p_1,p_2,p_3\})$.  
 
 \todoo[inline]{If possible, simplify this argument}
-To see that $c_1$ and $c_2$ must be (non-strictly) separated by the hyperplane $H$, assume WLOG $\{c_1,c_2\}\subset H_+, c_1\neq c_2$. Let $p \in S_{a1}$ and let  $p_R\in \Rt$ be the reflection of $p$ through the hyperplane $H$. The tetrahedron $p_1,p_2,p_3,p_R$ then is a reflection of the tetrahedron $p_1,p_2,\dots, p$ and therefore its circumsphere has diameter $a$. However, its centre lies in $H_-$, which is a contradiction. 
+To see that $c_1$ and $c_2$ must be (non-strictly) separated by the hyperplane $H$, assume without loss of generality $\{c_1,c_2\}\subset H_+, c_1\neq c_2$. Let $p \in S_{a1}$ and let  $p_R\in \Rt$ be the reflection of $p$ through the hyperplane $H$. The tetrahedron $p_1,p_2,p_3,p_R$ then is a reflection of the tetrahedron $p_1,p_2,\dots, p$ and therefore its circumsphere has diameter $a$. However, its centre lies in $H_-$, which is a contradiction. 
 \end{proof}
 
 Note that $S_{a1}$ and $S_{a2}$ are not necessarily distinct. In fact, we can see from the proof that $S_{a1}=S_{a2}$ precisely when $a=c_{min}$.
@@ -178,7 +178,7 @@ Any solution $(p_1,p_2,p_3,p_4)$ of the problem \ref{prob:tetra1} will lie on a 
 \end{proposition}
 \begin{proof}
 	Let $(p_1,p_2,p_3,p_4)$ be a solution of \ref{prob:tetra1}. Denote $c(p_1)=\delta(\{p_1,p_2,p_3,p_4\})=c$ and $S$ the circumshphere of $\{p_1,\dots,p_4\}\subset S$. 
-	First, WLOG assume that $p_1 \in B(t_1,\rho a)$. Because $p_1$ maximizes the function $c(p)$, we have $c(p_1)\geq c(p), p\in U$, where $U$ is some small neighborhood of $p_1$. Choose two points, $p_O,p_I\in U\setminus S$ such that 
+	First, without loss of generality assume that $p_1 \in B(t_1,\rho a)$. Because $p_1$ maximizes the function $c(p)$, we have $c(p_1)\geq c(p), p\in U$, where $U$ is some small neighborhood of $p_1$. Choose two points, $p_O,p_I\in U\setminus S$ such that 
 \begin{enumerate} 
 \item $c(p_O)=c(p_I)=b$,
 \item $p_I$ is on the inside of $S$ and $p_0$ on the outside of $S$ 

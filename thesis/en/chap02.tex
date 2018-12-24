@@ -130,7 +130,7 @@ $$P(\Psi \in \Gamma) = \int_\Gamma p(\gamma) \Pi_\Lambda(d\gamma), \; \Gamma \in
 \end{definition}
 
 \todoo[inline]{Make the calculations clearer, they're a bit scattered now}
-Notice that using the calculations in Proposition \ref{bincalc} and \ref{eq:poiscalc} we have
+Notice that using the calculations in Proposition \ref{bincalc} and \eqref{eq:poiscalc} we have
 $$
 P(\Psi \in \Gamma) = \sum^\infty_{k=0} \frac{1}{k!} e^{-|\Lambda|} \int_{\Lambda\times S} \cdots \int_{\Lambda\times S} 1_{\Gamma} \left(\sum^k_{i=1} \delta_{X_i}\right) p\left(\sum^k_{i=1} \delta_{X_i}\right) \nu(dx_1) \dots \nu(dx_k)
 $$
@@ -152,7 +152,7 @@ $$N_\Lambda(\gamma) = \gamma(\Lambda \times S)$$
 \begin{proposition} $\Pi_\Lambda^z \ll \Pi_\Lambda$ with density $p(\gamma)=z^{N_\Lambda(\gamma)} \exp(|\Lambda|(1-z))$, $\gamma \in \mathbf \mathbf N_{\Lambda}$.
 \end{proposition}
 \begin{proof}
-	Denote $\Phi \sim \Pi_\Lambda$, we have for $\Gamma\in \mathcal N_{f}$, using Proposition \ref{bincalc} and \ref{eq:poiscalc}
+	Denote $\Phi \sim \Pi_\Lambda$, we have for $\Gamma\in \mathcal N_{f}$, using Proposition \ref{bincalc} and \eqref{eq:poiscalc}
 	$$\Pi^z_\Lambda(\Gamma) = E(1_\Gamma(\Phi)  z^{|\Phi|} e^{|\Lambda|} e^{-z|\Lambda|}) $$
 \end{proof}
 
@@ -164,12 +164,12 @@ $$N_\Lambda(\gamma) = \gamma(\Lambda \times S)$$
 \todoo[inline]{This section is underdeveloped}
 At the end of the last section we have found that $\Pi^z_\Lambda \ll \Pi_\Lambda$ with the density $p(\gamma) \propto z^{N_\Lambda(\gamma)}$. The introduction of the Gibbs point process is outwardly simple, since we merely add an additional term containing the energy function from Definition \ref{def:energy}, so that the density is proportional to the expression
 \begin{equation}\label{eq:GPPdensity}z^{N_\Lambda(\gamma)} e^{-H_\Lambda (\gamma)}.\end{equation}
-By this seemingly small alteration we introduce a great complexity into the structure of the resulting process. Before we proceed with the formal definition of (finite) Gibbs point processes, we must impose some additional assumptions on the energy function.
+By this seemingly small alteration we introduce a great complexity into the structure of the resulting process. Before we proceed with the formal definition of (finite volume) Gibbs point processes, we must impose some additional assumptions on the energy function.
 
 
 \subsubsection{The energy function}\label{sec:energyfunction}
 
-Thanks to the energy function, we can force the realizations of the finite GPP to obey a diverse set of geometrical properties. In our case those geometrical properties come through the hypegraph structures $\mathcal D$ and $\mathcal {LD}$, see Example \ref{ex:potentials}. \newline
+Thanks to the energy function, we can force the realizations of the finite volume GPP to obey a diverse set of geometrical properties. In our case those geometrical properties come through the hypergraph structures $\mathcal D$ and $\mathcal {LD}$, see Example \ref{ex:potentials}. \newline
 
 In the following, we restrict ourselves to $\mathbf N_f$ and for $\gamma \in \mathbf N_f$ we denote $H(\gamma):= H_\Rt(\gamma)$.\newline 
 
@@ -187,21 +187,21 @@ Recall also that we assumed all potentials to be shift-invariant and thus any en
 Stability bounds the density function $p(\gamma) \propto z^{N_\Lambda( \gamma)}e^{-H(\gamma)} \leq (z e^{-c_S})^{N_\Lambda(\gamma)} $ and thus ensures $Z^z_\Lambda < \infty$. Integrability of the density is obviously a necessary assumption and thus some form of stability cannot be avoided. 
 Non-degeneracy, when paired with hereditarity, is a very natural assumption; without it, hereditarity would imply that the energy is always infinite.\newline
 
-The form \ref{eq:GPPdensity} of the density function suggests that the resulting distitribution will favor configurations with low energy. Configurations with high energy are unlikely to happen and an infinite energy means that the configuration is not possible under the distribution. We call such a configuration \textit{forbidden}. A configuration that is not forbidden is \textit{permissible}.  \newline
+The form \eqref{eq:GPPdensity} of the density function suggests that the resulting distitribution will favor configurations with low energy. Configurations with high energy are unlikely to happen and an infinite energy means that the configuration is, with probability $1$, not possible under the distribution. We call such a configuration \textit{forbidden}. A configuration that is not forbidden is \textit{permissible}.  \newline
 
-Hereditarity ensures that removing a point will not result in a forbidden configuration. Equivalently it ensures that adding a point to a forbidden configuration will not result in an allowed configuration. This assumption is, however, not necessarily satisfied by our models. Take for example the hard-core exclusion potential from \ref{ex:potentials}. Removing a point can lead to appearance of a tetrahedron with a larger circumdiameter, thus resulting in a forbidden configuration.\newline
+Hereditarity ensures that removing a point will not result in a forbidden configuration. Equivalently it ensures that adding a point to a forbidden configuration will not result in an allowed configuration. This assumption is, however, not necessarily satisfied by our tessellation models. Take for example the hard-core exclusion potential from Example \ref{ex:potentials}. Removing a point can lead to appearance of a tetrahedron with a larger circumdiameter, thus resulting in a forbidden configuration.\newline
 
-Unlike non-degeneracy or hereditarity, it is not immediately clear what the role of hereditarity is. Luckily for us, it means that we can define Gibbs point processes without the assumption and only then explore its function.
+Unlike non-degeneracy or stability, it is not immediately clear what the role of hereditarity is. Luckily for us, it means that we can define Gibbs point processes without the assumption and only then explore its function.
 
 
 
 \subsubsection{Finite volume Gibbs measures}
 
 \begin{definition}\label{def:fGPP}
-	Let $\mathcal E$ be a hypergraph structure and $H$ an energy function on $\mathcal E$ such that $H$ is non-degenerate and stable. The \textit{finite Gibbs measure} on $\Lambda\in \mathcal B_0(\Rt)$ with activity $z>0$ is the distribution $P^z_\Lambda$ such that $P^z_\Lambda \ll \Pi_\Lambda$ with density
+	Let $\mathcal E$ be a hypergraph structure and $H$ an energy function on $\mathcal E$ such that $H$ is non-degenerate and stable. The \textit{finite volume Gibbs measure} on $\Lambda\in \mathcal B_0(\Rt)$ with activity $z>0$ is the distribution $P^z_\Lambda$ such that $P^z_\Lambda \ll \Pi_\Lambda$ with density
 	$$p(\gamma) = \frac 1{Z^{z}_\Lambda} z^{\gamma(\Lambda)} e^{-H(\gamma)},\quad \gamma \in \mathbf N_f,$$
 where  $Z^z_\Lambda = \int z^{N_\Lambda} e^{-H} \Pi_\Lambda$ is the normalizing constant, called \textit{partition function}. \newline
-The point process with the distribution $P^z_{\Lambda}$ is called the \textit{finite Gibbs point process} (finite GPP). 
+The point process with the distribution $P^z_{\Lambda}$ is called the \textit{finite volume Gibbs point process} (finite volume GPP). 
 \end{definition}
 
 An important characterization are the \textbf{Dobrushin-Lanford-Ruelle} (\textbf{DLR}) \textbf{equations}.
@@ -215,7 +215,7 @@ An important characterization are the \textbf{Dobrushin-Lanford-Ruelle} (\textbf
 		\problem[inline]{As of now, this is \textbf{not} the same as \cite{Dereudre2017}, since we have a different local energy. However, we can probably adapt the proof using Lemma \ref{lemma:DL07}. Do so later.}
 \end{proof}
 
-The DLR equations express the conditional probability of configurations inside the window $\Delta$, given the configuration outside it.
+The DLR equations express the conditional probability of configurations inside the window $\Delta$, given the configuration outside it (boundary condition).
 
 \todoo[inline]{Comment on DLR. Conditional probability. Normalizing constant. Possibly integral form?}
 
@@ -223,7 +223,7 @@ The DLR equations express the conditional probability of configurations inside t
 \subsubsection{Infinite volume Gibbs measures}
 As noted in section \ref{sec:hypergraphs}, without extra assumptions on $\gamma$, such as the range confinement, the energy $H$ may not be well-defined. We will therefore restrict our definition of infinite volume Gibbs measures, or simply Gibbs measures, only to configurations $\gamma$ such that $\gamma \in N^\Lambda_{cr}$ for every $\Lambda \in \mathcal B_0(\Rt)$. We will learn in Proposition \ref{prop:cr-a.s.} that this restriction does not limit us in any way.
 
-First, we define $\Theta=(\vartheta_x)_{x\in \Rt}$ be the translation group define by the translations $\vartheta_x$ from Definition \ref{def:potential}. Let $\mathcal P_\Theta$ denote the set of all $\Theta$-invariant probability measures on $(\mathbf N_{lf},\mathcal N_{lf})$ with $\int N_{[0,1]^3 \times S} dP< \infty $ \todoo{maybe connect this to intensity, i.e. define intensity etc}. 
+First, we define $\Theta=(\vartheta_x)_{x\in \Rt}$ be the translation group define by the translations $\vartheta_x$ from Definition \ref{def:potential}. Let $\mathcal P_\Theta$ denote the set of all $\Theta$-invariant probability measures on $(\mathbf N_{lf},\mathcal N_{lf})$ with $\int N_{[0,1]^3} dP< \infty $ \todoo{maybe connect this to intensity, i.e. define intensity etc}. 
 
 \begin{definition}
 	Let $\mathcal E$ be a hypergraph structure and $H$ an energy function on $\mathcal E$ such that $H$ is non-degenerate and stable. A probability measure $P\in \mathcal P_\Theta$ on $(\mathbf N_{lf},\mathcal N_{lf})$ is the \textit{Gibbs measure} with activity $z>0$ if $P(\mathbf N^\Lambda_{cr})=1$ and
@@ -231,9 +231,9 @@ First, we define $\Theta=(\vartheta_x)_{x\in \Rt}$ be the translation group defi
 		for every $\Lambda \in \mathcal B_0(\Rt)$ and every measurable $f:\mathbf N_{lf} \to [0,\infty)$.
 \end{definition}
 
-The definition is a direct analogue of the DLR equations for finite GPP. In fact it is the same relationship, only expressed in integral form \todoo{Actually explain this}
+The definition is a direct analogue of the DLR equations for finite volume GPP. In fact it is the same relationship, only expressed in integral form \todoo{Actually explain this}
 
-While defining the Gibbs measure is relative straight-forward, proving its existence is not. The existence and uniqueness of Gibbs measures is an active field of research and one where we still currently do not know much, particularly in case of uniqueness. The non-uniqueness is a consequence of the fact that the existence of a Gibbs measure is typically proven only through proving tightness of a sequence of finite Gibbs measures, thus yielding only a convergent subsequence. We will not delve into the topic any further here and we refer the reader to an introductory text \cite{Dereudre2017} and the paper on which we base the proof of existence for our models, \cite{DDG12}. We also recommend reading the introduction to \cite{Georgii2011} --- although the book is about Gibbs random fields rather than point processes, the introduction gives an intuitive explanation for the form of the density and in particular the connection of the non-uniqueness with phase transitions.
+While defining the Gibbs measure is relative straight-forward, proving its existence is not. The existence and uniqueness of Gibbs measures is an active field of research and one where we still currently do not know much, particularly in case of uniqueness. The non-uniqueness is a consequence of the fact that the existence of a Gibbs measure is typically proven only through proving tightness of a sequence of finite volume Gibbs measures, thus yielding only a convergent subsequence. We will not delve into the topic any further here and we refer the reader to an introductory text \cite{Dereudre2017} and the paper on which we base the proof of existence for our models, \cite{DDG12}. We also recommend reading the introduction to \cite{Georgii2011} --- although the book is about Gibbs random fields rather than point processes, the introduction gives an intuitive explanation for the form of the density and in particular the connection of the non-uniqueness with phase transitions.
 
 
 \subsubsection{Hereditary GPP}
@@ -241,7 +241,7 @@ One of the disadvantages of the characterization through DLR equations is the pr
 
 For $\gamma \in \mathbf N_f$ and $x \in \Rt\times S$, define the \textit{local energy} of $x$ in $\gamma$ as
 $$h(x,\gamma) = H(\gamma + \delta_x) - H(\gamma),$$
-with the convention $+\infty - (+\infty) = 0$. Notice that for $\gamma \in \mathbf N_f$ such that $p(\gamma) > 0$, where $p$ is now the density of a finite GPP, we have
+with the convention $+\infty - (+\infty) = 0$. Notice that for $\gamma \in \mathbf N_f$ such that $p(\gamma) > 0$, where $p$ is now the density of a finite volume GPP, we have
 $$\lambda^*(x,\gamma) = z \cdot e^{-h(x,\gamma)}.$$
 \todoo[inline]{Talk about the fact that it's well-defined thanks to range confinement}
 
@@ -249,7 +249,7 @@ We then obtain the following result, known as the \textbf{Georgii-Nguyen-Zessin 
 
 \begin{proposition} Let $P$ be a Gibbs measure and $\Lambda \in \mathcal B(\Rt)$ such that $|\Lambda|>0$. For any non-negative measurable function $f$ from $(\Rt\times S)\times \mathbf N_{lf}$ to $\mathbb R$,
 	\begin{equation}\label{eq:GNZ}\int \sum_{x \in \gamma} f(x,\gamma- \delta_x) P(d\gamma) = z \int \int_{\Lambda\times S} f(x,\gamma) e^{-h(x,\gamma)} dx P (d\gamma).\end{equation}
-	Furthermore $P^z_\Lambda$ is uniquely defined by \ref{eq:GNZ} in the sense that if a probability measure $P$ on $\mathbf N_f$ satisfies \ref{eq:GNZ}, then $P=P^z_\Lambda$.
+	Furthermore $P^z_\Lambda$ is uniquely defined by \eqref{eq:GNZ} in the sense that if a probability measure $P$ on $\mathbf N_f$ satisfies \eqref{eq:GNZ}, then $P=P^z_\Lambda$.
 \end{proposition}
 \begin{proof}
 	\unsure[inline]{Adapt theorem 2 in section 2.5. from \cite{Dereudre2017}?}
@@ -257,7 +257,7 @@ We then obtain the following result, known as the \textbf{Georgii-Nguyen-Zessin 
 \problem[inline]{Fix use of $P$ in the above proposition}
 \todoo[inline]{Check whether the usage of marks is okay here. I think I am forgetting the mark distribution..}
 
-Hereditarity thus gives us a powerful characterization of the finite Gibbs measure. Possibly even more important is that a number of estimation techniques (maximum pseudolikelihood used here being one of them) make use the Papangelou conditional intensity and GNZ equations, thus the presence of non-hereditarity provides a direct obstacle to estimation.
+Hereditarity thus gives us a powerful characterization of the Gibbs measure which, as noted previously, is not always available in Gibbs-type tessellations. 
  
 
 Luckily, the approach in \unsure{Possibly cite the later edition? What's the approach here?} \cite{DereudreLavancier2007} allows us to directly use GNZ equations even for the non-hereditary case. 
@@ -269,7 +269,7 @@ Luckily, the approach in \unsure{Possibly cite the later edition? What's the app
 % 	Let $\Lambda \in \mathcal B_0(\Rt)$. Under the assumption \ref{(R)}, there exists a set \todoo{Define $\mathbf N_\Lambda$}$\hat N^\Lambda_{cr} \in \mathbf N_{\Lambda^c}$ such that $\hat N^\Lambda_{cr} \subset N^\Lambda_{cr}$ and $P(\hat N^\Lambda_{cr})=1$ for all $P \in \mathcal P_\Theta$ with $P(\varnothing)=0$.
 % \end{proposition}
 % \begin{proof}
-% 	Can be found in proposition 5.4. in \cite{DDG12}. See also remark 3.7. in connection to the marked case.
+% 	Can be found in proposition 5.4. in \cite{DDG12}. See also Remark 3.7. in connection to the marked case.
 % \end{proof}
 % 
 % Thanks to this fact we can now use the form of the energy function in proposition \ref{prop:Hcr} and define the (infinite volume) Gibbs measure and Gibbs point process.
@@ -291,7 +291,7 @@ the set of all permissible configurations.
 
 
 \begin{lemma}\label{lemma:DL07}
-	There exists a measurable function $\psi_{\Delta,\Lambda}:\mathbf N_{lf}\to \mathbb R\cup\{+\infty\}$ such that
+	Let $\Delta,\Lambda \in \mathcal B_0(\Rt)$ such that $\Delta \subset \Lambda$. There exists a measurable function $\psi_{\Delta,\Lambda}:\mathbf N_{lf}\to \mathbb R\cup\{+\infty\}$ such that
 	$$\forall \gamma \in \mathbf N_{lf},\quad H_\Lambda(\gamma) = H_\Delta(\gamma) + \psi_{\Delta,\Lambda}(\gamma_{\Delta^c})$$
 \end{lemma}
 \begin{proof}

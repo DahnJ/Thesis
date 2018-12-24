@@ -1,7 +1,7 @@
 \chapter{Geometric preliminaries}\label{ch:1}
 \todoo[inline]{Spell-check everything!}
 \todoo[inline]{Chapter intros give overviews}
-Before diving into the mathematics of Gibbs-Laguerre-Delaunay tetrahedrization models, we must first lay out the fundamentals of their geometric and combinatorial structure. The key geometric components are the the circumball for Delaunay tetrahedrizations and characteristic point for Laguerre tetrahedrizations. We will first study their geometry and then analyze their structure in terms of hypergraphs.
+Before diving into the mathematics of Gibbs-Laguerre-Delaunay tetrahedrization models, we must first lay out the fundamentals of their geometric and combinatorial structure. The key geometric components are the the circumball for Delaunay tetrahedrizations and characteristic point for Laguerre tetrahedrizations. In Section \ref{sec:tetrahedrizations} we study their geometry and in Section \ref{sec:hypergraphs} we analyze their structure in terms of hypergraphs.
 
 \subsubsection{Notation and basic terms}
 This text will predominantly focus on \textit{marked} points in $\Rt$, that is elements of $\Rt \times S$, where $S=[0,W],W>0$ is the \textit{mark set}. A great deal of care must be dedicated to clearly distinguish between \textit{positions} of points (their projection to $\Rt$) and their \textit{marks}\footnote{Marks will also be often called weights.} (projection to $S$). To this end, we adopt the following notation. A point $p \in \Rt\times S$ has the position $p'\in \Rt$ and mark $p'' \in S$. Similarly, the notation of sets follows accordingly --- the Borel $\sigma$-algebra on $\Rt\times S$ will be denoted $\mathcal B$, its counterpart on $\Rt$ will be denoted $\mathcal B'$. The subset of $\mathcal B$ ($\mathcal B'$) containing only bounded sets is $\mathcal B_0$ ($\mathcal B_0'$). 
@@ -10,14 +10,16 @@ A \textit{configuration} is a set $\x \in \mathbf N_{lf}$, where
 $$\mathbf N_{lf} = \{\x \subset \Rt\times S: \mathrm{card}(\x \cap B) < \infty, B\in \mathcal B_0\} $$ 
 be the set of locally finite sets on $\Rt\times S$. Let $\mathbf N_{f} \subset \mathbf N_{lf}$ be the set of all finite sets on $\Rt\times S$. Lastly, for $\Lambda \in \mathcal B_0'$, playing the role of the observation window, denote 
 $$\mathbf N_\Lambda = \{ \x \in \mathbf N_{f}: \x'\subset \Lambda\}.$$
-A subset of $\x$ will be denoted $\eta$. If $\mathrm{card}(\eta)=4$, then $\eta$ is \textit{tetrahedral} or a \textit{tetrahedron}. The symbols $\x'=\mathrm{pr_{\Rt}}(\x), \eta'=\mathrm{pr_{\Rt}}(\eta)$ again refer only to the positional part. 
+\unsure{Is it enough to just say this?} Any observation window $\Lambda$ will in general be assumed to have a positive Lebesgue measure.
+A subset of $\x$ will be denoted $\eta$. If $\mathrm{card}(\eta)=4$, then $\eta$ is \textit{tetrahedral} or a \textit{tetrahedron}\unsure{Maybe just have tetrahedral, that would kinda solve regularity?}. The symbols $\x'=\mathrm{pr_{\Rt}}(\x), \eta'=\mathrm{pr_{\Rt}}(\eta)$ again refer only to the positional part. 
 
-\todoo[inline]{Probably comment here on the fact that $|\Lambda|$ will be assumed to be positive}
 
 \section{Tetrahedrizations}\label{sec:tetrahedrizations}
-The aim of this section is to introduce the geometric concepts necessary for the understanding of two types of tetrahedrizations: Delaunay and Laguerre. The main focus of this text lies on the Laguerre tetrahedrization and thus Delaunay tetrahedrization will receive significantly less attention and often will be treated only as a special case. Note that although this text focuses solely on the three dimensional case, most ideas remain valid for a triangulation in any dimension.\todoo{Reference some resources on Delaunay and Laguerre-Delaunay} 
+The aim of this section is to introduce the geometric concepts necessary for the understanding of two types of tetrahedrizations: Delaunay and Laguerre. The main focus of this text lies on the Laguerre tetrahedrization and thus Delaunay tetrahedrization will receive significantly less attention and often will be treated only as a special case. Note that although this text focuses solely on the three dimensional case, most ideas remain valid for a triangulation in any dimension.
 
-We introduce the notion of (reinforced) general position, a traditional assumption on configurations.
+While this section does not aim to be a comprehensive overview of Delaunay and Laguerre tetrahedrizations, it also functions as a standalone text with proofs unique to the setting of this text. The literature on this topic tends to focus on the duals of the tetrahedronizations, that is the Voronoi and Laguerre diagrams. Furthermore most literature treats the two-dimensional equivalent, the Delaunay and Laguerre triangulations. One must thus piece together the understanding of the tetrahedronizations through various sources not directly pertaining this topic. For general mathematical introductions, we recommend \cite{Okabe1992}, \cite{Gavrilova}. For a survey on Laguerre (power) diagrams, see \cite{Aurenhammer1987}. Lastly we recommend two books that contain mostly information on (Delaunay) triangulations and related objects: \cite{Delorea2010} and \cite{Aurenhammer2013}. \newline
+
+\noindent We now introduce the notion of (reinforced) general position, a traditional assumption on configurations.
 
 \begin{definition}
 Let $\x \in \mathbf N_{lf}$. We say $\x$ is in \textbf{general position} if 
@@ -37,7 +39,7 @@ Denote $\mathbf N_{rgp}$ the set of all locally finite configurations in reinfor
 
 
 \subsection{Delaunay tetrahedrization}
-This section will shortly introduce the three dimensional equivalent of the well known Delaunay triangulation.\todoo{Add references to resources} While the configurations in this section are technically marked sets, none of the terms take marks into consideration, as the Delaunay tetrahedrization relies on positions only.
+This section will shortly introduce the three dimensional equivalent of the well known Delaunay triangulation. While the configurations in this section are technically marked sets, none of the terms take marks into consideration, as the Delaunay tetrahedrization relies on positions only.
 
 \begin{definition}
 	Let $\x \in \mathbf N_{gp}$, $\eta \subset \x$. An open ball $B(\eta,\x)$ such that $\eta' \subset \partial B(\eta,\x)$ is called a \textit{circumball of $\eta$}. The boundary $\partial B(\eta,\x)$ is called a \textit{circumsphere}.
@@ -57,27 +59,38 @@ This section will shortly introduce the three dimensional equivalent of the well
 	We then define the \textit{Delaunay tetrahedrization of $\x$} as the set $\mathcal D_4(\x)$. 
 \end{definition}
 
-The set $\mathcal D_4$ contains the structure we would expect from the name tetrahedrization, namely it contains sets of 4-tuples of points whose convex hull are the tetrahedra forming the Delauany tetrahedrization. The fact that we've defined the set $\mathcal D_k(\x)$ for any $k=1,\dots,4$ reflects the hypergraph approach to these structures presented in Section \ref{sec:hypergraphs}.
+The set $\mathcal D_4$ contains the structure we would expect from the name tetrahedrization, namely it contains sets of 4-tuples of points whose convex hull are the tetrahedra \todoo{It's not vital for us, but this could be talked about more..} forming the Delauany tetrahedrization. The fact that we have defined the set $\mathcal D_k(\x)$ for any $k=1,\dots,4$ reflects the hypergraph approach to these structures presented in Section \ref{sec:hypergraphs}.
 
-\todoo[inline]{Possibly remark on existence and uniqueness, although this is not that interesting under this definition}
+The next Proposition shows the relationship between $\mathcal D_2(\x)$ and $\mathcal D_4(\x)$.
+\begin{proposition}
+	Let $\x\in\mathbf N_{lf}$. Then
+	$$\eta \in \mathcal D_2{\x} \iff \text{there exists } \tilde\eta \in \mathcal D_4(\x) \text{ such that } \eta\subset \tilde \eta.$$
+\end{proposition}
+\begin{proof}
+	First assume $\eta \subset \tilde \eta$ and $\tilde\eta \in \mathcal D_4(\x)$. Then the circumball $B(\tilde\eta)$ satisfies the empty ball property for $\eta$ and thus $\eta \in \mathcal D_2(\x)$.
 
-The following proposition shows one important property of the set $\mathcal D_2(\x)$ for any $\x \in \mathbf N_{lf}$ --- it contains the edges of the (undirected) nearest neighbor graph.
+	Now assume that $\eta \in \mathcal D_2(\x)$. \tbd
+\end{proof}
+Note that an analogous proof could be used to prove a similar property for $\mathcal D_3(\x)$.\newline
+
+
+\noindent The following proposition shows one important property of the set $\mathcal D_2(\x)$ for any $\x \in \mathbf N_{lf}$ --- it contains the edges of the (undirected) nearest neighbor graph.
 \begin{proposition}\label{prop:nng}
-	Define 
+	Let $\x\in\mathbf N_{lf}$. Define the set
 	$$\mathrm{NNG}(\x) = \big\{ \{p,q\}\subset \x \times \x: p\neq q, \|p-q\| \leq \|p-s\|, s\in \x\setminus\{p\}  \big\}.$$
 	Then 
 	$$\mathrm{NNG}(\x) \subset \mathcal D_2(\x).$$
 \end{proposition}
 \begin{proof}
-	Let $\x\in \mathbf N_{lf}$ and $\eta =\{p,q\} \in \mathrm{NNG}(\x)$. WLOG assume that $q$ is the nearest neighbor of $p$. Then $ B(p,\|p-q\|)\cap \x' = \{p\}$. Then $\eta$ satisfies the empty ball property with the \note{$x \in B(\eta,\x)$ implies $\|x-a\| < \mathrm{diam}(B(\eta,\x)) = \|p-q\|/2$}circumball $ B(\eta,\x) := B((p+q)/2,\|p-q\|/2) \subset B(p,\|p-q\|)$.
+	Let $\x\in \mathbf N_{lf}$ and $\eta =\{p,q\} \in \mathrm{NNG}(\x)$. Without loss of generality assume that $q$ is the nearest neighbor of $p$. Then $ B(p,\|p-q\|)\cap \x' = \{p\}$. Then $\eta$ satisfies the empty ball property with the \note{$x \in B(\eta,\x)$ implies $\|x-a\| < \mathrm{diam}(B(\eta,\x)) = \|p-q\|/2$}circumball $ B(\eta,\x) := B((p+q)/2,\|p-q\|/2) \subset B(p,\|p-q\|)$.
 \end{proof}
-\todoo[inline]{Possibly remark on the relationship between individiual $\mathcal D_k$. It would be useful later.}
+
 
 
 \subsection{Laguerre tetrahedrization}
-\todoo[inline]{Short intro to Laguerre with some references}
+\todoo[inline]{Intro}
 
-The key information to understanding the geometry of Laguerre tetrahedrizations is that a point $p=(p',p'')\in \Rt\times S$ can be interpreted as an open ball $B(p',\sqrt{p''})$. We will call $B_p = B(p',\sqrt{p''})$ the \textit{ball defined by $p$}. We define the sphere $S_p=\partial B_p$. 
+The key information to understanding the geometry of Laguerre tetrahedrizations is that a point $p=(p',p'')\in \Rt\times S$ can be interpreted as an open ball $B(p',\sqrt{p''})$. We will call $B_p = B(p',\sqrt{p''})$ the \textit{ball defined by $p$}. We further define the sphere $S_p=\partial B_p$. 
 
 
 \begin{definition}
@@ -128,7 +141,7 @@ An alternative way to describe the characteristic point is by the equality
 \begin{equation}\label{eq:charpoint}
 	d(p'_\eta,p)=p''_\eta \text{ for each } p \in \eta.
 \end{equation}
-Note that the mark of the characteristic point can be any real number and thus isn't limited to $S=[0,W]$ unlike the points of $\x$.
+Note that the mark of the characteristic point can be any real number and thus isn't limited to $S=[0,W]$, unlike the points of $\x$.
 If its weight is positive, the characteristic point can be interpreted as a sphere that intersects each sphere $S_p, p\in\eta$ at a right angle. If negative, \cite{Edelsbrunner1996} has suggested $p_\eta$ to be thought of as a sphere with an imaginary radius, though as far as we are aware, there is no further advantage to be gained from such interpretation. \newline
 
 The following proposition looks at the existence and uniqueness of the characteristic point.
@@ -171,15 +184,15 @@ The following proposition looks at the existence and uniqueness of the character
 
 
 	If $\mathrm{card}(\eta)>4$, the system is overdetermined and has no solution, unless the whole augmented matrix has rank $4$. For e.g. $|\eta|=5$, this means that the homogeneous system given by the matrix 
-	$$
-	\begin{pmatrix}\label{circmat}
+	\begin{equation}\label{circmat}
+	\begin{pmatrix}
 		1 & x_1 & y_1 & z_1 & x_1^2 + y_1^2 + z_1^2 - p''_1  \\
 		1 & x_2 & y_2 & z_2 & x_2^2 + y_2^2 + z_2^2 - p''_2  \\
 		1 & x_3 & y_3 & z_3 & x_3^2 + y_3^2 + z_3^2 - p''_3  \\
 		1 & x_4 & y_4 & z_4 & x_4^2 + y_4^2 + z_4^2 - p''_4  \\
 		1 & x_5 & y_5 & z_5 & x_5^2 + y_5^2 + z_5^2 - p''_5  \\
 	\end{pmatrix}
-	$$
+	\end{equation}
 	has a solution. However, this is equivalent to saying that there exists $p_\eta$ such that $\rho(p_\eta,p_i)=0$, i.e. that $\eta$ is Laguerre-cocircular.
 \end{proof}
 
@@ -196,13 +209,13 @@ The following proposition looks at the existence and uniqueness of the character
 \begin{proof}
 	By simple calculation we have
 	$$H(p,q) = \{x \in \Rt: 2 \langle q'-p',x \rangle  = \|q'\|^2 - \|p'\|^2  - q'' + p''\}.$$
-	From \ref{eq:charpoint} we obtain the characterization \ref{eq:charpointHyperplane1}. 
-	For a tetrahedral $\eta$, we know from Proposition \ref{prop:charpoint} that $p_\eta$ is uniquely defined. To obtain \ref{eq:charpointHyperplane2}, we only need to realize that three hyperplanes are sufficient to specify the set of points $x\in \Rt$ for which $d(x,p_i)=d(x,p_j), i,j=1,\dots,4$.
+	From \eqref{eq:charpoint} we obtain the characterization \eqref{eq:charpointHyperplane1}. 
+	For a tetrahedral $\eta$, we know from Proposition \ref{prop:charpoint} that $p_\eta$ is uniquely defined. To obtain \eqref{eq:charpointHyperplane2}, we only need to realize that three hyperplanes are sufficient to specify the set of points $x\in \Rt$ for which $d(x,p_i)=d(x,p_j), i,j=1,\dots,4$.
 \end{proof}
 
 Notice that changing the weight of either of the points amounts to translation of the hyperplane. \newline
 
-\noindent We not introduce the equivalent of the empty sphere property for the Laguerre case.
+\noindent We not introduce the equivalent of the empty ball property for the Laguerre case.
 
 
 \begin{definition}
@@ -212,7 +225,7 @@ Notice that changing the weight of either of the points amounts to translation o
 The definition can also be equivalently stated as 
 $$\text{There is no point } q\in\x \text{ such that } d(p'_\eta,q)<p''_\eta.$$
 
-The regularity property ensures that no point of $\x$ is closer to the characteristic point $p_\eta$ in the power distance than the points of $\eta$. This is analogous to the empty ball property in Delaunay tetrahedrization, where the circumball plays the role of the characteristic point. \todoo{c.f. remark that comes later}  
+The regularity property ensures that no point of $\x$ is closer to the characteristic point $p_\eta$ in the power distance than the points of $\eta$. This is analogous to the empty ball property in Delaunay tetrahedrization, where the circumball plays the role of the characteristic point (see Remark \ref{rem:LaguerreToDelaunay}).
 
 
 
@@ -229,16 +242,17 @@ The regularity property ensures that no point of $\x$ is closer to the character
 
 
 \begin{remark}[Constructing Laguerre and Delaunay tetrahedrization]\label{r:construct}
-	The proof of Proposition \ref{prop:charpoint} also gives a hint on how to check whether $\eta$ is regular. \cite{Gavrilova}\newline
-	\tbd 
+	The proof of Proposition \ref{prop:charpoint} also gives a hint on how to check whether $\eta$ is regular. We have seen that the determinant of the matrix \eqref{circmat} is zero if and only if the five points are Laguerre-cocircular. However, the said determinant provides us with more information than that. More specifically, we can use it to perform the so-called INCIRCLE test on five points $p_1,\dots, p_5$ to tell whether the point $p_5$ violates the regularity of the tetrahedron defined by $p_1,\dots, p_4$. This amounts to checking the postivity of the determinant of \eqref{circmat}, assuming the points $p_1,\dots, p_4$ are correctly oriented, which can be checked through the determinant of the matrix \eqref{hommat}. \newline
+	
+	For details and a derivation, see chapter 4 in \cite{Gavrilova}, which also contains a short description of the \textit{incremental insertion} algorithm using \textit{local transformations}, called \textit{swaps} or \textit{flips}. The algorithm was first presented in \cite{Lawson72} in two dimensions. For more information on the algorithm in three dimensions, see \cite{Joe89} and \cite{Joe91} for the Delaunay tetrahedronization, and \cite{Edelsbrunner1996} for Laguerre tetrahedronization.
 \end{remark}
 
 
 \note[inline]{Cocircular points do not create multiplicities in the cliques, since we're limiting $k$ to max $4$}
 
 \begin{remark}[Invariance in weights]\label{rem:invariance}
-	Let $w\in \mathbb R$. Denote $\x_w = \{(p',p''+w): (p',p'')\in\x\}$ be the set of points of $\x$ with added weight $w$. Notice that $\eta\subset \x_w$ \todoo{Explain this more}is regular if and only if the corresponding $\eta\subset \x$ is regular. 
-	This implies that the Laguerre tetrahedrization is invariant under the map $\x \mapsto \x_w$ for any $w$ such that the marks of $\x_w$ still lie in $[0,W]$.
+	Let $w\in \mathbb R$. Denote 
+	$$\x_w = \{(p',p''+w): (p',p'')\in\x\}$$ be the set of points of $\x$ with added weight $w$. Take $\eta \in \mathcal {LD}(\x)$ and the corresponding $\eta_w \in \mathcal {LD}(\x_w)$ such that the points of $\eta$ have the same positions as points of $\eta_w$. Then $\eta$ is regular in $\mathcal {LD}(\x)$ if and only if $\eta_w$ is  regular in $\mathcal {LD}(\x_w)$. This follows from the fact that the point $p_{\eta_w} = (p'_{\eta}, p''_{\eta} -w)$ is a characteristic point of $\eta_w$ and satisfies the definition of regularity for $\eta_w$. This implies that the Laguerre tetrahedrization is invariant under the map $\x \mapsto \x_w$ for any $w$ such that the marks of $\x_w$ still lie in $[0,W]$.
 \end{remark}
 
 \begin{remark}[Delaunay as a special case of Laguerre]\label{rem:LaguerreToDelaunay}
@@ -274,7 +288,7 @@ $$C_p := \{x' \in \Rt: d(x',p) \leq d(x',q) \; \forall q \in \x\}.$$
 Apart from the empty Laguerre cell, there is, to our knowledge, no simple geometric characterization of a redundant point. There is however a necessary condition.
 
 \begin{proposition}
-	If $p$ is redundant in $\x$, then the sphere $B_p$ is completely contained in the balls of other points in $\x$, that is 
+	If $p$ is redundant in $\x$, then the ball $B_p$ is completely contained in the balls of other points in $\x$, that is 
 	$$B_p \subset \bigcup_{q \in \x\setminus \{p\}} B_q.$$
 \end{proposition}
 \begin{proof}
@@ -284,18 +298,16 @@ Apart from the empty Laguerre cell, there is, to our knowledge, no simple geomet
 \todoo[inline]{This definitely needs a figure + some comment on the fact that it's not an equivalence}
 
 
-From the above proposition we can also see why there cannot be any redundant points in $\mathcal D(\x)$, since in the Delaunay case all balls have radius $0$.
+From the above proposition we can also see why there cannot be any redundant points in $\mathcal D(\x)$, since in the Delaunay case all balls can be taken to have radius~$0$.
 
-
-\unsure[inline]{Do we need to restrict it on non-redundant points? Measurability?}
 \note[inline]{Perhaps talk about lifting - additional intuition on how this stuff works}
 %https://link.springer.com/content/pdf/10.1007/BF01975867.pdf
 
 \section{Hypergraph structures}\label{sec:hypergraphs}
 \unsure[inline]{Are graphs geometric? I mean, geometric graphs are geometric. But graphs in general? Are potentials part of this?}
-Both Delaunay and Laguerre tetrahedrizations can be seen as graphs where two points $p,q\in\x$ are joined if they are part of the same tetrahedron with the empty sphere property, or the regularity property. However, for the purposes of this text, a more natural structure will be the hypergraph.
+Both Delaunay and Laguerre tetrahedrizations can be seen as graphs where two points $p,q\in\x$ are joined if they are part of the same tetrahedron with the empty ball property, or the regularity property. However, for the purposes of this text, a more natural structure will be the hypergraph.
 
-\subsection{Tetrihedrizations as hypergraphs}\label{sec:tetrahyper}
+\subsection{Tetrahedrizations as hypergraphs}\label{sec:tetrahyper}
 \problem[inline]{Here we already need to have defined the $\sigma$-algebras on $\mathbf N_{lf}$ and $\mathbf N_f$, which are defined in section $2$.}
  
 \begin{definition}
@@ -304,7 +316,7 @@ Both Delaunay and Laguerre tetrahedrizations can be seen as graphs where two poi
 A hypergraph is thus a generalization of a graph in the sense that edges are now allowed to "join" any number of points. A hypergraph structure can be thought of as a rule that turns a configuration $\x$ into the hypergraph $(\x,\mathcal E(\x))$. 
 The subset $\eta \subset \x$ now plays the role of a hyperedge. e.g. a tetrahedron.
 
-The beauty in this approach is that we do not need to impose any additional structure on $\mathcal D(\x)$ or $\mathcal {LD}(\x)$ --- they already directly define a hypergraph structure! 
+The benefit of this approach is that we do not need to impose any additional structure on $\mathcal D(\x)$ or $\mathcal {LD}(\x)$ as they already define a hypergraph structure. 
 
 \begin{definition}[Delaunay and Laguerre-Delaunay hypergraph structures]
 	Define the hypergraph structues
@@ -334,8 +346,7 @@ The fact that the hyperedge potential contains $\x$ as a second argument suggest
 
 \noindent For the remainder of this text, we will always assume any hyperedge potential to be shift-invariant.
 
-\todoo[inline]{Define a proper Example environment with title and a possibility of a reference}
-\begin{example}\label{ex:potentials}[Hyperedge potentials]
+\begin{ex}\label{ex:potentials}[Hyperedge potentials]
 	The hyperedge potential can take various forms. As we will see later, its specification radically alters the distribution of the resulting Gibbs point process and thus it allows a great freedom in the types of hypergraphs we can obtain.\newline
 	\textbf{Volume of tetrahedron}: For $\eta\in\mathcal E(\x)$ on $\mathcal D_4$ or $\mathcal {LD}_4$ define
 	$$\varphi(\eta,\x) = |\mathrm{conv}(\eta)| .$$
@@ -351,15 +362,14 @@ where the potential now depends on the size of neighboring Laguerre cells. Notic
 $$\mathcal {LD}^2_4 = \{(\eta,\x): \exists \eta_1,\eta_2\in\mathcal {LD}_4(\x), \mathrm{card}(\eta_1 \cap \eta_2)=3, \eta = \eta_1 \cup \eta_2\}$$
 Which contains the quintuples of points which form adjacent tetrahedra in $\mathcal {LD}_4(\x)$. 
 \todoo[inline]{This works, but it's not as simple this may suggest. $\eta$ can create $2,3,$ or $4$ tetrahedra and the hyperedge potential must take that into account.}
-	
-\end{example}
+\end{ex}
 
 \begin{definition}
 	A hyperedge potential $\phi$ is \textit{unary} for the hypergraph structure $\mathcal E$ if there exists a measurable function $\hat\varphi:\mathbf N_{lf} \to \mathbb R \cup \{+\infty\}$ such that
 	$$\varphi(\eta,\x) = \hat\varphi(\eta) \text{ for } \eta \in \mathcal E(\x).$$
 \end{definition}
 The value of an unary hyperedge potential depends only on the points from $\eta$, as long as $\eta \in \mathcal E(x)$.  Recall however the convention $\varphi=0$ on $\mathcal E^c$, thus the equality above cannot be extended to all $\eta\subset \x$. 
-In \todoo{Broken reference} example \ref{ex:potentials}, only the first two potentials are unary. \newline
+In Example \ref{ex:potentials}, only the first two potentials are unary. However, for the remainder of this text, we will assume all potentials to be unary.\newline
 
 
 For a given hypergraph structure $\mathcal E$, the \textit{energy function} of a finite configuration $\x\in \mathbf N_{f}$ is defined as the function\footnote{The energy $H$ is often also called \textit{Hamiltonian} in statistical mechanics.}
@@ -372,8 +382,9 @@ The words \textit{potential} and \textit{energy} point to a connection with stat
 
 
 \subsection{Hypergraph potentials and locality}
-\todoo[inline]{Reformulate the intro}
-A natural question to ask is ``How do the hyperedges of $\mathcal E(\x)$ influence each other?''. We have seen that there is a type of locality at play, for example  the empty ball property of a tetrahedron $\eta\in\mathcal D_4(\x)$ is dependent solely on presence of points of $\x$ inside $B(\eta)$. As we will see in Chapters \ref{ch:2} and \ref{ch:3}, this locality is essential for the existence of our models and Gibbs measures in general. The question is also further complicated by the presence of the hyperedge potential. This section will refine our understanding of the question by definining different locality properties.
+A natural question to ask is ``How do the hyperedges of $\mathcal E(\x)$ influence each other?''. We have seen that there is a type of locality at play, for example  the empty ball property of a tetrahedron $\eta\in\mathcal D_4(\x)$ does not depend on the behaviour of $\x$ outside $B(\eta)$. This section will refine our understanding of the question by examining different locality properties.
+
+As we will see in Chapters \ref{ch:2} and \ref{ch:3}, this locality is essential for the existence of our models and Gibbs measures in general. 
 
 \begin{definition}
 	A set $\Delta \in \mathcal B_0'$ is a \textit{finite horizon} for the pair $(\eta,\x) \in \mathcal E$ and the hyperedge potential $\varphi$ if for all $\tilde{\x} \in \mathbf N_{lf}, \tilde{\x} = \x$ on $\Delta\times S$ 
@@ -383,9 +394,10 @@ The pair $(\mathcal E, \varphi)$ satisfies the \textit{finite-horizon property} 
 
 The finite horizon of $(\eta,\x)$ delineates the region outside which points can no longer violate the regularity (or the empty ball property) of $\eta$. 
 Note also that for an unary potential, the finite horizon of $(\eta,\x)\in \mathcal E$ depends only on $\eta$.
-\todoo[inline]{Assume potentials are unary, since that's what I am talking about after this point}
 
 \begin{remark} [Finite horizons for $\mathcal D$ and $\mathcal {LD}$]
+Let the hyperedge potential be given and assume it is unary.
+
 For $\mathcal D$, the closed circumball $\bar B(\eta,\x)$ itself is a finite horizon for $(\eta,\x)$.
 
 For $\mathcal {LD}$, the situation is slightly more difficult. For one, $B(p'_\eta, \sqrt{p''_\eta})$ does not contain the points of $\eta$. To see this, take two points $p,q$ with $p'',q''>0$ such that $\rho(p,q)=0$. Then $q'' = d(q',p) < \|q'-p'\|^2$ and thus $\sqrt{q''} < \|q'-p'\|$. More importantly, however, any point $s$ outside of $B(p'_\eta, \sqrt{p''_\eta})$ with a sufficiently large weight can violate the inequality $\rho(p_\eta,s) = \|p'_\eta - x'\|^2 - p''_\eta - s'' \geq 0$. 
@@ -393,7 +405,6 @@ For $\mathcal {LD}$, the situation is slightly more difficult. For one, $B(p'_\e
 To obtain a finite horizon for $\mathcal {LD}$, we need to use the fact that the mark space is bounded, $S=[0,W]$. If $s'' \leq W$, then $\Delta = B(p'_\eta, \sqrt{p''_\eta + W})$ is sufficient as a horizon, since any point $s$ outside $\Delta$ satisfies
 $$\rho(p_\eta, s) = \|p'_\eta - s'\|^2 - p''_\eta - s'' \geq (\sqrt{p''_\eta+W})^2-p''_\eta-W = 0.$$ 
 
-\todoo{This remark is probably more fitting for the simulation chapter}From a practical perspective, the maximum weight $W$ limits the resulting tessellation in the sense that the difference of weights can never be greater than $W$. Marks greater than $W$ are not necessarily a problem, as we can always find an identical tessellation with marks bounded by $W$, as long as there are no two points $p,q$ with $|p''-q''|>W$ (see Remark \ref{rem:invariance}).
 \end{remark}
 
 Let us now return again to the task of defining an energy function $H$ that depends on the configuration in some bounded window $\Lambda \in \mathcal B_0'$. To that end, we must define the set of hyperedges for which the hyperedge potential depends on the configuration inside $\Lambda$. 
@@ -420,7 +431,7 @@ To further characterize $\mathcal E_\Lambda(\x)$, we present the following lemma
 	\end{align*}
 \end{proof}
 
-\todoo[inline]{The fact that we don't have equivalence is a consequence of the fact that $\zeta \in \Delta$ does not imply that it changes $\eta$. But this fact is true the unary potentials, so comment on that.}
+\note[inline]{in our case, that is $\mathcal D(\x),\mathcal {LD}(\x)$ with unary potentials, the implication in Lemma \ref{lemma:horizEset} is an equivalence if we replace $\Delta$ by $\mathrm{int}\Delta$.}
 
 With the definition of $\mathcal E_\Lambda(\x)$, we are now ready for the desired definition of the energy function.
 
@@ -455,7 +466,7 @@ While the set $\mathcal E_\Lambda(\x)$ contains hyperedges $\eta$ which can be i
 
 
 \todoo[inline]{Comment on the definition and what it means for $\mathcal D$ and $\mathcal {LD}$.}
-\problem[inline]{It probably is unclear that we're going to be talking about $\mathcal D_4$ afterwards, i.e. tetrahedrizations only}
+\unsure[inline]{It may be unclear that we're going to be talking about $\mathcal D_4$ afterwards, i.e. tetrahedrizations only?}
 
 
 
@@ -467,10 +478,9 @@ While the set $\mathcal E_\Lambda(\x)$ contains hyperedges $\eta$ which can be i
 	$$ \mathcal {LD}_4 (\x) \setminus \mathcal {LD}_4(\x \cup \{x\}) = \mathcal {LD}_4^\otimes(x,\x).$$
 	Now take $\eta \in \mathcal {LD}_4(\x \cup \{x\})$ such that $x \notin \eta$. Then $\eta \notin \mathcal {LD}_4^\otimes(x,\x)$ and thus $\eta \in \mathcal {LD}_4(\x)$, yielding
 	$$\mathcal {LD}_4 (\x \cup \{x\}) \setminus \mathcal {LD}_4(\x) = \{ \eta \in \mathcal {LD}_4(\x\cup\{x\}): x \in \eta\} =: \mathcal {LD}_4^\ell(x, \x \cup \{x\}).$$
+	Using the same logic we can now remove the point $x$ from $\x \cup \{x\}$. This means we remove $\eta \in \mathcal {LD}_4^\ell(x,\x\cup\{x\})$ and add $\eta \in \mathcal {LD}_4^\otimes(x,\x)$.\newline
 
-	Using the same logic we can now remove the point $x$ from $\x \cup \{x\}$. This means we remove $\eta \in \mathcal {LD}_4^\ell(x,\x\cup\{x\})$ and add $\eta \in \mathcal {LD}_4^\otimes(x,\x)$.
-
-	In $\mathcal D_4$, we obtain similar sets
+	\noindent In $\mathcal D_4$, we obtain similar sets
 	$$\mathcal D_4^\otimes(x,\x) := \{\eta \in \mathcal D_4(\x): x \in B(\eta)\},$$
 	$$\mathcal D_4^\ell(x,\x) := \{\eta \in \mathcal D_4(\x): x\in \eta \}.$$
 

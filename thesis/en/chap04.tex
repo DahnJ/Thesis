@@ -1,7 +1,7 @@
 \chapter{Simulation}
 The Gibbs point process allows us a great flexibility in specifying the energy function. One of the disadvantages is that both simulating the GPP and estimating its parameters is computationally demanding. This chapter outlines the approach taken in simulating the GPP. 
 
-This (and the following chapter) is a direct extension of \cite{DereudreLavancier2010} to the Laguerre case in three dimensions.
+This (and the following chapter) is a direct extension of \cite{DereudreLavancier2011} to the Laguerre case in three dimensions.
 The principal issue in simulating GPP is that we do not know the value of the partition function $Z^z_\Lambda$. To that end, we emply Monte Chain Markov Carlo (MCMC) techniques.
 
 \section{Monte Chain Markov Carlo}
@@ -48,7 +48,7 @@ $$\int_B P(x,A) \mathbf\pi(dx) = \int_A P(x,B) \mathbf\pi(dx), \quad A,B\in\math
 From the definition it is immediately observable that if $Y$ is reversible with respect to $\pi$, then $\pi$ is also its invariant distribution.
 
 
-\begin{definition} Let $Y$ be $/psi$-irreducible. Then we call $Y$ \textit{periodic} if there exists a partitioning $D_0,\dots,D_{d-1},A$ of $\Omega$ such that $\psi(A)=0$ and 
+\begin{definition} Let $Y$ be $\psi$-irreducible. Then we call $Y$ \textit{periodic} if there exists a partitioning $D_0,\dots,D_{d-1},A$ of $\Omega$ such that $\psi(A)=0$ and 
 $$P(x,D_{j}) = 1, \; x\in D_i\; j=(i+1)\; \mathrm{mod} \;d$$
 with $d>1$. In the opposite case $Y$ is \textit{aperiodic}
 \end{definition}
@@ -185,7 +185,7 @@ Condition (i) ensures that the chain can remain in $\emptyset$. Condition (ii) e
 
 \section{Simulating Gibbs-Laguerre-Delaunay tessellations}
 \subsection{Definition of the models}
-Our goal is to simulate examples of both smooth-interaction and hardcore-interaction potentials defined in Section \ref{sec:Existence} on $\mathcal D$ and $\mathcal {LD}$ models. To that end, we choose a particular form of the potentials.
+Our goal is to simulate examples of both smooth-interaction and hardcore-interaction potentials defined in Section \ref{sec:Existence} on $\mathcal D$ and $\mathcal {LD}$ models. To that end, we choose a particular parametric form of potentials depending on the parameters $\theta$ and $\alpha$.
 
 \begin{align}\label{modelHC}
 &\varphi^{\theta,\alpha}_{HC}(\eta,\x) = 
@@ -253,7 +253,7 @@ Note that $\mathbf N_{nr}$ is \unsure{check this} measurable in $(\mathbf N_{lf}
 $$\Omega = \mathbf N_f \cap \mathbf N_\infty \cap \mathbf N_{nr}.$$
 We further denote the set 
 $$A_\gamma = \{ x \in \Lambda \times S: \gamma\cup\{x\} \in N_{nr}\},$$
-the set of points which we can propose if the chain is in the state $\gamma$. Generation of points in $A_\gamma$ is done through rejection sampling.
+the set of points which we can propose if the chain is in the state $\gamma$. Generation of points in $A_\gamma$ is done through rejection sampling, that is repeatedly sampling a point $x\in \Lambda\times S$ until the point satisfies $x\in A_\gamma$.
 \problem[inline]{$\Lambda$ is basically undefined here}
 
 
@@ -299,25 +299,30 @@ the set of points which we can propose if the chain is in the state $\gamma$. Ge
 \unsure[inline]{Why does this work? Can we choose different proposal density to improve the convergence?}
 
 
-During the move step, the moved point might fall outside of $[0,1]^3$. In \cite{DereudreLavancier2010}, the point would be replaced by the periodic property. We do not use the periodic configuration (Section \ref{sec:practical}) and this approach would not be in line with the idea that a small perturbation to the point's position should not result in a radically different position. 
+During the move step, the moved point might fall outside of $[0,1]^3$. In \cite{DereudreLavancier2011}, the point would be replaced by the periodic property. We do not use the periodic configuration (Section \ref{sec:practical}) and this approach would not be in line with the idea that a small perturbation to the point's position should not result in a radically different position. 
 In our case the point is reflected back inside $[0,1]^3$, as if it was 'bounced back' from the boundary of $[0,1]^3$ \unsure{Is this a good approach? I makes the density of moved points next to boundary concentrate more in some places}.
+
+\begin{remark}
+Recall that the mark space $S=[0,W]$ limit the maximum weight. It is worth noting to what extent this is a limitation. From a practical perspective, the maximum weight $W$ limits the resulting tessellation in the sense that the difference of weights can never be greater than $W$. Marks greater than $W$ are not necessarily a problem, as we can always find an identical tessellation with marks bounded by $W$, as long as there are no two points $p,q$ with $|p''-q''|>W$ (see Remark \ref{rem:invariance}).
+\end{remark}
+
 
 \subsection{Simplified form of proposal densities}
 The Hastings ratios require us to calculate a ratio of densities $f$ both containing the energy function. Such calculation would be lengthy and would render the whole approach infeasible. However, here again the locality of the tetrahedrization allows us to express the Hastings ratios with only those tetrahedra which are affected by the added, removed, or moved point. If we recall Remark \ref{r:addremove}, we obtain the following simplifications for the ratios in Algorithm A-$\mathcal {LD}$.
 
-The ratio of densities in birth step \ref{birth} then becomes:
+The ratio of densities in birth step \eqref{birth} then becomes:
 \begin{align*}
 \frac{f(\gamma_0 \cup\{x\})}{f(\gamma_0)} &= \exp\left({\sum_{\eta\in \mathcal E_\Lambda(\gamma_0 \cup\{x\})} \varphi(\eta,\gamma_0 \cup\{x\}) - \sum_{\eta\in \mathcal E_\Lambda(\gamma_0)}\varphi(\eta,\gamma_0)}\right) \\
 &= \exp\left(  \sum_{T \in \mathcal {LD}^\otimes (x,\gamma_0)} \varphi(\eta,\gamma_0)  - \sum_{T\in \mathcal {LD}^\ell (x,\gamma_0 \cup\{x\})} \varphi(\eta,\gamma_0 \cup\{x\}) \right)  
 \end{align*}
 
-Ratio for death step \ref{death} becomes:
+Ratio for death step \eqref{death} becomes:
 \begin{align*}
 \frac{f(\gamma_0 \setminus\{x\})}{f(\gamma_0)}&= \exp\left({\sum_{\eta\in \mathcal E_\Lambda(\gamma_0 \setminus\{x\})} \varphi(\eta,\gamma_0 \setminus\{x\})- \sum_{\eta\in \mathcal E_\Lambda(\gamma_0)}\varphi(\eta,\gamma_0)}\right)\\
 &= \exp\left( \sum_{T\in \mathcal {LD}^\ell (x,\gamma_0)} \varphi(\eta,\gamma_0) - \sum_{T \in \mathcal {LD}^\otimes (x,\gamma_0 \setminus\{x\} )} \varphi(\eta,\gamma_0 \setminus\{x\})   \right)
 \end{align*}
 
-Ratio for move step \ref{move} becomes:
+Ratio for move step \eqref{move} becomes:
 \begin{align*}
 & \frac{f(\gamma_0 \setminus\{x\} \cup\{y\})}{f(\gamma_0)}= 
 \frac{f(\gamma_0 \setminus\{x\} \cup\{y\})}{f(\gamma_0 \setminus\{x\})} \frac{f(\gamma_0 \setminus\{x\})}{f(\gamma_0)} \\ 
@@ -333,9 +338,9 @@ We have presented the simplified ratios for Algorithm A-$\mathcal {LD}$. The cas
 \subsection{Practical implementation}\label{sec:practical}
 All simulations were done in C++ using CGAL \cite{cgal},\cite{cgal:3d-triang}\todoo{Definitely sell this more later}. More details can be found in appendix \ref{appendix:implementation}.
 \subsubsection{Initial configuration}
-In~\cite{DereudreLavancier2010}, three options for the initial configuration are suggested: the empty configuration, a specific fixed outside configuration, and periodic configuration.
+In~\cite{DereudreLavancier2011}, three options for the initial configuration are suggested: the empty configuration, a specific fixed outside configuration, and periodic configuration.
 We ruled out periodic configuration since the CGAL implementation of 3d periodic triangulations~\cite{cgal:3d-period} has a much longer running time than in the non-periodic case. 
-\cite{DereudreLavancier2010} rejects the empty configuration on the basis that it "produces non bounded Delaunay-Voronoi cells". While this is true for a Voronoi diagram, it does not hold for the Delaunay or Laguerre case and so such configuration would in fact be possible in our case.
+\cite{DereudreLavancier2011} rejects the empty configuration on the basis that it "produces non bounded Delaunay-Voronoi cells". While this is true for a Voronoi diagram, it does not hold for the Delaunay or Laguerre case and so such configuration would in fact be possible in our case.
 However, the method chosen was to fix a regular grid of points in and out of $\Lambda$ such that the resulting tessellation fulfills the hardcore conditions. This does mean that the initial configuration is dependent on the values of the hardcore parameter $\alpha$. 
 
 

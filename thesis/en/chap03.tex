@@ -2,7 +2,7 @@
 In this chapter, the theorem from \cite{DDG12} will be presented and then we will proceed to verify its assumptions for our models.
 
 \section{Existence theorem}
-In this section we first state the two existence theorems from \cite{DDG12} and then proceed to introduce its assumptions.
+In this section we first state the two existence theorems from \cite{DDG12}. The assumptions  \textbf{(S)}, \textbf{(R)}, \textbf{(U)} and \textbf{(\^U)} are introduced in the following sections. 
 
 \begin{theorem}
 	For every hypergraph structure $\mathcal E$, hyperedge potential $\varphi$ and activity $z>0$ satisfying \textbf{(S)}, \textbf{(R)} and \textbf{(U)} there exists at least one Gibbs measure.
@@ -12,9 +12,9 @@ In this section we first state the two existence theorems from \cite{DDG12} and 
 	For every hypergraph structure $\mathcal E$, hyperedge potential $\varphi$ and activity $z>0$ satisfying \textbf{(S)}, \textbf{(R)} and \textbf{(\^{U})} there exists at least one Gibbs measure.
 \end{theorem}
 
-Proofs of both theorems can be found in \cite{DDG12}, see also remark 3.7. in the same paper about the marked case.
+Proofs of both theorems can be found in \cite{DDG12}, see also Remark 3.7. in the same paper about the marked case.
 
-\subsection{Stability}
+\subsection{Stability}\label{sec:stability}
 A standard assumption without which it is impossible to define the Gibbs measure is the stability assumption. 
 
 \begin{enumerate}[\textbf{(S)}] 
@@ -38,7 +38,7 @@ The first thing to note that when $\varphi$ is non-negative, then we can simply 
 \subsection{Range condition} \label{sec:range}
 As stated previously, the fact that the hypergraph structures posses a type of locality property is crucial for the existence of Gibbs measures. The simplest such assumption is the \textit{finite range} assumption, see Definition 7 in \cite{Dereudre2017}, which roughly states that there exists $R>0$ such that the energy of $\x$ in $\Lambda$ only depends on points in $\Lambda + b(0,R)$. This is a strong assumption and one that is not fulfilled by our models. 
 
-This is reflected in part in the range condition introduced here and later in the uniform confinement condition \ref{eq:U1}.
+This is reflected in part in the range condition introduced here and later in the uniform confinement condition \eqref{eq:U1}.
 
 \begin{enumerate}[\textbf{(R)}]\label{(R)}
 	\item \textit{Range condition}. There exist constants $\ell_R,n_R \in \mathbb N$ and $\delta_R < \infty$ such that for all $(\eta,\x) \in \mathcal E$ there exists a finite horizon $\Delta$ satisfying: For every $x,y \in \Delta$ there exist $\ell$ open balls $B_1, \dots, B_\ell$ (with $\ell \leq \ell_R$) such that
@@ -55,13 +55,13 @@ Apart from being one of the assumptions necessary for the existence, the range c
 	Let $\Lambda \in \mathcal B_0(\Rt)$. Under the assumption \ref{(R)}, there exists a set $\hat {\mathbf N}^\Lambda_{cr} \in \mathbf N_{\Lambda^c}$ such that $\hat {\mathbf N}^\Lambda_{cr} \subset \mathbf N^\Lambda_{cr}$ and $P(\hat {\mathbf N}^\Lambda_{cr})=1$ for all $P \in \mathcal P_\Theta$ with $P(\varnothing)=0$.
 \end{proposition}
 \begin{proof}
-	Can be found in Theorem 5.4. in \cite{DDG12}. See also remark 3.7. in connection to the marked case.
+	Can be found in Theorem 5.4. in \cite{DDG12}. See also Remark 3.7. in connection to the marked case.
 \end{proof}
 \problem[inline]{This is wrong, since we're using the wrong set $\mathbf N_\Lambda$}
 
 The proposition shows that any $\Theta$-invariant probability measure on $(\mathbf N_{lf},\mathcal N_{lf})$ is concentrated on the set $\mathbf N^\Lambda_{cr}$ for any $\Lambda \in \mathcal B_0(\Rt)$.
 
-\subsection{Upper regularity}
+\subsection{Upper regularity}\label{sec:upperregularity}
 
 
 In order to present the upper regularity conditions, we introduce the notion of \textit{pseudo-periodic} configurations. 
@@ -89,7 +89,7 @@ Notice that (U1) is very close to the classic finite range property mentioned at
 
 As long as $\Pi^z_C (\Gamma) >0$, (U3) will always hold for all $z$ exceeding some threshold $z_0 \geq 0$. This is because the left hand side is an increasing function of $z$, as can be seen from the equality 
 $$e^{z|C|} \Pi^z_C(\Gamma) = \sum^\infty_{k=1} \frac{z^k}{k!} \int_C \cdots \int_C 1_{\Gamma} \left(\sum^k_{i=1} \delta_{X_i}\right) dx_1, \dots, dx_k,$$
-which can be derived using \ref{eq:poiscalc}. 
+which can be derived using \eqref{eq:poiscalc}. 
 
 
 \todoo[inline]{Add more intuition about U3 and comment on why \^U is useful}
@@ -131,7 +131,8 @@ in order for balls to never overlap \unsure{This is perhaps unnecessarily conser
 
 \begin{remark}[Simplification of (U2) and (U3)]\label{r:UA}
 	Using the set $\Gamma^A$, we can simplify the assumptions (U2) and (U3).
-\begin{enumerate}[(U2)]	
+\begin{enumerate}[(U1)]	
+	\setcounter{enumi}{1}
 	\item	We now have \todoo{Check how I am using $|\cdot |$ and $\#$} $\#(\hat\eta) = \mathrm{card}(\eta)$, since now each point of $\eta$ is necessarily in a different set $C(k)$.
 
 \item $\Pi^z_C(\Gamma)$ can now be directly calculated.
@@ -253,7 +254,7 @@ It remains to prove that $\sup_{\eta'} W_{\eta'} < \infty$, i.e. changing the po
 \todoo[inline]{Specify these things as ``models'' of the form $(\mathcal D_4, \varphi_S)$.Specify the measure $\mu$ in there, too}
 In this section, we will verify the assumptions for the existence of Gibbs measures with the energy function defined on the hypergraphs $\mathcal D_4$ and $\mathcal {LD}_4$. We use the general letter $\mathcal E$ when we mean either $\mathcal D$ or $\mathcal {LD}$. Two potentials will be considered
 
-\textbf{Smooth interaction}:  For $\eta\in\mathcal E_4(\x)$ define the potential $\varphi_S$ as an unary potential such that
+\noindent \textbf{Smooth interaction}:  For $\eta\in\mathcal E_4(\x)$ define the potential $\varphi_S$ as an unary potential such that
 $$\varphi_S(\eta,\x) \leq K_0 + K_1 \delta(\eta)^{\alpha}$$
 for some $K_0,K_1 \geq 0, \alpha >0$\newline
 \textbf{Hard-core interaction}: For $\eta\in\mathcal E_4(\x)$ define the potential $\varphi_{HC}$ as an unary potential such that
@@ -314,7 +315,7 @@ We first present a general lemma. Recall the definition of $r_\Gamma$ from (U1).
 		\begin{enumerate}[(\^U1)]
 			\item For all $\eta \in \mathcal D_4(\x)$ for $\x\in\Gamma^A$ such that $H_\Lambda(\x)<\infty$ we have $\delta(\eta) < \alpha$. This imposes a minimum density of points, since e.g. no ball with diameter $\alpha$ can be empty. 
 			\item We have $n_T<56$ and thus the only quantity in question is $\varphi_{HC}$. By \ref{thm:Apollonius}, we have $\delta(\eta)\leq a\delta^{max}_2(\rho)$, thus we only need to choose $a$ such that $\delta^{max}_2(\rho) \leq \alpha / a$.
-			\item $\Pi^z_\Lambda(\Gamma)>0$ by remark \ref{r:UA}.
+			\item $\Pi^z_\Lambda(\Gamma)>0$ by Remark \ref{r:UA}.
 		\end{enumerate}
 \end{enumerate}
 \end{proof}
@@ -327,7 +328,7 @@ We first present a general lemma. Recall the definition of $r_\Gamma$ from (U1).
 \end{theorem}
 \begin{proof}
 \begin{enumerate}[]
-	\item \textbf{(R)} Take the horizon set $\Delta = B(p'_\eta, \sqrt{p''_\eta + W})$. $\Delta$ can be decomposed into the sphere $p_\eta$ and $\Delta \setminus p_\eta$, a 3-dimensional annulus with width $\sqrt{p''_\eta+W} -\sqrt{p''_\eta}=W/(\sqrt{p''_\eta+W} + \sqrt{p''_\eta})$. By definition of $\mathcal {LD}$ and remark, $p_\eta$  cannot contain any points of $\x$. \todoo{Ugly line placements, improve} Although the annulus $\Delta \setminus p_\eta$ does not have any bound on the number of points, its width is bounded by $\sqrt W \geq  W/(\sqrt{p''_\eta+W} + \sqrt{p''_\eta})$. This means that any $x,y\in \Delta$ can be connected by the spheres $B(x,\sqrt W), p_\eta, B(y,\sqrt W)$, yielding the parameters $\ell_R = 3,n_R=0,\delta_R=2\sqrt W$.
+	\item \textbf{(R)} Take the horizon set $\Delta = B(p'_\eta, \sqrt{p''_\eta + W})$. $\Delta$ can be decomposed into the sphere $p_\eta$ and $\Delta \setminus p_\eta$, a 3-dimensional annulus with width $\sqrt{p''_\eta+W} -\sqrt{p''_\eta}=W/(\sqrt{p''_\eta+W} + \sqrt{p''_\eta})$. By definition of $\mathcal {LD}$ and \todoo{which remark?}remark, $p_\eta$  cannot contain any points of $\x$. \todoo{Ugly line placements, improve} Although the annulus $\Delta \setminus p_\eta$ does not have any bound on the number of points, its width is bounded by $\sqrt W \geq  W/(\sqrt{p''_\eta+W} + \sqrt{p''_\eta})$. This means that any $x,y\in \Delta$ can be connected by the spheres $B(x,\sqrt W), p_\eta, B(y,\sqrt W)$, yielding the parameters $\ell_R = 3,n_R=0,\delta_R=2\sqrt W$.
 	\item \textbf{(S)} Stability is satisfied because of $\varphi$ is non-negative.
 	\item \textbf{(U)} We choose $M$ and $\Gamma$ as in section \ref{sec:MGamma}.
 		\begin{enumerate}[(U1)]
@@ -350,11 +351,11 @@ We first present a general lemma. Recall the definition of $r_\Gamma$ from (U1).
 \begin{enumerate}[]
 	\item \textbf{(R)} The horizon set is $\Delta = B(p'_\eta,\sqrt{p''_\eta +W})$. Parameters can be chosen as in Theorem \ref{thm:E3}. \unsure{Is it a problem that there's no $n_R$ circle? Cause the proof suggested something like that?}
 	\item \textbf{(S)} Stability is satisfied because of $\varphi$ is non-negative.
-	\item \textbf{(U)} We choose $M$ and $\Gamma$ as in section \ref{sec:MGamma}.
+	\item \textbf{(\^U)} We choose $M$ and $\Gamma$ as in section \ref{sec:MGamma}.
 		\begin{enumerate}[(U1)]
 			\item Same as in Theorem \ref{thm:E2}. Although the underlying structure is different, the potential still depends on $\delta(\eta)$ and (\^U1) requires the configuration to have non-infinite energy.
 			\item Same as in Theorem \ref{thm:E2}, $n_T<56$ and we choose an appropriate $a$.
-			\item $\Pi^z_\Lambda(\Gamma)>0$ by remark \ref{r:UA}
+			\item $\Pi^z_\Lambda(\Gamma)>0$ by Remark \ref{r:UA}
 		\end{enumerate}
 \end{enumerate}
 \end{proof}
