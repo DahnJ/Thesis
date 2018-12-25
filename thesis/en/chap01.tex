@@ -87,7 +87,7 @@ Note that an analogous proof could be used to prove a similar property for $\mat
 
 
 
-\subsection{Laguerre tetrahedrization}
+\subsection{Laguerre tetrahedrization}\label{sec:Laguerre}
 \todoo[inline]{Intro}
 
 The key information to understanding the geometry of Laguerre tetrahedrizations is that a point $p=(p',p'')\in \Rt\times S$ can be interpreted as an open ball $B(p',\sqrt{p''})$. We will call $B_p = B(p',\sqrt{p''})$ the \textit{ball defined by $p$}. We further define the sphere $S_p=\partial B_p$. 
@@ -244,7 +244,7 @@ The regularity property ensures that no point of $\x$ is closer to the character
 \begin{remark}[Constructing Laguerre and Delaunay tetrahedrization]\label{r:construct}
 	The proof of Proposition \ref{prop:charpoint} also gives a hint on how to check whether $\eta$ is regular. We have seen that the determinant of the matrix \eqref{circmat} is zero if and only if the five points are Laguerre-cocircular. However, the said determinant provides us with more information than that. More specifically, we can use it to perform the so-called INCIRCLE test on five points $p_1,\dots, p_5$ to tell whether the point $p_5$ violates the regularity of the tetrahedron defined by $p_1,\dots, p_4$. This amounts to checking the postivity of the determinant of \eqref{circmat}, assuming the points $p_1,\dots, p_4$ are correctly oriented, which can be checked through the determinant of the matrix \eqref{hommat}. \newline
 	
-	For details and a derivation, see chapter 4 in \cite{Gavrilova}, which also contains a short description of the \textit{incremental insertion} algorithm using \textit{local transformations}, called \textit{swaps} or \textit{flips}. The algorithm was first presented in \cite{Lawson72} in two dimensions. For more information on the algorithm in three dimensions, see \cite{Joe89} and \cite{Joe91} for the Delaunay tetrahedronization, and \cite{Edelsbrunner1996} for Laguerre tetrahedronization.
+	For details and a derivation, see Chapter 4 in \cite{Gavrilova}, which also contains a short description of the \textit{incremental insertion} algorithm using \textit{local transformations}, called \textit{swaps} or \textit{flips}. The algorithm was first presented in \cite{Lawson72} in two dimensions. For more information on the algorithm in three dimensions, see \cite{Joe89} and \cite{Joe91} for the Delaunay tetrahedronization, and \cite{Edelsbrunner1996} for Laguerre tetrahedronization.
 \end{remark}
 
 
@@ -483,7 +483,6 @@ While the set $\mathcal E_\Lambda(\x)$ contains hyperedges $\eta$ which can be i
 	\noindent In $\mathcal D_4$, we obtain similar sets
 	$$\mathcal D_4^\otimes(x,\x) := \{\eta \in \mathcal D_4(\x): x \in B(\eta)\},$$
 	$$\mathcal D_4^\ell(x,\x) := \{\eta \in \mathcal D_4(\x): x\in \eta \}.$$
-
 	We note that the sets denoted by $\otimes$ stand for \textit{conflicting} tetrahedra and the $\ell$ stands for tetrahedra \textit{linked} to $x$. 
 
 \end{remark}

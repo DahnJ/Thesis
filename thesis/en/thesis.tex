@@ -48,7 +48,6 @@
 			    % of contents
 \usepackage{dcolumn}        % improved alignment of table columns
 \usepackage{booktabs}       % improved horizontal lines in tables
-\usepackage{paralist}       % improved enumerate and itemize
 \usepackage[usenames, dvipsnames]{xcolor}  % typesetting in color
 
 
@@ -97,6 +96,13 @@
   \end{array}\right)
 }
 
+
+\newenvironment{tight_enumerate}{
+\begin{enumerate}
+  \setlength{\itemsep}{0pt}
+  \setlength{\parskip}{0pt}
+}{\end{enumerate}}
+
 %%% Basic information on the thesis
 
 % Thesis title in English (exactly as in the formal assignment)
@@ -130,6 +136,8 @@
 % An optional dedication: you can thank whomever you wish (your supervisor,
 % consultant, a person who lent the software, etc.)
 \def\Dedication{%
+
+% 
 % Benes
 % A?s
 % Nohic
@@ -194,6 +202,20 @@ Abstract.
 %%% Abbreviations used in the thesis, if any, including their explanation
 %%% In mathematical theses, it could be better to move the list of abbreviations to the beginning of the thesis.
 \chapwithtoc{Glossary of terms and abbreviations}
+$\mathrm{diam}$ \newline
+$\mathrm{card}$ \newline
+$|\cdot|$ \newline
+$\mathrm{}$ \newline
+$B(x,r)$ \newline
+$\langle , \rangle$ \newline
+$\mathrm{pr}$ \newline
+$\angle$
+$\propto$
+
+affinely independent, cocircular, point of tangency, triangle notation, angle notation, segment notation, n-simplex, hyperplane, volume, k-facet, coplanar, sphere, tangent circles, line, parallelepiped
+overdetermined system
+
+
 
 %%% Attachments to the master thesis, if any. Each attachment must be
 %%% referred to at least once from the text of the thesis. Attachments

@@ -1,4 +1,4 @@
-\chapter{Estimation}
+\chapter{Estimation}\label{ch:estimation}
 Assume now that we obtain the point configuration $\gamma$ from model $(\varphi^{\theta,\alpha}_{HC},\mathcal {LD}_4)$ on the observation window $\Lambda_n = [-n,n]^3$ and wish to estimate the model parameters $(z,\theta,\alpha)$. To simplify the notation, we introduce the set $\Lambda^S_n = \Lambda_n \times S$.
 
 The estimation procedure closely follows that from~\cite{DereudreLavancier2011}. That is a two-step approach, first estimating the hardcore parameter $\alpha$ and then using the estimates to obtain the estimates of $\theta$ and $z$ through maximum pseudolikelihood (MPLE). 
@@ -24,7 +24,7 @@ The estimate $\hat\alpha$ is then used in the pseudo-likelihood function in the 
 In the second step we estimate the smooth interaction parameters through maximum pseudolikelihood.
 \todoo[inline]{Improve handling of the Models - as of now they're sort of scattered}
 \todoo[inline]{Equation references}
-The classical version of MPLE requires hereditarity of the energy function. Hereditarity means that for every permissible $\gamma$, the point pattern $\gamma\setminus\{x\}$ remains permissible for every $x\in\gamma$, see Section \ref{sec:energyfunction} for definition and discussion. The hardcore interaction in the model $(\mathcal {LD}_4,\varphi_HC)$\todoo{again, references, clear model definitions,..} does not satisfy this condition. For that purpose, Section \ref{sec:non-hereditary} presented the extension to the non-hereditary case from \cite{DereudreLavancier2007}. 
+The classical version of MPLE requires hereditarity of the energy function. Hereditarity means that for every permissible $\gamma$, the point pattern $\gamma\setminus\{x\}$ remains permissible for every $x\in\gamma$, see Section \ref{sec:energyfunction} for definition and discussion. The hardcore interaction in the model $(\mathcal {LD}_4,\varphi_HC)$\todoo{again, references, clear model definitions,..} does not satisfy this condition. For that purpose, Section \ref{sec:non-hereditary} presented the extension to the non-hereditary case from \cite{DereudreLavancier2009}. 
 
 Recall that a point $x\in\gamma$ is removable in a configuration $\gamma\in\mathbf N_{lf}$ if $\gamma\setminus\{x\}$ is permissible. We denote $\mathcal R^\alpha(\gamma)$ the set of removable points of $\gamma$. Similarly the notion of an addable point will be useful. A point $x\in\gamma$ is \textit{addable} in $\gamma$ if $\gamma \cup \{x\}$ is permissible and we denote $\tilde\Lambda^S_n$ the set of addable points in $\Lambda^S_n$. 
 
