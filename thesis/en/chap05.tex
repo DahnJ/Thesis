@@ -24,7 +24,7 @@ The estimate $\hat\alpha$ is then used in the pseudo-likelihood function in the 
 In the second step we estimate the smooth interaction parameters through maximum pseudolikelihood.
 \todoo[inline]{Improve handling of the Models - as of now they're sort of scattered}
 \todoo[inline]{Equation references}
-The classical version of MPLE requires hereditarity of the energy function. Hereditarity means that for every permissible $\gamma$, the point pattern $\gamma\setminus\{x\}$ remains permissible for every $x\in\gamma$, see Section \ref{sec:energyfunction} for definition and discussion. The hardcore interaction in the model $(\mathcal {LD}_4,\varphi_HC)$\todoo{again, references, clear model definitions,..} does not satisfy this condition. For that purpose, Section \ref{sec:non-hereditary} presented the extension to the non-hereditary case from \cite{DereudreLavancier2009}. 
+The classical version of MPLE requires heredity of the energy function. Heredity means that for every permissible $\gamma$, the point pattern $\gamma\setminus\{x\}$ remains permissible for every $x\in\gamma$, see Section \ref{sec:energyfunction} for definition and discussion. The hardcore interaction in the model $(\mathcal {LD}_4,\varphi_HC)$\todoo{again, references, clear model definitions,..} does not satisfy this condition. For that purpose, Section \ref{sec:non-hereditary} presented the extension to the non-hereditary case from \cite{DereudreLavancier2009}. 
 
 Recall that a point $x\in\gamma$ is removable in a configuration $\gamma\in\mathbf N_{lf}$ if $\gamma\setminus\{x\}$ is permissible. We denote $\mathcal R^\alpha(\gamma)$ the set of removable points of $\gamma$. Similarly the notion of an addable point will be useful. A point $x\in\gamma$ is \textit{addable} in $\gamma$ if $\gamma \cup \{x\}$ is permissible and we denote $\tilde\Lambda^S_n$ the set of addable points in $\Lambda^S_n$. 
 
@@ -39,7 +39,7 @@ where $h^{\theta,\alpha}(x, \gamma \setminus \{x\})$ is local energy of $x$ in $
 The estimates $\hat\theta$ and $\hat z$ are obtained through minimizing the $PLL_{\Lambda_n}$ function \ref{PLL}:
 $$(\hat z, \hat\theta) = \text{argmin}_{z,\theta} PLL_{\Lambda_n} (\gamma, z, \hat\alpha,\theta).$$
 
-By \unsure{Is the function convex?} differentiating the PLL function \ref{PLL} with respect to $z$, respectivelly $\theta$, and setting them equal to zero, we obtain the estimate for $\hat z$,
+By \unsure{Is the function convex?} differentiating the PLL function \ref{PLL} with respect to $z$, respectively $\theta$, and setting them equal to zero, we obtain the estimate for $\hat z$,
 
 \begin{equation}\label{z_hat}
 	\hat z = \frac{\mbox{card}(\mathcal R^{\hat\alpha}(\gamma)\cap \Lambda^S_n)}{\int_{\Lambda^S_n} \exp{\left( -h^{\hat\alpha,\theta}(x,\gamma)\right)} dx},
@@ -61,7 +61,7 @@ $$
 = \frac {\sum_{x \in \mathcal R^{\hat\alpha}(\gamma)\cap \Lambda^S_n} h^{\hat\alpha,1}(x,\gamma\setminus\{x\})} { \mbox{card}(\mathcal R^{\hat\alpha}(\gamma)\cap \Lambda^S_n) }. 
 $$
 
-In order to simplify the estimation of $\theta$, we can simplify this equation further. First, we denote the righ-hand-side of the equation as $c$ as it  is constant with respect to $\theta$. Second, we note that $x \notin \mathcal A^\alpha(\gamma)\cap\tilde\Lambda^S_n  \Rightarrow \exp{\left(-h^{\hat\alpha,\theta}(x,\gamma)\right)}= 0$ which enables us to integrate over $\tilde\Lambda^S_n$ instead of the whole window $\Lambda^S_n$. Lastly we denote the local energy $h^{\hat\alpha,1}(x,\gamma) =: h(x)$, yielding the expression
+In order to simplify the estimation of $\theta$, we can simplify this equation further. First, we denote the right-hand-side of the equation as $c$ as it  is constant with respect to $\theta$. Second, we note that $x \notin \mathcal A^\alpha(\gamma)\cap\tilde\Lambda^S_n  \Rightarrow \exp{\left(-h^{\hat\alpha,\theta}(x,\gamma)\right)}= 0$ which enables us to integrate over $\tilde\Lambda^S_n$ instead of the whole window $\Lambda^S_n$. Lastly we denote the local energy $h^{\hat\alpha,1}(x,\gamma) =: h(x)$, yielding the expression
 $$ \int_{\tilde\Lambda^S_n} h(x) \exp{\left(-\theta h(x)\right)} dx = c \int_{\tilde\Lambda^S_n} \exp{\left(-\theta h(x)\right)}\;dx, $$
 leading into the final equation
 \begin{equation}\label{hat_theta_final} 
@@ -72,7 +72,7 @@ The integral \ref{hat_theta_final} is estimated using Monte-Carlo integration, i
 $$ \frac 1N \sum_{i=0}^N 1_{\tilde\Lambda^S_n}(x_i) \exp{\left( - \theta h_i \right )} (h_i- c) dx $$
 where $h_i = h^{\hat\alpha,1}(x_i, \gamma)$ and $x_1,\dots,x_N$ is a random sample from the \unsure{Do we need the indicator function if we're only sampling from $\Lambda'_n$ ?}uniform distribution on $\Lambda'_n$
 
-After $\hat\theta$ is estimated, we then obtain the estimate $\hat z$ with $\hat\theta$ instead of $\theta$ and the integral replaced by a Monte-cardlo integration approximation.
+After $\hat\theta$ is estimated, we then obtain the estimate $\hat z$ with $\hat\theta$ instead of $\theta$ and the integral replaced by a Monte-Carlo integration approximation.
 
 
 \section{Consistency}

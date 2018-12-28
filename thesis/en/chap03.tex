@@ -122,7 +122,7 @@ Let $M$ be such that $|M_i| = a > 0$ for $i=1,2,3$ and $\angle(M_i,M_j) = \pi / 
 \subsubsection{Choice of the set $A$}
 In \cite{DDG12}, $A$ is chosen to be $B(0,b)$ for $b\leq \rho a$ for some sufficiently small $\rho >0$. 
 
-We will use this form for the positions of the points as well --- the question, however, is how to choose the mark set. For Delaunay models, we choose $A=B(0,b)\times\{0\}$. It would be convenient to do this in the Laguerre case and only deal with the Delaunay tetrahedronization. However, for Laguerre-Delaunay models, this  would mean that $\Pi^z_C(\Gamma) = 0$, conflicting with both $(U3)$ and $(\hat U3)$. The choice $A=B(0,b)\times S$ could, for a small enough $a$, result in some balls being fully contained in their neighboring balls, possibly resulting in redundant points, thus changing the desired properties of $\Gamma$. It is thus necessary to choose the mark space dependent on $a$. For given $a$, $\rho$, the minimum distance between individual points, is $a-2\rho a = a(1-2\rho)$. For $\mathcal {LD}$ models we therefore choose 
+We will use this form for the positions of the points as well --- the question, however, is how to choose the mark set. For Delaunay models, we choose $A=B(0,b)\times\{0\}$. It would be convenient to do this in the Laguerre case and only deal with the Delaunay tetrahedrization. However, for Laguerre-Delaunay models, this  would mean that $\Pi^z_C(\Gamma) = 0$, conflicting with both $(U3)$ and $(\hat U3)$. The choice $A=B(0,b)\times S$ could, for a small enough $a$, result in some balls being fully contained in their neighboring balls, possibly resulting in redundant points, thus changing the desired properties of $\Gamma$. It is thus necessary to choose the mark space dependent on $a$. For given $a$, $\rho$, the minimum distance between individual points, is $a-2\rho a = a(1-2\rho)$. For $\mathcal {LD}$ models we therefore choose 
 $$A = B(0,b)\times \left[0, \sqrt{\frac a2(1-2\rho)}\right]$$ 
 in order for balls to never overlap \unsure{This is perhaps unnecessarily conservative, we could widen it}. 
 
@@ -233,7 +233,7 @@ Now we turn to the combinatorial structure of $\mathcal D_4(\x_0)$. In the tetra
 \todoo[inline]{Make it clear that the whole thing is proved in appendix. Also, make this whole thing clearer.}
 
 \subsubsection{Circumdiameter and characteristic point weight}
-The bound on circumdiameters of the circumballs and characteristic point weights is crucial for the assumption (U1) as well as (U2) and (U3) for potentials that include them. Without such a bound, we have no uniform confinement and the hyperege potential can grow to infinity. We therefore have to investigate the shape of the tetrahedra that are possible with $\x \in \bar\Gamma$. 
+The bound on circumdiameters of the circumballs and characteristic point weights is crucial for the assumption (U1) as well as (U2) and (U3) for potentials that include them. Without such a bound, we have no uniform confinement and the hyperedge potential can grow to infinity. We therefore have to investigate the shape of the tetrahedra that are possible with $\x \in \bar\Gamma$. 
 
 \begin{proposition}\label{prop:maxPeta}
 	Let $\x \in \bar\Gamma^A$ with $\rho < 1/4$. Then the weight of the characteristic point is uniformly bounded. That is there exists $C>0$ such that $p_\eta'' \leq C$ for all $\eta \in \mathcal {LD}_4(\x)$. 

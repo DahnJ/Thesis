@@ -148,7 +148,7 @@ Denote $(x_i,y_i,z_i)$ the coordinates of $p_i, i=1,\dots,3$. The following lemm
 \todoo[inline]{Define $\delta$ for triangles, too}
 \begin{lemma} $c(p)$ is continuous, has a global minimum $c_{min} := \delta(\{p_1,p_2,p_3\})$ and level sets 
 	$$L_a := \{p \in \Rt: c(p)=a\} = S_{a1} \cup S_{a2}, \quad a \geq c_{min},$$ 
-	where $S_{a1}$ and $S_{a2}$ are two spheres with diameter $a$ such that $p_1,p_2,p_3 \in S_{a1}\cap S_{a2}$. Furthermore, the centers $c_1, c_2$ of $S_{a1},S_{a2}$ respectivelly, lie \todoo{Improve the wording}in the halfspaces
+	where $S_{a1}$ and $S_{a2}$ are two spheres with diameter $a$ such that $p_1,p_2,p_3 \in S_{a1}\cap S_{a2}$. Furthermore, the centers $c_1, c_2$ of $S_{a1},S_{a2}$ respectively, lie \todoo{Improve the wording}in the halfspaces
 $$H_+ = \{x \in \Rt: Ax \geq 0 \},\; H_- = \{x \in \Rt: Ax \leq 0\},$$
 where $A$ defines the hyperplane $H=\{x\in\Rt: Ax = 0\}$ on which $p_1,p_2,p_3$ lie.
 \end{lemma}
@@ -161,7 +161,7 @@ We must therefore find the number of spheres going through the points $p_1,p_2,p
 $$H_{12} = \{x\in\Rt: \|x-p_1\| = \|x-p_2\|\}, \;\; H_{23} = \{x\in\Rt: \|x-p_2\|=\|x-p_3\|\}.$$
 The intersection $H_{12}\cap H_{23}$ is a line $L$, as $p_1,p_2,p_3$ are non-collinear.  The center of $S$ is at distance $a/2$ from all three points and thus lies on $L$. For any point, there are at most two points on the line $L$ at a given distance from the point. This proves that there are at most two spheres satisfying the definition of $S$.
 
-Using the line $L$, we can also deduce the rest of the proposition. The point on $L$ at a minimum distance to $p_1,p_2,p_3$ is the point $p_{min}:=L\cap H$. We know that $p_{min}$ is equidistant from $p_1,p_2,p_3$ and that it lies on the hyperplane $H$, therefore it is the circmradius of the triangle defined by $p_1,p_2,p_3$ and we have $c(p_{min}) = \delta(\{p_1,p_2,p_3\})$.  
+Using the line $L$, we can also deduce the rest of the proposition. The point on $L$ at a minimum distance to $p_1,p_2,p_3$ is the point $p_{min}:=L\cap H$. We know that $p_{min}$ is equidistant from $p_1,p_2,p_3$ and that it lies on the hyperplane $H$, therefore it is the circumradius of the triangle defined by $p_1,p_2,p_3$ and we have $c(p_{min}) = \delta(\{p_1,p_2,p_3\})$.  
 
 \todoo[inline]{If possible, simplify this argument}
 To see that $c_1$ and $c_2$ must be (non-strictly) separated by the hyperplane $H$, assume without loss of generality $\{c_1,c_2\}\subset H_+, c_1\neq c_2$. Let $p \in S_{a1}$ and let  $p_R\in \Rt$ be the reflection of $p$ through the hyperplane $H$. The tetrahedron $p_1,p_2,p_3,p_R$ then is a reflection of the tetrahedron $p_1,p_2,\dots, p$ and therefore its circumsphere has diameter $a$. However, its centre lies in $H_-$, which is a contradiction. 
@@ -170,14 +170,14 @@ To see that $c_1$ and $c_2$ must be (non-strictly) separated by the hyperplane $
 Note that $S_{a1}$ and $S_{a2}$ are not necessarily distinct. In fact, we can see from the proof that $S_{a1}=S_{a2}$ precisely when $a=c_{min}$.
 
 
-We are now ready to characterize the set of solutions to \ref{prob:tetra1} and \ref{prob:tetra2}. For the next proposition, we say a point lies ``inside'' or ``outside'' of the sphere $S$ if the the point lies in $B$ or in $B^c$ respectivelly, where $B$ is the closed ball such that $\partial B = S$.
+We are now ready to characterize the set of solutions to \ref{prob:tetra1} and \ref{prob:tetra2}. For the next proposition, we say a point lies ``inside'' or ``outside'' of the sphere $S$ if the point lies in $B$ or in $B^c$ respectively, where $B$ is the closed ball such that $\partial B = S$.
 
 
 \begin{proposition}\label{prop:ApolloniusSet}
 Any solution $(p_1,p_2,p_3,p_4)$ of the problem \ref{prob:tetra1} will lie on a sphere $S$ that is (internally or externally) tangent to the spheres $\partial B(t_i,\rho a), i =1,2,3,4$. 
 \end{proposition}
 \begin{proof}
-	Let $(p_1,p_2,p_3,p_4)$ be a solution of \ref{prob:tetra1}. Denote $c(p_1)=\delta(\{p_1,p_2,p_3,p_4\})=c$ and $S$ the circumshphere of $\{p_1,\dots,p_4\}\subset S$. 
+	Let $(p_1,p_2,p_3,p_4)$ be a solution of \ref{prob:tetra1}. Denote $c(p_1)=\delta(\{p_1,p_2,p_3,p_4\})=c$ and $S$ the circumsphere of $\{p_1,\dots,p_4\}\subset S$. 
 	First, without loss of generality assume that $p_1 \in B(t_1,\rho a)$. Because $p_1$ maximizes the function $c(p)$, we have $c(p_1)\geq c(p), p\in U$, where $U$ is some small neighborhood of $p_1$. Choose two points, $p_O,p_I\in U\setminus S$ such that 
 \begin{enumerate} 
 \item $c(p_O)=c(p_I)=b$,
@@ -186,11 +186,11 @@ Any solution $(p_1,p_2,p_3,p_4)$ of the problem \ref{prob:tetra1} will lie on a 
 \end{enumerate}
 Such choice is possible due to continuity of $c(p)$. Yet we arrive at a contradiction, as the level set $L_b$ now contains two distinct spheres with centres in the same halfspace. 
 
-Assume now that $p_1 \in \partial B(t_1,\rho a)=: S_1$. We now choose $p_I$ and $p_O$ with the additional requirement that they must both lie on $\partial B(t_1,\rho a)$. Such choise is not possible precisely when $S_1$ and $S$ are tangent, since then \todoo{Make sure "inside" a sphere has a clear meaning} $S_1$ lies either completely inside or outside $S$ and it is no longer possible to choose points both outside and inside. 
+Assume now that $p_1 \in \partial B(t_1,\rho a)=: S_1$. We now choose $p_I$ and $p_O$ with the additional requirement that they must both lie on $\partial B(t_1,\rho a)$. Such choice is not possible precisely when $S_1$ and $S$ are tangent, since then \todoo{Make sure "inside" a sphere has a clear meaning} $S_1$ lies either completely inside or outside $S$ and it is no longer possible to choose points both outside and inside. 
 \end{proof}
 \unsure{Is this a good way of proceeding?}Note that Proposition \ref{prop:ApolloniusSet} is formulated for problem \ref{prob:tetra1}. However, we could repeat the same exact argument for \ref{prob:tetra2} and thus the same holds for both problems.\newline
 
-We have found that the solutions to \ref{prob:tetra1} and \ref{prob:tetra2} must lie on a sphere that tangent to the spheres within which points can move. This is a dramatic improvement --- we have narrowed the previously infinite space of possible solutions down to just $2^4=16$ possible quadruples of points (and even less beacause of symmetries). We also note that the set of solutions to our problem is precisely the set of solutions of a three-dimensional equivalent of the more than two thousand years old \todoo{Encoding problem} \textbf{Apollonius problem} 
+We have found that the solutions to \ref{prob:tetra1} and \ref{prob:tetra2} must lie on a sphere that tangent to the spheres within which points can move. This is a dramatic improvement --- we have narrowed the previously infinite space of possible solutions down to just $2^4=16$ possible quadruples of points (and even less because of symmetries). We also note that the set of solutions to our problem is precisely the set of solutions of a three-dimensional equivalent of the more than two thousand years old \todoo{Encoding problem} \textbf{Apollonius problem} 
 % \cite{GischRibando2006}.
 
 
@@ -219,7 +219,7 @@ As noted previously, the number of solutions for both $T_1$ and $T_2$ will reduc
 
 Sadly, for most choices of $+$ and $-$, these equations still seem to be too complex for Mathematica to solve. Luckily, we can simplify them further. 
 
-\subsubsection{Solving the equations \ref{eq:Apollonius} by linearizing}
+\subsubsection{Solving the equations \ref{eq:Apollonius} by linearising}
 
 We formulate the solution as a theorem.
 \begin{theorem}\label{thm:Apollonius}
@@ -235,7 +235,7 @@ We formulate the solution as a theorem.
 First, for clarity, we define the variables $s_i\in\{+1,-1\},i=1,\dots,4$ instead of relying on the notation $\pm$. We begin by expanding the parentheses to obtain the equations
 $$x^2+y^2+z^2 + x_i^2 + y_i^2 + z_i^2 - 2xx_i - 2yy_i - 2zz_i = r^2 + r_i^2 + 2(s_1 r_1 - s_2 r_2)r,\quad i=1,2,3,4$$
 
-By subtracting the $2,3,4$-th equation from the first, we get rid of the quadratic terms and obtain a system of linear equations with four variables and three equations:
+By subtracting the $2,3,4$th equation from the first, we get rid of the quadratic terms and obtain a system of linear equations with four variables and three equations:
 \begin{align*}-&2(x_1-x_i)x - 2(y_1-y_i)y -2 (z_1-z_i)z - 2(s_1r_1 - s_2r_2)r \\
 	& + x_1^2-x_i^2 + y_1^2-y_i^2 + z_1^2 - z_i^2 -r_1^2 + r_i^2 = 0, \quad i=2,3,4
 \end{align*}
@@ -246,7 +246,7 @@ We have used Wolfram Mathematica \cite{Mathematica} to find the solutions. The f
 \end{proof}
 All the solutions for the choice $a=1$ can be seen in Figures \ref{fig:Apollonius1} and \ref{fig:Apollonius2}. We can see that for $T_1, \rho < 1/\sqrt 6$, we have the two solutions
 $$a(\sqrt 6 / 4 + \rho), a \frac{\rho - \sqrt 6 (4\rho^2 - 1)}{4-24 \rho^2}$$
-which itersect at $\rho =1/(2\sqrt 6)$. 
+which intersect at $\rho =1/(2\sqrt 6)$. 
 
 Notice the simple linear form of the first solution --- it is precisely the sphere which is internally tangent to all four spheres. This sphere has the same center as the circumsphere of tetrahedron $\{t_1,t_2,t_3,t_4\}$. Thus the solution is a sum of circumradius of the tetrahedron, $\sqrt 6 /4$, and the radius of the four spheres, $\rho$. We can see similar behaviour in the solution that is externally tangent to all four spheres.
 
@@ -254,7 +254,7 @@ For $T_2$, the linear solution will no longer be the largest, as now we obtain a
 
 
 \begin{remark}\label{rem:GP}[General position]
-	From the form of the solutions one can also obtain the necessary bounds for $\rho$ for the points to remain in general position. The points cease to be in general position precisely when any one of the solutions becomes infinite. This gives us $\rho < 1/(2\sqrt 6)$ for $T_1$ and $\rho<1/4$ for $T_2$. Since we must control the circumdiamteter for all tetrahedra, we must assume $\rho < 1/4$.
+	From the form of the solutions one can also obtain the necessary bounds for $\rho$ for the points to remain in general position. The points cease to be in general position precisely when any one of the solutions becomes infinite. This gives us $\rho < 1/(2\sqrt 6)$ for $T_1$ and $\rho<1/4$ for $T_2$. Since we must control the circumdiameter for all tetrahedra, we must assume $\rho < 1/4$.
 \end{remark}
 
 

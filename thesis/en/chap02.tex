@@ -54,7 +54,7 @@ A \textit{marked point process} $\Phi_m$ is a point process on $\Rt\times S$ for
 Note that this definition requires the realizations of the projection of the marked point process to be locally finite counting measures in the sense of Definition \ref{def:measures}.
 
 \begin{remark}[Simple point process]
-	We have defined the counting measure to have values in $\{0,1\}$. Such couting measures, as well as the point processes defined through them, are commonly called \textit{simple}. We do not need this distinction here, therefore we do not use the term.
+	We have defined the counting measure to have values in $\{0,1\}$. Such counting measures, as well as the point processes defined through them, are commonly called \textit{simple}. We do not need this distinction here, therefore we do not use the term.
 \end{remark}
 
 \unsure[inline]{Do we need anything else? Intensity, Campbell?}
@@ -97,7 +97,7 @@ Using the binomial point process, we are ready to define the Poisson point proce
 \begin{definition} Let $\nu=$ be a measure on $E$. A point process $\Phi$ satisfying
 \begin{enumerate}
 	\item $\Phi(B)$ has a Poisson distribution with parameter $\nu(B)$ for each $B\in \mathcal B_0(E)$,
-	\item Conditonally on $\Phi_B=n, n\in\mathbb N$,  $\Phi|_B$ is the Binomial point process of $n$ points in $B$, $B \in \mathcal B_0(E)$.
+	\item Conditionally on $\Phi_B=n, n\in\mathbb N$,  $\Phi|_B$ is the Binomial point process of $n$ points in $B$, $B \in \mathcal B_0(E)$.
 \end{enumerate}
 is a \textit{Poisson process} on $E$ with \textit{intensity measure} $\nu$.
 For $B\in \mathcal B_0(E)$, denote $\Pi^\nu_B$ the distribution of a Poisson point process with intensity measure $\nu$ restricted to $B$.  
@@ -127,7 +127,7 @@ where $\Phi^{(k)} = \sum^k_{i=1}\delta_{(X_i,M_i)}$ denotes the Binomial point p
 
 \subsection{Finite point processes with density}\label{sec:densityPP}
 A standard approach in probability theory is to define random variables with distributions absolutely continuous with respect to some reference measure. In Euclidean spaces, the reference measure is typically the Lebesgue or counting measure. In the space $(\mathbf N_{lf},\mathcal N_{lf})$ the convenient properties of the Poisson point process make it the perfect candidate for the reference measure. In this chapter, we choose a fixed $\Lambda \in \mathcal B_0(\Rt)$ and restrict ourselves only to the space $(\mathbf N_\Lambda,\mathcal N_\Lambda)$ of finite counting measures. 
-\note[inline]{ It'd be nice to comment succintly on why Poisson }
+\note[inline]{ It'd be nice to comment succinctly on why Poisson }
 In this chapter, we limit ourselves entirely to the case $E=\Rt \times S$. At the same time, we will stop using the term ``marked'' where we deem it redundant. 
 
 \begin{definition}
@@ -148,7 +148,7 @@ for $\Pi_\Lambda$-measurable function $h$, where $\Phi \sim \Pi_\Lambda$.
 \unsure[inline]{Do we actually need Papangelou?}
 A useful function for dealing with point processes with density is the Papangelou conditional intensity.
 \begin{definition}
-	For  a point process $\Phi$ with density $p$ we define the \textit{Papangelou conditonal intensity} as 
+	For  a point process $\Phi$ with density $p$ we define the \textit{Papangelou conditional intensity} as 
 	$$\lambda^*(x,\gamma) = \frac{p(\gamma + \delta_x)}{p(\gamma)}, \; x \in \Rt \times S, \gamma \in \mathbf N_{\Lambda}: p(\gamma)>0.$$
 \end{definition}
 
@@ -183,7 +183,7 @@ In the following, we restrict ourselves to $\mathbf N_f$ and for $\gamma \in \ma
 \begin{itemize}
 	\item \textbf{Non-degeneracy}:\unsure{I don't really understand the role of $\emptyset$ in Gibbs theory.}
 		$$H(\varnothing) < +\infty.$$
-	\item \textbf{Hereditarity}: For any $\gamma \in \mathbf N_f$ and $x\in \gamma$
+	\item \textbf{Heredity}: For any $\gamma \in \mathbf N_f$ and $x\in \gamma$
 		$$H(\gamma)< + \infty \Rightarrow H(\gamma - \delta_x) < +\infty.$$
 	\item \textbf{Stability}: there exists a constant $c_S\geq 0$ such that for any $\gamma \in \mathbf N_f$
 		$$H(\gamma) \geq c_S\cdot N_\Rt (\gamma).$$
@@ -191,13 +191,13 @@ In the following, we restrict ourselves to $\mathbf N_f$ and for $\gamma \in \ma
 Recall also that we assumed all potentials to be shift-invariant and thus any energy function inherits this property.\newline
 
 Stability bounds the density function $p(\gamma) \propto z^{N_\Lambda( \gamma)}e^{-H(\gamma)} \leq (z e^{-c_S})^{N_\Lambda(\gamma)} $ and thus ensures $Z^z_\Lambda < \infty$. Integrability of the density is obviously a necessary assumption and thus some form of stability cannot be avoided. 
-Non-degeneracy, when paired with hereditarity, is a very natural assumption; without it, hereditarity would imply that the energy is always infinite.\newline
+Non-degeneracy, when paired with heredity, is a very natural assumption; without it, heredity would imply that the energy is always infinite.\newline
 
-The form \eqref{eq:GPPdensity} of the density function suggests that the resulting distitribution will favor configurations with low energy. Configurations with high energy are unlikely to happen and an infinite energy means that the configuration is, with probability $1$, not possible under the distribution. We call such a configuration \textit{forbidden}. A configuration that is not forbidden is \textit{permissible}.  \newline
+The form \eqref{eq:GPPdensity} of the density function suggests that the resulting distribution will favor configurations with low energy. Configurations with high energy are unlikely to happen and an infinite energy means that the configuration is, with probability $1$, not possible under the distribution. We call such a configuration \textit{forbidden}. A configuration that is not forbidden is \textit{permissible}.  \newline
 
-Hereditarity ensures that removing a point will not result in a forbidden configuration. Equivalently it ensures that adding a point to a forbidden configuration will not result in an allowed configuration. This assumption is, however, not necessarily satisfied by our tessellation models. Take for example the hard-core exclusion potential from Example \ref{ex:potentials}. Removing a point can lead to appearance of a tetrahedron with a larger circumdiameter, thus resulting in a forbidden configuration.\newline
+Heredity ensures that removing a point will not result in a forbidden configuration. Equivalently it ensures that adding a point to a forbidden configuration will not result in an allowed configuration. This assumption is, however, not necessarily satisfied by our tessellation models. Take for example the hard-core exclusion potential from Example \ref{ex:potentials}. Removing a point can lead to appearance of a tetrahedron with a larger circumdiameter, thus resulting in a forbidden configuration.\newline
 
-Unlike non-degeneracy or stability, it is not immediately clear what the role of hereditarity is. Luckily for us, it means that we can define Gibbs point processes without the assumption and only then explore its function.
+Unlike non-degeneracy or stability, it is not immediately clear what the role of heredity is. Luckily for us, it means that we can define Gibbs point processes without the assumption and only then explore its function.
 
 
 
@@ -221,7 +221,7 @@ Before we proceed further, we must state one technical lemma.
 \begin{proof}
 	To find such function, we only need to realize that
 	$$H_\Lambda(\gamma) - H_\Delta(\gamma) = \sum_{\eta \in \mathcal E_\Lambda(\gamma) \setminus \mathcal E_\Delta(\gamma)} \varphi(\eta,\gamma)$$
-	depends only on $\gamma_{\Delta^c}$. As noted below the Definition \ref{def:Eset}, both $\mathcal E_\Delta(\gamma)$ and $\mathcal E_\Lambda(\gamma)$ depend only on $\gamma$ outside the window $\Lambda$ and $\Delta$ respectivelly. By $\eta \notin \mathcal E_{\Delta}(\gamma)$ we have that $\forall \zeta \in \mathbf N_\Delta: \varphi(\eta,\gamma)=\varphi(\eta,\zeta \cup \gamma_{\Delta^c})$ and thus we can set
+	depends only on $\gamma_{\Delta^c}$. As noted below the Definition \ref{def:Eset}, both $\mathcal E_\Delta(\gamma)$ and $\mathcal E_\Lambda(\gamma)$ depend only on $\gamma$ outside the window $\Lambda$ and $\Delta$ respectively. By $\eta \notin \mathcal E_{\Delta}(\gamma)$ we have that $\forall \zeta \in \mathbf N_\Delta: \varphi(\eta,\gamma)=\varphi(\eta,\zeta \cup \gamma_{\Delta^c})$ and thus we can set
 	$$\psi_{\Delta,\Lambda}(\gamma_{\Delta^c}) = \sum_{\eta \in \mathcal E_\Lambda(\gamma_{\Delta^c}) \setminus \mathcal E_\Delta(\gamma_{\Delta^c})} \varphi(\eta,\gamma_{\Delta^c}).$$
 \end{proof}
 \note[inline]{Compatible family of energies}
@@ -256,7 +256,7 @@ First, we define $\Theta=(\vartheta_x)_{x\in \Rt}$ be the translation group defi
 		for every $\Lambda \in \mathcal B_0(\Rt)$ and every measurable $f:\mathbf N_{lf} \to [0,\infty)$.\
 		A point process whose distribution is a Gibbs measure is called a \textit{(infinite volume) Gibbs point process}.
 \end{definition}
-If we use the hypergraph structures $\mathcal D_4$ or $\mathcal {LD}_4$, then we call the resulting GPP a \textit{Gibbs-type tetrahedronization}. 
+If we use the hypergraph structures $\mathcal D_4$ or $\mathcal {LD}_4$, then we call the resulting GPP a \textit{Gibbs-type tetrahedrization}. 
 
 The definition is a direct analogue of the DLR equations for finite volume GPP. In fact it is the same relationship, only expressed in integral form. \todoo{Actually explain this} \newline
 
@@ -264,7 +264,7 @@ While defining the Gibbs measure is relative straight-forward, proving its exist
 % The non-uniqueness is a consequence of the fact that the existence of a Gibbs measure is typically proven only through proving tightness of a sequence of finite volume Gibbs measures, thus yielding only a convergent subsequence.
 
 \subsubsection{Hereditary GPP}
-One of the disadvantages of the characterization through DLR equations is the presence of the normalization constant, as it is, in most cases, unknown. This is where the use of the hereditarity assumption comes in.
+One of the disadvantages of the characterization through DLR equations is the presence of the normalization constant, as it is, in most cases, unknown. This is where the use of the heredity assumption comes in.
 
 For $\gamma \in \mathbf N_f$ and $x \in \Rt\times S$, for a hereditary energy function $H$, define the \textit{local energy} of $x$ in $\gamma$ as
 $$h(x,\gamma) = H(\gamma + \delta_x) - H(\gamma),$$
@@ -282,7 +282,7 @@ We then obtain the following result, known as the \textbf{Georgii-Nguyen-Zessin 
 	\problem[inline]{Mase requires superstability}
 \end{proof}
 
-Hereditarity thus gives us a powerful characterization of the Gibbs measure which, as noted previously, is not always available in the Gibbs-type tetrahedronizations defined here. 
+Heredity thus gives us a powerful characterization of the Gibbs measure which, as noted previously, is not always available in the Gibbs-type tetrahedrizations defined here. 
  
 
 Luckily, the approach in \cite{DereudreLavancier2009} allows us to directly use GNZ equations even for the non-hereditary case. 

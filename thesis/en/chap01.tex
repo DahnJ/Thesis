@@ -1,23 +1,25 @@
 \chapter{Geometric preliminaries}\label{ch:1}
 \todoo[inline]{Spell-check everything!}
 \todoo[inline]{Chapter intros give overviews}
-Before diving into the mathematics of Gibbs-Laguerre-Delaunay tetrahedrization models, we must first lay out the fundamentals of their geometric and combinatorial structure. The key geometric components are the the circumball for Delaunay tetrahedrizations and characteristic point for Laguerre tetrahedrizations. In Section \ref{sec:tetrahedrizations} we study their geometry and in Section \ref{sec:hypergraphs} we analyze their structure in terms of hypergraphs.
+Before diving into the mathematics of Gibbs-Laguerre-Delaunay tetrahedrization models, we must first lay out the fundamentals of their geometric and combinatorial structure. The key geometric components are the circumball for Delaunay tetrahedrizations and characteristic point for Laguerre tetrahedrizations. 
+In Section \ref{sec:tetrahedrizations} we study the geometric properties of the Delaunay and Laguerre tetrahedrization and in Section \ref{sec:hypergraphs} we analyze their structure in terms of hypergraphs.
 
 \subsubsection{Notation and basic terms}
-This text will predominantly focus on \textit{marked} points in $\Rt$, that is elements of $\Rt \times S$, where $S=[0,W],W>0$ is the \textit{mark set}. A great deal of care must be dedicated to clearly distinguish between \textit{positions} of points (their projection to $\Rt$) and their \textit{marks}\footnote{Marks will also be often called weights.} (projection to $S$). To this end, we adopt the following notation. A point $p \in \Rt\times S$ has the position $p'\in \Rt$ and mark $p'' \in S$. Similarly, the notation of sets follows accordingly --- the Borel $\sigma$-algebra on $\Rt\times S$ will be denoted $\mathcal B$, its counterpart on $\Rt$ will be denoted $\mathcal B'$. The subset of $\mathcal B$ ($\mathcal B'$) containing only bounded sets is $\mathcal B_0$ ($\mathcal B_0'$). 
+This text will predominantly focus on \textit{marked} points in $\Rt$, that is elements of $\Rt \times S$, where $S=[0,W],W>0$ is the \textit{mark set}. A great deal of care must be dedicated to clearly distinguish between \textit{positions} of points (their projection to $\Rt$) and their \textit{marks}\footnote{Marks will also be sometimes called weights.} (projection to $S$). To this end, we adopt the following notation. A point $p \in \Rt\times S$ has the position $p'\in \Rt$ and mark $p'' \in S$. Similarly, the notation of sets follows accordingly --- the Borel $\sigma$-algebra on $\Rt\times S$ will be denoted $\mathcal B$, its counterpart on $\Rt$ will be denoted $\mathcal B'$. The subset of $\mathcal B$ ($\mathcal B'$) containing only bounded sets is $\mathcal B_0$ ($\mathcal B_0'$). 
 
 A \textit{configuration} is a set $\x \in \mathbf N_{lf}$, where 
 $$\mathbf N_{lf} = \{\x \subset \Rt\times S: \mathrm{card}(\x \cap B) < \infty, B\in \mathcal B_0\} $$ 
-be the set of locally finite sets on $\Rt\times S$. Let $\mathbf N_{f} \subset \mathbf N_{lf}$ be the set of all finite sets on $\Rt\times S$. Lastly, for $\Lambda \in \mathcal B_0'$, playing the role of the observation window, denote 
-$$\mathbf N_\Lambda = \{ \x \in \mathbf N_{f}: \x'\subset \Lambda\}.$$
-\unsure{Is it enough to just say this?} Any observation window $\Lambda$ will in general be assumed to have a positive Lebesgue measure.
+be the set of locally finite sets on $\Rt\times S$. Let $\mathbf N_{f} \subset \mathbf N_{lf}$ be the set of all finite sets on $\Rt\times S$. 
+\unsure{Is it enough to just say this?} Any observation window $\Lambda$ will always be assumed to have a positive Lebesgue measure. We denote the Lebesgue measure on $\Rt$ by $\lambda$ and often use the notation $|\cdot|=\lambda(\cdot)$.
 A subset of $\x$ will be denoted $\eta$. If $\mathrm{card}(\eta)=4$, then $\eta$ is \textit{tetrahedral} or a \textit{tetrahedron}\unsure{Maybe just have tetrahedral, that would kinda solve regularity?}. The symbols $\x'=\mathrm{pr_{\Rt}}(\x), \eta'=\mathrm{pr_{\Rt}}(\eta)$ again refer only to the positional part. 
 
+Lastly, for $\Lambda \in \mathcal B_0'$, playing the role of the observation window, denote 
+$$\mathbf N_\Lambda = \{ \x \in \mathbf N_{f}: \x'\subset \Lambda\}.$$
 
 \section{Tetrahedrizations}\label{sec:tetrahedrizations}
 The aim of this section is to introduce the geometric concepts necessary for the understanding of two types of tetrahedrizations: Delaunay and Laguerre. The main focus of this text lies on the Laguerre tetrahedrization and thus Delaunay tetrahedrization will receive significantly less attention and often will be treated only as a special case. Note that although this text focuses solely on the three dimensional case, most ideas remain valid for a triangulation in any dimension.
 
-While this section does not aim to be a comprehensive overview of Delaunay and Laguerre tetrahedrizations, it also functions as a standalone text with proofs unique to the setting of this text. The literature on this topic tends to focus on the duals of the tetrahedronizations, that is the Voronoi and Laguerre diagrams. Furthermore most literature treats the two-dimensional equivalent, the Delaunay and Laguerre triangulations. One must thus piece together the understanding of the tetrahedronizations through various sources not directly pertaining this topic. For general mathematical introductions, we recommend \cite{Okabe1992}, \cite{Gavrilova}. For a survey on Laguerre (power) diagrams, see \cite{Aurenhammer1987}. Lastly we recommend two books that contain mostly information on (Delaunay) triangulations and related objects: \cite{Delorea2010} and \cite{Aurenhammer2013}. \newline
+While this section does not aim to be a comprehensive overview of Delaunay and Laguerre tetrahedrizations, it also functions as a standalone text with proofs unique to the setting of this text. The literature on this topic tends to focus on the duals of the tetrahedrizations, that is the Voronoi and Laguerre diagrams. Furthermore most literature treats the two-dimensional equivalent, the Delaunay and Laguerre triangulations. One must thus piece together the understanding of the tetrahedrizations through various sources not directly pertaining this topic. For general mathematical introductions, we recommend \cite{Okabe1992}, \cite{Gavrilova}. For a survey on Laguerre (power) diagrams, see \cite{Aurenhammer1987}. Lastly we recommend two books that contain mostly information on (Delaunay) triangulations and related objects: \cite{Delorea2010} and \cite{Aurenhammer2013}. \newline
 
 \noindent We now introduce the notion of (reinforced) general position, a traditional assumption on configurations.
 
@@ -26,6 +28,7 @@ Let $\x \in \mathbf N_{lf}$. We say $\x$ is in \textbf{general position} if
 $$ \eta \subset \x, 2 \leq \mathrm{card}(\eta) \leq 3 \Rightarrow \eta' \text{ is affinely independent in } \Rt. $$   
 Denote $\mathbf N_{gp}\subset \mathbf N_{lf}$ the set of all locally finite configurations in general position.
 \end{definition}
+\todoo[inline]{Possibly change cocircular to cospherical, etc}
 \todoo[inline]{Comment on the fact that we need a vector space with measurable inner product etc?}
 \note[inline]{It's sufficient to check only subsets with $d+1$ points}
  
@@ -59,7 +62,7 @@ This section will shortly introduce the three dimensional equivalent of the well
 	We then define the \textit{Delaunay tetrahedrization of $\x$} as the set $\mathcal D_4(\x)$. 
 \end{definition}
 
-The set $\mathcal D_4$ contains the structure we would expect from the name tetrahedrization, namely it contains sets of 4-tuples of points whose convex hull are the tetrahedra \todoo{It's not vital for us, but this could be talked about more..} forming the Delauany tetrahedrization. The fact that we have defined the set $\mathcal D_k(\x)$ for any $k=1,\dots,4$ reflects the hypergraph approach to these structures presented in Section \ref{sec:hypergraphs}.
+The set $\mathcal D_4$ contains the structure we would expect from the name tetrahedrization, namely it contains sets of 4-tuples of points whose convex hull are the tetrahedra \todoo{It's not vital for us, but this could be talked about more..} forming the Delaunay tetrahedrization. The fact that we have defined the set $\mathcal D_k(\x)$ for any $k=1,\dots,4$ reflects the hypergraph approach to these structures presented in Section \ref{sec:hypergraphs}.
 
 The next Proposition shows the relationship between $\mathcal D_2(\x)$ and $\mathcal D_4(\x)$.
 \begin{proposition}
@@ -118,7 +121,7 @@ Similarly to the power distance, the power product has a geometric interpretatio
 % https://arxiv.org/ftp/arxiv/papers/0706/0706.0372.pdf
 
 \begin{remark}[Geometric interpretation of power product]
-Let $p,q \in \Rt\times S$ be two points. The following observations follow immediately from the definiton. 
+Let $p,q \in \Rt\times S$ be two points. The following observations follow immediately from the definition. 
 \begin{itemize}
 	\item $B_p\cap B_q = \emptyset$. We obtain $\|p'-q'\|^2 \geq (\sqrt{p''} + \sqrt{q''})^2 = p'' + q'' + 2\sqrt{p''}\sqrt{q''}$ and thus $\rho(p,q) \geq 2\sqrt{p'' q''}.$ 
 	\item $B_p \subset B_q$. We obtain $\|p'-q'\| + \sqrt{p''} \leq \sqrt{q''} $. Squaring the inequality yields $\rho(p,q) \leq -2\sqrt{p'' q''}.$ 
@@ -131,7 +134,7 @@ Let $p,q \in \Rt\times S$ be two points. The following observations follow immed
 
 The above observations allow us to interpret the power product as a kind of distance of two marked points. The case $\rho(p,q)=0$ is crucial for the Laguerre geometry. If $p$ and $q$ satisfy this equality then they are said to be \textit{orthogonal}. 
 
-We are now well-equiped to define the central terms necessary for the definition of the Laguerre tetrahedrization.
+We are now well-equipped to define the central terms necessary for the definition of the Laguerre tetrahedrization.
 
 \begin{definition}
 	Let $\eta\in \mathbf N_{gp}$. Define the \textit{characteristic point} of $\eta$ as the point $p_{\eta} = (p'_\eta, p''_\eta) \in \Rt \times \mathbb R$ which is orthogonal to every $p\in \eta$. If such point exists, we call $\eta$ \textit{Laguerre-cocircular}. 
@@ -238,13 +241,13 @@ The regularity property ensures that no point of $\x$ is closer to the character
 	We then define the \textit{Laguerre tetrahedrization of $\x$} as the set $\mathcal {LD}_4$. 
 \end{definition}
 
-\todoo[inline]{It might be a good idea to characterize the relationsihp between individual $\mathcal {LD}_k$.}
+\todoo[inline]{It might be a good idea to characterize the relationship between individual $\mathcal {LD}_k$.}
 
 
 \begin{remark}[Constructing Laguerre and Delaunay tetrahedrization]\label{r:construct}
-	The proof of Proposition \ref{prop:charpoint} also gives a hint on how to check whether $\eta$ is regular. We have seen that the determinant of the matrix \eqref{circmat} is zero if and only if the five points are Laguerre-cocircular. However, the said determinant provides us with more information than that. More specifically, we can use it to perform the so-called INCIRCLE test on five points $p_1,\dots, p_5$ to tell whether the point $p_5$ violates the regularity of the tetrahedron defined by $p_1,\dots, p_4$. This amounts to checking the postivity of the determinant of \eqref{circmat}, assuming the points $p_1,\dots, p_4$ are correctly oriented, which can be checked through the determinant of the matrix \eqref{hommat}. \newline
+	The proof of Proposition \ref{prop:charpoint} also gives a hint on how to check whether $\eta$ is regular. We have seen that the determinant of the matrix \eqref{circmat} is zero if and only if the five points are Laguerre-cocircular. However, the said determinant provides us with more information than that. More specifically, we can use it to perform the so-called INCIRCLE test on five points $p_1,\dots, p_5$ to tell whether the point $p_5$ violates the regularity of the tetrahedron defined by $p_1,\dots, p_4$. This amounts to checking the positivity of the determinant of \eqref{circmat}, assuming the points $p_1,\dots, p_4$ are correctly oriented, which can be checked through the determinant of the matrix \eqref{hommat}. \newline
 	
-	For details and a derivation, see Chapter 4 in \cite{Gavrilova}, which also contains a short description of the \textit{incremental insertion} algorithm using \textit{local transformations}, called \textit{swaps} or \textit{flips}. The algorithm was first presented in \cite{Lawson72} in two dimensions. For more information on the algorithm in three dimensions, see \cite{Joe89} and \cite{Joe91} for the Delaunay tetrahedronization, and \cite{Edelsbrunner1996} for Laguerre tetrahedronization.
+	For details and a derivation, see Chapter 4 in \cite{Gavrilova}, which also contains a short description of the \textit{incremental insertion} algorithm using \textit{local transformations}, called \textit{swaps} or \textit{flips}. The algorithm was first presented in \cite{Lawson72} in two dimensions. For more information on the algorithm in three dimensions, see \cite{Joe89} and \cite{Joe91} for the Delaunay tetrahedrization, and \cite{Edelsbrunner1996} for Laguerre tetrahedrization.
 \end{remark}
 
 
@@ -319,7 +322,7 @@ The subset $\eta \subset \x$ now plays the role of a hyperedge. e.g. a tetrahedr
 The benefit of this approach is that we do not need to impose any additional structure on $\mathcal D(\x)$ or $\mathcal {LD}(\x)$ as they already define a hypergraph structure. 
 
 \begin{definition}[Delaunay and Laguerre-Delaunay hypergraph structures]
-	Define the hypergraph structues
+	Define the hypergraph structures
 	\begin{itemize}
 		\item $\mathcal D = \{(\eta,\x): \eta \in \mathcal D(\x)\}$
 		\item 	$\mathcal D_k = \{(\eta,\x): \eta \in \mathcal D_k(\x)\}, k=1,\dots,4$
@@ -354,7 +357,7 @@ The fact that the hyperedge potential contains $\x$ as a second argument suggest
 	\textbf{Hard-core exclusion}: For $\eta\in\mathcal E(\x)$ on $\mathcal D_4$ or $\mathcal {LD}_4$, $\alpha >0$ define
 	$$\varphi(\eta,\x) = \delta(\eta)\;\; \text{ if } \delta(\eta) \leq \alpha$$
 	$$\varphi(\eta,\x) = \infty \;\; \text { if } \delta(\eta) > \alpha$$
-	Where $\delta(\eta)= \mathrm{diam}B(\eta)$ is the diameter of the circumscribed ball. Notice that this potential becomes infinite on tetrahedra with circumdiameter larger than $\alpha$. As we will see later, this allows us to restrict the resulting tetrahedronization only those tetrahedra $\eta$ for which $\varphi(\eta,\x) \leq \alpha$.\newline
+	Where $\delta(\eta)= \mathrm{diam}B(\eta)$ is the diameter of the circumscribed ball. Notice that this potential becomes infinite on tetrahedra with circumdiameter larger than $\alpha$. As we will see later, this allows us to restrict the resulting tetrahedrization only those tetrahedra $\eta$ for which $\varphi(\eta,\x) \leq \alpha$.\newline
 	\textbf{Laguerre cell interaction}: For $\eta \in \mathcal E(x)$ on $\mathcal {LD}_2$ such that $\eta=\{p,q\}$ and $|C_p| < \infty, |C_q| < \infty$, $\theta \neq 0$, define
 $$\varphi(\eta,\x) = \theta \bigg (\frac {\max ( Vol(C_p), Vol(C_q))}{\min(Vol(C_p),Vol(C_q))} - 1\bigg)$$
 where the potential now depends on the size of neighboring Laguerre cells. Notice that $\theta$ can be negative, yielding a negative potential. \newline
@@ -374,7 +377,7 @@ In Example \ref{ex:potentials}, only the first two potentials are unary. However
 
 For a given hypergraph structure $\mathcal E$, the \textit{energy function} of a finite configuration $\x\in \mathbf N_{f}$ is defined as the function\footnote{The energy $H$ is often also called \textit{Hamiltonian} in statistical mechanics.}
 $$H(\x) = \sum_{\eta \in \mathcal E(\x)} \varphi(\eta,\x).$$
-However, in our case, we will typically deal with $\x\in \mathbf N_{lf}$, for this such potentials would typically be equal to $\pm \infty$ or even be undefined. We will therefore be interested in the energy for only a bounded window $\Lambda \in \mathcal B_0'$. Currently, we don't have the necessary terms to describe such energy function precisely, thus we will postpose its definition to the next section. 
+However, in our case, we will typically deal with $\x\in \mathbf N_{lf}$, for this such potentials would typically be equal to $\pm \infty$ or even be undefined. We will therefore be interested in the energy for only a bounded window $\Lambda \in \mathcal B_0'$. Currently, we don't have the necessary terms to describe such energy function precisely, thus we will postpone its definition to the next section. 
 
 The words \textit{potential} and \textit{energy} point to a connection with statistical mechanics, which gave rise to many of the concepts used in this text. Indeed, Gibbs measure and concepts related to them continue to be an area with a rich interplay between statistical mechanics and probability theory\footnote{In fact, Gibbs measures, named after Josiah Willard Gibbs, stood at the forefront of emergence of statistical mechanics --- Gibbs, who coined the term ``statistical mechanics'' was one of the founders of the field.}.
 
