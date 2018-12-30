@@ -1,14 +1,14 @@
 \appendix
 
 \chapter{Appendix: Geometry}\label{appendix}
-This appendix investigates some facts and proposition about geometry in $\mathbb R^3$. Since marked points are not present here, the dashed notation introduced in Chapter \ref{ch:1} will be dropped.
+This appendix investigates some facts and propositions pertaining to geometry in $\mathbb R^3$. Since marked points are not present here, the dashed notation introduced in Chapter \ref{ch:1} will be dropped.
 
 \problem[inline]{This chapter needs better notation. E.g. $S(p_1,p_2,p_3,p_4)$ for a sphere defined by those points, etc.}
 \section{Calculating the circumdiameter}
 \todoo[inline]{Check circumdiameter x circumradius, it's a bit confusing in many places}
-Here we describe how to calculate the circumdiameter of a $3-$simplex through the Cayley-Menger determinant\cite{Cayley1841}, \cite{Menger28}, \cite{Uspensky48} \todoo{Improve the references (chapter, placement,..)}.
+Here we describe how to calculate the circumdiameter of a $3-$simplex through the Cayley-Menger determinant (\cite{Cayley1841}, \cite{Menger28}, \cite{Uspensky48}) \todoo{Improve the references (chapter, placement,..)}~.
 
-Consider the points $p_1,\dots, p_5 \in \mathbb R^4$ which form a $4$-simplex. Denote $d_{ij} = \|p_i - p_j\|, i,j=1,\dots,5$. Then its area $A$ is given by the \textbf{Cayley-Menger determinant}[ref sommervile]. 
+First, consider the points $p_1,\dots, p_5 \in \mathbb R^4$ which form a $4$-simplex. Denote $d_{ij} = \|p_i - p_j\|, i,j=1,\dots,5$. Then the area $A$ of the $4-simplex$ is given by the \textbf{Cayley-Menger determinant}[ref sommervile]\todoo[inline]{citation}. 
 
 $$
 -9216 A^2 =
@@ -19,10 +19,9 @@ $$
 1 & d^2_{31} & d^2_{32} & 0 & d^2_{34} & d^2_{35} \\ 
 1 & d^2_{41} & d^2_{42} & d^2_{43} & 0 & d^2_{45} \\
 1 & d^2_{51} & d^2_{52} & d^2_{53} & d^2_{54} & 0 
-\end{vmatrix} 
+\end{vmatrix}. 
 $$
-
-Now consider non-coplanar points $p_1,\dots, p_4 \in \Rt$ forming a $3$-simplex, i.e. a tetrahedron. To obtain the circumradius of this tetrahedron, we imagine $p_1,\dots, p_4$ to lie on a $3$-dimensional hyperplane $H$ in $\mathbb R^4$ and we consider the point $c \in H$ such that $\|c-p_i\| = r \;\forall i=1,\dots,4$ $r\in \mathbb R$. The point $c$ is, by definition, the center of the circumsphere of $p_1,\dots,p_4$ and $d$ is the circumradius. The circumradius $r$ can be obtained using the Cayley-Menger determinant, since $p_1,\dots,p_4,c$ now form a $4$-dimensional simplex of volume $0$. We therefore have 
+Now consider non-coplanar points $p_1,\dots, p_4 \in \Rt$ forming a $3$-simplex, i.e. a tetrahedron. To obtain the circumradius of this tetrahedron we imagine $p_1,\dots, p_4$ to lie on a $3$-dimensional hyperplane $H$ in $\mathbb R^4$ and we consider the point $c \in H$ such that $\|c-p_i\| = r$ for all $i=1,\dots,4$, $r\in \mathbb R$. The point $c$ is, by definition, the center of the circumsphere of $p_1,\dots,p_4$ and $r$ is the circumradius. The circumradius $r$ can be obtained using the Cayley-Menger determinant, since $p_1,\dots,p_4,c$ now form a $4$-dimensional simplex of volume $0$. We therefore have 
 
 
 \begin{equation}\label{eq:CMeq}
@@ -36,7 +35,6 @@ Now consider non-coplanar points $p_1,\dots, p_4 \in \Rt$ forming a $3$-simplex,
 1 & r^2 & r^2 & r^2 & r^2 & 0 \\
 \end{vmatrix}, 
 \end{equation}
-
 where we again have   $d_{ij} = \|p_i - p_j\|, i,j=1,\dots,4$.\newline  
 
 It would be possible to solve \ref{eq:CMeq} as an equation of $r$. A better approach is to  subtract $r^2$ times the first row from last and subtract $r^2$ times the first column from the last to obtain the determinant 
@@ -53,7 +51,6 @@ $$
 1 & 0 & 0 & 0 & 0 & -2r^2 \\
 \end{vmatrix}. 
 $$
-
 By expanding by the last row, we obtain the equation
 
 $$
@@ -73,8 +70,7 @@ d^2_{31} & d^2_{32} & 0 & d^2_{34} & 0 \\
 d^2_{41} & d^2_{42} & d^2_{43} & 0 & 0 \\
 \end{vmatrix} = 0,
 $$
-
-from which $r^2$ is directly expressible.
+from which $r^2$ is directly expressible as
 
 \begin{equation}\label{eq:Cayley-Menger-expanded}
 r^2 
@@ -96,17 +92,15 @@ d^2_{41} & d^2_{42} & d^2_{43} & 0 & 0 \\
 \end{vmatrix} 
 }.
 \end{equation}
-
 It is worth noting that the determinant in the quotient cannot equal zero, since it is again a Cayley-Menger determinant and we assumed $p_1,\dots,p_4$ to be non-coplanar. 
 
 
 
 \section{Bounding the circumdiameter}\label{sec:boundingdiameter}
 \todoo[inline]{Say a bit more about what this is}
-This section proves the bound used in Theorems \ref{thm:E1} \ref{thm:E2} \ref{thm:E3} \ref{thm:E4} and Proposition \ref{prop:maxPeta}. 
+This section derives the bounds used in Theorems \ref{thm:E1}, \ref{thm:E2}, \ref{thm:E3}, \ref{thm:E4}, and Propositions \ref{prop:maxcircum} and \ref{prop:maxPeta}. 
 
 \subsection{Statement of the problem}
-
 The problem of founding the bounds can be stated as the following two optimization problems. \newline
 
 \noindent For the tetrahedron $T_1$, the problem is 
@@ -143,9 +137,8 @@ This is a non-linear optimization problem. We can arrive at its solution through
 \subsection{Solution to the problem}
 First, define the \textit{circumdiameter function} of point $p \in \Rt$ with respect to non-collinear points $p_1,p_2,p_3 \in \Rt$:
 $$c(p) = \delta(\{p,p_1,p_2,p_3\}).$$
-Denote $(x_i,y_i,z_i)$ the coordinates of $p_i, i=1,\dots,3$. The following lemma describes the properties of $c(p)$.
+Denote $(x_i,y_i,z_i)$ the coordinates of $p_i, i=1,\dots,3$. Denote $\delta(\{p_1,p_2,p_3\})$ the circumdiameter of the triangle formed by $p_1,p_2,p_3$. The following lemma describes the properties of $c(p)$.
 
-\todoo[inline]{Define $\delta$ for triangles, too}
 \begin{lemma} $c(p)$ is continuous, has a global minimum $c_{min} := \delta(\{p_1,p_2,p_3\})$ and level sets 
 	$$L_a := \{p \in \Rt: c(p)=a\} = S_{a1} \cup S_{a2}, \quad a \geq c_{min},$$ 
 	where $S_{a1}$ and $S_{a2}$ are two spheres with diameter $a$ such that $p_1,p_2,p_3 \in S_{a1}\cap S_{a2}$. Furthermore, the centers $c_1, c_2$ of $S_{a1},S_{a2}$ respectively, lie \todoo{Improve the wording}in the halfspaces
@@ -170,7 +163,7 @@ To see that $c_1$ and $c_2$ must be (non-strictly) separated by the hyperplane $
 Note that $S_{a1}$ and $S_{a2}$ are not necessarily distinct. In fact, we can see from the proof that $S_{a1}=S_{a2}$ precisely when $a=c_{min}$.
 
 
-We are now ready to characterize the set of solutions to \ref{prob:tetra1} and \ref{prob:tetra2}. For the next proposition, we say a point lies ``inside'' or ``outside'' of the sphere $S$ if the point lies in $B$ or in $B^c$ respectively, where $B$ is the closed ball such that $\partial B = S$.
+We are now ready to characterize the set of solutions to \ref{prob:tetra1} and \ref{prob:tetra2}. For the next proposition, we say a point lies ``inside'' or ``outside'' of the sphere $S$ if the point lies in $B$ or in $B^c$ respectively, where $B$ is the closed ball such that $\partial B = S$. For the next proposition, define $S(q_1,q_2,q_3,q_4)$ to be the sphere on which $q_1,q_2,q_3,q_4\in\Rt$ lie.
 
 
 \begin{proposition}\label{prop:ApolloniusSet}
@@ -186,7 +179,7 @@ Any solution $(p_1,p_2,p_3,p_4)$ of the problem \ref{prob:tetra1} will lie on a 
 \end{enumerate}
 Such choice is possible due to continuity of $c(p)$. Yet we arrive at a contradiction, as the level set $L_b$ now contains two distinct spheres with centres in the same halfspace. 
 
-Assume now that $p_1 \in \partial B(t_1,\rho a)=: S_1$. We now choose $p_I$ and $p_O$ with the additional requirement that they must both lie on $\partial B(t_1,\rho a)$. Such choice is not possible precisely when $S_1$ and $S$ are tangent, since then \todoo{Make sure "inside" a sphere has a clear meaning} $S_1$ lies either completely inside or outside $S$ and it is no longer possible to choose points both outside and inside. 
+Assume now that $p_1 \in \partial B(t_1,\rho a)=: S_1$. We now choose $p_I$ and $p_O$ with the additional requirement that they must both lie on $\partial B(t_1,\rho a)$. Such choice is not possible precisely when $S_1$ and $S$ are tangent, since then  $S_1$ lies either completely inside or outside $S$ and it is no longer possible to choose points both outside and inside. 
 \end{proof}
 \unsure{Is this a good way of proceeding?}Note that Proposition \ref{prop:ApolloniusSet} is formulated for problem \ref{prob:tetra1}. However, we could repeat the same exact argument for \ref{prob:tetra2} and thus the same holds for both problems.\newline
 
@@ -219,18 +212,18 @@ As noted previously, the number of solutions for both $T_1$ and $T_2$ will reduc
 
 Sadly, for most choices of $+$ and $-$, these equations still seem to be too complex for Mathematica to solve. Luckily, we can simplify them further. 
 
-\subsubsection{Solving the equations \ref{eq:Apollonius} by linearising}
+\subsubsection{Solving the equations \eqref{eq:Apollonius} by linearising}
 
 We formulate the solution as a theorem.
 \begin{theorem}\label{thm:Apollonius}
-	For $\rho < 1/(2\sqrt 6)$, the maximum in \ref{prob:tetra1} is
-	$$\delta_1 := 2a(\sqrt 6/4 + \rho).$$
-	For $\rho < 1/4$, the maximum in \ref{prob:tetra2} is
-	$$\delta_2 := 2a \frac{2\rho + \sqrt{2 - 32\rho^2 + 64 \rho^4}}{2-32\rho^2}.$$
+	For $\rho < 1/(2\sqrt 6)$, the maximum in \ref{prob:tetra1} is $a \delta_1$, where
+	$$\delta_1 := 2(\sqrt 6/4 + \rho).$$
+	For $\rho < 1/4$, the maximum in \ref{prob:tetra2} is $a \delta_2$, where
+	$$\delta_2 := 2 \frac{2\rho + \sqrt{2 - 32\rho^2 + 64 \rho^4}}{2-32\rho^2}.$$
 
 \end{theorem}
 \begin{proof}
-	Recall that the solution must lie on a sphere solving the equations \ref{eq:Apollonius}. We must therefore solve them and find the solution with the largest circumdiameter.
+	Recall that the solution must lie on a sphere solving the equations \eqref{eq:Apollonius}. We must therefore solve them and find the solution with the largest circumdiameter.
 
 First, for clarity, we define the variables $s_i\in\{+1,-1\},i=1,\dots,4$ instead of relying on the notation $\pm$. We begin by expanding the parentheses to obtain the equations
 $$x^2+y^2+z^2 + x_i^2 + y_i^2 + z_i^2 - 2xx_i - 2yy_i - 2zz_i = r^2 + r_i^2 + 2(s_1 r_1 - s_2 r_2)r,\quad i=1,2,3,4$$
@@ -239,7 +232,7 @@ By subtracting the $2,3,4$th equation from the first, we get rid of the quadrati
 \begin{align*}-&2(x_1-x_i)x - 2(y_1-y_i)y -2 (z_1-z_i)z - 2(s_1r_1 - s_2r_2)r \\
 	& + x_1^2-x_i^2 + y_1^2-y_i^2 + z_1^2 - z_i^2 -r_1^2 + r_i^2 = 0, \quad i=2,3,4
 \end{align*}
-This system can be solved to obtain expression of $x,y,z$ in terms of $r$. We then substitute those expression into \ref{eq:Apollonius} to obtain $r$\footnote{Note that exact solutions of $x,y,z$, which we are not interested in, could then by obtained through substituting $r$ back into the linear system.}. 
+This system can be solved to obtain expression of $x,y,z$ in terms of $r$. We then substitute those expression into \eqref{eq:Apollonius} to obtain $r$\footnote{Note that exact solutions of $x,y,z$, which we are not interested in, could then by obtained through substituting $r$ back into the linear system.}. 
 
 We have used Wolfram Mathematica \cite{Mathematica} to find the solutions. The full implementation can be found in the file \texttt{ApolloniusProblem.nb}. By comparing the circumdiameters of the solutions, we obtain the proposition.
 

@@ -1,8 +1,10 @@
 \chapter{Simulation}\label{ch:simulation}
 The Gibbs point process allows us a great flexibility in specifying the energy function. One of the disadvantages is that both simulating the GPP and estimating its parameters is computationally demanding. This chapter outlines the approach taken in simulating the GPP. 
 
-This (and the following chapter) is a direct extension of \cite{DereudreLavancier2011} to the Laguerre case in three dimensions.
-The principal issue in simulating GPP is that we do not know the value of the partition function $Z^z_\Lambda$. To that end, we employ Monte Chain Markov Carlo (MCMC) techniques.
+\todoo[inline]{Elaborate on what DL10 does, etc}
+This (and the following) chapter is a direct extension of \cite{DereudreLavancier2011}. They investigate random Voronoi tessellations and Delaunay triangulations on the plane $\mathbb R^2$ based on the Gibbs point process. This text attempts to generalize their results for the Delaunay triangulations to Laguerre tetrahedrizations, that is from $\mathbb R^2$ to $\mathbb R^3$ and from Delaunay to the Laguerre-Delaunay case.
+
+\noindent The principal issue in simulating GPP is that we do not know the value of the partition function $Z^z_\Lambda$. To that end, we employ Monte chain Markov Carlo (MCMC) techniques. 
 
 \section{Monte Chain Markov Carlo}
 \todoo[inline]{If there's time left, revisit this chapter and properly understand the stuff}
@@ -38,9 +40,9 @@ In the following, let $Y=\{Y_n, n\in \mathbb N_0\}$ always be a Markov chain and
 \begin{definition}
 A Markov chain $\{Y_n, n \in \mathbb N_0\}$ 
 \begin{enumerate}
-\item has an \textit{invariant distribution} $\mathbf \pi$ if $Y_m \sim \mathbf\pi$ implies $Y_{m+1}\sim \mathbf\pi$. In the integral form,
+\item has an \textit{invariant distribution} $\mathbf \pi$ if $Y_m \sim \mathbf\pi$ implies $Y_{m+1}\sim \mathbf\pi$. In the integral form
 $$\int_\Omega P(x,A) \mathbf\pi(dx) = \int_A \mathbf\pi(dx), \quad A \in \mathcal A.$$
-\item is \textit{reversible} with respect to the distribution $\mathbf \pi$ if $Y_m \sim \mathbf\pi$ then $(Y_m,Y_{m+1})$ and $(Y_{m+1},Y_m)$ are identically distributed. In the integral form,
+\item is \textit{reversible} with respect to the distribution $\mathbf \pi$ if $Y_m \sim \mathbf\pi$ then $(Y_m,Y_{m+1})$ and $(Y_{m+1},Y_m)$ are identically distributed. In the integral form
 $$\int_B P(x,A) \mathbf\pi(dx) = \int_A P(x,B) \mathbf\pi(dx), \quad A,B\in\mathcal A .$$
 \item is \textit{irreducible}, or $\psi-$\textit{irreducible} if there exists a nonzero measure $\psi$ such that for any $x~\in \Omega, A\in\mathcal A$ with $\psi(A)>0$ we have $P^m(x,A)>0$ for some $m\in\mathbb N_0$.
 \end{enumerate}
@@ -48,13 +50,12 @@ $$\int_B P(x,A) \mathbf\pi(dx) = \int_A P(x,B) \mathbf\pi(dx), \quad A,B\in\math
 From the definition it is immediately observable that if $Y$ is reversible with respect to $\pi$, then $\pi$ is also its invariant distribution.
 
 
+
 \begin{definition} Let $Y$ be $\psi$-irreducible. Then we call $Y$ \textit{periodic} if there exists a partitioning $D_0,\dots,D_{d-1},A$ of $\Omega$ such that $\psi(A)=0$ and 
 $$P(x,D_{j}) = 1, \; x\in D_i\; j=(i+1)\; \mathrm{mod} \;d$$
-with $d>1$. In the opposite case $Y$ is \textit{aperiodic}
+with $d>1$. In the opposite case $Y$ is \textit{aperiodic}.
 \end{definition}
-The partitioning always exists for an irreducible Markov chain $Y$ by Theorem $5.4.4$ in \cite{MeynTweedie1993}.
-\todoo[inline]{There needs to be more about periodicity, 129 in MW}
-
+The partitioning always exists for an irreducible Markov chain $Y$ by Theorem $5.4.4$ in \cite{MeynTweedie1993}. For the Markov chain to be aperiodic it is sufficient to have $P(x,\{x\})>0$ for some $x \in \Omega$.
 
 
 
@@ -63,7 +64,7 @@ To measure the distance between two probability distribution, we recall the defi
 Let $\mu,\nu$ be two probability distributions on $\Omega$. Then we define the \textit{total variation norm} by 
 $$\| \mu -\nu\|_{TV} = \sup_{F \subset \Omega} |\mu(F) - \nu(G)|$$
 \end{definition}
-\todoo[inline]{Some notes, in particular implication of weak convergence}
+Note that convergence in the total variation norm is quite a strong property and in particular implies weak convergence.
 
 
 \begin{definition} We say that $\pi$ is a \textit{limiting distribution} of $Y$ if there exists $A\in\mathcal A, \pi(A)=0$ such that
@@ -73,13 +74,13 @@ for all $x \in \Omega \setminus A$.
 
 
 
-\begin{proposition} Let $Y$ be irreducible and $\pi$ its invariant distribution. Then $\pi$ is the unique invariant distribution (up to null sets).
+\begin{proposition}\label{prop:MC1} Let $Y$ be irreducible and $\pi$ its invariant distribution. Then $\pi$ is the unique invariant distribution (up to null sets).
 \end{proposition}
 \begin{proof}
 Proposition $7.2$ in \cite{MollerWaagepetersen2003}
 \end{proof}
 
-\begin{proposition} Let $Y$ be irreducible  and aperiodic and $\pi$ its invariant distribution. Then $\pi$ is also the limiting distribution of $Y$. 
+\begin{proposition}\label{prop:MC2} Let $Y$ be irreducible  and aperiodic and $\pi$ its invariant distribution. Then $\pi$ is also the limiting distribution of $Y$. 
 \end{proposition}
 \begin{proof}
 Proposition $7.7$ in \cite{MollerWaagepetersen2003}.
@@ -87,25 +88,22 @@ Proposition $7.7$ in \cite{MollerWaagepetersen2003}.
 
 
 
-Consider a probability distribution $\mathbf \pi$ on some measurable space $(\Omega,\mathcal A)$. We wish to construct a Markov Chain $Y$ on $\Omega$ with its stationary distribution equal to $\mathbf \pi$. By the theory introduced in this section, we must construct a irreducible and aperiodic Markov chain reversible with respect to $\pi$. Then $\pi$ is also the unique invariant distribution and thus \unsure{unique?}the limiting distribution. Since convergence in total variation implies weak convergence, our task is complete.
+Consider a probability distribution $\mathbf \pi$ on some measurable space $(\Omega,\mathcal A)$. We wish to construct a Markov chain $Y$ on $\Omega$ with its stationary distribution equal to $\mathbf \pi$. By the theory introduced in this section, we must construct a irreducible and aperiodic Markov chain reversible with respect to $\pi$. Then $\pi$ is also the unique invariant distribution and thus \unsure{unique?}the limiting distribution. Since convergence in total variation implies weak convergence, our task is complete.
 
 The question, however, is how to build such a Markov chain. The next sections answers that question. 
 
 
 
 \subsection{Birth-Death-Move Metropolis-Hastings algorithm}
-In the last section we outlined how Markov chains may be used to sample from a distribution in general. In this section we introduce a variation of the Metropolis-Hastings algorithm for points processes with a density, the algorithm used to construct a Markov chain with the required properties. 
+In the last section we outlined how Markov chains may be used to sample from a distribution in general. Imagine now that we wish to sample from a finite point process with the unnormalized density $f$ with respect to $\Pi_\Lambda$. In this section we introduce a variation of the Metropolis-Hastings algorithm for points processes with a density, the algorithm used to construct a Markov chain with the required properties. 
 
-We first describe the algorithm in general, adapted from \cite{MollerWaagepetersen2003}. \newline
-
+We first describe the algorithm in general, adapted from \cite{MollerWaagepetersen2003}.  \newline
 \noindent Let $\Omega\subset \mathbf N_f$ be the state space. A natural choice is 
-$$\Omega=\{\gamma \in \mathbf N_f: f(\gamma)>0 \} = \mathbf N_f \cap \mathbf N_\infty$$
+$$\Omega=\{\gamma \in \mathbf N_f: f(\gamma)>0 \} = \mathbf N_f \cap \mathbf N_\infty.$$
 We first introduce the quantities to be used in the algorithm. Let $\gamma = \{x_1,\dots, x_n\} \in \Omega$ be the current state and denote $\bar\gamma = (x_1,\dots, x_n)$ the current state represented as a vector. We further denote 
 
-\todoo[inline]{Instead of introducing $f$ in the table, introduce it beforehand as the setting for this chapter.}
 \begin{tabular}{ll}
-$f(\cdot)$ & Density of the point process with respect to  $\Pi_\Lambda$. \\
-$p(\gamma)$ & Probability of birth proposal if the current state is $\gamma$.  \\
+$p(\gamma)$ & Probability of a birth proposal if the current state is $\gamma$.  \\
 $q_i(\bar\gamma,\cdot)$ & Density for the location of the point replacing the point $x_i$. \\
 $q_b(\gamma,\cdot)$ & Density for the location of the point at birth proposal. \\
 $q_d(\gamma,\cdot)$ & Density for the selection of the point at death proposal. 
@@ -162,28 +160,28 @@ For $m=0,1,\dots$, given $\gamma_m \in N_f$, generate $\gamma_{m+1}$ as follows
 
 \noindent The correctness of this approach is guaranteed by the following proposition.
 
-\begin{proposition}
+\begin{proposition}\label{prop:algorithmconverges}
 The Markov chain generated by Algorithm A is
 \begin{enumerate}
-\item reversible with respect to $h$,
-\item $\Psi$-irreducible and aperiodic 
-\end{enumerate}
-if  the following conditions are satisfied
+\item reversible with respect to $f$,
+\item $\Psi$-irreducible and aperiodic if the following conditions are satisfied
 \begin{enumerate}[(i)]
 	\item $p(\emptyset)<1,$
-	\item for all $\gamma \in E, \gamma\neq \emptyset$ exists $x \in \gamma$ such that
-	$$(1-p(\gamma))q_d(\gamma,x)>0 \text{ and } f(\gamma\setminus \{x\})p(\gamma \setminus \{x\}) q_b(\gamma\setminus \{x\},x)>0.$$ 
+	\item for all $\gamma \in E, \gamma\neq \emptyset$, there exists $x \in \gamma$ such that
+		\begin{equation}\label{eq:irreducibility}(1-p(\gamma))q_d(\gamma,x)>0 \text{ and } f(\gamma\setminus \{x\})p(\gamma \setminus \{x\}) q_b(\gamma\setminus \{x\},x)>0.\end{equation}
+\end{enumerate}
 \end{enumerate}
 \end{proposition}
 \begin{proof}
 Proposition $7.15$ in \cite{MollerWaagepetersen2003}.
 \end{proof}
+\problem[inline]{But the second is not ensured in HC model? Why is it okay then?}
 
 Condition (i) ensures that the chain can remain in $\emptyset$. Condition (ii) ensures that a point can always be deleted and thus the chain can move from $\gamma$ to $\emptyset$ in $N_\Lambda(\gamma)$ steps.
 
 
 
-\section{Simulating Gibbs-Laguerre-Delaunay tessellations}
+\section{Simulating Gibbs-Laguerre-Delaunay tetrahedrizations} 
 \subsection{Definition of the models}
 Our goal is to simulate examples of both smooth-interaction and hardcore-interaction potentials defined in Section \ref{sec:Existence} on $\mathcal D$ and $\mathcal {LD}$ models. To that end, we choose a particular parametric form of potentials depending on the parameters $\theta$ and $\alpha$.
 
@@ -202,17 +200,15 @@ where $\mathrm{Sur}(\eta)$ is the surface area of $\mathrm{conv}(\eta)$, $\alpha
 
 
 \subsection{Simulation algorithm}
-We now present the variations of Algorithm A for our setting. 
+We now present the variations of Algorithm A for our setting. The simulation window will be taken to be $[0,1]^3$ and we let $\Lambda \in \mathcal B_0(\Rt)$ be such that $[0,1]^3 \subset \Lambda$. All simulation takes place on $[0,1]^3$ and $\Lambda \setminus [0,1]^3$ contains the outside configuration, the boundary condition. 
 
-The first algorithm simulates the Delaunay tetrahedrization. All unmarked points formally represent marked points with marks set to $0$. The state space thus is
-$$\Omega = \{\gamma \in \mathbf N_f: f(\gamma)>0, \gamma \subset \Lambda\times \{0\}\}$$.
-\todoo[inline]{I really need to revisit the marked x unmarked formalism and improve it}
-
-\todoo[inline]{Probably remind the reader what permissible means}
+The first algorithm simulates the Delaunay tetrahedrization. In the description, all unmarked points formally represent marked points with marks set to $0$. The state space thus is
+$$\Omega = \{\gamma \in \mathbf N_f: f(\gamma)>0, \gamma \subset \Lambda\times \{0\}\},$$
+the set of permissible configurations with zero marks.
 \noindent \textbf{Algorithm A-$\mathcal D$} \newline
 \noindent First, start from a permissible initial configuration $\gamma_0$.
 \begin{enumerate}
-    \item Let $n = N_\Lambda(\gamma)$.
+	\item Let $n = N_{[0,1]^3}(\gamma)$.
     \item Draw independently $r$ and $b$ uniformly on $[0,1]$.
     \item If $r<1/3$, then generate $x$ uniformly on $[0,1]^3$ and set
         \begin{equation}\label{Dbirth}
@@ -247,20 +243,19 @@ $$\Omega = \{\gamma \in \mathbf N_f: f(\gamma)>0, \gamma \subset \Lambda\times \
     \item Set $\gamma_0 \leftarrow \gamma_1$ and go to 1.
 \end{enumerate}
 
-The second algorithm is for the simulation for the Laguerre tetrahedrization. The algorithm functions the same with one significant difference. In section \ref{sec:redundant} we introduced the notion of redundant points. It would be inconvenient to have a newly added point render other points redundant and vice versa. To prevent that, we define the set of point configurations producing Laguerre-Delaunay hypergraph structures with no redundant points,
+The second algorithm is for the simulation of the Laguerre tetrahedrization. The algorithm functions the same with one significant difference. In Section \ref{sec:redundant} we introduced the notion of redundant points. It would be inconvenient to have a newly added point render other points redundant and vice versa. To prevent that, we define the set of point configurations producing Laguerre-Delaunay hypergraph structures with no redundant points,
 $$\mathbf N_{nr} = \{ \gamma \in \mathbf N_{lf}: \mathcal {LD}(\gamma) \text{ does not contain redundant points }\}.$$ 
 Note that $\mathbf N_{nr}$ is \unsure{check this} measurable in $(\mathbf N_{lf}, \mathcal N_{lf})$ due to measurability of the hypergraph structures.  Using this set, we set the state space of the chain to
 $$\Omega = \mathbf N_f \cap \mathbf N_\infty \cap \mathbf N_{nr}.$$
 We further denote the set 
 $$A_\gamma = \{ x \in \Lambda \times S: \gamma\cup\{x\} \in N_{nr}\},$$
 the set of points which we can propose if the chain is in the state $\gamma$. Generation of points in $A_\gamma$ is done through rejection sampling, that is repeatedly sampling a point $x\in \Lambda\times S$ until the point satisfies $x\in A_\gamma$.
-\problem[inline]{$\Lambda$ is basically undefined here}
-
+unsure[inline]{Is the treatment of $\Lambda$ okay here?}
 
 \noindent \textbf{Algorithm A-$\mathcal{LD}$} \newline
 \noindent First, start from a permissible initial configuration $\gamma_0$.
 \begin{enumerate}
-    \item Let $n = N_\Lambda(\gamma)$.
+	\item Let $n = N_{[0,1]^3}(\gamma)$.
     \item Draw independently $r$ and $b$ uniformly on $[0,1]$.
     \item If $r<1/3$, then generate $x$ uniformly on $A_\gamma$ and set
         \begin{equation}\label{birth}
@@ -303,7 +298,7 @@ During the move step, the moved point might fall outside of $[0,1]^3$. In \cite{
 In our case the point is reflected back inside $[0,1]^3$, as if it was 'bounced back' from the boundary of $[0,1]^3$ \unsure{Is this a good approach? I makes the density of moved points next to boundary concentrate more in some places}.
 
 \begin{remark}
-Recall that the mark space $S=[0,W]$ limit the maximum weight. It is worth noting to what extent this is a limitation. From a practical perspective, the maximum weight $W$ limits the resulting tessellation in the sense that the difference of weights can never be greater than $W$. Marks greater than $W$ are not necessarily a problem, as we can always find an identical tessellation with marks bounded by $W$, as long as there are no two points $p,q$ with $|p''-q''|>W$ (see Remark \ref{rem:invariance}).
+Recall that the mark space $S=[0,W]$ limits the maximum weight. It is worth noting to what extent this is a limitation. From a practical perspective, the maximum weight $W$ limits the resulting tetrahedrization in the sense that the difference of weights can never be greater than $W$. Marks greater than $W$ are not necessarily a problem, as we can always find an identical tetrahedrization with marks bounded by $W$, as long as there are no two points $p,q$ with $|p''-q''|>W$ (see Remark \ref{rem:invariance}).
 \end{remark}
 
 
@@ -331,7 +326,7 @@ Ratio for move step \eqref{move} becomes:
 \end{align*}
 
 
-These expressions simplify the energy calculation immensely. Whereas calculating the energy for the whole tessellation requires all the tetrahedra, and thus depends on the complexity of the sets $\mathcal E_\Lambda$, the final expressions only contain the tetrahedra local to $x$ through the sets of type $\mathcal {LD}^\otimes$ and $\mathcal {LD}^\ell$, and thus the energy can be calculated in constant time.
+These expressions simplify the energy calculation immensely. Whereas calculating the energy for the whole tetrahedrization requires all the tetrahedra, and thus depends on the complexity of the sets $\mathcal E_\Lambda$, the final expressions only contain the tetrahedra local to $x$ through the sets of type $\mathcal {LD}^\otimes$ and $\mathcal {LD}^\ell$, and thus the energy can be calculated in constant time.
 
 We have presented the simplified ratios for Algorithm A-$\mathcal {LD}$. The case for Algorithm A-$\mathcal D$ is analogous, see Remark \ref{r:addremove}.
 
@@ -339,11 +334,18 @@ We have presented the simplified ratios for Algorithm A-$\mathcal {LD}$. The cas
 All simulations were done in C++ using CGAL \cite{cgal},\cite{cgal:3d-triang}\todoo{Definitely sell this more later}. More details can be found in appendix \ref{appendix:implementation}.
 \subsubsection{Initial configuration}
 In~\cite{DereudreLavancier2011}, three options for the initial configuration are suggested: the empty configuration, a specific fixed outside configuration, and periodic configuration.
-We ruled out periodic configuration since the CGAL implementation of 3d periodic triangulations~\cite{cgal:3d-period} has a much longer running time than in the non-periodic case. 
+We decided against using the periodic configuration since the CGAL implementation of 3D periodic triangulations~\cite{cgal:3d-period} has a much longer running time than in the non-periodic case. 
 \cite{DereudreLavancier2011} rejects the empty configuration on the basis that it "produces non bounded Delaunay-Voronoi cells". While this is true for a Voronoi diagram, it does not hold for the Delaunay or Laguerre case and so such configuration would in fact be possible in our case.
 However, the method chosen was to fix a regular grid of points in and out of $\Lambda$ such that the resulting tessellation fulfills the hardcore conditions. This does mean that the initial configuration is dependent on the values of the hardcore parameter $\alpha$. 
 
 
 
 \subsection{Convergence of the algorithm}
-\tbd
+By Propositions \ref{prop:MC1} and \ref{prop:MC2}, the convergence of Algorithms \textbf{A-}$\mathcal D$ and \textbf{A-}$\mathcal {LD}$ requires the generated Markov chain to be irreducible, aperiodic, and reversible with respect to $f$\todoo{Reversible implies Invariant should be clearer here}. Reversibility is given by point $1$ in Proposition \ref{prop:algorithmconverges}. Aperiodicity is satisfied since the chain can stay in any state with non-zero probability. It only remains to verify the irreducibility.
+
+For irreducibility, all that remains is to prove \eqref{eq:irreducibility}. This assumption is trivially satisfied in the models $(\mathcal D_4,\varphi_S)$ and $(\mathcal {LD}_4,\varphi_S)$. However, for the hard-core interaction models, this assumption is in general not satisfied, as the empty configuration does not even have to be in the state space, as it might not be permissible. In order to prove the irreducibility, \cite{DereudreLavancier2011} utilized an algorithmic procedure which connected any two any two configurations $\gamma,\bar\gamma \in \mathbf N_\infty$ by a finite series of specific steps of point addition and removal, all of which produce permissible configurations.
+
+\todoo[inline]{Possibly mention second hard-core parameter, which might be necessary (which wouldn't be a problem for us)}
+Although it seems very plausible that a similar approach could be taken in our case, we have not succeeded in extending this result to our case. In $\mathbb R^2$, the geometric arguments rely on a simple relationships between the lengths of sides of the triangles and their circumradii which no longer work in $\Rt$. Furthermore, the extension to the Laguerre-Delaunay case adds an additional constraint as the configurations now must not contain any redundant points.
+
+If the chain is indeed not irreducible, then the algorithms converge to a restriction of the limiting distribution to some connected component of the state space. The limiting distribution thus depends on the initial condition and never equals to the desired distribution.
