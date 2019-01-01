@@ -1,8 +1,7 @@
 \chapter{Simulation}\label{ch:simulation}
 The Gibbs point process allows us a great flexibility in specifying the energy function. One of the disadvantages is that both simulating the GPP and estimating its parameters is computationally demanding. This chapter outlines the approach taken in simulating the GPP. 
 
-\todoo[inline]{Elaborate on what DL10 does, etc}
-This (and the following) chapter is a direct extension of \cite{DereudreLavancier2011}. They investigate random Voronoi tessellations and Delaunay triangulations on the plane $\mathbb R^2$ based on the Gibbs point process. This text attempts to generalize their results for the Delaunay triangulations to Laguerre tetrahedrizations, that is from $\mathbb R^2$ to $\mathbb R^3$ and from Delaunay to the Laguerre-Delaunay case.
+This (and the following) chapter is a direct extension of \cite{DereudreLavancier2011}. Dereudre and Lavancier investigate random Voronoi tessellations and Delaunay triangulations on the plane $\mathbb R^2$ based on the Gibbs point process. This text attempts to generalize their results for the Delaunay triangulations to Laguerre tetrahedrizations, that is from $\mathbb R^2$ to $\mathbb R^3$ and from Delaunay to the Laguerre-Delaunay case.
 
 \noindent The principal issue in simulating GPP is that we do not know the value of the partition function $Z^z_\Lambda$. To that end, we employ Monte chain Markov Carlo (MCMC) techniques. 
 
@@ -88,7 +87,8 @@ Proposition $7.7$ in \cite{MollerWaagepetersen2003}.
 
 
 
-Consider a probability distribution $\mathbf \pi$ on some measurable space $(\Omega,\mathcal A)$. We wish to construct a Markov chain $Y$ on $\Omega$ with its stationary distribution equal to $\mathbf \pi$. By the theory introduced in this section, we must construct a irreducible and aperiodic Markov chain reversible with respect to $\pi$. Then $\pi$ is also the unique invariant distribution and thus \unsure{unique?}the limiting distribution. Since convergence in total variation implies weak convergence, our task is complete.
+Consider a probability distribution $\mathbf \pi$ on some measurable space $(\Omega,\mathcal A)$. We wish to construct a Markov chain $Y$ on $\Omega$ with its stationary distribution equal to $\mathbf \pi$. By the theory introduced in this section, we must construct a irreducible and aperiodic Markov chain reversible with respect to $\pi$. Then $\pi$ is also the unique invariant distribution and thus 
+\unsure{unique?}the limiting distribution. Since convergence in total variation implies weak convergence, our task is complete.
 
 The question, however, is how to build such a Markov chain. The next sections answers that question. 
 

@@ -1,4 +1,6 @@
 \chapter{Stochastic geometry}\label{ch:2}
+\todoo[inline]{Section structure}
+
 In the first chapter we have introduced tetrahedrizations as hypergraph structures and defined their energy in terms of the hyperedge potential. 
 Ultimately we want to study their behaviour under some probabilistic assumptions on the distribution of the configurations. In this chapter, the view is shifted from a configuration as a fixed deterministic set to a configuration being a particular realization of a random process.
 
@@ -236,7 +238,7 @@ An important characterization are the \textbf{Dobrushin-Lanford-Ruelle} (\textbf
 \end{proposition}
 \begin{proof}.
 	Can be proved using the proof in Proposition $3$ in \cite{Dereudre2017} if we use our definition of $H_\Delta(\gamma)$ and the equality $H_\Delta(\gamma) = H_\Lambda(\gamma) + \psi_{\Delta,\Lambda}(\gamma_{\Delta^c})$, where 
-	$\psi_{\Delta,\Lambda}$ is the function from Lemma \label{lemma:DL07}.
+	$\psi_{\Delta,\Lambda}$ is the function from Lemma \ref{lemma:DL07}.
 \end{proof}
 
 The DLR equations express the conditional probability of configurations inside the window $\Delta$, given the configuration outside it (boundary condition).
@@ -342,7 +344,3 @@ Let us remark that such set always exists by definition and that the value of $h
 
 Note that we lose the converse implication. That is the GNZ equation no longer characterize Gibbs point process with non-hereditary energy function. Imagine a measure $P$ under which $\gamma$ a.s. does not contain any removable points. The equation then becomes the trivial equation $0=0$.
 
-
-
-\section{Random tessellations}
-\unsure[inline]{Is there any use for this section? We power the tessellations entirely through the point generators and we don't make use of any facts from stochastic geometry.}

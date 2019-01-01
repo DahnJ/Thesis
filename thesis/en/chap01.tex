@@ -14,7 +14,7 @@ A \textit{configuration} is a set $\x \in \mathbf N_{lf}$, where
 $$\mathbf N_{lf} = \{\x \subset \Rt\times S: \mathrm{card}(\x \cap B) < \infty, B\in \mathcal B_0\} $$ 
 be the set of locally finite sets on $\Rt\times S$. Let $\mathbf N_{f} \subset \mathbf N_{lf}$ be the set of all finite sets on $\Rt\times S$. 
 \unsure{Is it enough to just say this?} Any observation window $\Lambda$ will always be assumed to have a positive Lebesgue measure. We denote the Lebesgue measure on $\Rt$ by $\lambda$ and often use the notation $|\cdot|=\lambda(\cdot)$.
-A subset of $\x$ will be denoted $\eta$. If $\mathrm{card}(\eta)=4$, then $\eta$ is called \textit{tetrahedral}. The symbols $\x'=\mathrm{pr_{\Rt}}(\x), \eta'=\mathrm{pr_{\Rt}}(\eta)$ again refer only to the positional part. 
+A subset of $\x$ will be denoted $\eta$. If $\mathrm{card}(\eta)=4$, then $\eta$ is called \textit{tetrahedral}. The symbols $\x'=\mathrm{pr_{\Rt}}(\x), \eta'=\mathrm{pr_{\Rt}}(\eta)$ again refer only to the positional part, where $\mathrm{pr}_\Rt$ denotes the projection to $\Rt$. 
 
 Lastly, for $\Lambda \in \mathcal B_0'$, playing the role of the observation window, denote 
 $$\mathbf N_\Lambda = \{ \x \in \mathbf N_{f}: \x'\subset \Lambda\}.$$
@@ -28,7 +28,7 @@ While this section does not aim to be a comprehensive overview of Delaunay and L
 
 \begin{definition}
 Let $\x \in \mathbf N_{lf}$. We say $\x$ is in \textbf{general position} if 
-$$ \eta \subset \x, 2 \leq \mathrm{card}(\eta) \leq 3 \Rightarrow \eta' \text{ is affinely independent in } \Rt. $$   
+$$ \eta \subset \x, 2 \leq \mathrm{card}(\eta) \leq 4 \Rightarrow \eta' \text{ is affinely independent in } \Rt. $$   
 Denote $\mathbf N_{gp}\subset \mathbf N_{lf}$ the set of all locally finite configurations in general position.
 \end{definition}
 \todoo[inline]{Possibly change cospherical to cospherical, etc}
@@ -37,7 +37,7 @@ Denote $\mathbf N_{gp}\subset \mathbf N_{lf}$ the set of all locally finite conf
  
 \begin{definition}
 Let $\x \in \mathbf N_{gp}$. We say $\x$ is in \textbf{reinforced general position} if 
-$$ \eta \subset \x, 3 \leq \mathrm{card}(\eta) \leq 4 \Rightarrow \eta' \text{ is not cospherical.} $$   
+$$ \eta \subset \x, \mathrm{card}(\eta) = 4 \Rightarrow \eta' \text{ is not cospherical.} $$   
 Denote $\mathbf N_{rgp}$ the set of all locally finite configurations in reinforced general position.
 \end{definition}
 \todoo[inline]{This definition is possibly not even needed}
@@ -57,7 +57,7 @@ This section will shortly introduce the three dimensional equivalent of the well
 	For convenience, for $\x \in \mathbf N_{lf}\setminus \mathbf N_{gp}$, we define any $\eta\subset \x$ that does not satisfy the assumptions of general position as not satisfying the empty ball property.
 \end{definition}
 
-\begin{definition}
+\begin{definition}\label{def:Delaunay}
 	Let $\x \in \mathbf N_{lf}$. Define the set 
 	$$\mathcal {D}(\x) := \{\eta\subset \x: \eta \text{ satisfies the empty ball property }\}.$$
 	and its subsets
@@ -154,7 +154,7 @@ An alternative way to describe the characteristic point is by the equality
 	d(p'_\eta,p)=p''_\eta \text{ for each } p \in \eta.
 \end{equation}
 Note that the mark of the characteristic point can be any real number and thus isn't limited to $S=[0,W]$, unlike the points of $\x$.
-If its weight is positive, the characteristic point can be interpreted as a sphere that intersects each sphere $S_p, p\in\eta$ at a right angle. If negative, \cite{Edelsbrunner1996} has suggested $p_\eta$ to be thought of as a sphere with an imaginary radius, though as far as we are aware, there is no further advantage to be gained from such interpretation. \newline
+If its weight is positive, the characteristic point can be interpreted as a sphere that intersects each sphere $S_p, p\in\eta$ at a right angle. If negative, \cite{Edelsbrunner1996} has suggested $p_\eta$ to be thought of as a sphere with an imaginary radius. \newline
 
 The following proposition looks at the existence and uniqueness of the characteristic point.
 
@@ -242,7 +242,7 @@ The regularity property ensures that no point of $\x$ is closer to the character
 
 
 
-\begin{definition}
+\begin{definition}\label{def:Laguerre}
 	Let $\x \in \mathbf N_{lf}$. Define the set 
 	$$\mathcal {LD}(\x) := \{\eta\subset \x: \eta \text{ is regular}\}.$$
 	and its subsets
@@ -316,8 +316,7 @@ From the above proposition we can also see why there cannot be any redundant poi
 %https://link.springer.com/content/pdf/10.1007/BF01975867.pdf
 
 \section{Hypergraph structures}\label{sec:hypergraphs}
-\unsure[inline]{Are graphs geometric? I mean, geometric graphs are geometric. But graphs in general? Are potentials part of this?}
-Both Delaunay and Laguerre tetrahedrizations can be seen as graphs where two points $p,q\in\x$ are joined if they are part of the same tetrahedron with the empty ball property, or the regularity property. However, for the purposes of this text, a more natural structure will be the hypergraph.
+Both Delaunay and Laguerre tetrahedrizations can be seen as graphs where two vertices $p,q\in\x$ are joined as an edge if they are part of the same tetrahedron with the empty ball property, or the regularity property. However, for the purposes of this text, a more natural structure will be the hypergraph, introduced into the analysis of Gibbs point processes in \cite{DDG12}.
 
 \subsection{Tetrahedrizations as hypergraphs}\label{sec:tetrahyper}
 Before defining a hypergraph structure, we first define a $\sigma$-algebra on $\mathbf N_{lf}$ and $\mathbf N_{f}$. 
@@ -330,7 +329,7 @@ We define $\mathcal N_{f}$ as the trace of $\mathcal N_f$ on $(\mathbf N_{lf}, \
 A hypergraph is thus a generalization of a graph in the sense that edges are now allowed to "join" any number of points. A hypergraph structure can be thought of as a rule that turns a configuration $\x$ into the hypergraph $(\x,\mathcal E(\x))$. 
 The subset $\eta \subset \x$ now plays the role of a hyperedge. e.g. a tetrahedron.
 
-The benefit of this approach is that we do not need to impose any additional structure on $\mathcal D(\x)$ or $\mathcal {LD}(\x)$ as they already define a hypergraph structure. 
+The benefit of this approach is that we do not need to impose any additional structure on $\mathcal D(\x)$ or $\mathcal {LD}(\x)$ as they already define a hypergraph structure. Using the notation from Definitions \ref{def:Delaunay} and \ref{def:Laguerre}, we can now introduce the Delaunay and Laguerre-Delaunay hypergraph structures. 
 
 \begin{definition}[Delaunay and Laguerre-Delaunay hypergraph structures]
 	Define the hypergraph structures
@@ -395,7 +394,7 @@ The words \textit{potential} and \textit{energy} point to a connection with stat
 
 
 
-\subsection{Hypergraph potentials and locality}
+\subsection{Hyperedge potentials and locality}
 A natural question to ask is ``How do the hyperedges of $\mathcal E(\x)$ influence each other?''. We have seen that there is a type of locality at play, for example  the empty ball property of a tetrahedral $\eta\in\mathcal D_4(\x)$ does not depend on the behaviour of $\x$ outside $B(\eta)$. This section will refine our understanding of the question by examining different locality properties.
 
 As we will see in Chapters \ref{ch:2} and \ref{ch:3}, this locality is essential for the existence of our models and Gibbs measures in general. 
@@ -469,7 +468,7 @@ The final basic term again characterizes a type of finite-range property, this t
 	Let $\Lambda \in \mathcal B_0'$ be given. We say a configuration $\x\ \in N$ \textit{confines the range of $\varphi$ from $\Lambda$} if there exists a set $\partial \Lambda(\x) \in \mathcal B_0'$ such that $\varphi(\eta,\zeta \cup \tilde{\x}_{\Lambda^c}) = \varphi(\eta,\zeta\cup\x_{\Lambda^c})$ whenever $\tilde{\x} = \x$ on $\partial \Lambda(\x)\times S$, $\zeta \in \mathbf N_\Lambda$ and $\eta \in \mathcal E_\Lambda(\zeta\cup\x_{\Lambda^c})$. In this case we write $\x \in \mathbf N^\Lambda_\mathrm{cr}$. We denote $r_{\Lambda,\x}$ the smallest possible $r$ such that $(\Lambda + B(0,r))\setminus \Lambda$ satisfies the definition of $\partial \Lambda(\x)$. We will use the abbreviation $\partial_\Lambda \x = \x_{\partial \Lambda(\x)}$.
 \end{definition}
 
-While the set $\mathcal E_\Lambda(\x)$ contains hyperedges $\eta$ which can be influenced by points in $\Lambda$, the set $\partial_\Lambda \x$  contains those points of $\x$ that influence the value of those $\eta$. This allows us to express $H_{\Lambda,\x}$ truly locally.
+While the set $\mathcal E_\Lambda(\x)$ contains hyperedges $\eta$ which can be influenced by points in $\Lambda$, the set $\partial_\Lambda \x$  contains those points of $\x$ that influence the potential of those $\eta$. This allows us to express $H_{\Lambda,\x}$ truly locally.
 
 \begin{proposition}\label{prop:Hcr}Let $\x\in N^\Lambda_\mathrm{cr}$. Then 
 	$$H_{\Lambda,\x}(\zeta) = \sum_{\eta \in \mathcal E_\Lambda(\zeta \cup \partial_\Lambda \x)} \varphi(\eta, \zeta \cup \partial_\Lambda \x).$$

@@ -122,7 +122,7 @@ for some $0\leq d_0 < d_1 \leq \alpha$ \unsure{How exactly does this look? Why?}
 The first step is to find a suitable form of the pseudo-periodic configurations defined by $\Gamma$ and the matrix $M$. 
 
 \subsection{The choice of $\Gamma$ and $M$ for Laguerre-Delaunay models}\label{sec:MGamma}
-Before we choose a specific pseudo-periodic configuration, we first look at some of the properties the resulting configurations should have. To satisfy \textbf{(U1)}, we will ideally want bounded finite horizons --- bounded circumradii for $\mathcal D$ models and bounded radii of the characteristic points for $\mathcal LD$ models. We further need boundedness of the potentials for $\textbf{(U2)}$ and we need to find a specific bound for \textbf{(U3)}. Finally the number of incident tetrahedra of each point in the configuration 
+Before we choose a specific pseudo-periodic configuration, we first look at some of the properties the resulting configurations should have. To satisfy \textbf{(U1)}, we will ideally want bounded finite horizons --- bounded circumradii for $\mathcal D$ models and bounded radii of the characteristic points for $\mathcal LD$ models. We further need boundedness of the potentials for $\textbf{(U2)}$ and we need to find a specific bound for \textbf{(U3)}. Finally, for \textbf{(U2)} we also need the number of incident tetrahedra to each point to be bounded.
 
 With this in mind, we present our choice and then proceed to show its properties.\newline 
 
@@ -228,7 +228,7 @@ We know that $\text{NNG}(\x_1)$ is composed of two regular tetrahedra and one re
 Since $\mathcal D_4(\x_0)$ is tessellated by copies of $\mathcal D_4(\x_1)$ translated by vectors $k\in\mathbb Z^3$, we have fully characterized the tetrahedra of $\mathcal D_4(\x_0)$. 
 \end{proof}
 
-We note that the circumradii of the tetrahedra can be calculated using the Cayley-Menger determinant (see Appendix \ref{appendix}) and are $\sqrt{6}/4 \cdot a$ for $T_1$ and $1/\sqrt{2}\cdot a$ for $T_2$.
+We note that the circumradii of the tetrahedra can be calculated using the Cayley-Menger determinant (see Appendix \ref{A:CM}) and are $\sqrt{6}/4 \cdot a$ for $T_1$ and $1/\sqrt{2}\cdot a$ for $T_2$.
 
 \subsubsection{Combinatorial structure of $\mathcal D_4(\x_0)$}\label{sec:combinatorial}
 
@@ -254,7 +254,7 @@ The bound on circumdiameters of the circumballs and characteristic point weights
 
 \noindent For the weights of the characteristic points, we do not need a specific bound and thus only prove their boundedness.
 \begin{proposition}\label{prop:maxPeta}
-	Let $\x \in \bar\Gamma^A$. Then the weight of the characteristic point is uniformly bounded. That is there exists $C>0$ such that $p_\eta'' \leq C$ for all $\eta \in \mathcal {LD}_4(\x)$. 
+	Let $\x \in \bar\Gamma^A$. Then the weight of the characteristic point is uniformly bounded. That is there exists $c>0$ such that $p_\eta'' \leq c$ for all $\eta \in \mathcal {LD}_4(\x)$. 
 \end{proposition}
 \begin{proof}
 Denote $\eta=\{p_1,p_2,p_3,p_4\}$, with positions $\eta'$ and weights $\eta''$. From Theorem \ref{prop:charpointHyperplane} and the remark below it we know that $p'_\eta = H(p_1,p_2)\cap H(p_1,p_3) \cap H(p_1,p_4)$.
@@ -294,9 +294,9 @@ the bounds for the tetrahedra derived in Theorem \ref{thm:Apollonius} in Appendi
 			\item We know from \ref{thm:Apollonius} that the exists $d_{max}>0$ such that $\text{diam}B(\eta)\leq d_{max}$. By Lemma \ref{lemma:U1} $r_\Gamma\leq d_{max}.$
 			\item is trivially satisfied since $n_S < 58$ and $\varphi_S$ is bounded by Proposition \ref{prop:maxcircum}.
 			\item By Remark \ref{r:UA} we want to find $z$ as small as possible such that $z|A|>e^{c_A}.$ We know from Section \ref{sec:combinatorial} that there are at most $8$ $T_1$ and $48$ $T_2$ tetrahedra intersecting $C$, therefore from Theorem \ref{thm:Apollonius} in Appendix \ref{sec:boundingdiameter}
-				$$c_A \leq \frac a4 (8\cdot \delta_1 + 48\cdot \delta_2 ).$$
+				$$c_A \leq \frac a4 (8( K_0 + K_1 (a\delta_1)^\beta) + 48( K_0 + K_1 (a\delta_2)^\beta) ).$$
 				This yield the bound
-				\begin{align*}z &> \frac{4\pi\rho^3}{3} e^{2(K_0 + K_1 (a\delta_1)^\beta) + 12(K_0 + K_1(a \delta_2)^\beta)} / a^3  \\
+				\begin{align*}z &> \frac{3} {4\pi\rho^3}e^{2(K_0 + K_1 (a\delta_1)^\beta) + 12(K_0 + K_1(a \delta_2)^\beta)} / a^3  \\
 					&= C_0 e^{C_1 a^\beta} / a^3,  
 				\end{align*}
 				where $C_0 = 3e^{14K_0}/(4\pi \rho^3)$ and $C_1 = 2K_1(\delta_1^\beta + 6 \delta_2^\beta)$.
@@ -319,7 +319,7 @@ the bounds for the tetrahedra derived in Theorem \ref{thm:Apollonius} in Appendi
 	\item \textbf{(\^U)} We choose $M$ and $\Gamma$ as in Section \ref{sec:MGamma}.
 		\begin{enumerate}[(\^U1)]
 			\item For all $\eta \in \mathcal D_4(\x)$ for $\x\in\Gamma^A$ such that $H_\Lambda(\x)<\infty$ we have $\delta(\eta) < \beta$. This imposes a minimum density of points, since e.g. no ball with diameter $\beta$ can be empty. 
-			\item We have $n_S<56$ and thus the only quantity in question is $\varphi_{HC}$. By Theorem \ref{thm:Apollonius}, we have $\delta(\eta)\leq a\delta_2(\rho)$, thus we only need to choose $a$ such that $\delta_2(\rho) \leq \beta / a$.
+			\item We have $n_S<56$ and thus the only quantity in question is $\varphi_{HC}$. By Theorem \ref{thm:Apollonius}, we have $\delta(\eta)\leq a\delta_2(\rho)$, thus we only need to choose $a$ and $\rho$ such that $\delta_2(\rho) \leq \beta / a$.
 			\item $\Pi^z_\Lambda(\Gamma)>0$ by Remark \ref{r:UA}.
 		\end{enumerate}
 \end{enumerate}
@@ -333,13 +333,15 @@ the bounds for the tetrahedra derived in Theorem \ref{thm:Apollonius} in Appendi
 \end{theorem}
 \begin{proof}
 \begin{enumerate}[]
-	\item \textbf{(R)} Take the horizon set $\Delta = B(p'_\eta, \sqrt{p''_\eta + W})$. $\Delta$ can be decomposed into the sphere $p_\eta$ and $\Delta \setminus p_\eta$, a 3-dimensional annulus with width $\sqrt{p''_\eta+W} -\sqrt{p''_\eta}=W/(\sqrt{p''_\eta+W} + \sqrt{p''_\eta})$. By definition of $\mathcal {LD}$ and Remark \ref{r:horizons}, $p_\eta$  cannot contain any points of $\x$. \todoo{Ugly line placements, improve} Although the annulus $\Delta \setminus p_\eta$ does not have any bound on the number of points, its width is bounded by $\sqrt W \geq  W/(\sqrt{p''_\eta+W} + \sqrt{p''_\eta})$. This means that any $x,y\in \Delta$ can be connected by the spheres $B(x,\sqrt W), p_\eta, B(y,\sqrt W)$, yielding the parameters $\ell_R = 3,n_R=0,\delta_R=2\sqrt W$.
+	\item \textbf{(R)} Take the horizon set $\Delta = B(p'_\eta, \sqrt{p''_\eta + W})$. $\Delta$ can be decomposed into the sphere $p_\eta$ and $\Delta \setminus p_\eta$, a 3-dimensional annulus with width 
+		$$\sqrt{p''_\eta+W} -\sqrt{p''_\eta}=W/(\sqrt{p''_\eta+W} + \sqrt{p''_\eta}).$$
+		By definition of $\mathcal {LD}$ and Remark \ref{r:horizons}, $p_\eta$  cannot contain any points of $\x$. Although the annulus $\Delta \setminus p_\eta$ does not have any bound on the number of points, its width is bounded by $\sqrt W \geq  W/(\sqrt{p''_\eta+W} + \sqrt{p''_\eta})$. This means that any $x,y\in \Delta$ can be connected by the spheres $B(x,\sqrt W), p_\eta, B(y,\sqrt W)$, yielding the parameters $\ell_R = 3,n_R=0,\delta_R=2\sqrt W$.
 	\item \textbf{(S)} Stability is satisfied because of $\varphi$ is non-negative.
 	\item \textbf{(U)} We choose $M$ and $\Gamma$ as in Section \ref{sec:MGamma}.
 		\begin{enumerate}[(U1)]
 			\item By Proposition \ref{prop:maxPeta} there is $C>0$ such that $p''_\eta\leq C$ for all $\eta \in \mathcal {LD}_4(\x), \x \in \bar\Gamma^A$. By Lemma \ref{lemma:U1} we have $r_\Gamma\leq \sqrt{C + W}$.
 			\item is trivial since $n_S<56$ and $\varphi_{S}$ is bounded by Proposition \ref{prop:maxcircum}.
-			\item We proceed similarly as in \ref{thm:E1} and obtain
+			\item We proceed similarly as in Theorem \ref{thm:E1} and obtain
 				$$z>C_0 e^{C_1 a^\beta} / a^{7/2}$$
 				where $C_0=3 \sqrt 2 e^{14K_0} / (4\pi \rho^3 \sqrt{1-2\rho})$, $C_1 = 2K_1(\delta_1^\beta + 6\delta_2^\beta)$. Optimizing over $a$ we obtain $a=(7/(2C_1\beta))^{1/\beta}$ arriving at the bound
 				$$z> C_0 (C_1 \beta e^{7/2} / (7/2))^{1/\beta}.$$
@@ -359,7 +361,7 @@ the bounds for the tetrahedra derived in Theorem \ref{thm:Apollonius} in Appendi
 	\item \textbf{(\^U)} We choose $M$ and $\Gamma$ as in Section \ref{sec:MGamma}.
 		\begin{enumerate}[(U1)]
 			\item The same as in Theorem \ref{thm:E2}. Although the underlying structure is different, the potential still depends on $\delta(\eta)$ and (\^U1) requires the configuration to have a non-infinite energy.
-			\item The same as in Theorem \ref{thm:E2}, $n_S<56$ and we choose an appropriate $a$.
+			\item The same as in Theorem \ref{thm:E2}, $n_S<56$ and we choose an appropriate $a$ and $\rho$.
 			\item $\Pi^z_\Lambda(\Gamma)>0$ by Remark \ref{r:UA}.
 		\end{enumerate}
 \end{enumerate}
@@ -367,12 +369,44 @@ the bounds for the tetrahedra derived in Theorem \ref{thm:Apollonius} in Appendi
 
 
 
-\begin{remark}[Extending to other potentials]
-	\tbd
-\note[inline]{Directly obtainable results: 1) Smooth interaction for other unary potentials such as $k$-facet volume (use Hadamard inequality to bound them). 2) Adding additional constraints to hardcore models as long as we can find $a$ to satisfy the constraints.}
+
+Using the same approach and the same pseudo-periodic configurations $\bar\Gamma$, it is easy enough to prove the existence of many different forms of unary hyperedge potentials. In the following, we suggest some alternate hyperedge potentials. 
+\begin{remark}[Other smooth interaction potentials]
+	
+	Alternate smooth interaction models could be considered using characteristics of $k$-faces of $\eta$ instead of the circumdiameter. An example is the volume potential $\varphi_{V}$ defined as an unary potential such that for $\eta\in\mathcal E_4(\x), \x \in \bar\Gamma$  we have
+	$$\varphi_{V}(\eta,\x) \leq K_0 + K_1 \mathrm{V}(\eta)^{\beta}$$
+	for some $K_0,K_1 \geq 0, \beta >0$, where $\mathrm{V}(\eta)=|\mathrm{conv}(\eta)|$ is the volume of the tetrahedron $\mathrm{conv}(\eta)$. Volume of a $3-$simplex with positions $\eta'=\{x_0,x_1,x_2,x_3\}\subset \Rt$ can be calculated using the Cayley-Menger determinant (Appendix \ref{A:CM}), but the following expression (\cite{Stein1966}) lends itself better to finding a bound 
+	$$V(\eta)=\left| \frac 1{n!} \mathrm{det}(x_1-x_0,x_2-x_0,x_3,x_0) \right|,$$
+	where the determinant is of a $3 \times 3$ matrix with column vectors $x_1-x_0,x_2-x_0,x_3-x_0$. This quantity can be bounded using the Hadamard's inequality (\cite{Hadamard1893})
+	$$\mathrm{det}(x_1-x_0,x_2-x_0,x_3-x_0) \leq \prod^3_{i=1} \|x_i - x_0\| $$
+	Notice that we only need the length of three edges of the tetrahedron. Thanks to this, tetrahedra of type T1 and T2 both can be bounded by
+	$$\varphi_V(\eta,\x) \leq \frac 16 a(1+2\rho)^3, \quad \eta\in\mathcal E_4(\x), \x\in \bar \Gamma.$$
+	The bound for the intensity $z$ in the model $(\mathcal {LD}_4, \varphi_V)$ then becomes
+	\begin{equation}\label{eq:volbound}z> \frac{3\sqrt 2}{4\pi}e^{14 K_0}   (4K_1 \beta e^{7/2})^{1/\beta} \frac{\frac 16 (1+2\rho)^3}{\rho^3 \sqrt{1-2\rho}}.\end{equation}
+	Note that same approach could be used for e.g. surface area of the tetrahedron, where we would simply replace $(1+2\rho)^3$ for $\frac 2 (1+2\rho)^2$ in \eqref{eq:volbound}.  \newline
+
 \end{remark}
+
+
+\begin{remark}[Other hardcore interaction potentials]
+	Other forms of the hard-core potential can be obtained relatively easily. For example, additional constraints can be added, e.g. minimum edge length. Finite horizons remain the same for all unary potentials, and therefore \textbf{(R)} holds. Stability \textbf{(S)} is satisfied, as the potential is still non-negative. The alternate upper regularity conditions \textbf{\^{U}1} and \textbf{\^{U}3} are satisfied for the same reasons.  \tbd 
+\end{remark}
+
+
+Note also that while we have used the sets $\mathcal D_4$ and $\mathcal {LD}_4$ for the definition of our models, it would be just as possible to consider the sets $\mathcal D_2$, $\mathcal D_3$, or $\mathcal {LD}_2, \mathcal {LD}_3$, or even combinations of them.
+
+
+
+
 
 
 \begin{remark}[Concrete values of $z$]
 	\tbd
+	A Mathematica script used for exploring the bounds for different settings of the parameters can be found in the file \texttt{zBounds.nb}.
+\end{remark}
+
+
+\begin{remark}[Improving the bounds]
+a.s., bounds are rough, weight limitation great
+\tbd
 \end{remark}
