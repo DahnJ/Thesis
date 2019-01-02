@@ -207,7 +207,7 @@ The Apollonius problem for spheres $S_1,S_2,S_3,S_4$ is therefore solved by any 
 \end{align}
 
 where we can take any combination of $+$ or $-$, yielding altogether $16$ possible solutions. We do not consider degenerate cases as they cannot happen in our setting. 
-
+\todoo[inline]{Number in words}
 As noted previously, the number of solutions for both $T_1$ and $T_2$ will reduce significantly. For $T_1$, the spheres are completely interchangeable and thus only solutions with different number of $+$ will differ. This yields $5$ possible solutions. Geometrically the number of $+$ can be seen as the number of spheres the solution is externally tangent to. For $T_2$ the situation is more complex, as the problem is not entirely symmetric with respect to the four points. Still, symmetries do exist and the number of solution will be reduced.  
 
 Sadly, for most choices of $+$ and $-$, these equations still seem to be too complex for Mathematica to solve. Luckily, we can simplify them further. 
@@ -228,7 +228,7 @@ We formulate the solution as a theorem.
 First, for clarity, we define the variables $s_i\in\{+1,-1\},i=1,\dots,4$ instead of relying on the notation $\pm$. We begin by expanding the parentheses to obtain the equations
 $$x^2+y^2+z^2 + x_i^2 + y_i^2 + z_i^2 - 2xx_i - 2yy_i - 2zz_i = r^2 + r_i^2 + 2(s_1 r_1 - s_2 r_2)r,\quad i=1,2,3,4$$
 
-By subtracting the $2,3,4$th equation from the first, we get rid of the quadratic terms and obtain a system of linear equations with four variables and three equations:
+By subtracting the second, third, and fourth equation from the first, we get rid of the quadratic terms and obtain a system of linear equations with four variables and three equations:
 \begin{align*}-&2(x_1-x_i)x - 2(y_1-y_i)y -2 (z_1-z_i)z - 2(s_1r_1 - s_2r_2)r \\
 	& + x_1^2-x_i^2 + y_1^2-y_i^2 + z_1^2 - z_i^2 -r_1^2 + r_i^2 = 0, \quad i=2,3,4
 \end{align*}

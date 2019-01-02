@@ -37,6 +37,7 @@ As stated previously, the fact that the hypergraph structures posses a type of l
 
 This is reflected in part in the range condition introduced here and later in the uniform confinement condition \eqref{eq:U1}.
 
+\todoo[inline]{Change dleta to chi, confusing notation}
 \begin{enumerate}[\textbf{(R)}]\label{(R)}
 	\item \textit{Range condition}. There exist constants $\ell_R,n_R \in \mathbb N$ and $\delta_R < \infty$ such that for all $(\eta,\x) \in \mathcal E$ there exists a finite horizon $\Delta$ satisfying: For every $x,y \in \Delta$ there exist $\ell$ open balls $B_1, \dots, B_\ell$ (with $\ell \leq \ell_R$) such that
 	\begin{enumerate}[-]
@@ -49,7 +50,7 @@ This is reflected in part in the range condition introduced here and later in th
 Apart from being one of the assumptions necessary for the existence, the range condition also gives us the following result we used in the definition of GPP.
 
 \begin{proposition}\label{prop:cr-a.s.}
-	Let $\Lambda \in \mathcal B_0(\Rt)$. Under the range assumption \textbf{(R)}, there exists a set $\hat {\mathbf N}^\Lambda_{cr} \in \tilde {\mathcal N_{\Lambda^c}}$ such that $\hat {\mathbf N}^\Lambda_{cr} \subset \mathbf N^\Lambda_{cr}$ and $P(\hat {\mathbf N}^\Lambda_{cr})=1$ for all $P \in \mathcal P_\Theta$ with $P(\varnothing)=0$.
+Let $\Lambda \in \mathcal B_0(\Rt)$. Under the range assumption \textbf{(R)}, there exists a set $\hat {\mathbf N}^\Lambda_{cr} \in \tilde {\mathcal N}_{\Lambda^c}$ such that $\hat {\mathbf N}^\Lambda_{cr} \subset \mathbf N^\Lambda_{cr}$ and $P(\hat {\mathbf N}^\Lambda_{cr})=1$ for all $P \in \mathcal P_\Theta$ with $P(\varnothing)=0$.
 \end{proposition}
 \begin{proof}
 	Can be found in Theorem 5.4. in \cite{DDG12}. See also Remark 3.7. in connection to the marked case.
@@ -64,7 +65,7 @@ In order to present the upper regularity conditions, we introduce the notion of 
 
 Let $M\in\mathbb R^{3\times 3}$ be an invertible $3\times 3$ matrix with column vectors $(M_1,M_2,M_3)$. For each $k \in \mathbb Z^3$ define the cell
 $$C(k) =  \{Mx \in \Rt: x-k \in \left[ -1/2, 1/2 \right)^3 \}.$$
-These cells partition $\R$ into parallelepipeds. We write $C=C(0)$. Let $\Gamma \in \mathcal N_C$ be non-empty. Then we define the \textit{pseudo-periodic} configurations $\bar \Gamma$ as
+These cells partition $\Rt$ into parallelepipeds. We write $C=C(0)$. Let $\Gamma \in \mathcal N_C$ be non-empty. Then we define the \textit{pseudo-periodic} configurations $\bar \Gamma$ as
 $$\bar \Gamma = \{ \x \in \mathbf N_{lf}: \vartheta_{Mk}(\x_{C(k)}) \in \Gamma \text{ for all } k \in \mathbb Z^3 \},$$
 the set of all configurations whose restriction to $C(k)$, when shifted back to $C$, belongs to $\Gamma$. The prefix pseudo- refers to the fact that the configuration itself does not need to be identical in all $C(k)$, it merely needs to belong to the same class of configurations.
 
@@ -84,7 +85,7 @@ Notice that (U1) is very close to the classic finite range property mentioned at
 
 
 As long as $\Pi^z_C (\Gamma) >0$, (U3) will always hold for all $z$ exceeding some threshold $z_0 \geq 0$. This is because the left hand side is an increasing function of $z$, as can be seen from the equality 
-$$e^{z|C|} \Pi^z_C(\Gamma) = \sum^\infty_{k=1} \frac{z^k}{k!} \int_C \cdots \int_C 1_{\Gamma} \left(\sum^k_{i=1} \delta_{X_i}\right) dx_1, \dots, dx_k,$$
+$$e^{z|C|} \Pi^z_C(\Gamma) = \sum^\infty_{k=1} \frac{z^k}{k!} \int_C \cdots \int_C 1_{\Gamma} \left(\sum^k_{i=1} \delta_{x_i}\right) dx_1, \dots, dx_k,$$
 which can be derived using \eqref{eq:poiscalc}. 
 
 
@@ -115,7 +116,7 @@ $$\varphi_S(\eta,\x) \leq K_0 + K_1 \delta(\eta)^{\beta}$$
 for some $K_0,K_1 \geq 0, \beta >0$\newline
 \textbf{Hard-core interaction}: For $\eta\in\mathcal E_4(\x)$ define the potential $\varphi_{HC}$ as a unary potential such that
 $$\sup_{\eta: d_0 \leq \delta(\eta) \leq d_1} \varphi_{HC}(\eta,\x)  < \infty \text{ and } \varphi_{HC}(\eta,\x)=\infty \text{ if } \delta(\eta)>\alpha.$$ 
-for some $0\leq d_0 < d_1 \leq \alpha$ \unsure{How exactly does this look? Why?}
+for some $0\leq d_0 < d_1 \leq \alpha$. \unsure{How exactly does this look? Why?}
 
 \noindent We assume by Assumption 1 that $\varphi_S,\varphi_{HC}\geq 0$. Denote the four models as $(\mathcal D_4,\varphi_{S}),(\mathcal D_4,\varphi_{HC}),(\mathcal {LD}_4,\varphi_{S})$ and $(\mathcal {LD}_4, \varphi_{HC})$. \newline
 
@@ -136,7 +137,7 @@ Let $M$ be such that $|M_i| = a > 0$ for $i=1,2,3$ and $\angle(M_i,M_j) = \pi / 
 \todoo[inline]{Possibly make it clear that we're later referring to $A$ as the specific set in this section}
 In \cite{DDG12}, $A$ is chosen to be $B(0,b)$ for $b\leq \rho a$ for some sufficiently small $\rho >0$. 
 
-We will use this form for the positions of the points as well --- the question, however, is how to choose the mark set. For Delaunay models, we choose $A=B(0,b)\times\{0\}$. It would be convenient to do this in the Laguerre case as well and only deal with the Delaunay tetrahedrization. However, for Laguerre-Delaunay models, this  would mean that $\Pi^z_C(\Gamma) = 0$, conflicting with both $(U3)$ and $(\hat U3)$. The choice $A=B(0,b)\times S$ could, for a small enough $a$, result in some balls being fully contained in their neighboring balls, possibly resulting in redundant points, thus changing the desired properties of $\Gamma$. It is thus necessary to choose the mark space dependent on $a$. For given $a$, $\rho$, the minimum distance between individual points, is $a-2\rho a = a(1-2\rho)$. For $\mathcal {LD}$ models we therefore choose 
+We will use this form for the positions of the points as well --- the question, however, is how to choose the mark set. For Delaunay models, we choose $A=B(0,b)\times\{0\}$. It would be convenient to do this in the Laguerre case as well and only deal with the Delaunay tetrahedrization. However, for Laguerre-Delaunay models, this  would mean that $\Pi^z_C(\Gamma) = 0$, conflicting with both $(U3)$ and $(\hat U3)$. The choice $A=B(0,b)\times S$ could, for a small enough $a$, result in some balls being fully contained in their neighboring balls, possibly resulting in redundant points, thus changing the desired properties of $\Gamma$. It is thus necessary to choose the mark set dependent on $a$. For given $a$, $\rho$, the minimum distance between individual points, is $a-2\rho a = a(1-2\rho)$. For $\mathcal {LD}$ models we therefore choose 
 \begin{equation}\label{eq:choiceA} A = B(0,b)\times \left[0, \sqrt{\frac a2(1-2\rho)}\right] \end{equation}
 in order for balls to never overlap \unsure{This is perhaps unnecessarily conservative, we could widen it}. We further assume $\rho < 1/4$, see Appendix \ref{sec:boundingdiameter}.
 
@@ -160,11 +161,11 @@ in order for balls to never overlap \unsure{This is perhaps unnecessarily conser
 	where $c_A := c_{\Gamma^A}$.
 
 	In  the case $A = B(0,\rho a)\times [0, \sqrt{\frac a2(1-2\rho)}]$ for $\mathcal {LD}$, we have
-	$$|A| = \frac 43 \pi (\rho a)^3 \cdot \sqrt{\frac a2(1-2\rho)} = \frac {4\pi}{3\sqrt{2}}\cdot  \rho^3 \sqrt{1-2\rho} \cdot a^{7/2}$$
+	$$|A| = \frac 43 \pi (\rho a)^3 \cdot \sqrt{\frac a2(1-2\rho)} = \frac {4\pi}{3\sqrt{2}}\cdot  \rho^3 \sqrt{1-2\rho} \cdot a^{7/2}.$$
 
 \end{enumerate}
 \end{remark}
-
+\todoo[inline]{Check for punctuation etc, especially in math}
 
 \subsection{Geometric properties of the tetrahedrizations defined by $\Gamma^A$ and $M$}
 In this section we inspect the geometric structure of the tetrahedrizations generated by the configurations in $\bar \Gamma^A$.
@@ -215,7 +216,7 @@ Note that in the following, we use the word regular in the geometric sense --- r
 	Any invertible linear transformation maps a parallelepiped onto a parallelepiped. Since $\|p_2 - p_1\| = \|p_3-p_1\| = \|p_5-p_1\|=a$ by definition of $M$, we obtain that all the edges of the parallelepiped $\{p_1,\dots,p_8\}$ have length $a$. Furthermore, each face of the parallelepiped can be split into two equilateral triangles, e.g. $\|p_3-p_2\|=a$. Consequently $\{p_1,p_2,p_3,p_5\}$ and $\{p_4,p_6,p_7,p_8\}$ are regular tetrahedra, the regularity coming from the fact that all edges have length $a$. Similarly, the sextuple $\{p_2,\dots,p_7\}$ is a regular octahedron, as all its edges have length $a$.
 \end{proof}
 
-This polyhedral configuration is well known to tessellate\footnote{ The tessellation is of great importance to many fields and thus is known under many names. In mathematics, it is most commonly called the \textit{tetrahedral-octahedral honeycomb}, or the \textit{alternated cubic honeycomb}. In structural engineering, it is known as the \textit{octet truss}, as named by Buckminster Fuller, or the \textit{isotropic vector matrix}. It is stored as \textit{fcu} in the Reticular Chemistry Structure Resource\cite{RCSR}. It is also the nearest-neighbor-graph of the face-centered cubic (fcc) crystal in crystallography (\cite{Gabbrielli12}).  }. The knowledge of $\mathrm{NNG}(\x_1)$ allows us to fully categorize the tetrahedra in $\mathcal D_4(\x_0)$.
+This polyhedral configuration is well known to tessellate\footnote{ The tessellation is of great importance to many fields and thus is known under many names. In mathematics, it is most commonly called the \textit{tetrahedral-octahedral honeycomb}, or the \textit{alternated cubic honeycomb}. In structural engineering, it is known as the \textit{octet truss}, as named by Buckminster Fuller, or the \textit{isotropic vector matrix}. It is stored as \textit{fcu} in the Reticular Chemistry Structure Resource (\cite{RCSR}). It is also the nearest-neighbor-graph of the face-centered cubic (fcc) crystal in crystallography (\cite{Gabbrielli12}).  }. The knowledge of $\mathrm{NNG}(\x_1)$ allows us to fully categorize the tetrahedra in $\mathcal D_4(\x_0)$.
 
 \begin{proposition}\label{prop:tetraInTess} $\mathcal D_4(\x_0)$ contains two types of tetrahedra, $T_1$ and $T_2$, with edge lengths
 	$$T_1:(a,a,a,a,a,a) \quad T_2:(a,a,a,a,a,\sqrt 2a). $$
@@ -376,7 +377,7 @@ Using the same approach and the same pseudo-periodic configurations $\bar\Gamma$
 	Alternate smooth interaction models could be considered using characteristics of $k$-faces of $\eta$ instead of the circumdiameter. An example is the volume potential $\varphi_{V}$ defined as a unary potential such that for $\eta\in\mathcal E_4(\x), \x \in \bar\Gamma$  we have
 	$$\varphi_{V}(\eta,\x) \leq K_0 + K_1 \mathrm{V}(\eta)^{\beta}$$
 	for some $K_0,K_1 \geq 0, \beta >0$, where $\mathrm{V}(\eta)=|\mathrm{conv}(\eta)|$ is the volume of the tetrahedron $\mathrm{conv}(\eta)$. Volume of a $3-$simplex with positions $\eta'=\{x_0,x_1,x_2,x_3\}\subset \Rt$ can be calculated using the Cayley-Menger determinant (Appendix \ref{A:CM}), but the following expression (\cite{Stein1966}) lends itself better to finding a bound: 
-	$$V(\eta)=\left| \frac 1{n!} \mathrm{det}(x_1-x_0,x_2-x_0,x_3,x_0) \right|,$$
+	$$V(\eta)=\left| \frac 1{n!} \mathrm{det}(x_1-x_0,x_2-x_0,x_3-x_0) \right|,$$
 	where the determinant is of a $3 \times 3$ matrix with column vectors $x_1-x_0,x_2-x_0,x_3-x_0$. This quantity can be bounded using Hadamard's inequality (\cite{Hadamard1893})
 	$$\mathrm{det}(x_1-x_0,x_2-x_0,x_3-x_0) \leq \prod^3_{i=1} \|x_i - x_0\| $$
 	Notice that we only need the length of three edges of the tetrahedron. Thanks to this, tetrahedra of type T1 and T2 both can be bounded by

@@ -1,13 +1,15 @@
 \chapter*{Introduction}
 \addcontentsline{toc}{chapter}{Introduction}
 
-An important area in materials science is the study of polycrystalline materials. Advances in understanding now allow us to accurately characterize the macro-scale properties of such materials using only their microscopic structure. It is therefore essential to develop adequate mathematical models to accurately capture and describe the microscopic properties of these materials.
+An important area in materials science is the study of polycrystalline materials\unsure{Add some reference to this?}. Advances in understanding now allow us to accurately characterize the macro-scale properties of such materials using only their microscopic structure. It is therefore essential to develop adequate three-dimensional (3D) mathematical models to accurately capture and describe the microscopic geometrical properties of these materials. 
 Stochastic models have provided an extremely useful way of capturing the irregularities of the real world, and the study of polycrystalline materials is no different. In particular, the random tessellation models from stochastic geometry have proven to be especially appropriate for the mosaic-like grain structure of polycrystalline materials. 
 
 This work, as a part of the project solution of GACR 17-00393J (investigator V. Bene\v{s}), studies a type of tessellations closely related to the grain structure of polycrystalline materials --- tetrahedrizations, in particular Gibbs-type tetrahedrizations\todoo{Add the fact that tetrahedrizations are used for method of finite elements}. These tessellations based on the Gibbs point process allow a great flexibility in modelling the different properties of the resulting structure. 
 The main contribution of this text is twofold. 
 
 % https://hal.archives-ouvertes.fr/hal-00858028
+
+\todoo[inline]{Switch the paragraphs so it's chronological}
 
 The practical contribution is an extension of the work done in \cite{DereudreLavancier2011}. The two-dimensional Gibbs-Delaunay model used there is extended here to three dimensions and further generalized to Gibbs-Laguerre-Delaunay, a tessellation model which allows to attach a weight to each point. In Chapters \ref{ch:simulation} and \ref{ch:estimation}, we present the approach used in simulation of parametric tessellation models and estimation of their parameters. Chapter \ref{ch:numeric} then presents the numerical results. However, these three chapters are merely a report of the most important part of the work not present in this text --- the \texttt{C++} implementation, see Appendix \ref{appendix:implementation} for more details. 
 

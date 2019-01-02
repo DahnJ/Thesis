@@ -16,7 +16,7 @@ Here we develop only the bare minimum of the theory of point processes necessary
 The main aim of this text is to build Gibbs point processes with interactions based on the Laguerre tetrahedrization. As such, the focus is on marked points and the Delaunay case is treated as secondary. To avoid having a dual marked and unmarked theory, we will treat unmarked point as a special case of marked points in the following way. 
 
 \begin{itemize}
-	\item Marked case: We take $E=\Rt\times S$ where $S=[0,W],W>0$ is the space of marks. The measure on $E$ is $z\lambda \otimes \mu$, where $\mu$ is a non-atomic \unsure{But it doesn't need to be a probability distribution --- it's the intensity. In fact, requiring $\mu$ to be probability would complicate things. Fix this.} probability distribution of marks, $z>0$. 
+	\item Marked case: We take $E=\Rt\times S$ where $S=[0,W],W>0$ is the space of marks. The measure on $E$ is $z\lambda \otimes \mu$, where $\mu$ is a \todoo{Finite?}non-atomic \unsure{But it doesn't need to be a probability distribution --- it's the intensity. In fact, requiring $\mu$ to be probability would complicate things. Fix this.} probability distribution of marks, $z>0$. 
 	\item Unmarked case: We use the same space, but the distribution of marks $\mu=\delta_0$ is now concentrated on $0$.
 \end{itemize}
 Denote $\tau = \lambda \otimes \mu$.
@@ -310,7 +310,7 @@ $$\mathbf N_\infty = \{\x \in \mathbf N_{lf}: \forall \Lambda \in \mathcal B_0(\
 the set of all permissible configurations.
 \unsure[inline]{Measurability? Is $\mathbf N_\infty$ measurable because it's basically a preimage of a measurable set?}
 
-\begin{definition}
+\begin{definition}\label{def:removable}
 	Let $\gamma \in \mathbf N_\infty$. We say $x\in\gamma$ is \textit{removable} if 
 	$$\text{there exist } \Lambda \in \mathcal B(\Rt) \text{ such that } x\in\Lambda \text{ and } H_\Lambda(\gamma - \delta_x)<\infty$$
 \end{definition}
@@ -331,7 +331,7 @@ the set of all permissible configurations.
 	$$h(x,\gamma - \delta_x) = H_\Lambda (\gamma) - H_\Lambda(\gamma - \delta_x)$$
 	where $\Lambda \in \mathcal B_0(\Rt)$
 \end{definition}
-Let us remark that such set always exists by definition and that the value of $h(x,\gamma-\delta_x)$ does not depend on the choice of $\Lambda$ as a consequence of Lemma $\ref{lemma:DL07}$.
+Let us remark that the set $\Lambda$ always exists by Definition \ref{def:removable} and that the value of $h(x,\gamma-\delta_x)$ does not depend on the choice of $\Lambda$ as a consequence of Lemma $\ref{lemma:DL07}$.
 
 
 \begin{proposition}

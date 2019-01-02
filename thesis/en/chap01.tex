@@ -14,18 +14,19 @@ A \textit{configuration} is a set $\x \in \mathbf N_{lf}$, where
 $$\mathbf N_{lf} = \{\x \subset \Rt\times S: \mathrm{card}(\x \cap B) < \infty, B\in \mathcal B_0\} $$ 
 is the set of locally finite sets on $\Rt\times S$. Let $\mathbf N_{f} \subset \mathbf N_{lf}$ be the set of all finite sets on $\Rt\times S$. 
 \unsure{Is it enough to just say this?} Any observation window $\Lambda$ will always be assumed to have a positive Lebesgue measure. We denote the Lebesgue measure on $\Rt$ by $\lambda$ and often use the notation $|\cdot|=\lambda(\cdot)$.
-A subset of $\x$ will be denoted $\eta$. If $\mathrm{card}(\eta)=4$, then $\eta$ is called \textit{tetrahedral}. The symbols $\x'=\mathrm{pr_{\Rt}}(\x), \eta'=\mathrm{pr_{\Rt}}(\eta)$ again refer only to the positional part, where $\mathrm{pr}_\Rt$ denotes the projection to $\Rt$. 
+Let $\eta\subset\x, \x \in \mathbf N_{lf}$. A subset of $\x$ will be denoted $\eta$. If $\mathrm{card}(\eta)=4$, then $\eta$ is called \textit{tetrahedral}. The symbols $\x'=\mathrm{pr_{\Rt}}(\x), \eta'=\mathrm{pr_{\Rt}}(\eta)$ again refer only to the positional part, where $\mathrm{pr}_\Rt$ denotes the projection to $\Rt$. 
 
 Lastly, for $\Lambda \in \mathcal B_0'$, playing the role of the observation window, we denote 
 $$\mathbf N_\Lambda = \{ \x \in \mathbf N_{f}: \x'\subset \Lambda\}.$$
 
 \section{Tetrahedrizations}\label{sec:tetrahedrizations}
+\todoo[inline]{Mention that proofs are ``mine''}
 The aim of this section is to introduce the geometric concepts necessary for the understanding of two types of tetrahedrizations: Delaunay and Laguerre. The main focus of this text lies on the Laguerre tetrahedrization and thus Delaunay tetrahedrization will receive significantly less attention and often will be treated only as a special case. Note that although this text focuses solely on the three dimensional case, most ideas remain valid for a triangulation in any dimension.
 
 While this section does not aim to be a comprehensive overview of Delaunay and Laguerre tetrahedrizations, it also functions as a standalone text with proofs unique to the setting of this text. The literature on this topic tends to focus on the duals of the tetrahedrizations, that is the Voronoi and Laguerre diagrams. Furthermore most literature treats the two-dimensional equivalent, the Delaunay and Laguerre triangulations. One must thus piece together the understanding of the tetrahedrizations through various sources not directly pertaining to this topic. For general mathematical introductions, we recommend \cite{Okabe1992}, \cite{Gavrilova}. For a survey on Laguerre (power) diagrams, see \cite{Aurenhammer1987}. Lastly we recommend two books that contain mostly information on (Delaunay) triangulations and related objects: \cite{Delorea2010} and \cite{Aurenhammer2013}. \newline
 
 \noindent We now introduce the notion of (reinforced) general position, a traditional assumption on configurations.
-
+\todoo[inline]{add definitions of cospherical and affine independence}
 \begin{definition}
 Let $\x \in \mathbf N_{lf}$. We say $\x$ is in \textbf{general position} if 
 $$ \eta \subset \x, 2 \leq \mathrm{card}(\eta) \leq 4 \Rightarrow \eta' \text{ is affinely independent in } \Rt. $$   
@@ -47,15 +48,19 @@ Denote $\mathbf N_{rgp}$ the set of all locally finite configurations in reinfor
 \subsection{Delaunay tetrahedrization}
 This section will shortly introduce the three dimensional equivalent of the well known Delaunay triangulation. While the configurations in this section are technically marked sets, none of the terms take marks into consideration, as the Delaunay tetrahedrization relies on positions only.
 
+\todoo[inline]{Comment more on the double usage of $\eta$, refer to DDG}
+
+\todoo[inline]{But I don't need $\x$ now}
 \begin{definition}
 	Let $\x \in \mathbf N_{gp}$, $\eta \subset \x$. An open ball $B(\eta,\x)$ such that $\eta' \subset \partial B(\eta,\x)$ is called a \textit{circumball of $\eta$}. The boundary $\partial B(\eta,\x)$ is called a \textit{circumsphere}.
 	Let $\eta\subset\x$, $\mathrm{card}(\eta)=4$, be tetrahedral. Then we will denote its (uniquely defined) circumball by $B(\eta)$ as its definition does not depend on $\x$. 
 \end{definition}	
 
 \begin{definition}
-	Let $\x \in \mathbf N_{gp}$ and $\eta \subset \x$. We say that $(\eta,\x)$ satisfies the \textit{empty ball property} if $B(\eta,x) \cap \x' = \emptyset$ and call $B(\eta,x)$ an \textit{empty ball}. 
+	Let $\x \in \mathbf N_{gp}$ and $\eta \subset \x$. We say that $(\eta,\x)$ satisfies the \textit{empty ball property} if $B(\eta,x) \cap \x' = \emptyset$ and call $B(\eta,\x)$ an \textit{empty ball}. 
 	For convenience, for $\x \in \mathbf N_{lf}\setminus \mathbf N_{gp}$, we define any $\eta\subset \x$ that does not satisfy the assumptions of general position as not satisfying the empty ball property.
 \end{definition}
+
 
 \begin{definition}\label{def:Delaunay}
 	Let $\x \in \mathbf N_{lf}$. Define the set 
@@ -81,7 +86,7 @@ The next Proposition shows the relationship between $\mathcal D_2(\x)$ and $\mat
 		& \mathrm{card}(\x'\cap \partial B(\eta,\x)) < 4 \}.
 	\end{align*}
 	$R$ is non-empty since $\mathrm{diam}\bar B(\eta,\x) \in R$ and bounded since $\mathrm{card}(\x)\geq 4$. Take any empty ball $\tilde B(\eta,\x)$ such that $\mathrm{diam}(B(\eta,\x)) = \mathrm{sup} A$. Then we set $\tilde\eta = (\partial \tilde B(\eta,\x) \times S)\cap \x$.   
-	\todoo[inline]{Clean up the notation?}
+	\todoo[inline]{Clean up the notation!!!}
 \end{proof}
 Note that an analogous proof could be used to prove a similar property for $\mathcal D_3(\x)$.\newline
 
@@ -101,6 +106,7 @@ Note that an analogous proof could be used to prove a similar property for $\mat
 
 \subsection{Laguerre tetrahedrization}\label{sec:Laguerre}
 \todoo[inline]{Intro}
+\todoo[inline]{Hummel citation}
 
 The key information to understanding the geometry of Laguerre tetrahedrizations is that a point $p=(p',p'')\in \Rt\times S$ can be interpreted as an open ball $B(p',\sqrt{p''})$. For a point $p\in \Rt \times S$, we will call $B_p = B(p',\sqrt{p''})$ the \textit{ball defined by $p$}. We further define the sphere $S_p=\partial B_p$. 
 
@@ -171,7 +177,7 @@ The following proposition looks at the existence and uniqueness of the character
 	We will look at the case $\mathrm{card}(\eta)=4$, from which the rest will \unsure{Not really follow, more like be directly observable}follow. Let $\eta = \{p_1, \dots, p_4\}$ and denote the coordinates of $p'_i$ as $x_i, y_i, z_i, i=1,\dots 4$. The characteristic point $p_\eta$ must satisfy the set of equations
 	$$\|p'_\eta - p'_i\|^2 - p''_\eta - p''_i =0 \quad i=1,\dots,4$$
 	If we denote $\alpha = x_\eta^2+y_\eta^2+z_\eta^2-p''_\eta$, where $(x_\eta,y_\eta,z_\eta)$ are the coordinates of $p'_\eta$, we obtain the equations
-	$$\alpha - 2x_i x_\eta - 2y_i y_\eta - 2z_i z_\eta   = w_i - x^2_i - y^2_i - z^2, $$
+	$$\alpha - 2x_i x_\eta - 2y_i y_\eta - 2z_i z_\eta   = w_i - x^2_i - y^2_i - z^2, i=1,\dots,4$$
 	a system of equations which is linear with respect to $(\alpha,x_\eta,y_\eta,z_\eta)$. In an augmented matrix form, the system is written as
 	\begin{equation}\label{augmat}
 		\begin{amatrix}{4}
@@ -190,7 +196,7 @@ The following proposition looks at the existence and uniqueness of the character
 		1 & x_4 & y_4 & z_4 \\
 	\end{pmatrix}
 	\end{equation}
-	does not have a solution, that is, the matrix has full rank. If it did, the points $p'_1,\dots,p'_4$ would all satisfy the equation $Ax+By+Cz+D=0$ for some $A,B,C,D \in \R$. The matrix \ref{hommat} has the same column space as the left hand side of \ref{augmat} and therefore the system has a unique solution.
+	does not have a solution, that is, the matrix has full rank. If it did, the points $p'_1,\dots,p'_4$ would all satisfy the equation $Ax+By+Cz+D=0$ for some $A,B,C,D \in \R$. The matrix \eqref{hommat} has the same column space as the left hand side of \eqref{augmat} and therefore the system has a unique solution.
 
 	If $\mathrm{card}(\eta)<4$, we would obtain an underdetermined system, having either infinitely many or no solutions. \todoo{Write clearer later} Here, again, the general position property gives us full row rank of the left side of the augmented matrix, implying that there are infinitely many solutions. For $\mathrm{card}(\eta)=2$, general position implies that the points are unequal. For $\mathrm{card}(\eta) =3$, general position implies that the points are not collinear.
 
@@ -328,8 +334,8 @@ We define $\mathcal N_{f}$ as the trace of $\mathcal N_f$ on $(\mathbf N_{lf}, \
 \begin{definition}
 	A \textit{hypergraph structure} is a measurable subset $\mathcal E$ of $(\mathbf N_f\times \mathbf N_{lf}, \mathcal N_f \otimes \mathcal N_{lf})$ such that $\eta \subset \x$ for all $(\eta,\x)\in\mathcal E$. We call $\eta$ a \textit{hyperedge} of $\x$ and write $\eta \in \mathcal E(\x)$, where $\mathcal E(\x) = \{\eta: (\eta,\x) \in \mathcal E\}$. For a given $\x \in \mathbf N_{lf}$, the pair $(\x, \mathcal E(\x))$ is called a \textit{hypergraph}.
 \end{definition}
-A hypergraph is thus a generalization of a graph in the sense that edges are now allowed to "join" any number of points. A hypergraph structure can be thought of as a rule that turns a configuration $\x$ into the hypergraph $(\x,\mathcal E(\x))$. 
-The subset $\eta \subset \x$ now plays the role of a hyperedge. e.g. a tetrahedron.
+\todoo{Delete this?}A hypergraph is thus a generalization of a graph in the sense that edges are now allowed to "join" any number of points. A hypergraph structure can be thought of as a rule that turns a configuration $\x$ into the hypergraph $(\x,\mathcal E(\x))$. 
+The subset $\eta \subset \x$ \todoo{from last section} now plays the role of a hyperedge. e.g. a tetrahedron.
 
 The benefit of this approach is that we do not need to impose any additional structure on $\mathcal D(\x)$ or $\mathcal {LD}(\x)$ as they already define a hypergraph structure. Using the notation from Definitions \ref{def:Delaunay} and \ref{def:Laguerre}, we can now introduce the Delaunay and Laguerre-Delaunay hypergraph structures. 
 
@@ -365,14 +371,14 @@ The fact that the hyperedge potential contains $\x$ as a second argument suggest
 	The hyperedge potential can take various forms. As we will see later, its specification radically alters the distribution of the resulting Gibbs point process and thus it allows a great freedom in the types of hypergraphs we can obtain.\newline
 	\textbf{Volume of tetrahedron}: For $\eta\in\mathcal E(\x)$ on $\mathcal D_4$ or $\mathcal {LD}_4$ define
 	$$\varphi(\eta,\x) = |\mathrm{conv}(\eta)| .$$
-	Where $\mathrm{conv}(\eta)$ is the convex hull of $\eta$.	\newline
+	Where $\mathrm{conv}(\eta)$ is the convex hull of the tetrahedral $\eta$.	\newline
 	\textbf{Hard-core exclusion}: For $\eta\in\mathcal E(\x)$ on $\mathcal D_4$ or $\mathcal {LD}_4$, $\alpha >0$ define
 	$$\varphi(\eta,\x) = \delta(\eta)\;\; \text{ if } \delta(\eta) \leq \alpha$$
 	$$\varphi(\eta,\x) = \infty \;\; \text { if } \delta(\eta) > \alpha$$
 	Where $\delta(\eta)= \mathrm{diam}B(\eta)$ is the diameter of the circumscribed ball. Notice that this potential becomes infinite on tetrahedra with circumdiameter larger than $\alpha$. As we will see later, this allows us to restrict the resulting tetrahedrization to only tetrahedra $\eta$ for which $\varphi(\eta,\x) \leq \alpha$.\newline
 	\textbf{Laguerre cell interaction}: For $\eta \in \mathcal E(x)$ on $\mathcal {LD}_2$ such that $\eta=\{p,q\}$ and $|C_p| < \infty, |C_q| < \infty$, $\theta \neq 0$, define
 $$\varphi(\eta,\x) = \theta \bigg (\frac {\max ( |C_p|, |C_q|)}{\min(|C_p|,|C_q|)} - 1\bigg)$$
-where the potential now depends on the size of neighboring Laguerre cells. Notice that $\theta$ can be negative, yielding a negative potential. \newline
+where the potential now depends on the volume of neighboring Laguerre cells. Notice that $\theta$ can be negative, yielding a negative potential. \newline
 \textbf{Tetrahedral interaction}: In the present setting, we cannot specify interaction between tetrahedra in $\mathcal D_4$ or $\mathcal {LD}_4$ as easily as between Laguerre cells. This can be solved by for example defining a new hypergraph structure
 $$\mathcal {LD}^2_4 = \{(\eta,\x): \exists \eta_1,\eta_2\in\mathcal {LD}_4(\x), \mathrm{card}(\eta_1 \cap \eta_2)=3, \eta = \eta_1 \cup \eta_2\}$$
 Which contains the quintuples of points which form adjacent tetrahedra in $\mathcal {LD}_4(\x)$. 
@@ -389,7 +395,7 @@ In Example \ref{ex:potentials}, only the first two potentials are unary. However
 
 For a given hypergraph structure $\mathcal E$, the \textit{energy function} of a finite configuration $\x\in \mathbf N_{f}$ is defined as the function\footnote{The energy $H$ is often also called \textit{Hamiltonian} in statistical mechanics.}
 $$H(\x) = \sum_{\eta \in \mathcal E(\x)} \varphi(\eta,\x).$$
-However, in our case, we will typically deal with $\x\in \mathbf N_{lf}$, for this such potentials would typically be equal to $\pm \infty$ or even be undefined. We will therefore be interested in the energy for only a bounded window $\Lambda \in \mathcal B_0'$. Currently, we don't have the necessary terms to describe such energy function precisely, thus we will postpone its definition to the next section. 
+However, in our case, we will typically deal with $\x\in \mathbf N_{lf}$, for this such potentials would typically be equal to $\pm \infty$ or even be undefined. We will therefore be interested in the energy for only a bounded window $\Lambda \in \mathcal B_0'$. Currently, we do not have the necessary terms to describe such energy function precisely, thus we will postpone its definition to the next section. 
 
 The words \textit{potential} and \textit{energy} point to a connection with statistical mechanics, which gave rise to many of the concepts used in this text. Indeed, Gibbs measure and concepts related to them continue to be an area with a rich interplay between statistical mechanics and probability theory\footnote{In fact, Gibbs measures, named after Josiah Willard Gibbs, stood at the forefront of emergence of statistical mechanics --- Gibbs, who coined the term ``statistical mechanics'' was one of the founders of the field.}.
 
@@ -430,19 +436,19 @@ Let us now return again to the task of defining an energy function $H$ that depe
 \note[inline]{In the Laguerre case, we could also distinguish marks, but we won't do so, maybe comment on it}
 
 Recall that we have defined $\varphi=0$ on $\mathcal E^c$. This means that for $\eta \in \mathcal E(\x)$ such that $\varphi(\eta,\x)\neq 0$ we have
-$$\eta \notin \mathcal E(\zeta \cup \x_{\Lambda^c})\text{ for some }\zeta \in \mathbf N_{\Lambda} \Rightarrow \eta \in \mathcal E_{\Lambda}(\x)$$ 
+$$\eta \notin \mathcal E(\zeta \cup \x_{\Lambda^c})\text{ for some }\zeta \in \mathbf N_{\Lambda} \Rightarrow \eta \in \mathcal E_{\Lambda}(\x).$$ 
 
 Notice that $\x_\Lambda$ does not play any role in the definition in the sense that $\mathcal E_\Lambda(\x)=\mathcal E_\Lambda(\zeta \cup \x)$ for any $\zeta \in \mathbf N_\Lambda$. The configuration $\x$ thus only plays the role of a boundary condition.
 
 To further characterize $\mathcal E_\Lambda(\x)$, we present the following lemma.
 \begin{lemma}\label{lemma:horizEset}Let $\eta \in \mathcal E(\x)$ have the finite horizon $\Delta$. Then
-	$$\eta \in \mathcal E_\Lambda(\x) \Rightarrow \Delta \cap \Lambda \neq \emptyset$$
+	$$\eta \in \mathcal E_\Lambda(\x) \Rightarrow \Delta \cap \Lambda \neq \emptyset.$$
 \end{lemma}
 \begin{proof}
 	\begin{align*}
 		\eta \in \mathcal E_\Lambda(\x) & \iff \exists \zeta \in \mathbf N_\Lambda: \varphi(\eta,\x) \neq \varphi(\eta,\zeta \cup \x_{\Lambda^c}) \\
 			& \Rightarrow \exists \zeta \in \mathbf N_\Lambda: \zeta' \cap \Delta \neq \emptyset \\
-			& \Rightarrow \Lambda \cap \Delta \neq \emptyset
+			& \Rightarrow \Lambda \cap \Delta \neq \emptyset.
 	\end{align*}
 \end{proof}
 
