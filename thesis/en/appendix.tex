@@ -37,7 +37,7 @@ Now consider non-coplanar points $p_1,\dots, p_4 \in \Rt$ forming a $3$-simplex,
 \end{equation}
 where we again have   $d_{ij} = \|p_i - p_j\|, i,j=1,\dots,4$.\newline  
 
-It would be possible to solve \ref{eq:CMeq} as an equation of $r$. A better approach is to  subtract $r^2$ times the first row from last and subtract $r^2$ times the first column from the last to obtain the determinant 
+It would be possible to solve \ref{eq:CMeq} as an equation of $r$. A better approach is to  subtract $r^2$ times the first row from the last and subtract $r^2$ times the first column from the last to obtain the determinant 
 
 
 
@@ -183,7 +183,7 @@ Assume now that $p_1 \in \partial B(t_1,\rho a)=: S_1$. We now choose $p_I$ and 
 \end{proof}
 \unsure{Is this a good way of proceeding?}Note that Proposition \ref{prop:ApolloniusSet} is formulated for problem \ref{prob:tetra1}. However, we could repeat the same exact argument for \ref{prob:tetra2} and thus the same holds for both problems.\newline
 
-We have found that the solutions to \ref{prob:tetra1} and \ref{prob:tetra2} must lie on a sphere that tangent to the spheres within which points can move. This is a dramatic improvement --- we have narrowed the previously infinite space of possible solutions down to just $2^4=16$ possible quadruples of points (and even less because of symmetries). We also note that the set of solutions to our problem is precisely the set of solutions of a three-dimensional equivalent of the more than two thousand years old \todoo{Encoding problem} \textbf{Apollonius problem} 
+We have found that the solutions to \ref{prob:tetra1} and \ref{prob:tetra2} must lie on a sphere that is tangent to the spheres within which points can move. This is a dramatic improvement --- we have narrowed the previously infinite space of possible solutions down to just $2^4=16$ possible quadruples of points (and even fewer because of symmetries). We also note that the set of solutions to our problem is precisely the set of solutions of a three-dimensional equivalent of the more than two thousand years old \todoo{Encoding problem} \textbf{Apollonius problem} 
 % \cite{GischRibando2006}.
 
 
@@ -208,11 +208,11 @@ The Apollonius problem for spheres $S_1,S_2,S_3,S_4$ is therefore solved by any 
 
 where we can take any combination of $+$ or $-$, yielding altogether $16$ possible solutions. We do not consider degenerate cases as they cannot happen in our setting. 
 
-As noted previously, the number of solutions for both $T_1$ and $T_2$ will reduce significantly. For $T_1$, the spheres are completely interchangeable and thus only solutions with different number of $+$ will differ. This yields $5$ possible solutions. Geometrically the number of $+$ can be seen as the number of spheres the solution is externally tangent to. For $T_2$ the situation is more complex, as the problem isn't entirely symmetric with respect to the four points. Still, symmetries do exist and the number of solution will be reduced.  
+As noted previously, the number of solutions for both $T_1$ and $T_2$ will reduce significantly. For $T_1$, the spheres are completely interchangeable and thus only solutions with different number of $+$ will differ. This yields $5$ possible solutions. Geometrically the number of $+$ can be seen as the number of spheres the solution is externally tangent to. For $T_2$ the situation is more complex, as the problem is not entirely symmetric with respect to the four points. Still, symmetries do exist and the number of solution will be reduced.  
 
 Sadly, for most choices of $+$ and $-$, these equations still seem to be too complex for Mathematica to solve. Luckily, we can simplify them further. 
 
-\subsubsection{Solving the equations \eqref{eq:Apollonius} by linearising}
+\subsubsection{Solving the equations \eqref{eq:Apollonius} by linearizing}
 
 We formulate the solution as a theorem.
 \begin{theorem}\label{thm:Apollonius}

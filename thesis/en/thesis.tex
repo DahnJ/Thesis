@@ -60,7 +60,7 @@
 \usepackage{amssymb}	% \varnothing
 \usepackage{booktabs}
 \newcommand{\ra}[1]{\renewcommand{\arraystretch}{#1}} % For line stretching in booktabs
-
+\usepackage{lscape}
 
 % Dahn commands
 \newcommand{\Rd}{{\mathbb R^d}}
@@ -139,7 +139,9 @@
 % consultant, a person who lent the software, etc.)
 \def\Dedication{%
 
-% 
+
+% we can never justify abuse, even of notation
+%  
 % Benes
 % A?s
 % Nohic
@@ -153,12 +155,13 @@
 
 % Abstract (recommended length around 80-200 words; this is not a copy of your thesis assignment!)
 \def\Abstract{%
-Abstract.
+	The past few years have seen advances in modelling of polycrystalline materials using parametric tessellation models from stochastic geometry. A promising class of tessellation, the Gibbs-type tessellation, allows the user to specify a great variety of properties through the energy function. 
+	This text focuses solely on tetrahedrizations, a three-dimensional tessellation composed of tetrahedra. The existing results for two-dimensional Delaunay triangulations are extended to the case of three-dimensional Laguerre tetrahedrization. We provide a proof of existence, a \texttt{C++} implementation of the MCMC simulation and estimation of the models parameters through maximum pseudolikelihood.
 }
 
 % 3 to 5 keywords (recommended), each enclosed in curly braces
 \def\Keywords{%
-{key} {words}
+	{Gibbs point process} {tetrahedrization} {Laguerre}  {existence} {simulation} {maximum pseudolikelihood estimation}
 }
 
 %% The hyperref package for clickable links in PDF and also for storing
@@ -178,6 +181,62 @@ Abstract.
 \tableofcontents
 
 \unsure[inline]{Possibly only refer to sections, not subsections?}
+
+
+%%%% Glossary
+\chapwithtoc{Glossary of terms and abbreviations}
+\subsubsection{Mathematical operators and notation}
+\begin{tabular}{ l l }
+	$\mathrm{diam}(A)$ & Diameter of the set $A$; $sup_{x,y\in A}\|x-y\|$ \\
+	$\mathrm{card}(A)$ & Cardinality of the set $A$ \\
+	$\lambda(A), |A|$ & Lebesgue measure of the set A \\
+	$B(x,r)$ & Open ball with center $x$ and radius $r$ \\
+	$\mathrm{pr}_{\Rt}(\cdot)$ & Projection to $\Rt$ \\
+	$\angle pqr$ & Angle formed by $pqr$ \\
+	$\propto$ & Proportional to; equal to up to a constant \\
+	$\delta_x(A)$ & Dirac delta function at $x$. Equals to 1 if $x\in A$, 0 otherwise.\\ 
+	$A+B$ & Minkowski sum of the sets $A$ and $B$; the set $\{a+b: a\in A, b\in B\}$. \\
+	$\mathrm{det} M$ & Determinant of the matrix $M$ \\
+\end{tabular}
+
+
+
+
+\subsubsection{Glossary of geometric terms}
+Let $\x = \{x_1,\dots, x_k\} \subset \Rt$.
+
+\hspace*{-0.8cm}
+\begin{tabular}{ l l }
+	Sphere & The boundary of a ball. \\
+	Affine hull of $\x$ & Smallest affine set containing $\x$. \\
+	Affinely independent & $\x$ is affinely independent if its affine hull is $k$-dimensional.\\ 
+	Cospherical & $\x$ is cospherical if there exists sphere $S$ such that $\x \subset S$. \\ 
+	Coplanar & $\x$ is coplanar if its afine hull is $3$-dimensional. \\
+	Hyperplane  & Set of the form $\{y\in \Rt: \langle y, x \rangle = a\}, x\in \Rt, a\in \mathbb R$.\\
+	Halfspace & Set of the form $\{y\in \Rt: \langle y, x \rangle \geq a\}$, or of the form \\
+	& $\{y\in \Rt: \langle y, x \rangle \leq a\}, x\in \Rt, a\in \mathbb R$. \\ 
+	k-face & $k-$dimensional face; vertex ($k=0$), \\
+	& edge ($k=1$), face ($k=2$), the solid itself ($k=3$).\\
+	Tangent spheres& Spheres which intersect at precisely one point. Internally \\
+	& if one sphere contains the other, externally otherwise. \\
+	Parallelepiped & A solid with six faces, each a parallelogram. \\
+	Volume of $A$  & $|A|$; Lebesgue measure of $A$. \\
+Point of tangency  \\
+Segment notation & \\
+\end{tabular}
+
+
+\subsubsection{Abbreviations}
+\begin{tabular}{ l l }
+	DLR & Dobrushin-Lanford-Ruelle (equations) \\
+	GNZ & Georgii-Nguyen-Zessin (equation) \\
+	MCMC & Markov chain Monte carlo \\
+	MPLE & Maximum pseudolikelihood estimation
+\end{tabular}
+
+
+
+
 %%% Each chapter is kept in a separate file
 \include{preface}
 \include{chap01}
@@ -185,7 +244,7 @@ Abstract.
 \include{chap03}
 \include{chap04}
 \include{chap05}
-% \include{chap06}
+\include{chap06}
 
 \include{epilog}
 
@@ -203,21 +262,6 @@ Abstract.
 \include{appendix2}
 %%% Abbreviations used in the thesis, if any, including their explanation
 %%% In mathematical theses, it could be better to move the list of abbreviations to the beginning of the thesis.
-\chapwithtoc{Glossary of terms and abbreviations}
-$\mathrm{diam}$ \newline
-$\mathrm{card}$ \newline
-$|\cdot|$ \newline
-$\mathrm{}$ \newline
-$B(x,r)$ \newline
-$\langle , \rangle$ \newline
-$\mathrm{pr}$ \newline
-$\angle$
-$\propto$
-
-Minkowski sum, Dirac, cospherical, det
-affinely independent, cocircular, point of tangency, triangle notation, angle notation, segment notation, n-simplex, hyperplane, volume, k-facet, coplanar, sphere, tangent circles, line, parallelepiped
-overdetermined system
-
 
 
 %%% Attachments to the master thesis, if any. Each attachment must be

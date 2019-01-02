@@ -12,17 +12,17 @@ This text will predominantly focus on \textit{marked} points in $\Rt$, that is e
 
 A \textit{configuration} is a set $\x \in \mathbf N_{lf}$, where 
 $$\mathbf N_{lf} = \{\x \subset \Rt\times S: \mathrm{card}(\x \cap B) < \infty, B\in \mathcal B_0\} $$ 
-be the set of locally finite sets on $\Rt\times S$. Let $\mathbf N_{f} \subset \mathbf N_{lf}$ be the set of all finite sets on $\Rt\times S$. 
+is the set of locally finite sets on $\Rt\times S$. Let $\mathbf N_{f} \subset \mathbf N_{lf}$ be the set of all finite sets on $\Rt\times S$. 
 \unsure{Is it enough to just say this?} Any observation window $\Lambda$ will always be assumed to have a positive Lebesgue measure. We denote the Lebesgue measure on $\Rt$ by $\lambda$ and often use the notation $|\cdot|=\lambda(\cdot)$.
 A subset of $\x$ will be denoted $\eta$. If $\mathrm{card}(\eta)=4$, then $\eta$ is called \textit{tetrahedral}. The symbols $\x'=\mathrm{pr_{\Rt}}(\x), \eta'=\mathrm{pr_{\Rt}}(\eta)$ again refer only to the positional part, where $\mathrm{pr}_\Rt$ denotes the projection to $\Rt$. 
 
-Lastly, for $\Lambda \in \mathcal B_0'$, playing the role of the observation window, denote 
+Lastly, for $\Lambda \in \mathcal B_0'$, playing the role of the observation window, we denote 
 $$\mathbf N_\Lambda = \{ \x \in \mathbf N_{f}: \x'\subset \Lambda\}.$$
 
 \section{Tetrahedrizations}\label{sec:tetrahedrizations}
 The aim of this section is to introduce the geometric concepts necessary for the understanding of two types of tetrahedrizations: Delaunay and Laguerre. The main focus of this text lies on the Laguerre tetrahedrization and thus Delaunay tetrahedrization will receive significantly less attention and often will be treated only as a special case. Note that although this text focuses solely on the three dimensional case, most ideas remain valid for a triangulation in any dimension.
 
-While this section does not aim to be a comprehensive overview of Delaunay and Laguerre tetrahedrizations, it also functions as a standalone text with proofs unique to the setting of this text. The literature on this topic tends to focus on the duals of the tetrahedrizations, that is the Voronoi and Laguerre diagrams. Furthermore most literature treats the two-dimensional equivalent, the Delaunay and Laguerre triangulations. One must thus piece together the understanding of the tetrahedrizations through various sources not directly pertaining this topic. For general mathematical introductions, we recommend \cite{Okabe1992}, \cite{Gavrilova}. For a survey on Laguerre (power) diagrams, see \cite{Aurenhammer1987}. Lastly we recommend two books that contain mostly information on (Delaunay) triangulations and related objects: \cite{Delorea2010} and \cite{Aurenhammer2013}. \newline
+While this section does not aim to be a comprehensive overview of Delaunay and Laguerre tetrahedrizations, it also functions as a standalone text with proofs unique to the setting of this text. The literature on this topic tends to focus on the duals of the tetrahedrizations, that is the Voronoi and Laguerre diagrams. Furthermore most literature treats the two-dimensional equivalent, the Delaunay and Laguerre triangulations. One must thus piece together the understanding of the tetrahedrizations through various sources not directly pertaining to this topic. For general mathematical introductions, we recommend \cite{Okabe1992}, \cite{Gavrilova}. For a survey on Laguerre (power) diagrams, see \cite{Aurenhammer1987}. Lastly we recommend two books that contain mostly information on (Delaunay) triangulations and related objects: \cite{Delorea2010} and \cite{Aurenhammer2013}. \newline
 
 \noindent We now introduce the notion of (reinforced) general position, a traditional assumption on configurations.
 
@@ -134,7 +134,7 @@ Let $p,q \in \Rt\times S$ be two points. The following observations follow immed
 \begin{itemize}
 	\item $B_p\cap B_q = \emptyset$. We obtain $\|p'-q'\|^2 \geq (\sqrt{p''} + \sqrt{q''})^2 = p'' + q'' + 2\sqrt{p''}\sqrt{q''}$ and thus $\rho(p,q) \geq 2\sqrt{p'' q''}.$ 
 	\item $B_p \subset B_q$. We obtain $\|p'-q'\| + \sqrt{p''} \leq \sqrt{q''} $. Squaring the inequality yields $\rho(p,q) \leq -2\sqrt{p'' q''}.$ 
-	\item $B_p \cap B_q \neq \emptyset$ and neither is a proper subset of the other. This case is the most important for us. In this case, the spheres $S_p$ and $S_q$ intersect and $S_p\cap S_q$ is a circle. Denote $a' \in S_p \cap S_q$ the point of their intersection (it does not matter which) and $\theta$ the angle $\angle p'a'q'$. We then obtain from the law of cosines. 
+	\item $B_p \cap B_q \neq \emptyset$ and neither of the balls is a proper subset of the other. This case is the most important for us. In this case, the spheres $S_p$ and $S_q$ intersect and $S_p\cap S_q$ is a circle. Denote $a' \in S_p \cap S_q$ the point of their intersection (it does not matter which) and $\theta$ the angle $\angle p'a'q'$. We then obtain from the law of cosines. 
 	$$- 2\sqrt{p'' q''}\cos \theta = \|p'-q'\|^2 - p'' - q'' = \rho(p,q)$$
 	Note that $\theta = \pi \Rightarrow \rho(p,q)=0$.
 \end{itemize}
@@ -234,7 +234,7 @@ Notice that changing the weight of either of the points amounts to translation o
 	Let $x\in \mathbf N_{gp}$ be a configuration, $\eta \subset \x$ and $p_\eta$ its characteristic point. We say that the pair $(\eta,\x)$ is \textit{regular}, or that $\eta$ is \textit{regular in} $\x$, if $\rho(p_\eta,p)\geq 0$ for all $p\in\x$.	
 	For convenience, for $\x \in \mathbf N_{lf}\setminus \mathbf N_{gp}$, we define any $\eta\subset \x$ that does not satisfy the assumptions of general position as not regular.
 \end{definition}
-The definition can also be equivalently stated as 
+The condition in the definition can also be equivalently stated as 
 $$\text{There is no point } q\in\x \text{ such that } d(p'_\eta,q)<p''_\eta.$$
 
 The regularity property ensures that no point of $\x$ is closer to the characteristic point $p_\eta$ in the power distance than the points of $\eta$. This is analogous to the empty ball property in Delaunay tetrahedrization, where the circumball plays the role of the characteristic point (see Remark \ref{rem:LaguerreToDelaunay}).
@@ -254,7 +254,9 @@ The regularity property ensures that no point of $\x$ is closer to the character
 
 
 \begin{remark}[Constructing Laguerre and Delaunay tetrahedrization]\label{r:construct}
-	The proof of Proposition \ref{prop:charpoint} also gives a hint on how to check whether $\eta$ is regular. We have seen that the determinant of the matrix \eqref{circmat} is zero if and only if the five points are Laguerre-cospherical. However, the said determinant provides us with more information than that. More specifically, we can use it to perform the so-called INCIRCLE test on five points $p_1,\dots, p_5$ to tell whether the point $p_5$ violates the regularity of the tetrahedron defined by $p_1,\dots, p_4$. This amounts to checking the positivity of the determinant of \eqref{circmat}, assuming the points $p_1,\dots, p_4$ are correctly oriented, which can be checked through the determinant of the matrix \eqref{hommat}. \newline
+	The proof of Proposition \ref{prop:charpoint} also gives a hint on how to check whether $\eta$ is regular. We have seen that the determinant of the matrix \eqref{circmat} is zero if and only if the five points are Laguerre-cospherical. However, the said determinant provides us with more information than that. 
+	
+	More specifically, we can use it to perform the so-called INCIRCLE test on five points $p_1,\dots, p_5$ to tell whether the point $p_5$ violates the regularity of the tetrahedron defined by $p_1,\dots, p_4$. This amounts to checking the positivity of the determinant of \eqref{circmat}, assuming the points $p_1,\dots, p_4$ are correctly oriented, which can be checked through the determinant of the matrix \eqref{hommat}. 
 	
 	For details and a derivation, see Chapter 4 in \cite{Gavrilova}, which also contains a short description of the \textit{incremental insertion} algorithm using \textit{local transformations}, called \textit{swaps} or \textit{flips}. The algorithm was first presented in \cite{Lawson72} in two dimensions. For more information on the algorithm in three dimensions, see \cite{Joe89} and \cite{Joe91} for the Delaunay tetrahedrization, and \cite{Edelsbrunner1996} for Laguerre tetrahedrization.
 \end{remark}
@@ -268,7 +270,7 @@ The regularity property ensures that no point of $\x$ is closer to the character
 \end{remark}
 
 \begin{remark}[Delaunay as a special case of Laguerre]\label{rem:LaguerreToDelaunay}
-	Let $\x \in \mathbf N_{lf}$ be a configuration where all points have mark $0$. Then for any $\eta \subset \x, \mathrm{card}(\eta)=4$ the ball $B_{p_\eta}$ defined by the characteristic point of $\eta$ becomes precisely $B(\eta)$, the circumball of $\eta$. Similarly $\eta$ is regular if and only if $\eta$ satisfies the empty ball property. Notice that by the previous remark, the same property must hold if we replace the mark $0$ by any $w\in[0,W]$. Thus for a configuration $\x$ with equal marks we have 
+	Let $\x \in \mathbf N_{gp}$ be a configuration where all points have mark $0$. Then for any $\eta \subset \x, \mathrm{card}(\eta)=4$ the ball $B_{p_\eta}$ defined by the characteristic point of $\eta$ becomes precisely $B(\eta)$, the circumball of $\eta$. Similarly $\eta$ is regular if and only if $\eta$ satisfies the empty ball property. Notice that by the previous remark, the same property must hold if we replace the mark $0$ by any $w\in[0,W]$. Thus for a configuration $\x$ with equal marks we have 
 	$$\mathcal D_4(\x)=\mathcal {LD}_4(\x)$$ 
 	and the Delaunay tetrahedrization can be seen as merely a special case of Laguerre tetrahedrization, albeit very important.
 \end{remark}
@@ -367,9 +369,9 @@ The fact that the hyperedge potential contains $\x$ as a second argument suggest
 	\textbf{Hard-core exclusion}: For $\eta\in\mathcal E(\x)$ on $\mathcal D_4$ or $\mathcal {LD}_4$, $\alpha >0$ define
 	$$\varphi(\eta,\x) = \delta(\eta)\;\; \text{ if } \delta(\eta) \leq \alpha$$
 	$$\varphi(\eta,\x) = \infty \;\; \text { if } \delta(\eta) > \alpha$$
-	Where $\delta(\eta)= \mathrm{diam}B(\eta)$ is the diameter of the circumscribed ball. Notice that this potential becomes infinite on tetrahedra with circumdiameter larger than $\alpha$. As we will see later, this allows us to restrict the resulting tetrahedrization only those tetrahedra $\eta$ for which $\varphi(\eta,\x) \leq \alpha$.\newline
+	Where $\delta(\eta)= \mathrm{diam}B(\eta)$ is the diameter of the circumscribed ball. Notice that this potential becomes infinite on tetrahedra with circumdiameter larger than $\alpha$. As we will see later, this allows us to restrict the resulting tetrahedrization to only tetrahedra $\eta$ for which $\varphi(\eta,\x) \leq \alpha$.\newline
 	\textbf{Laguerre cell interaction}: For $\eta \in \mathcal E(x)$ on $\mathcal {LD}_2$ such that $\eta=\{p,q\}$ and $|C_p| < \infty, |C_q| < \infty$, $\theta \neq 0$, define
-$$\varphi(\eta,\x) = \theta \bigg (\frac {\max ( Vol(C_p), Vol(C_q))}{\min(Vol(C_p),Vol(C_q))} - 1\bigg)$$
+$$\varphi(\eta,\x) = \theta \bigg (\frac {\max ( |C_p|, |C_q|)}{\min(|C_p|,|C_q|)} - 1\bigg)$$
 where the potential now depends on the size of neighboring Laguerre cells. Notice that $\theta$ can be negative, yielding a negative potential. \newline
 \textbf{Tetrahedral interaction}: In the present setting, we cannot specify interaction between tetrahedra in $\mathcal D_4$ or $\mathcal {LD}_4$ as easily as between Laguerre cells. This can be solved by for example defining a new hypergraph structure
 $$\mathcal {LD}^2_4 = \{(\eta,\x): \exists \eta_1,\eta_2\in\mathcal {LD}_4(\x), \mathrm{card}(\eta_1 \cap \eta_2)=3, \eta = \eta_1 \cup \eta_2\}$$
@@ -381,7 +383,7 @@ Which contains the quintuples of points which form adjacent tetrahedra in $\math
 	A hyperedge potential $\phi$ is \textit{unary} for the hypergraph structure $\mathcal E$ if there exists a measurable function $\hat\varphi:\mathbf N_{lf} \to \mathbb R \cup \{+\infty\}$ such that
 	$$\varphi(\eta,\x) = \hat\varphi(\eta) \text{ for } \eta \in \mathcal E(\x).$$
 \end{definition}
-The value of an unary hyperedge potential depends only on the points from $\eta$, as long as $\eta \in \mathcal E(x)$.  Recall however the convention $\varphi=0$ on $\mathcal E^c$, thus the equality above cannot be extended to all $\eta\subset \x$. 
+The value of a unary hyperedge potential depends only on the points from $\eta$, as long as $\eta \in \mathcal E(x)$.  Recall however the convention $\varphi=0$ on $\mathcal E^c$, thus the equality above cannot be extended to all $\eta\subset \x$. 
 In Example \ref{ex:potentials}, only the first two potentials are unary. However, for the remainder of this text, we will assume all potentials to be unary.\newline
 
 
@@ -406,7 +408,7 @@ The pair $(\mathcal E, \varphi)$ satisfies the \textit{finite-horizon property} 
 \end{definition}
 
 The finite horizon of $(\eta,\x)$ delineates the region outside which points can no longer violate the regularity (or the empty ball property) of $\eta$. 
-Note also that for an unary potential, the finite horizon of $(\eta,\x)\in \mathcal E$ depends only on $\eta$.
+Note also that for a unary potential, the finite horizon of $(\eta,\x)\in \mathcal E$ depends only on $\eta$.
 
 \begin{remark} [Finite horizons for $\mathcal D$ and $\mathcal {LD}$]\label{r:horizons}
 Let the hyperedge potential be given and assume it is unary.
@@ -416,7 +418,7 @@ For $\mathcal D$, the closed circumball $\bar B(\eta,\x)$ itself is a finite hor
 For $\mathcal {LD}$, the situation is slightly more difficult. For one, $B(p'_\eta, \sqrt{p''_\eta})$ does not contain the points of $\eta$. To see this, take two points $p,q$ with $p'',q''>0$ such that $\rho(p,q)=0$. Then $q'' = d(q',p) < \|q'-p'\|^2$ and thus $\sqrt{q''} < \|q'-p'\|$. More importantly, however, any point $s$ outside of $B(p'_\eta, \sqrt{p''_\eta})$ with a sufficiently large weight can violate the inequality $\rho(p_\eta,s) = \|p'_\eta - x'\|^2 - p''_\eta - s'' \geq 0$. 
 
 To obtain a finite horizon for $\mathcal {LD}$, we need to use the fact that the mark space is bounded, $S=[0,W]$. If $s'' \leq W$, then $\Delta = B(p'_\eta, \sqrt{p''_\eta + W})$ is sufficient as a horizon, since any point $s$ outside $\Delta$ satisfies
-$$\rho(p_\eta, s) = \|p'_\eta - s'\|^2 - p''_\eta - s'' \geq (\sqrt{p''_\eta+W})^2-p''_\eta-W = 0.$$ 
+$$\rho(p_\eta, s) = \|p'_\eta - s'\|^2 - p''_\eta - s'' \geq \left(\sqrt{p''_\eta+W}\right)^2-p''_\eta-W = 0.$$ 
 
 \end{remark}
 
@@ -470,10 +472,10 @@ The final basic term again characterizes a type of finite-range property, this t
 
 While the set $\mathcal E_\Lambda(\x)$ contains hyperedges $\eta$ which can be influenced by points in $\Lambda$, the set $\partial_\Lambda \x$  contains those points of $\x$ that influence the potential of those $\eta$. This allows us to express $H_{\Lambda,\x}$ truly locally.
 
-\begin{proposition}\label{prop:Hcr}Let $\x\in N^\Lambda_\mathrm{cr}$. Then 
+\begin{proposition}\label{prop:Hcr}Let $\x\in \mathbf N^\Lambda_\mathrm{cr}$. Then 
 	$$H_{\Lambda,\x}(\zeta) = \sum_{\eta \in \mathcal E_\Lambda(\zeta \cup \partial_\Lambda \x)} \varphi(\eta, \zeta \cup \partial_\Lambda \x).$$
 \end{proposition}
-\begin{proof} The definition of $N^\Lambda_\mathrm{cr}$ implies the hyperedge potential does not depend on the points $\x \setminus \partial_\Lambda \x$ and $\mathcal E_\Lambda(\x)$ inherits this property by its definition through the hyperedge potential.
+\begin{proof} The definition of $\mathbf N^\Lambda_\mathrm{cr}$ implies the hyperedge potential does not depend on the points $\x \setminus \partial_\Lambda \x$ and $\mathcal E_\Lambda(\x)$ inherits this property by its definition through the hyperedge potential.
 \end{proof}
 
 
@@ -494,7 +496,7 @@ While the set $\mathcal E_\Lambda(\x)$ contains hyperedges $\eta$ which can be i
 	Using the same logic we can now remove the point $x$ from $\x \cup \{x\}$. This means we remove $\eta \in \mathcal {LD}_4^\ell(x,\x\cup\{x\})$ and add $\eta \in \mathcal {LD}_4^\otimes(x,\x)$.\newline
 
 	\noindent In $\mathcal D_4$, we obtain similar sets
-	$$\mathcal D_4^\otimes(x,\x) := \{\eta \in \mathcal D_4(\x): x \in B(\eta)\},$$
+	$$\mathcal D_4^\otimes(x,\x) := \{\eta \in \mathcal D_4(\x): x \in B(\eta)\} \;\; \text{and}$$
 	$$\mathcal D_4^\ell(x,\x) := \{\eta \in \mathcal D_4(\x): x\in \eta \}.$$
 	We note that the sets denoted by $\otimes$ stand for \textit{conflicting} tetrahedra and the $\ell$ stands for tetrahedra \textit{linked} to $x$. 
 

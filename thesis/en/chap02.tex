@@ -1,7 +1,7 @@
 \chapter{Stochastic geometry}\label{ch:2}
 \todoo[inline]{Section structure}
 
-In the first chapter we have introduced tetrahedrizations as hypergraph structures and defined their energy in terms of the hyperedge potential. 
+In the first chapter we introduced tetrahedrizations as hypergraph structures and defined their energy in terms of the hyperedge potential. 
 Ultimately we want to study their behaviour under some probabilistic assumptions on the distribution of the configurations. In this chapter, the view is shifted from a configuration as a fixed deterministic set to a configuration being a particular realization of a random process.
 
 We introduce the theory of point processes which will allow us to add stochasticity to the hypergraph structures. The main goal of this chapter is to introduce the Gibbs-type tessellation, where the locations of the points in the configurations are allowed to interact with the geometric properties of the tetrahedrization.
@@ -68,7 +68,7 @@ The most important example of a point process is the Poisson point process which
 
 \begin{definition} Let $\nu$ be a measure on $E$, $B \in \mathcal B_0(E)$ such that $0<\nu(B)<\infty$. For $n\in \mathbb N$ let $X_1,\dots,X_n$ be independent and $\nu$-uniformly distributed random variables on $B$, that is
 	$$P(X_i \in A) = \frac{\nu(A)}{\nu(B)},\; A\in\mathcal B(E), A \subset B$$
-Then we define the \textit{binomial point process} of $n$ points in $B$ according to $\nu$ as
+Then we define the \textit{binomial point process} of $n$ points in $B$ according to $\nu$ by 
 $$\Phi(n) = \sum^{n}_{i=1}  \delta_{X_i}.$$
 We use the convention $\sum^0_{i=1} \delta_{X_i} = \varnothing$, where $\varnothing(E)=0$ is the \textit{empty point process}.
 \end{definition}
@@ -77,7 +77,7 @@ $$\Phi(n) = \sum^{n}_{i=1} \delta_{(X'_i,M_i)}.$$
 However, similarly to Chapter 1, we only specify the marks where needed, as this approach leads to a cleaner notation. 
 
 \begin{proposition}\label{bincalc}
-	Let $\Phi_n = \sum^{n}_{i=1}  \delta_{X_i}$ be a binomial point process on $B\in\mathcal B_0(E)$ according to the measure $\nu$. Then for a non-negative measurable $f$ and $k = 1,\dots, n$ we have
+	Let $\Phi_n = \sum^{n}_{i=1}  \delta_{X_i}$ be a binomial point process on $B\in\mathcal B_0(E)$ according to the measure $\nu$. Then for a non-negative measurable function $f$ and $k = 1,\dots, n$ we have
 \begin{equation}\label{binom}
 	Ef(X_1,\dots, X_k) = \frac 1{\nu(B)^k} \int_B \cdots \int_B f(x_1,\dots, x_k) \nu(dx_1) \cdots \nu(dx_k)
 \end{equation}
@@ -88,7 +88,7 @@ From the definition of $\Phi_n$, we have for Borel $A_i \subset B, i=1,\dots,k$ 
 P(X_1 \in A_1, \dots, X_k \in A_k) &= P(X_1\in A_1)\cdots P(X_k\in A_k) \\ 
 & = \frac 1{\nu(B)^k} \int_B \cdots \int_B 1_{A_1}(x_1) \cdots 1_{A_k}(x_k) \nu(dx_1) \cdots \nu(dx_k) \\
 \end{align*}
-That is \ref{binom} for $f(x_1,\dots,x_k)=1_{A_1}(x_1)\dots 1_{A_k}(x_k)$. By a standard argument, we first extend this to a general set $C \in \mathcal B^k(E), C\subset B^k$ using the Dynkin system 
+That is \eqref{binom} for $f(x_1,\dots,x_k)=1_{A_1}(x_1)\dots 1_{A_k}(x_k)$. By a standard argument, we first extend this to a general set $C \in \mathcal B^k(E), C\subset B^k$ using the Dynkin system 
 $$\{C \in \mathcal B^k(E): E 1_C (x_1,\dots,x_k) = \int \cdots \int 1_C(x_1,\dots, x_k) dx_1 \cdots dx_k \}$$
  and then from indicators to any non-negative measurable function.
 \end{proof}
@@ -100,7 +100,7 @@ Using the binomial point process, we are ready to define the Poisson point proce
 \begin{definition} Let $\nu=$ be a measure on $E$. A point process $\Phi$ satisfying
 \begin{enumerate}
 	\item $\Phi(B)$ has a Poisson distribution with parameter $\nu(B)$ for each $B\in \mathcal B_0(E)$,
-	\item Conditionally on $\Phi_B=n, n\in\mathbb N$,  $\Phi|_B$ is the Binomial point process of $n$ points in $B$, $B \in \mathcal B_0(E)$,
+	\item Conditionally on $\Phi_B=n, n\in\mathbb N$,  $\Phi|_B$ is the binomial point process of $n$ points in $B$, $B \in \mathcal B_0(E)$,
 \end{enumerate}
 is a \textit{Poisson process} on $E$ with \textit{intensity measure} $\nu$.
 For $B\in \mathcal B_0(E)$, denote $\Pi^\nu_B$ the distribution of a Poisson point process with intensity measure $\nu$ restricted to $B$.  
@@ -119,7 +119,7 @@ Note that thanks to Proposition \ref{bincalc} we have for a marked Poisson proce
 	& = \sum^\infty_{k=0} \frac{(z|\Lambda|)^k}{k!} e^{-z|\Lambda|} P(\Phi^{(k)}\in \Gamma) \nonumber \\ 
 	& = \sum^\infty_{k=0} \frac{z^k}{k!} e^{-z|\Lambda|} \int_{\Lambda\times S} \cdots \int_{\Lambda\times S} 1_{\Gamma} \left(\sum^k_{i=1} \delta_{X_i}\right) \tau(dx_1), \dots, \tau(dx_k) \nonumber
 \end{align}
-where $\Phi^{(k)} = \sum^k_{i=1}\delta_{(X_i,M_i)}$ denotes the Binomial point process of $k$ points in $C$.
+where $\Phi^{(k)} = \sum^k_{i=1}\delta_{(X_i,M_i)}$ denotes the binomial point process of $k$ points in $\Lambda$.
 
 \begin{remark}[Points in general position]
 	In Section \ref{sec:tetrahedrizations} we introduced the sets $\mathbf N_{gp}$ and $\mathbf N_{rgp}$. In \cite{Zessin2008}, it is proved\footnote{This fact seems to have been generally accepted as true in the literature for decades, yet --- as far as we are aware --- no formal proof was ever published until 2008.} that these sets are measurable and that for $\Lambda \in \mathcal B_0(\Rt)$
@@ -155,11 +155,11 @@ A useful function for dealing with point processes with density is the Papangelo
 	$$\lambda^*(x,\gamma) = \frac{p(\gamma + \delta_x)}{p(\gamma)}, \; x \in \Rt \times S, \gamma \in \mathbf N_{\Lambda}: p(\gamma)>0.$$
 \end{definition}
 
-An example of a point process with a density, albeit uninteresting, is the Poisson process with intensity $z$.\newline
+An example of a point process with a density, albeit uninteresting, is the Poisson process with intensity $z$, as the next proposition shows.\newline
 Denote the \textit{counting function} for $\Delta \in \mathcal B_0(\Rt)$ and $\gamma \in \mathbf N_{lf}$:
 $$N_\Delta(\gamma) = \gamma(\Delta \times S)$$ 
 
-\begin{proposition} $\Pi_\Lambda^z \ll \Pi_\Lambda$ with density $p(\gamma)=z^{N_\Lambda(\gamma)} \exp(|\Lambda|(1-z))$, $\gamma \in \mathbf N_{\Lambda}$.
+\begin{proposition}\label{prop:poisabscont} $\Pi_\Lambda^z \ll \Pi_\Lambda$ with density $p(\gamma)=z^{N_\Lambda(\gamma)} \exp(|\Lambda|(1-z))$, $\gamma \in \mathbf N_{\Lambda}$.
 \end{proposition}
 \begin{proof}
 	Denote $\Phi \sim \Pi_\Lambda$, we have for $\Gamma\in \mathcal N_{f}$, using Proposition \ref{bincalc} and \eqref{eq:poiscalc}
@@ -170,13 +170,13 @@ $$N_\Delta(\gamma) = \gamma(\Delta \times S)$$
 
 
 
-\subsection{Gibbs Point Processes}\label{sec:GPP}
+\section{Gibbs Point Processes}\label{sec:GPP}
 At the end of the last section we have found that $\Pi^z_\Lambda \ll \Pi_\Lambda$ with the density $p(\gamma) \propto z^{N_\Lambda(\gamma)}$. The introduction of the Gibbs point process is outwardly simple, since we merely add an additional term containing the energy function from Definition \ref{def:energy}, so that the density is proportional to the expression
 \begin{equation}\label{eq:GPPdensity}z^{N_\Lambda(\gamma)} e^{-H_\Lambda (\gamma)}.\end{equation}
-By this seemingly small alteration we introduce a great complexity into the structure of the resulting process. Before we proceed with the formal definition of (finite volume) Gibbs point processes and their distribution, Gibbs measures, we must state some additional assumptions on the energy function.
+By this seemingly small alteration we introduce a great complexity into the structure of the resulting process. Before we proceed with the formal definition of (finite volume) Gibbs point processes and their distribution, (finite volume) Gibbs measures, we must state some additional assumptions on the energy function.
 
 
-\subsubsection{The energy function}\label{sec:energyfunction}
+\subsection{The energy function}\label{sec:energyfunction}
 
 Thanks to the energy function, we can force the realizations of the finite volume GPP to obey a diverse set of geometrical properties. In our case those geometrical properties are expressed through the hypergraph structures $\mathcal D$ and $\mathcal {LD}$, see Example \ref{ex:potentials}. \newline
 
@@ -204,7 +204,7 @@ Unlike non-degeneracy or stability, it is not immediately clear what the role of
 
 
 
-\subsubsection{Finite volume Gibbs point processes}
+\subsection{Finite volume Gibbs point processes}
 We first define the finite counterpart of the Gibbs point process.
 
 \begin{definition}\label{def:fGPP}
@@ -236,7 +236,7 @@ An important characterization are the \textbf{Dobrushin-Lanford-Ruelle} (\textbf
 	$$P^z_{\Lambda}(d\gamma_\Delta|\gamma_{\Delta^c}) = \frac 1{Z^z_\Delta(\gamma_{\Delta^c})} z^{N_\Delta(\gamma)} e^{-H_\Delta(\gamma)} \Pi_\Delta (d\gamma_\Delta),$$
 		where $Z^z_{\Delta}(\gamma_{\Delta^c}) = \int z^{N_\Delta(\gamma)} e^{-H_\Delta(\gamma)} \Pi_\Delta(d\gamma_\Delta)$ is the normalizing constant. 
 \end{proposition}
-\begin{proof}.
+\begin{proof}
 	Can be proved using the proof in Proposition $3$ in \cite{Dereudre2017} if we use our definition of $H_\Delta(\gamma)$ and the equality $H_\Delta(\gamma) = H_\Lambda(\gamma) + \psi_{\Delta,\Lambda}(\gamma_{\Delta^c})$, where 
 	$\psi_{\Delta,\Lambda}$ is the function from Lemma \ref{lemma:DL07}.
 \end{proof}
@@ -246,10 +246,10 @@ The DLR equations express the conditional probability of configurations inside t
 \todoo[inline]{Conditional probability and DLR integral form}
 
 
-\subsubsection{Infinite volume Gibbs point processes}
-As noted in section \ref{sec:hypergraphs}, without extra assumptions on $\gamma$, such as the range confinement, the energy $H$ may not be well-defined. We will therefore restrict our definition of infinite volume Gibbs measures only to configurations $\gamma$ such that $\gamma \in N^\Lambda_{cr}$ for every $\Lambda \in \mathcal B_0(\Rt)$. We will learn in Proposition \ref{prop:cr-a.s.} that this restriction does not limit us in any way.
+\subsection{Infinite volume Gibbs point processes}
+As noted in section \ref{sec:hypergraphs}, without extra assumptions on $\gamma$, such as the range confinement, the energy $H$ may not be well-defined. We will therefore restrict our definition of infinite volume Gibbs measures only to configurations $\gamma$ such that $\gamma \in \mathbf N^\Lambda_{cr}$ for every $\Lambda \in \mathcal B_0(\Rt)$. We will learn in Proposition \ref{prop:cr-a.s.} that this restriction does not limit us in any way.
 
-First, we define $\Theta=(\vartheta_x)_{x\in \Rt}$ be the translation group defined by the translations $\vartheta_x$ from Definition \ref{def:potential}. Let $\mathcal P_\Theta$ denote the set of all $\Theta$-invariant probability measures on $(\mathbf N_{lf},\mathcal N_{lf})$ with $\int N_{[0,1]^3} dP< \infty $ \unsure{maybe connect this to intensity, i.e. define intensity etc?}. 
+First, let $\Theta=(\vartheta_x)_{x\in \Rt}$ be the translation group defined by the translations $\vartheta_x$ from Definition \ref{def:potential}. Let $\mathcal P_\Theta$ denote the set of all $\Theta$-invariant probability measures on $(\mathbf N_{lf},\mathcal N_{lf})$ with $\int N_{[0,1]^3} dP< \infty $ \unsure{maybe connect this to intensity, i.e. define intensity etc?}. 
 
 \begin{definition}\label{def:GPP}
 	Let $\mathcal E$ be a hypergraph structure and $H$ an energy function on $\mathcal E$ such that $H$ is non-degenerate and stable. A probability measure $P\in \mathcal P_\Theta$ on $(\mathbf N_{lf},\mathcal N_{lf})$ is the \textit{(infinite volume) Gibbs measure} with activity $z>0$ if $P(\mathbf N^\Lambda_{cr})=1$ and
@@ -266,7 +266,7 @@ The definition is a direct analogue of the DLR equations for finite volume GPP. 
 While defining the Gibbs measure is relative straight-forward, proving its existence is not. The existence and uniqueness of Gibbs measures is an active field of research and one where we still currently do not know much, particularly in case of uniqueness.  We will not delve into the topic any further here and we refer the reader to an introductory text \cite{Dereudre2017} and the paper on which we base the proof of existence (Chapter \ref{ch:3}) for our models, \cite{DDG12}. We also recommend reading the introduction to \cite{Georgii2011} --- although the book is about Gibbs random fields rather than point processes, the introduction gives an intuitive explanation for the form of the density and in particular the connection of the non-uniqueness with phase transitions.
 % The non-uniqueness is a consequence of the fact that the existence of a Gibbs measure is typically proven only through proving tightness of a sequence of finite volume Gibbs measures, thus yielding only a convergent subsequence.
 
-\subsubsection{Hereditary GPP}
+\subsection{Hereditary GPP}
 One of the disadvantages of the characterization through DLR equations is the presence of the normalization constant, as it is, in most cases, unknown. This is where the use of the heredity assumption comes in.
 
 For $\gamma \in \mathbf N_f$ and $x \in \Rt\times S$, for a hereditary energy function $H$, define the \textit{local energy} of $x$ in $\gamma$ as
@@ -288,7 +288,7 @@ We then obtain the following result, known as the \textbf{Georgii-Nguyen-Zessin 
 Heredity thus gives us a powerful characterization of the Gibbs measure which, as noted previously, is not always available in the Gibbs-type tetrahedrizations defined here. 
  
 
-Luckily, the approach in \cite{DereudreLavancier2009} allows us to directly use GNZ equation even for the non-hereditary case. 
+Luckily, the approach in \cite{DereudreLavancier2009} allows us to directly use the GNZ equation even for the non-hereditary case. 
 
 % 
 % \problem[inline]{The set $\Lambda$ should probably always have positive measure. Check this and write it somewhere}
@@ -304,7 +304,7 @@ Luckily, the approach in \cite{DereudreLavancier2009} allows us to directly use 
 % 
 
 
-\subsubsection{Non-hereditary GPP}\label{sec:non-hereditary}
+\subsection{Non-hereditary GPP}\label{sec:non-hereditary}
 Having defined the Gibbs measure, we can now present the approach of \cite{DereudreLavancier2009} in extending the GNZ equation to Gibbs point processes with non-hereditary energy functions. First define 
 $$\mathbf N_\infty = \{\x \in \mathbf N_{lf}: \forall \Lambda \in \mathcal B_0(\Rt): H_\Lambda(\x)< \infty\},$$
 the set of all permissible configurations.
@@ -342,5 +342,5 @@ Let us remark that such set always exists by definition and that the value of $h
 	See Proposition $2$ \unsure{But what about marks, does it work?}in \cite{DereudreLavancier2009}.
 \end{proof}
 
-Note that we lose the converse implication. That is the GNZ equation no longer characterize Gibbs point process with non-hereditary energy function. Imagine a measure $P$ under which $\gamma$ a.s. does not contain any removable points. The equation then becomes the trivial equation $0=0$.
+Note that we lose the converse implication. That is the GNZ equation no longer characterizes Gibbs point process with non-hereditary energy function. Imagine a measure $P$ under which $\gamma$ a.s. does not contain any removable points. The equation then becomes the trivial equation $0=0$.
 

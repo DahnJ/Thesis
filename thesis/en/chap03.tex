@@ -20,7 +20,7 @@ A standard assumption without which it is impossible to define the Gibbs measure
 \begin{enumerate}[\textbf{(S)}] 
 	\item \textit{Stability}. The energy function $H$ is called \textit{stable} if there exists a constant $c_S \geq 0$ such that 
 		$$H_{\Lambda,\x}(\zeta) \geq -c_S \cdot \mathrm{card}(\zeta \cup \partial_\Lambda \x)$$
-for all $\Lambda \in \mathcal B_0, \zeta \in \mathbf N_\Lambda, \x \in N^\Lambda_{\text{cr}}$.
+for all $\Lambda \in \mathcal B_0, \zeta \in \mathbf N_\Lambda, \x \in \mathbf N^\Lambda_{\text{cr}}$.
 \end{enumerate}
 
 
@@ -71,7 +71,7 @@ the set of all configurations whose restriction to $C(k)$, when shifted back to 
 \begin{enumerate}[\textbf{(U)}] 
 	\item \textit{Upper regularity}. $M$ and $\Gamma$ can be chosen so that the following holds. 
 		\begin{enumerate}[(U1)]
-			\item \textit{Uniform confinement}: $\bar \Gamma \subset N^\Lambda_\text{cr}$ for all $\Lambda \in \mathcal B_0$ and 
+			\item \textit{Uniform confinement}: $\bar \Gamma \subset \mathbf N^\Lambda_\text{cr}$ for all $\Lambda \in \mathcal B_0$ and 
 			\begin{equation}\label{eq:U1}r_\Gamma := \sup_{\Lambda\in\mathcal B_0}\sup_{\x \in \bar\Gamma} r_{\Lambda, \x} < \infty\end{equation}
 			\item \textit{Uniform summability}: 
 			$$c_\Gamma := \sup_{\x \in \bar\Gamma}  \sum_{\eta \in \mathcal E(\x): \eta' \cap C \neq \emptyset} \frac{\varphi(\eta,\x)}{\#(\hat\eta)} < \infty,$$
@@ -110,10 +110,10 @@ For some models it is possible to replace the upper regularity assumptions by th
 \todoo[inline]{Specify these things as ``models'' of the form $(\mathcal D_4, \varphi_S)$.Specify the measure $\mu$ in there, too}
 In this section, we will verify the assumptions for the existence of Gibbs measures with the energy function defined on the hypergraphs $\mathcal D_4$ and $\mathcal {LD}_4$. We use the general letter $\mathcal E$ when we mean either $\mathcal D$ or $\mathcal {LD}$. Two potentials will be considered
 
-\noindent \textbf{Smooth interaction}:  For $\eta\in\mathcal E_4(\x)$ define the potential $\varphi_S$ as an unary potential such that
+\noindent \textbf{Smooth interaction}:  For $\eta\in\mathcal E_4(\x)$ define the potential $\varphi_S$ as a unary potential such that
 $$\varphi_S(\eta,\x) \leq K_0 + K_1 \delta(\eta)^{\beta}$$
 for some $K_0,K_1 \geq 0, \beta >0$\newline
-\textbf{Hard-core interaction}: For $\eta\in\mathcal E_4(\x)$ define the potential $\varphi_{HC}$ as an unary potential such that
+\textbf{Hard-core interaction}: For $\eta\in\mathcal E_4(\x)$ define the potential $\varphi_{HC}$ as a unary potential such that
 $$\sup_{\eta: d_0 \leq \delta(\eta) \leq d_1} \varphi_{HC}(\eta,\x)  < \infty \text{ and } \varphi_{HC}(\eta,\x)=\infty \text{ if } \delta(\eta)>\alpha.$$ 
 for some $0\leq d_0 < d_1 \leq \alpha$ \unsure{How exactly does this look? Why?}
 
@@ -137,7 +137,7 @@ Let $M$ be such that $|M_i| = a > 0$ for $i=1,2,3$ and $\angle(M_i,M_j) = \pi / 
 In \cite{DDG12}, $A$ is chosen to be $B(0,b)$ for $b\leq \rho a$ for some sufficiently small $\rho >0$. 
 
 We will use this form for the positions of the points as well --- the question, however, is how to choose the mark set. For Delaunay models, we choose $A=B(0,b)\times\{0\}$. It would be convenient to do this in the Laguerre case as well and only deal with the Delaunay tetrahedrization. However, for Laguerre-Delaunay models, this  would mean that $\Pi^z_C(\Gamma) = 0$, conflicting with both $(U3)$ and $(\hat U3)$. The choice $A=B(0,b)\times S$ could, for a small enough $a$, result in some balls being fully contained in their neighboring balls, possibly resulting in redundant points, thus changing the desired properties of $\Gamma$. It is thus necessary to choose the mark space dependent on $a$. For given $a$, $\rho$, the minimum distance between individual points, is $a-2\rho a = a(1-2\rho)$. For $\mathcal {LD}$ models we therefore choose 
-$$A = B(0,b)\times \left[0, \sqrt{\frac a2(1-2\rho)}\right]$$ 
+\begin{equation}\label{eq:choiceA} A = B(0,b)\times \left[0, \sqrt{\frac a2(1-2\rho)}\right] \end{equation}
 in order for balls to never overlap \unsure{This is perhaps unnecessarily conservative, we could widen it}. We further assume $\rho < 1/4$, see Appendix \ref{sec:boundingdiameter}.
 
 
@@ -209,7 +209,7 @@ To obtain the tetrahedrization of the parallelepiped formed by $\x_1$, we could 
 \todoo[inline]{These lemmas are almost impossible to follow without figures}
 Note that in the following, we use the word regular in the geometric sense --- referring to all edges being equal in length --- and not in the sense of Definition \ref{def:regular}.
 \begin{lemma}
-	$\mathrm{NNG}(\x_1)$ is formed by two regular tetrahedra, $\{p_1,p_2,p_3,p_5\}$ and $\{p_4,p_6,p_7,p_8\}$, and an regular octahedron $\{p_2,\dots,p_7\}$.
+	$\mathrm{NNG}(\x_1)$ is formed by two regular tetrahedra, $\{p_1,p_2,p_3,p_5\}$ and $\{p_4,p_6,p_7,p_8\}$, and a regular octahedron $\{p_2,\dots,p_7\}$.
 \end{lemma}
 \begin{proof}
 	Any invertible linear transformation maps a parallelepiped onto a parallelepiped. Since $\|p_2 - p_1\| = \|p_3-p_1\| = \|p_5-p_1\|=a$ by definition of $M$, we obtain that all the edges of the parallelepiped $\{p_1,\dots,p_8\}$ have length $a$. Furthermore, each face of the parallelepiped can be split into two equilateral triangles, e.g. $\|p_3-p_2\|=a$. Consequently $\{p_1,p_2,p_3,p_5\}$ and $\{p_4,p_6,p_7,p_8\}$ are regular tetrahedra, the regularity coming from the fact that all edges have length $a$. Similarly, the sextuple $\{p_2,\dots,p_7\}$ is a regular octahedron, as all its edges have length $a$.
@@ -234,7 +234,7 @@ We note that the circumradii of the tetrahedra can be calculated using the Cayle
 
 Now we turn to the combinatorial structure of $\mathcal D_4(\x_0)$, in particular, we are interested in the number
 $$n_T = \mathrm{card}\{\eta \in \mathcal D_4(\x_0): \eta' \cap C \neq \emptyset \}.$$
-In the tetrahedronized regular octahedron, each vertex is incident to $\binom{5}{3}-2=8$ tetrahedra. In the tetrahedron-octahedron tessellation, each \todoo{Reference, possibly using Schlafli symbols} vertex is incident to eight regular tetrahedra and six regular octahedra. This gives us $n_T = 8 + 6\cdot 8 = 56$. While still large, this is less than quarter of $8\cdot \binom{7}{3}-6 = 274$ for the case of regular cube tessellation induced by the choice $M=aE$. Note that $n_T$ is much smaller for the non-degenerate case, when $O$ contains only $4$ tetrahedra and its vertices are incident either to $2$ or $4$ tetrahedra. In this case, $n_T\leq 8+6\cdot 4 = 32$. We define the quantity
+In the tetrahedronized regular octahedron, each vertex is incident to $\binom{5}{3}-2=8$ tetrahedra. In the tetrahedron-octahedron tessellation, each \todoo{Reference, possibly using Schlafli symbols} vertex is incident to eight regular tetrahedra and six regular octahedra. This gives us $n_T = 8 + 6\cdot 8 = 56$. While still large, this is less than a quarter of $8\cdot \binom{7}{3}-6 = 274$ for the case of regular cube tessellation induced by the choice $M=aE$. Note that $n_T$ is much smaller for the non-degenerate case, when $O$ contains only $4$ tetrahedra and its vertices are incident either to $2$ or $4$ tetrahedra. In this case, $n_T\leq 8+6\cdot 4 = 32$. We define the quantity
 $$n_S = \sup_{\x \in \bar\Gamma^A} \mathrm{card}\{\eta \in \mathcal {LD}_4(\x): \eta' \cap C \neq \emptyset \},$$
 and we have $n_S \leq 56$.
 \problem[inline]{Well, this isn't exactly obvious from the text so far..}
@@ -254,7 +254,7 @@ The bound on circumdiameters of the circumballs and characteristic point weights
 
 \noindent For the weights of the characteristic points, we do not need a specific bound and thus only prove their boundedness.
 \begin{proposition}\label{prop:maxPeta}
-	Let $\x \in \bar\Gamma^A$. Then the weight of the characteristic point is uniformly bounded. That is there exists $c>0$ such that $p_\eta'' \leq c$ for all $\eta \in \mathcal {LD}_4(\x)$. 
+	Let $\x \in \bar\Gamma^A$. Then the weight of the characteristic point is uniformly bounded. That is, there exists $c>0$ such that $p_\eta'' \leq c$ for all $\eta \in \mathcal {LD}_4(\x)$. 
 \end{proposition}
 \begin{proof}
 Denote $\eta=\{p_1,p_2,p_3,p_4\}$, with positions $\eta'$ and weights $\eta''$. From Theorem \ref{prop:charpointHyperplane} and the remark below it we know that $p'_\eta = H(p_1,p_2)\cap H(p_1,p_3) \cap H(p_1,p_4)$.
@@ -291,11 +291,11 @@ the bounds for the tetrahedra derived in Theorem \ref{thm:Apollonius} in Appendi
 	\item \textbf{(S)} Stability is satisfied because of $\varphi$ is non-negative.
 	\item \textbf{(U)} We choose $M$ and $\Gamma$ as in Section \ref{sec:MGamma}.
 		\begin{enumerate}[(U1)]
-			\item We know from \ref{thm:Apollonius} that the exists $d_{max}>0$ such that $\text{diam}B(\eta)\leq d_{max}$. By Lemma \ref{lemma:U1} $r_\Gamma\leq d_{max}.$
+			\item We know from \ref{thm:Apollonius} that there exists $d_{max}>0$ such that $\text{diam}B(\eta)\leq d_{max}$. By Lemma \ref{lemma:U1} $r_\Gamma\leq d_{max}.$
 			\item is trivially satisfied since $n_S < 58$ and $\varphi_S$ is bounded by Proposition \ref{prop:maxcircum}.
 			\item By Remark \ref{r:UA} we want to find $z$ as small as possible such that $z|A|>e^{c_A}.$ We know from Section \ref{sec:combinatorial} that there are at most $8$ $T_1$ and $48$ $T_2$ tetrahedra intersecting $C$, therefore from Theorem \ref{thm:Apollonius} in Appendix \ref{sec:boundingdiameter}
 				$$c_A \leq \frac a4 (8( K_0 + K_1 (a\delta_1)^\beta) + 48( K_0 + K_1 (a\delta_2)^\beta) ).$$
-				This yield the bound
+				This yields the bound
 				\begin{align*}z &> \frac{3} {4\pi\rho^3}e^{2(K_0 + K_1 (a\delta_1)^\beta) + 12(K_0 + K_1(a \delta_2)^\beta)} / a^3  \\
 					&= C_0 e^{C_1 a^\beta} / a^3,  
 				\end{align*}
@@ -373,40 +373,54 @@ the bounds for the tetrahedra derived in Theorem \ref{thm:Apollonius} in Appendi
 Using the same approach and the same pseudo-periodic configurations $\bar\Gamma$, it is easy enough to prove the existence of many different forms of unary hyperedge potentials. In the following, we suggest some alternate hyperedge potentials. 
 \begin{remark}[Other smooth interaction potentials]
 	
-	Alternate smooth interaction models could be considered using characteristics of $k$-faces of $\eta$ instead of the circumdiameter. An example is the volume potential $\varphi_{V}$ defined as an unary potential such that for $\eta\in\mathcal E_4(\x), \x \in \bar\Gamma$  we have
+	Alternate smooth interaction models could be considered using characteristics of $k$-faces of $\eta$ instead of the circumdiameter. An example is the volume potential $\varphi_{V}$ defined as a unary potential such that for $\eta\in\mathcal E_4(\x), \x \in \bar\Gamma$  we have
 	$$\varphi_{V}(\eta,\x) \leq K_0 + K_1 \mathrm{V}(\eta)^{\beta}$$
-	for some $K_0,K_1 \geq 0, \beta >0$, where $\mathrm{V}(\eta)=|\mathrm{conv}(\eta)|$ is the volume of the tetrahedron $\mathrm{conv}(\eta)$. Volume of a $3-$simplex with positions $\eta'=\{x_0,x_1,x_2,x_3\}\subset \Rt$ can be calculated using the Cayley-Menger determinant (Appendix \ref{A:CM}), but the following expression (\cite{Stein1966}) lends itself better to finding a bound 
+	for some $K_0,K_1 \geq 0, \beta >0$, where $\mathrm{V}(\eta)=|\mathrm{conv}(\eta)|$ is the volume of the tetrahedron $\mathrm{conv}(\eta)$. Volume of a $3-$simplex with positions $\eta'=\{x_0,x_1,x_2,x_3\}\subset \Rt$ can be calculated using the Cayley-Menger determinant (Appendix \ref{A:CM}), but the following expression (\cite{Stein1966}) lends itself better to finding a bound: 
 	$$V(\eta)=\left| \frac 1{n!} \mathrm{det}(x_1-x_0,x_2-x_0,x_3,x_0) \right|,$$
-	where the determinant is of a $3 \times 3$ matrix with column vectors $x_1-x_0,x_2-x_0,x_3-x_0$. This quantity can be bounded using the Hadamard's inequality (\cite{Hadamard1893})
+	where the determinant is of a $3 \times 3$ matrix with column vectors $x_1-x_0,x_2-x_0,x_3-x_0$. This quantity can be bounded using Hadamard's inequality (\cite{Hadamard1893})
 	$$\mathrm{det}(x_1-x_0,x_2-x_0,x_3-x_0) \leq \prod^3_{i=1} \|x_i - x_0\| $$
 	Notice that we only need the length of three edges of the tetrahedron. Thanks to this, tetrahedra of type T1 and T2 both can be bounded by
-	$$\varphi_V(\eta,\x) \leq \frac 16 a(1+2\rho)^3, \quad \eta\in\mathcal E_4(\x), \x\in \bar \Gamma.$$
+	$$\varphi_V(\eta,\x) \leq K_0 + K_1 \left(\tfrac 16 a(1+2\rho)^3\right)^{\beta}, \quad \eta\in\mathcal E_4(\x), \x\in \bar \Gamma.$$
 	The bound for the intensity $z$ in the model $(\mathcal {LD}_4, \varphi_V)$ then becomes
 	\begin{equation}\label{eq:volbound}z> \frac{3\sqrt 2}{4\pi}e^{14 K_0}   (4K_1 \beta e^{7/2})^{1/\beta} \frac{\frac 16 (1+2\rho)^3}{\rho^3 \sqrt{1-2\rho}}.\end{equation}
-	Note that same approach could be used for e.g. surface area of the tetrahedron, where we would simply replace $(1+2\rho)^3$ for $\frac 2 (1+2\rho)^2$ in \eqref{eq:volbound}.  \newline
+	Note that same approach could be used for e.g. surface area of the tetrahedron, where we would simply replace $\tfrac 16 (1+2\rho)^3$ for $\tfrac 42 (1+2\rho)^2$ in \eqref{eq:volbound}.  \newline
 
 \end{remark}
 
 
 \begin{remark}[Other hardcore interaction potentials]
-	Other forms of the hard-core potential can be obtained relatively easily. For example, additional constraints can be added, e.g. minimum edge length. Finite horizons remain the same for all unary potentials, and therefore \textbf{(R)} holds. Stability \textbf{(S)} is satisfied, as the potential is still non-negative. The alternate upper regularity conditions \textbf{\^{U}1} and \textbf{\^{U}3} are satisfied for the same reasons.  \tbd 
+	Other forms of the hard-core potential can be obtained relatively easily. For example, additional constraints can be added, e.g. minimum edge length $\ell>0$. Finite horizons remain the same for all unary potentials, and therefore \textbf{(R)} holds. Stability \textbf{(S)} is satisfied, as the potential is still non-negative. The alternate upper regularity conditions \textbf{(\^{U}1)} and \textbf{(\^{U}3)} are satisfied for the same reasons. Care has to be taken for \textbf{(\^{U}2)} to hold, since the pseudo-periodic configurations $\x\in\bar \Gamma$ now must satisfy the new criterion. This can be done by choosing $a$ and $\rho$ such that $a(1-2\rho) < \ell$.
 \end{remark}
-
 
 Note also that while we have used the sets $\mathcal D_4$ and $\mathcal {LD}_4$ for the definition of our models, it would be just as possible to consider the sets $\mathcal D_2$, $\mathcal D_3$, or $\mathcal {LD}_2, \mathcal {LD}_3$, or even combinations of them.
 
+\begin{remark}\label{r:zMathematica}[Concrete values of $z$]
+	For the smooth-interaction models, we have only proved the existence for any $z$ exceeding some bound. The actual values of the bound depend strongly on the choice of the parameters $K_0,K_1,\beta$. The following table gives a few examples of the bounds, where $\rho$ is always chosen in order to minimize the bound.
+	\begin{center}
+	\begin{tabular}{ l l l l l }
+		Model & $K_0$ & $K_1$ & $\beta$ & Bound for $z$ \\
+		\hline
+		$(\mathcal D_4,\varphi_S)$ &  0 & 0.5 & 1 & 4669 \\
+		$(\mathcal {LD}_4,\varphi_S)$ &  0 & 0.5 & 1 & 12062 \\
+		$(\mathcal {LD}_4,\varphi_{V})$ &  0 & 0.5 & 1 & 1138 \\
+		$(\mathcal {LD}_4,\varphi_S)$ &  0 & 1 & 5 & 701 \\
+		$(\mathcal {LD}_4,\varphi_V)$ &  0 & 1 & 2 & 280 \\
+		$(\mathcal {D}_4,\varphi_V)$ &  0 & 1 & 2 & 118 \\
+	\end{tabular}
+	\end{center}
+	In general, the bound is extremely sensitive to values of $K_0$ which in practice means that it has to be set to $0$. For $\beta \leq 1$, the bound is also very sensitive to values of $K_1$, but increasing $\beta$ then quickly weakens this dependence. The values for $\varphi_S$ are overall quite high, choosing e.g. surface area, or even better the volume yields much lower bounds.
 
-
-
-
-
-\begin{remark}[Concrete values of $z$]
-	\tbd
-	A Mathematica script used for exploring the bounds for different settings of the parameters can be found in the file \texttt{zBounds.nb}.
+	A Mathematica script used for exploring the bounds for different settings of the parameters $K_0,K_1,\beta$ and $\rho$ can be found in the file \texttt{zBounds.nb}.
 \end{remark}
+
+Given the high requirements on $z$ in most models, we have decided to only work with hard-core models in the next chapters. This is in line with \cite{DereudreLavancier2011}, who also only considered hard-core models. Note that while this might seem as a limitation, in practice we can always introduce a hard-core parameter that will not limit our model, but ensure that it exists for all $z>0$. These bounds therefore have a theoretical, rather than practical value.
 
 
 \begin{remark}[Improving the bounds]
-a.s., bounds are rough, weight limitation great
-\tbd
+	There is a number of steps one could possibly take to improve the bounds for $z$. All of the presented bounds for $c_A$ are not minimal. For example, not all tetrahedra in any given tetrahedrization will attain the bounds $\delta_1$ and $\delta_2$. Furthermore, \eqref{eq:choiceA} is perhaps unnecessarily conservative --- no problems may arise if we allow the balls to overlap to a certain degree. Finally, it may be possible to prove that \textbf{(U3)} requires only $\Pi$-almost all configurations in the supremum in the term $c_A$, which would result in a decrease in number terms in the sum, see end of Section \ref{sec:combinatorial}.
+
+	Of course, one may also be able to us an entirely different approach than the one from \cite{DDG12} to obtain lower bounds.
 \end{remark}
+
+
+
