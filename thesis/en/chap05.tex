@@ -8,14 +8,11 @@ To underscore the dependence on the maximum circumdiameter $\alpha$ and smooth i
 In the first step we estimate the hardcore parameter $\alpha$. 
  Thanks to the fact that the hardcore parameter $\alpha$ satisfies
 
- $$ \text{if } \alpha < \alpha' \text{ then  } \forall \Lambda \in \mathcal B_0(\Rt), \; H^{\theta,\alpha}_\Lambda(\gamma) < \infty \Rightarrow  H^{\theta,\alpha'}_\Lambda(\gamma)<\infty,$$ 
+ $$ \text{if } \alpha < \alpha' \text{ then  } \forall \Lambda \in \mathcal B_0, \; H^{\theta,\alpha}_\Lambda(\gamma) < \infty \Rightarrow  H^{\theta,\alpha'}_\Lambda(\gamma)<\infty,$$ 
 
 we can estimate it as
-$$\hat\alpha = \sup\{\alpha > 0, H^{\theta,\alpha}_{\Lambda_n}(\gamma) < \infty \}.$$
-
-\unsure{Are these consistent? Why?}In practice, the parameter can be estimated as
-$$\hat\alpha = \max\{\delta(\eta), \eta\in \mathcal {LD}_{4\Lambda_n}(\gamma)\}.$$
-\todoo[inline]{Probably define the term $\mathcal {LD}_{4\Lambda_n}$}
+$$\hat\alpha = \inf\{\alpha > 0, H^{\theta,\alpha}_{\Lambda_n}(\gamma) < \infty \} = \max\{\chi(\eta), \eta\in \mathcal {LD}_{4\Lambda_n}(\gamma)\},$$
+where $\mathcal {LD}_{4\Lambda_n}$ denotes the set $\mathcal E_{\Lambda_n}$ for the hypergraph structure $\mathcal E = \mathcal {LD}_4$.
 
 The estimate $\hat\alpha$ is then used in the pseudo-likelihood function in the second estimation step.
 
@@ -24,18 +21,17 @@ The estimate $\hat\alpha$ is then used in the pseudo-likelihood function in the 
 In the second step we estimate the smooth interaction parameters through maximum pseudolikelihood.
 \todoo[inline]{Improve handling of the Models - as of now they're sort of scattered}
 \todoo[inline]{Equation references}
-The classical version of MPLE requires heredity of the energy function. Heredity means that for every permissible $\gamma$, the point pattern $\gamma\setminus\{x\}$ remains permissible for every $x\in\gamma$, see Section \ref{sec:energyfunction} for definition and discussion. The hardcore interaction in the model $(\mathcal {LD}_4,\varphi_{HC})$\todoo{again, references, clear model definitions,..} does not satisfy this condition. For that purpose, Section \ref{sec:non-hereditary} presented the extension to the non-hereditary case from \cite{DereudreLavancier2009}. 
+The classical version of MPLE requires heredity of the energy function. Recall that heredity means every point of the configuration is removable, see Section \ref{sec:energyfunction} for a definition and discussion. The hardcore interaction in the model $(\mathcal {LD}_4,\varphi^{\theta,\alpha}_{HC})$\todoo{again, references, clear model definitions,..} does not satisfy this condition. For that purpose, Section \ref{sec:non-hereditary} presented the extension to the non-hereditary case from \cite{DereudreLavancier2009}. 
 
-Recall that a point $x\in\gamma$ is removable in a configuration $\gamma\in\mathbf N_{lf}$ if $\gamma\setminus\{x\}$ is permissible. We denote $\mathcal R^\alpha(\gamma)$ the set of removable points of $\gamma$. Similarly the notion of an addable point will be useful. A point $x\in\gamma$ is \textit{addable} in $\gamma$ if $\gamma \cup \{x\}$ is permissible and we denote $\tilde\Lambda^S_n$ the set of addable points in $\Lambda^S_n$. 
+We denote the set of removable points of $\gamma$ by $\mathcal R^\alpha(\gamma)$. Similarly, the notion of an addable point will be useful. A point $x\in\gamma$ is \textit{addable} in $\gamma$ if $\gamma \cup \{x\}$ is permissible and we denote $\tilde\Lambda^S_n$ the set of addable points in $\Lambda^S_n$. 
 
-In the non-hereditary case, the pseudo-likelihood function then becomes:
+In the non-hereditary case, the pseudo-likelihood function then becomes (\cite{DereudreLavancier2011}):
 
 \begin{equation}\label{PLL}
-	PLL_{\Lambda_n}(\gamma,z,\theta, \alpha) = \int_{\tilde\Lambda^S_n} z \exp (-h^{\theta,\alpha}(x,\gamma)) dx + \sum_{x\in\mathcal R^\alpha(\gamma)\cap \Lambda^S_n} \big(h^{\theta,\alpha}(x,\gamma\setminus\{x\}) - \ln(z)\big),
+	PLL_{\Lambda_n}(\gamma,z,\theta, \alpha) = \int_{\Lambda^S_n} z \exp (-h^{\theta,\alpha}(x,\gamma)) dx + \sum_{x\in\mathcal R^\alpha(\gamma)\cap \Lambda^S_n} \big(h^{\theta,\alpha}(x,\gamma\setminus\{x\}) - \ln(z)\big),
 \end{equation}
-where $h^{\theta,\alpha}(x, \gamma \setminus \{x\})$ is local energy of $x$ in $\gamma$ defined in \ref{def:localenergy}. 
-\todoo[inline]{Connect it to GNZ}
-
+where $h^{\theta,\alpha}(x, \gamma \setminus \{x\})$ is local energy of $x$ in $\gamma$ defined in Definition \ref{def:localenergy}. 
+\todoo[inline]{Do something about the fact that we're not integrating over poitns from the configuration so the local energy kinda doesn't work}
 The estimates $\hat\theta$ and $\hat z$ are obtained through minimizing the $PLL_{\Lambda_n}$ function:
 $$(\hat z, \hat\theta) = \text{argmin}_{z,\theta} PLL_{\Lambda_n} (\gamma, z, \hat\alpha,\theta).$$
 
@@ -54,14 +50,14 @@ where we have used the fact that the local energy depends on $\theta$ linearly, 
 $$\frac{\partial h^{\hat\alpha,\theta}}{\partial \theta} (x,\gamma) = h^{\hat\alpha,1}(x,\gamma).$$
 
 \subsection{Practical implementation}
-We obtain the estimate of $\theta$ by substituting the expression for $\hat z$ (\ref{z_hat}) into \ref{theta_hat}.
+We obtain the estimate of $\theta$ by substituting the expression for $\hat z$ \eqref{z_hat} into \eqref{theta_hat}.
 This leads to the equation
-$$ 
+\begin{equation}\label{eq:estunsimple} 
 \frac{\int_{\tilde\Lambda^S_n}  h^{\hat\alpha,1}(x,\gamma)\exp{\left(-h^{\hat\alpha,\theta}(x,\gamma)\right)} dx} {  \int_{\Lambda^S_n} \exp{\left( -h^{\hat\alpha,\theta}(x,\gamma)\right)} dx} 
 = \frac {\sum_{x \in \mathcal R^{\hat\alpha}(\gamma)\cap \Lambda^S_n} h^{\hat\alpha,1}(x,\gamma\setminus\{x\})} { \mbox{card}(\mathcal R^{\hat\alpha}(\gamma)\cap \Lambda^S_n) }. 
-$$
+\end{equation}
 
-In order to simplify the estimation of $\theta$, we can simplify this equation further. First, we denote the right-hand side of the equation as $c$ as it  is constant with respect to $\theta$. Second, we note that $x \notin \mathcal A^\alpha(\gamma)\cap\tilde\Lambda^S_n  \Rightarrow \exp{\left(-h^{\hat\alpha,\theta}(x,\gamma)\right)}= 0$ which enables us to integrate over $\tilde\Lambda^S_n$ instead of the whole window $\Lambda^S_n$. Lastly we denote the local energy $h^{\hat\alpha,1}(x,\gamma) =: h(x)$, yielding the equation 
+In order to simplify the estimation of $\theta$, we can simplify this equation further. First, we denote the right-hand side of \eqref{eq:estunsimple} as $c$ as it  is constant with respect to $\theta$. Second, we note that $x \notin \tilde\Lambda^S_n  \Rightarrow \exp{\left(-h^{\hat\alpha,\theta}(x,\gamma)\right)}= 0$ which enables us to integrate over $\tilde\Lambda^S_n$ instead of the whole window $\Lambda^S_n$. Lastly we denote the local energy $h^{\hat\alpha,1}(x,\gamma) =: h(x)$, yielding the equation 
 $$ \int_{\tilde\Lambda^S_n} h(x) \exp{\left(-\theta h(x)\right)} dx = c \int_{\tilde\Lambda^S_n} \exp{\left(-\theta h(x)\right)}\;dx, $$
 leading into the final equation
 \begin{equation}\label{hat_theta_final} 
@@ -70,9 +66,9 @@ leading into the final equation
 
 The integral in \eqref{hat_theta_final} is estimated using Monte-Carlo integration, i.e. is approximately equal to
 $$ \frac {|\tilde\Lambda^S_n|}N \sum_{i=0}^N 1_{\tilde\Lambda^S_n}(x_i) \exp{\left( - \theta h_i \right )} (h_i- c) dx $$
-where $h_i = h^{\hat\alpha,1}(x_i, \gamma)$ and $x_1,\dots,x_N$ is a random sample from the \unsure{Do we need the indicator function if we're only sampling from $\tilde\Lambda^S_n$ ?}uniform distribution on $\Lambda'_n$. Note that although $|\tilde\Lambda^S_n|$ would be very difficult to obtain, the equation does not depend on it.
+where $h_i = h^{\hat\alpha,1}(x_i, \gamma)$ and $x_1,\dots,x_N$ is a random sample from the \unsure{Do we need the indicator function if we're only sampling from $\tilde\Lambda^S_n$ ?}uniform distribution on $\Lambda'_n$. Note that although $|\tilde\Lambda^S_n|$ would be very difficult to obtain, the solution of the equation does not depend on it.
 
-After $\hat\theta$ is estimated, we then obtain the estimate $\hat z$ with $\hat\theta$ instead of $\theta$ and the integral replaced by a Monte-Carlo integration approximation.
+After $\hat\theta$ is estimated, we then obtain the estimate $\hat z$ by substituting $\theta$ by $\hat\theta$ in $\eqref{z_hat}$ and with the integral replaced by a Monte-Carlo integration approximation.
 
 
 \subsection{Consistency}

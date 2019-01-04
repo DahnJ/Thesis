@@ -1,5 +1,5 @@
 \chapter{Existence of Gibbs-type models}\label{ch:3}
-In this chapter, the theorem from \cite{DDG12} will be presented and then we will proceed to verify its assumptions for our models. In this chapter, as well as in the remainder of this text, we will assume  the mark distribution $\mu$ to be equal to the Lebesgue measure on $S$.
+In this chapter, the theorem from \cite{DDG12} will be presented and then we will proceed to verify its assumptions for our models. In this chapter, as well as in the remainder of this text, we will assume  the mark distribution $\mu$ for $\mathcal {LD}$ models to be equal to the Lebesgue measure on $S$.
 
 \section{Existence theorem}
 In this section we first state the two existence theorems from \cite{DDG12}. The assumptions  \textbf{(S)}, \textbf{(R)}, \textbf{(U)} and \textbf{(\^U)} are introduced in the following sections. 
@@ -20,14 +20,13 @@ A standard assumption without which it is impossible to define the Gibbs measure
 \begin{enumerate}[\textbf{(S)}] 
 	\item \textit{Stability}. The energy function $H$ is called \textit{stable} if there exists a constant $c_S \geq 0$ such that 
 		$$H_{\Lambda,\x}(\zeta) \geq -c_S \cdot \mathrm{card}(\zeta \cup \partial_\Lambda \x)$$
-for all $\Lambda \in \mathcal B_0, \zeta \in \mathbf N_\Lambda, \x \in \mathbf N^\Lambda_{\text{cr}}$.
+		for all $\Lambda \in \mathcal B_0, \zeta \in \mathbf N_\Lambda, \x \in \mathbf N^\Lambda_{\text{cr}}$.
 \end{enumerate}
 
 
 Note that when $\varphi$ is non-negative, then we can simply choose $c_S = 0$. We will only deal with models whose potentials will be non-negative, leading to the following assumption.\newline
 
-\tbd
-\note[inline]{Possibly move the discussion to an appendix}
+\todoo[inline]{It would be nice to write something about stability..}
 \note[inline]{Could we at least use spread for Gibbs with limited distance between points?}
 
 \noindent \textbf{Assumption 1}: All hyperedge potentials in the remainder of this text are assumed to be non-negative.
@@ -39,10 +38,10 @@ This is reflected in part in the range condition introduced here and later in th
 
 \todoo[inline]{Change dleta to chi, confusing notation}
 \begin{enumerate}[\textbf{(R)}]\label{(R)}
-	\item \textit{Range condition}. There exist constants $\ell_R,n_R \in \mathbb N$ and $\delta_R < \infty$ such that for all $(\eta,\x) \in \mathcal E$ there exists a finite horizon $\Delta$ satisfying: For every $x,y \in \Delta$ there exist $\ell$ open balls $B_1, \dots, B_\ell$ (with $\ell \leq \ell_R$) such that
+	\item \textit{Range condition}. There exist constants $\ell_R,n_R \in \mathbb N$ and $\chi_R < \infty$ such that for all $(\eta,\x) \in \mathcal E$ there exists a finite horizon $\Delta$ satisfying: For every $x,y \in \Delta$ there exist $\ell$ open balls $B_1, \dots, B_\ell$ (with $\ell \leq \ell_R$) such that
 	\begin{enumerate}[-]
 		\item the set $\cup^\ell_{i=1} \bar B_i$ is connected and contains $x$ and $y$, and 
-		\item for each $i$, either $\text{diam} B_i \leq \delta_R$ or $N_{B_i}(\x) \leq n_R$.
+		\item for each $i$, either $\text{diam} B_i \leq \chi_R$ or $N_{B_i}(\x) \leq n_R$.
 	\end{enumerate}
 \end{enumerate}
 
@@ -50,13 +49,13 @@ This is reflected in part in the range condition introduced here and later in th
 Apart from being one of the assumptions necessary for the existence, the range condition also gives us the following result we used in the definition of GPP.
 
 \begin{proposition}\label{prop:cr-a.s.}
-Let $\Lambda \in \mathcal B_0(\Rt)$. Under the range assumption \textbf{(R)}, there exists a set $\hat {\mathbf N}^\Lambda_{cr} \in \tilde {\mathcal N}_{\Lambda^c}$ such that $\hat {\mathbf N}^\Lambda_{cr} \subset \mathbf N^\Lambda_{cr}$ and $P(\hat {\mathbf N}^\Lambda_{cr})=1$ for all $P \in \mathcal P_\Theta$ with $P(\varnothing)=0$.
+Let $\Lambda \in \mathcal B_0$. Under the range assumption \textbf{(R)}, there exists a set $\hat {\mathbf N}^\Lambda_{cr} \in \tilde {\mathcal N}_{\Lambda^c}$ such that $\hat {\mathbf N}^\Lambda_{cr} \subset \mathbf N^\Lambda_{cr}$ and $P(\hat {\mathbf N}^\Lambda_{cr})=1$ for all $P \in \mathcal P_\Theta$ with $P(\varnothing)=0$.
 \end{proposition}
 \begin{proof}
 	Can be found in Theorem 5.4. in \cite{DDG12}. See also Remark 3.7. in connection to the marked case.
 \end{proof}
 
-The proposition shows that any $\Theta$-invariant probability measure on $(\mathbf N_{lf},\mathcal N_{lf})$ is concentrated on the set $\mathbf N^\Lambda_{cr}$ for any $\Lambda \in \mathcal B_0(\Rt)$, justifying the restriction in our definition of the Gibbs measure (Definition \ref{def:GPP}).  
+The proposition shows that any $\Theta$-invariant probability measure on $(\mathbf N_{lf},\mathcal N_{lf})$ is concentrated on the set $\mathbf N^\Lambda_{cr}$ for any $\Lambda \in \mathcal B_0$, justifying the restriction in our definition of the Gibbs measure (Definition \ref{def:GPP}).  
 
 \subsection{Upper regularity}\label{sec:upperregularity}
 
@@ -65,7 +64,7 @@ In order to present the upper regularity conditions, we introduce the notion of 
 
 Let $M\in\mathbb R^{3\times 3}$ be an invertible $3\times 3$ matrix with column vectors $(M_1,M_2,M_3)$. For each $k \in \mathbb Z^3$ define the cell
 $$C(k) =  \{Mx \in \Rt: x-k \in \left[ -1/2, 1/2 \right)^3 \}.$$
-These cells partition $\Rt$ into parallelepipeds. We write $C=C(0)$. Let $\Gamma \in \mathcal N_C$ be non-empty. Then we define the \textit{pseudo-periodic} configurations $\bar \Gamma$ as
+These cells partition $\Rt$ into parallelepipeds, i.e. solids whose six faces are all parallelograms. We write $C=C(0)$. Let $\Gamma \in \mathcal N_C$ be non-empty. Then we define the \textit{pseudo-periodic} configurations $\bar \Gamma$ as
 $$\bar \Gamma = \{ \x \in \mathbf N_{lf}: \vartheta_{Mk}(\x_{C(k)}) \in \Gamma \text{ for all } k \in \mathbb Z^3 \},$$
 the set of all configurations whose restriction to $C(k)$, when shifted back to $C$, belongs to $\Gamma$. The prefix pseudo- refers to the fact that the configuration itself does not need to be identical in all $C(k)$, it merely needs to belong to the same class of configurations.
 
@@ -73,7 +72,7 @@ the set of all configurations whose restriction to $C(k)$, when shifted back to 
 	\item \textit{Upper regularity}. $M$ and $\Gamma$ can be chosen so that the following holds. 
 		\begin{enumerate}[(U1)]
 			\item \textit{Uniform confinement}: $\bar \Gamma \subset \mathbf N^\Lambda_\text{cr}$ for all $\Lambda \in \mathcal B_0$ and 
-			\begin{equation}\label{eq:U1}r_\Gamma := \sup_{\Lambda\in\mathcal B_0}\sup_{\x \in \bar\Gamma} r_{\Lambda, \x} < \infty\end{equation}
+				\begin{equation}\label{eq:U1}r_\Gamma := \sup_{\Lambda\in\mathcal B_0}\sup_{\x \in \bar\Gamma} r_{\Lambda, \x} < \infty\end{equation}
 			\item \textit{Uniform summability}: 
 			$$c_\Gamma := \sup_{\x \in \bar\Gamma}  \sum_{\eta \in \mathcal E(\x): \eta' \cap C \neq \emptyset} \frac{\varphi(\eta,\x)}{\#(\hat\eta)} < \infty,$$
 where $\hat\eta := \{k \in \mathbb Z^3: \eta \cap C(k) \neq \emptyset\}$.
@@ -112,10 +111,10 @@ For some models it is possible to replace the upper regularity assumptions by th
 In this section, we will verify the assumptions for the existence of Gibbs measures with the energy function defined on the hypergraphs $\mathcal D_4$ and $\mathcal {LD}_4$. We use the general letter $\mathcal E$ when we mean either $\mathcal D$ or $\mathcal {LD}$. Two potentials will be considered
 
 \noindent \textbf{Smooth interaction}:  For $\eta\in\mathcal E_4(\x)$ define the potential $\varphi_S$ as a unary potential such that
-$$\varphi_S(\eta,\x) \leq K_0 + K_1 \delta(\eta)^{\beta}$$
+$$\varphi_S(\eta,\x) \leq K_0 + K_1 \chi(\eta)^{\beta}$$
 for some $K_0,K_1 \geq 0, \beta >0$\newline
 \textbf{Hard-core interaction}: For $\eta\in\mathcal E_4(\x)$ define the potential $\varphi_{HC}$ as a unary potential such that
-$$\sup_{\eta: d_0 \leq \delta(\eta) \leq d_1} \varphi_{HC}(\eta,\x)  < \infty \text{ and } \varphi_{HC}(\eta,\x)=\infty \text{ if } \delta(\eta)>\alpha.$$ 
+$$\sup_{\eta: d_0 \leq \chi(\eta) \leq d_1} \varphi_{HC}(\eta,\x)  < \infty \text{ and } \varphi_{HC}(\eta,\x)=\infty \text{ if } \chi(\eta)>\alpha.$$ 
 for some $0\leq d_0 < d_1 \leq \alpha$. \unsure{How exactly does this look? Why?}
 
 \noindent We assume by Assumption 1 that $\varphi_S,\varphi_{HC}\geq 0$. Denote the four models as $(\mathcal D_4,\varphi_{S}),(\mathcal D_4,\varphi_{HC}),(\mathcal {LD}_4,\varphi_{S})$ and $(\mathcal {LD}_4, \varphi_{HC})$. \newline
@@ -133,13 +132,13 @@ the set of configurations consisting of exactly one point in the set $A$. The se
 
 Let $M$ be such that $|M_i| = a > 0$ for $i=1,2,3$ and $\angle(M_i,M_j) = \pi / 3$ for $i\neq j$.
 
-\subsubsection{Choice of the set $A$}
+\subsubsection{Choice of the set $A$}\label{sec:setA}
 \todoo[inline]{Possibly make it clear that we're later referring to $A$ as the specific set in this section}
 In \cite{DDG12}, $A$ is chosen to be $B(0,b)$ for $b\leq \rho a$ for some sufficiently small $\rho >0$. 
 
 We will use this form for the positions of the points as well --- the question, however, is how to choose the mark set. For Delaunay models, we choose $A=B(0,b)\times\{0\}$. It would be convenient to do this in the Laguerre case as well and only deal with the Delaunay tetrahedrization. However, for Laguerre-Delaunay models, this  would mean that $\Pi^z_C(\Gamma) = 0$, conflicting with both $(U3)$ and $(\hat U3)$. The choice $A=B(0,b)\times S$ could, for a small enough $a$, result in some balls being fully contained in their neighboring balls, possibly resulting in redundant points, thus changing the desired properties of $\Gamma$. It is thus necessary to choose the mark set dependent on $a$. For given $a$, $\rho$, the minimum distance between individual points, is $a-2\rho a = a(1-2\rho)$. For $\mathcal {LD}$ models we therefore choose 
 \begin{equation}\label{eq:choiceA} A = B(0,b)\times \left[0, \sqrt{\frac a2(1-2\rho)}\right] \end{equation}
-in order for balls to never overlap \unsure{This is perhaps unnecessarily conservative, we could widen it}. We further assume $\rho < 1/4$, see Appendix \ref{sec:boundingdiameter}.
+in order for balls to never overlap. We further assume $\rho < 1/4$, see Appendix \ref{sec:boundingdiameter}.
 
 
 
@@ -165,7 +164,6 @@ in order for balls to never overlap \unsure{This is perhaps unnecessarily conser
 
 \end{enumerate}
 \end{remark}
-\todoo[inline]{Check for punctuation etc, especially in math}
 
 \subsection{Geometric properties of the tetrahedrizations defined by $\Gamma^A$ and $M$}
 In this section we inspect the geometric structure of the tetrahedrizations generated by the configurations in $\bar \Gamma^A$.
@@ -216,13 +214,30 @@ Note that in the following, we use the word regular in the geometric sense --- r
 	Any invertible linear transformation maps a parallelepiped onto a parallelepiped. Since $\|p_2 - p_1\| = \|p_3-p_1\| = \|p_5-p_1\|=a$ by definition of $M$, we obtain that all the edges of the parallelepiped $\{p_1,\dots,p_8\}$ have length $a$. Furthermore, each face of the parallelepiped can be split into two equilateral triangles, e.g. $\|p_3-p_2\|=a$. Consequently $\{p_1,p_2,p_3,p_5\}$ and $\{p_4,p_6,p_7,p_8\}$ are regular tetrahedra, the regularity coming from the fact that all edges have length $a$. Similarly, the sextuple $\{p_2,\dots,p_7\}$ is a regular octahedron, as all its edges have length $a$.
 \end{proof}
 
-This polyhedral configuration is well known to tessellate\footnote{ The tessellation is of great importance to many fields and thus is known under many names. In mathematics, it is most commonly called the \textit{tetrahedral-octahedral honeycomb}, or the \textit{alternated cubic honeycomb}. In structural engineering, it is known as the \textit{octet truss}, as named by Buckminster Fuller, or the \textit{isotropic vector matrix}. It is stored as \textit{fcu} in the Reticular Chemistry Structure Resource (\cite{RCSR}). It is also the nearest-neighbor-graph of the face-centered cubic (fcc) crystal in crystallography (\cite{Gabbrielli12}).  }. The knowledge of $\mathrm{NNG}(\x_1)$ allows us to fully categorize the tetrahedra in $\mathcal D_4(\x_0)$.
+
+\begin{figure}
+  \centering
+  \begin{minipage}{0.45\textwidth}
+	  \centering
+	  \includegraphics[width=1\textwidth]{../img/tetra-exploded.PNG}
+	  \caption{The tetrahedral-octahedral tessellation in an exploded view. (Source: \cite{tess})}
+	  \label{fig:explode}
+  \end{minipage}\hfill
+  \begin{minipage}{0.45\textwidth}
+	  \centering
+	  \includegraphics[width=1\textwidth]{../img/tetra-tess.png}
+	  \caption{The nearest neighbour graph $\mathrm{NNG}(\x_1)$, forming a tessellation of two tetrahedra and an octahedron.}
+	  \label{fig:tetra-oct}
+  \end{minipage}
+\end{figure}
+
+This polyhedral configuration is well known to tessellate\footnote{ The tessellation is of great importance to many fields and thus is known under many names. In mathematics, it is most commonly called the \textit{tetrahedral-octahedral honeycomb}, or the \textit{alternated cubic honeycomb}. In structural engineering, it is known as the \textit{octet truss}, as named by Buckminster Fuller, or the \textit{isotropic vector matrix}. It is stored as \textit{fcu} in the Reticular Chemistry Structure Resource (\cite{RCSR}). It is also the nearest-neighbor-graph of the face-centered cubic (fcc) crystal in crystallography (\cite{Gabbrielli12}).  } and is depicted in Figures \ref{fig:explode} and \ref{fig:tetra-oct}. The knowledge of $\mathrm{NNG}(\x_1)$ allows us to fully categorize the tetrahedra in $\mathcal D_4(\x_0)$.
 
 \begin{proposition}\label{prop:tetraInTess} $\mathcal D_4(\x_0)$ contains two types of tetrahedra, $T_1$ and $T_2$, with edge lengths
 	$$T_1:(a,a,a,a,a,a) \quad T_2:(a,a,a,a,a,\sqrt 2a). $$
 \end{proposition}
 \begin{proof}
-	From Proposition \ref{prop:nng} we know that $\mathrm{NNG}(\x_1) \subset \mathcal D_2(\x_1)$ which, by Proposition \ref{prop:d2d4}, already gives us a part of the structure of $\mathcal D_4(\x_1)$. 
+	From Proposition \ref{prop:nng} we know that $\mathrm{NNG}(\x_1) \subset \mathcal D_2(\x_1)$ which, by \eqref{eq:d2d4}, already gives us a part of the structure of $\mathcal D_4(\x_1)$. 
 
 We know that $\text{NNG}(\x_1)$ is composed of two regular tetrahedra and one regular octahedron $O$ with all edge lengths equal to $a$. Therefore all that remains to be done is to tetrahedronize the octahedron. By the symmetry of the regular octahedron, all the tetrahedra inside $O$ are the same up to rotation. Each tetrahedron has five out of six edge lengths equal to $a$, therefore we only need to determine the length of the remaining edge. We can take e.g. any four points forming a square with side lengths $a$ to immediately see that the remaining edge length is $\sqrt 2a$.
 
@@ -246,8 +261,8 @@ The bound on circumdiameters of the circumballs and characteristic point weights
 \noindent For the circumdiameter, we derive the following bound.
 \begin{proposition}\label{prop:maxcircum}
 	Let $\eta \in \x$, $\x \in \bar\Gamma^A$. Then 
-	$$\delta(\eta) \leq  2a \frac{2\rho + \sqrt{2 - 32\rho^2 + 64 \rho^4}}{2-32\rho^2},$$
-	where $\delta(\eta) = \mathrm{diam}B(\eta)$.
+	$$\chi(\eta) \leq  2a \frac{2\rho + \sqrt{2 - 32\rho^2 + 64 \rho^4}}{2-32\rho^2},$$
+	where $\chi(\eta) = \mathrm{diam}B(\eta)$.
 \end{proposition}
 \begin{proof}
 	Theorem \ref{thm:Apollonius} in Appendix \ref{sec:boundingdiameter}.
@@ -275,32 +290,32 @@ We first present a general lemma. Recall the definition of $r_\Gamma$ from (U1).
 	$$r_\Gamma < d_{max}.$$
 \end{lemma}
 \begin{proof}
-	Choose $\Lambda\in \mathcal B_0(\Rt)$ and $\x \in \Gamma$. Let $\zeta \in \mathbf N_\Lambda$,  $\eta \in \mathcal E_\Lambda(\zeta \cup \x_{\Lambda^c})$ and denote $\Delta$ the finite horizon of $(\eta,\x)$. From Lemma \ref{lemma:horizEset} we obtain $\Delta\cap\Lambda \neq \emptyset$. Then $\Delta \subset \Lambda + B(0,d_{max})$. If we take $\tilde\x \in \Gamma$ such that $\tilde\x = \x$ on $\partial\Lambda(\x)$ then $\varphi(\eta,\zeta \cup \x_{\Lambda^c}) = \varphi(\eta,\zeta\cup \tilde \x_{\Lambda^c})$ since $\zeta\cup\x_{\Lambda^c}$ and $\zeta\cup\tilde\x_{\Lambda^c}$ differ only on $\Delta^c$.
+	Choose $\Lambda\in \mathcal B_0$ and $\x \in \Gamma$. Let $\zeta \in \mathbf N_\Lambda$,  $\eta \in \mathcal E_\Lambda(\zeta \cup \x_{\Lambda^c})$ and denote $\Delta$ the finite horizon of $(\eta,\x)$. From Lemma \ref{lemma:horizEset} we obtain $\Delta\cap\Lambda \neq \emptyset$. Then $\Delta \subset \Lambda + B(0,d_{max})$. If we take $\tilde\x \in \Gamma$ such that $\tilde\x = \x$ on $\partial\Lambda(\x)$ then $\varphi(\eta,\zeta \cup \x_{\Lambda^c}) = \varphi(\eta,\zeta\cup \tilde \x_{\Lambda^c})$ since $\zeta\cup\x_{\Lambda^c}$ and $\zeta\cup\tilde\x_{\Lambda^c}$ differ only on $\Delta^c$.
 \end{proof}
 
 \noindent We define the following quantities for $\rho<1/4$
-$$\delta_1(\rho) := 2(\sqrt 6/4 + \rho),\quad \delta_2(\rho) := 2 \frac{2\rho + \sqrt{2 - 32\rho^2 + 64 \rho^4}}{2-32\rho^2},$$
-the bounds for the tetrahedra derived in Theorem \ref{thm:Apollonius} in Appendix \ref{sec:boundingdiameter}. For simplicity, we sometimes refer to them as simply $\delta_1,\delta_2$. Since any $\x \in \bar\Gamma^A$ can be seen as a perturbed version of $\x_0$, we will refer to $T_1$ and $T_2$ tetrahedra in $\x$ which correspond to the tetrahedra $T_1,T_2$ from Proposition \ref{prop:tetraInTess}.
+$$\chi_1(\rho) := 2(\sqrt 6/4 + \rho),\quad \chi_2(\rho) := 2 \frac{2\rho + \sqrt{2 - 32\rho^2 + 64 \rho^4}}{2-32\rho^2},$$
+the bounds for the tetrahedra derived in Theorem \ref{thm:Apollonius} in Appendix \ref{sec:boundingdiameter}. For simplicity, we sometimes refer to them as simply $\chi_1,\chi_2$. Since any $\x \in \bar\Gamma^A$ can be seen as a perturbed version of $\x_0$, we will refer to $T_1$ and $T_2$ tetrahedra in $\x$ which correspond to the tetrahedra $T_1,T_2$ from Proposition \ref{prop:tetraInTess}.
 
 \begin{theorem}\label{thm:E1}
 	There exists at least one Gibbs measure for the model $(\mathcal D_4,\varphi_S)$ and every activity 
-	$$z> \frac{3}{4\pi}e^{14 K_0}   (2K_1 \beta e^3/3)^{1/\beta} \frac{(\delta_1(\rho)^\beta + 6\delta_2(\rho)^\beta)^{1/\beta}}{\rho^3}.$$
+	$$z> \frac{3}{4\pi}e^{14 K_0}   (2K_1 \beta e^3/3)^{1/\beta} \frac{(\chi_1(\rho)^\beta + 6\chi_2(\rho)^\beta)^{1/\beta}}{\rho^3}.$$
 \end{theorem}
 \begin{proof}
 \begin{enumerate}[]
-	\item \textbf{(R)} The finite-horizon $\Lambda = \bar B(\eta,\x)$ with $\ell_R = 1, n_R = 0$ and $\delta_R$ arbitrary can be used. This is because it itself contains no points of $\x$ by definition of $\mathcal D$ and acts as the open ball from the definition of the range condition.
+	\item \textbf{(R)} The finite-horizon $\Lambda = \bar B(\eta)$ with $\ell_R = 1, n_R = 0$ and $\chi_R$ arbitrary can be used. This is because it itself contains no points of $\x$ by definition of $\mathcal D$ and acts as the open ball from the definition of the range condition.
 	\item \textbf{(S)} Stability is satisfied because of $\varphi$ is non-negative.
 	\item \textbf{(U)} We choose $M$ and $\Gamma$ as in Section \ref{sec:MGamma}.
 		\begin{enumerate}[(U1)]
 			\item We know from \ref{thm:Apollonius} that there exists $d_{max}>0$ such that $\text{diam}B(\eta)\leq d_{max}$. By Lemma \ref{lemma:U1} $r_\Gamma\leq d_{max}.$
 			\item is trivially satisfied since $n_S < 58$ and $\varphi_S$ is bounded by Proposition \ref{prop:maxcircum}.
 			\item By Remark \ref{r:UA} we want to find $z$ as small as possible such that $z|A|>e^{c_A}.$ We know from Section \ref{sec:combinatorial} that there are at most $8$ $T_1$ and $48$ $T_2$ tetrahedra intersecting $C$, therefore from Theorem \ref{thm:Apollonius} in Appendix \ref{sec:boundingdiameter}
-				$$c_A \leq \frac a4 (8( K_0 + K_1 (a\delta_1)^\beta) + 48( K_0 + K_1 (a\delta_2)^\beta) ).$$
+				$$c_A \leq \frac a4 (8( K_0 + K_1 (a\chi_1)^\beta) + 48( K_0 + K_1 (a\chi_2)^\beta) ).$$
 				This yields the bound
-				\begin{align*}z &> \frac{3} {4\pi\rho^3}e^{2(K_0 + K_1 (a\delta_1)^\beta) + 12(K_0 + K_1(a \delta_2)^\beta)} / a^3  \\
+				\begin{align*}z &> \frac{3} {4\pi\rho^3}e^{2(K_0 + K_1 (a\chi_1)^\beta) + 12(K_0 + K_1(a \chi_2)^\beta)} / a^3  \\
 					&= C_0 e^{C_1 a^\beta} / a^3,  
 				\end{align*}
-				where $C_0 = 3e^{14K_0}/(4\pi \rho^3)$ and $C_1 = 2K_1(\delta_1^\beta + 6 \delta_2^\beta)$.
+				where $C_0 = 3e^{14K_0}/(4\pi \rho^3)$ and $C_1 = 2K_1(\chi_1^\beta + 6 \chi_2^\beta)$.
 
 				We now choose $a$ to minimize the expression above. By optimizing over $a$ we obtain $a=(3/(C_1 \beta))^{1/\beta}$ which yields the bound 
 				$$z> C_0(C_1 \beta e^3/ 3 )^{1/\beta}.$$
@@ -315,12 +330,12 @@ the bounds for the tetrahedra derived in Theorem \ref{thm:Apollonius} in Appendi
 \end{theorem}
 \begin{proof}
 \begin{enumerate}[]
-	\item \textbf{(R)} Again, $\Lambda = \bar B(\eta,\x)$ with $\ell_R = 1, n_R = 0$. Because of the hard-core condition, we can also take $\delta_R = 2\beta$.
+	\item \textbf{(R)} Again, $\Lambda = \bar B(\eta)$ with $\ell_R = 1, n_R = 0$. Because of the hard-core condition, we can also take $\chi_R = 2\beta$.
 	\item \textbf{(S)} Stability is satisfied because of $\varphi$ is non-negative.
 	\item \textbf{(\^U)} We choose $M$ and $\Gamma$ as in Section \ref{sec:MGamma}.
 		\begin{enumerate}[(\^U1)]
-			\item For all $\eta \in \mathcal D_4(\x)$ for $\x\in\Gamma^A$ such that $H_\Lambda(\x)<\infty$ we have $\delta(\eta) < \beta$. This imposes a minimum density of points, since e.g. no ball with diameter $\beta$ can be empty. 
-			\item We have $n_S<56$ and thus the only quantity in question is $\varphi_{HC}$. By Theorem \ref{thm:Apollonius}, we have $\delta(\eta)\leq a\delta_2(\rho)$, thus we only need to choose $a$ and $\rho$ such that $\delta_2(\rho) \leq \beta / a$.
+			\item For all $\eta \in \mathcal D_4(\x)$ for $\x\in\Gamma^A$ such that $H_\Lambda(\x)<\infty$ we have $\chi(\eta) < \beta$. This imposes a minimum density of points, since e.g. no ball with diameter $\beta$ can be empty. 
+			\item We have $n_S<56$ and thus the only quantity in question is $\varphi_{HC}$. By Theorem \ref{thm:Apollonius}, we have $\chi(\eta)\leq a\chi_2(\rho)$, thus we only need to choose $a$ and $\rho$ such that $\chi_2(\rho) \leq \beta / a$.
 			\item $\Pi^z_\Lambda(\Gamma)>0$ by Remark \ref{r:UA}.
 		\end{enumerate}
 \end{enumerate}
@@ -330,13 +345,13 @@ the bounds for the tetrahedra derived in Theorem \ref{thm:Apollonius} in Appendi
 
 \begin{theorem}\label{thm:E3}
 	There exists at least one Gibbs measure for the model $(\mathcal {LD}_4,\varphi_S)$ and every activity 
-	$$z> \frac{3\sqrt 2}{4\pi}e^{14 K_0}   (4K_1 \beta e^{7/2}/7)^{1/\beta} \frac{(\delta_1(\rho)^\beta + 6\delta_2(\rho)^\beta)^{1/\beta}}{\rho^3 \sqrt{1-2\rho}}.$$
+	$$z> \frac{3\sqrt 2}{4\pi}e^{14 K_0}   (4K_1 \beta e^{7/2}/7)^{1/\beta} \frac{(\chi_1(\rho)^\beta + 6\chi_2(\rho)^\beta)^{1/\beta}}{\rho^3 \sqrt{1-2\rho}}.$$
 \end{theorem}
 \begin{proof}
 \begin{enumerate}[]
 	\item \textbf{(R)} Take the horizon set $\Delta = B(p'_\eta, \sqrt{p''_\eta + W})$. $\Delta$ can be decomposed into the sphere $p_\eta$ and $\Delta \setminus p_\eta$, a 3-dimensional annulus with width 
 		$$\sqrt{p''_\eta+W} -\sqrt{p''_\eta}=W/(\sqrt{p''_\eta+W} + \sqrt{p''_\eta}).$$
-		By definition of $\mathcal {LD}$ and Remark \ref{r:horizons}, $p_\eta$  cannot contain any points of $\x$. Although the annulus $\Delta \setminus p_\eta$ does not have any bound on the number of points, its width is bounded by $\sqrt W \geq  W/(\sqrt{p''_\eta+W} + \sqrt{p''_\eta})$. This means that any $x,y\in \Delta$ can be connected by the spheres $B(x,\sqrt W), p_\eta, B(y,\sqrt W)$, yielding the parameters $\ell_R = 3,n_R=0,\delta_R=2\sqrt W$.
+		By definition of $\mathcal {LD}$ and Remark \ref{r:horizons}, $p_\eta$  cannot contain any points of $\x$. Although the annulus $\Delta \setminus p_\eta$ does not have any bound on the number of points, its width is bounded by $\sqrt W \geq  W/(\sqrt{p''_\eta+W} + \sqrt{p''_\eta})$. This means that any $x,y\in \Delta$ can be connected by the spheres $B(x,\sqrt W), p_\eta, B(y,\sqrt W)$, yielding the parameters $\ell_R = 3,n_R=0,\chi_R=2\sqrt W$.
 	\item \textbf{(S)} Stability is satisfied because of $\varphi$ is non-negative.
 	\item \textbf{(U)} We choose $M$ and $\Gamma$ as in Section \ref{sec:MGamma}.
 		\begin{enumerate}[(U1)]
@@ -344,7 +359,7 @@ the bounds for the tetrahedra derived in Theorem \ref{thm:Apollonius} in Appendi
 			\item is trivial since $n_S<56$ and $\varphi_{S}$ is bounded by Proposition \ref{prop:maxcircum}.
 			\item We proceed similarly as in Theorem \ref{thm:E1} and obtain
 				$$z>C_0 e^{C_1 a^\beta} / a^{7/2}$$
-				where $C_0=3 \sqrt 2 e^{14K_0} / (4\pi \rho^3 \sqrt{1-2\rho})$, $C_1 = 2K_1(\delta_1^\beta + 6\delta_2^\beta)$. Optimizing over $a$ we obtain $a=(7/(2C_1\beta))^{1/\beta}$ arriving at the bound
+				where $C_0=3 \sqrt 2 e^{14K_0} / (4\pi \rho^3 \sqrt{1-2\rho})$, $C_1 = 2K_1(\chi_1^\beta + 6\chi_2^\beta)$. Optimizing over $a$ we obtain $a=(7/(2C_1\beta))^{1/\beta}$ arriving at the bound
 				$$z> C_0 (C_1 \beta e^{7/2} / (7/2))^{1/\beta}.$$
 		\end{enumerate}
 \end{enumerate}
@@ -361,7 +376,7 @@ the bounds for the tetrahedra derived in Theorem \ref{thm:Apollonius} in Appendi
 	\item \textbf{(S)} Stability is satisfied because of $\varphi$ is non-negative.
 	\item \textbf{(\^U)} We choose $M$ and $\Gamma$ as in Section \ref{sec:MGamma}.
 		\begin{enumerate}[(U1)]
-			\item The same as in Theorem \ref{thm:E2}. Although the underlying structure is different, the potential still depends on $\delta(\eta)$ and (\^U1) requires the configuration to have a non-infinite energy.
+			\item The same as in Theorem \ref{thm:E2}. Although the underlying structure is different, the potential still depends on $\chi(\eta)$ and (\^U1) requires the configuration to have a non-infinite energy.
 			\item The same as in Theorem \ref{thm:E2}, $n_S<56$ and we choose an appropriate $a$ and $\rho$.
 			\item $\Pi^z_\Lambda(\Gamma)>0$ by Remark \ref{r:UA}.
 		\end{enumerate}
@@ -372,19 +387,21 @@ the bounds for the tetrahedra derived in Theorem \ref{thm:Apollonius} in Appendi
 
 
 Using the same approach and the same pseudo-periodic configurations $\bar\Gamma$, it is easy enough to prove the existence of many different forms of unary hyperedge potentials. In the following, we suggest some alternate hyperedge potentials. 
-\begin{remark}[Other smooth interaction potentials]
+
+
+\begin{remark}[Other smooth interaction potentials]\label{r:otherpotentials}
 	
 	Alternate smooth interaction models could be considered using characteristics of $k$-faces of $\eta$ instead of the circumdiameter. An example is the volume potential $\varphi_{V}$ defined as a unary potential such that for $\eta\in\mathcal E_4(\x), \x \in \bar\Gamma$  we have
 	$$\varphi_{V}(\eta,\x) \leq K_0 + K_1 \mathrm{V}(\eta)^{\beta}$$
 	for some $K_0,K_1 \geq 0, \beta >0$, where $\mathrm{V}(\eta)=|\mathrm{conv}(\eta)|$ is the volume of the tetrahedron $\mathrm{conv}(\eta)$. Volume of a $3-$simplex with positions $\eta'=\{x_0,x_1,x_2,x_3\}\subset \Rt$ can be calculated using the Cayley-Menger determinant (Appendix \ref{A:CM}), but the following expression (\cite{Stein1966}) lends itself better to finding a bound: 
 	$$V(\eta)=\left| \frac 1{n!} \mathrm{det}(x_1-x_0,x_2-x_0,x_3-x_0) \right|,$$
-	where the determinant is of a $3 \times 3$ matrix with column vectors $x_1-x_0,x_2-x_0,x_3-x_0$. This quantity can be bounded using Hadamard's inequality (\cite{Hadamard1893})
-	$$\mathrm{det}(x_1-x_0,x_2-x_0,x_3-x_0) \leq \prod^3_{i=1} \|x_i - x_0\| $$
+	where the determinant is of a $3 \times 3$ matrix with column vectors $x_1-x_0,x_2-x_0,x_3-x_0$. This quantity can be bounded using Hadamard's inequality (\cite{Hadamard1893}),
+	$$\mathrm{det}(x_1-x_0,x_2-x_0,x_3-x_0) \leq \prod^3_{i=1} \|x_i - x_0\| .$$
 	Notice that we only need the length of three edges of the tetrahedron. Thanks to this, tetrahedra of type T1 and T2 both can be bounded by
 	$$\varphi_V(\eta,\x) \leq K_0 + K_1 \left(\tfrac 16 a(1+2\rho)^3\right)^{\beta}, \quad \eta\in\mathcal E_4(\x), \x\in \bar \Gamma.$$
 	The bound for the intensity $z$ in the model $(\mathcal {LD}_4, \varphi_V)$ then becomes
 	\begin{equation}\label{eq:volbound}z> \frac{3\sqrt 2}{4\pi}e^{14 K_0}   (4K_1 \beta e^{7/2})^{1/\beta} \frac{\frac 16 (1+2\rho)^3}{\rho^3 \sqrt{1-2\rho}}.\end{equation}
-	Note that same approach could be used for e.g. surface area of the tetrahedron, where we would simply replace $\tfrac 16 (1+2\rho)^3$ for $\tfrac 42 (1+2\rho)^2$ in \eqref{eq:volbound}.  \newline
+	Note that the same approach could be used for e.g. surface area of the tetrahedron, where we would simply replace $\tfrac 16 (1+2\rho)^3$ for $\tfrac 42 (1+2\rho)^2$ in \eqref{eq:volbound}.  \newline
 
 \end{remark}
 
@@ -395,7 +412,7 @@ Using the same approach and the same pseudo-periodic configurations $\bar\Gamma$
 
 Note also that while we have used the sets $\mathcal D_4$ and $\mathcal {LD}_4$ for the definition of our models, it would be just as possible to consider the sets $\mathcal D_2$, $\mathcal D_3$, or $\mathcal {LD}_2, \mathcal {LD}_3$, or even combinations of them.
 
-\begin{remark}\label{r:zMathematica}[Concrete values of $z$]
+\begin{remark}[Concrete values of $z$]\label{r:zMathematica}
 	For the smooth-interaction models, we have only proved the existence for any $z$ exceeding some bound. The actual values of the bound depend strongly on the choice of the parameters $K_0,K_1,\beta$. The following table gives a few examples of the bounds, where $\rho$ is always chosen in order to minimize the bound.
 	\begin{center}
 	\begin{tabular}{ l l l l l }
@@ -411,14 +428,14 @@ Note also that while we have used the sets $\mathcal D_4$ and $\mathcal {LD}_4$ 
 	\end{center}
 	In general, the bound is extremely sensitive to values of $K_0$ which in practice means that it has to be set to $0$. For $\beta \leq 1$, the bound is also very sensitive to values of $K_1$, but increasing $\beta$ then quickly weakens this dependence. The values for $\varphi_S$ are overall quite high, choosing e.g. surface area, or even better the volume yields much lower bounds.
 
-	A Mathematica script used for exploring the bounds for different settings of the parameters $K_0,K_1,\beta$ and $\rho$ can be found in the file \texttt{zBounds.nb}.
+	A Mathematica script used for exploring the bounds for different settings of the parameters $K_0,K_1,\beta$ and $\rho$ can be found in the file \texttt{zBounds.nb} (see Appendix \ref{appendix:implementation}).
 \end{remark}
 
 Given the high requirements on $z$ in most models, we have decided to only work with hard-core models in the next chapters. This is in line with \cite{DereudreLavancier2011}, who also only considered hard-core models. Note that while this might seem as a limitation, in practice we can always introduce a hard-core parameter that will not limit our model, but ensure that it exists for all $z>0$. These bounds therefore have a theoretical, rather than practical value.
 
 
 \begin{remark}[Improving the bounds]
-	There is a number of steps one could possibly take to improve the bounds for $z$. All of the presented bounds for $c_A$ are not minimal. For example, not all tetrahedra in any given tetrahedrization will attain the bounds $\delta_1$ and $\delta_2$. Furthermore, \eqref{eq:choiceA} is perhaps unnecessarily conservative --- no problems may arise if we allow the balls to overlap to a certain degree. Finally, it may be possible to prove that \textbf{(U3)} requires only $\Pi$-almost all configurations in the supremum in the term $c_A$, which would result in a decrease in number terms in the sum, see end of Section \ref{sec:combinatorial}.
+	There is a number of steps one could possibly take to improve the bounds for $z$. Any of the presented bounds for $c_A$ are not minimal. For example, not all tetrahedra in any given tetrahedrization will attain the bounds $\chi_1$ and $\chi_2$. Furthermore, \eqref{eq:choiceA} is perhaps unnecessarily conservative --- no problems may arise if we allow the balls to overlap to a certain degree. Finally, it may be possible to prove that \textbf{(U3)} requires only $\Pi$-almost all configurations in the supremum in the term $c_A$, which would result in a decrease in number terms in the sum, see end of Section \ref{sec:combinatorial}.
 
 	Of course, one may also be able to us an entirely different approach than the one from \cite{DDG12} to obtain lower bounds.
 \end{remark}

@@ -51,6 +51,7 @@
 \usepackage[usenames, dvipsnames]{xcolor}  % typesetting in color
 
 
+
 % Packages added by Dahn
 \usepackage[colorinlistoftodos,prependcaption,textsize=tiny]{todonotes}
 \usepackage{xargs}
@@ -61,6 +62,17 @@
 \usepackage{booktabs}
 \newcommand{\ra}[1]{\renewcommand{\arraystretch}{#1}} % For line stretching in booktabs
 \usepackage{lscape}
+\usepackage[overlay,absolute]{textpos}
+\usepackage{pgf,tikz,pgfplots}
+\pgfplotsset{compat=1.15}
+\usetikzlibrary{arrows}
+
+\newcommand\PlaceText[3]{%
+\begin{textblock*}{10in}(#1,#2)  %% change width of box from 10in as you wish
+#3
+\end{textblock*}
+}%
+\textblockorigin{-5mm}{0mm} 
 
 % Dahn commands
 \newcommand{\Rd}{{\mathbb R^d}}
@@ -138,20 +150,19 @@
 % An optional dedication: you can thank whomever you wish (your supervisor,
 % consultant, a person who lent the software, etc.)
 \def\Dedication{%
+I would like to thank my supervisor prof. RNDr. Viktor Bene\v{s}, DrSc. for all the time and effort he put into helping me on the often thorny path of writing this thesis. I am also grateful for all the opportunities he provided me with to present and discuss my work on seminars and conferences.
 
+If there is one other person without whom this thesis would have been much more difficult to write, it is my partner, Adela Nguy$\tilde{\hat{e}}$n. I am grateful for having her by my side throughout the whole process of writing this thesis and I could not imagine anyone do a better job. She has far surpassed the official requirements for the partner of a mathematician, that is to be emotionally supportive and understanding, especially when waking up in the middle of the night to find the said mathematician working, again. She has spent countless hours listening to me talk about circles and tetrahedrons and, on several occasions, picked up a pen and paper and actively helped me solve the problems. Thank you for everything.
 
-% we can never justify abuse, even of notation
-%  
-% Benes
-% A?s
-% Nohic
-% Dereudre
-% Volker
-% Matej
-% SE
-% Colin
-% Family
+For helping me with a difficult programming language I knew nothing about, as well as for general advice on programming, I thank my friend and an excellent programmer Jan Noha.
+
+I thank Colin Beet for helping me improve the linguistic aspects of this thesis. He would like the reader to know that, contrary to what Remark \ref{r:abuse} claims, abuse of any kind can never be justified.
+
+I thank my family for supporting my academic endeavours even though they still have no idea what it is I am actually doing. 
+
+Finally, I'd like to thank the following people who have provided valuable insights and comments: Prof. David Dereudre, Jeremy Tan, Mat\v{e}j Kov\'{a}\v{r}, Prof. Volker Schmidt, Prof. David Eppstein.
 }
+
 
 % Abstract (recommended length around 80-200 words; this is not a copy of your thesis assignment!)
 \def\Abstract{%
@@ -177,53 +188,37 @@
 \begin{document}
 \include{title}
 
+
 %%% A page with automatically generated table of contents of the master thesis
 \tableofcontents
 
-\unsure[inline]{Possibly only refer to sections, not subsections?}
 
 
 %%%% Glossary
 \chapwithtoc{Glossary of terms and abbreviations}
 \subsubsection{Mathematical operators and notation}
+The following list only serves as a reference. Most of the following terms are defined more precisely when they are being used in the text.
+
 \begin{tabular}{ l l }
+	$\mathbb N_0$ & $\mathbb N \cup \{0\}$ \\
+	$B(x,r)$ & Open ball with center $x$ and radius $r$ \\
 	$\mathrm{diam}(A)$ & Diameter of the set $A$; $sup_{x,y\in A}\|x-y\|$ \\
 	$\mathrm{card}(A)$ & Cardinality of the set $A$ \\
+	$\mathrm{conv}(A)$ & Convex hull of the set $A$ \\
 	$\lambda(A), |A|$ & Lebesgue measure of the set A \\
-	$B(x,r)$ & Open ball with center $x$ and radius $r$ \\
-	$\mathrm{pr}_{\Rt}(\cdot)$ & Projection to $\Rt$ \\
-	$\angle pqr$ & Angle formed by $pqr$ \\
-	$\propto$ & Proportional to; equal to up to a constant \\
-	$\delta_x(A)$ & Dirac delta function at $x$. Equals to 1 if $x\in A$, 0 otherwise.\\ 
+	$\partial$ & Topological boundary of a set \\
 	$A+B$ & Minkowski sum of the sets $A$ and $B$; the set $\{a+b: a\in A, b\in B\}$. \\
+	$\mathrm{pr}_{\Rt}(\cdot)$ & Projection from $\mathbb R^4$ to $\Rt$ \\
+	$\angle pqr$ & Angle formed by $pqr$ \\
+	$\propto$ & Proportional to \\
+	$\delta_x(A)$ & Dirac delta function at $x$. Equals to 1 if $x\in A$, 0 otherwise.\\ 
 	$\mathrm{det} M$ & Determinant of the matrix $M$ \\
+	$d(p,x)$ & Power distance of the point $x$ and weighted point $p$ \\
+	$\rho(p,q)$ & Power product of two weighted points $p$ and $q$ \\
+	$\chi(\eta)$ & For $\mathrm{card}(\eta)=4$, circumdiameter of the tetrahedron $\mathrm{conv}(\eta)$.\\
 \end{tabular}
 
 
-
-
-\subsubsection{Glossary of geometric terms}
-Let $\x = \{x_1,\dots, x_k\} \subset \Rt$.
-
-\hspace*{-0.8cm}
-\begin{tabular}{ l l }
-	Sphere & The boundary of a ball. \\
-	Affine hull of $\x$ & Smallest affine set containing $\x$. \\
-	Affinely independent & $\x$ is affinely independent if its affine hull is $k$-dimensional.\\ 
-	Cospherical & $\x$ is cospherical if there exists sphere $S$ such that $\x \subset S$. \\ 
-	Coplanar & $\x$ is coplanar if its afine hull is $3$-dimensional. \\
-	Hyperplane  & Set of the form $\{y\in \Rt: \langle y, x \rangle = a\}, x\in \Rt, a\in \mathbb R$.\\
-	Halfspace & Set of the form $\{y\in \Rt: \langle y, x \rangle \geq a\}$, or of the form \\
-	& $\{y\in \Rt: \langle y, x \rangle \leq a\}, x\in \Rt, a\in \mathbb R$. \\ 
-	k-face & $k-$dimensional face; vertex ($k=0$), \\
-	& edge ($k=1$), face ($k=2$), the solid itself ($k=3$).\\
-	Tangent spheres& Spheres which intersect at precisely one point. Internally \\
-	& if one sphere contains the other, externally otherwise. \\
-	Parallelepiped & A solid with six faces, each a parallelogram. \\
-	Volume of $A$  & $|A|$; Lebesgue measure of $A$. \\
-Point of tangency  \\
-Segment notation & \\
-\end{tabular}
 
 
 \subsubsection{Abbreviations}

@@ -96,7 +96,7 @@ The question, however, is how to build such a Markov chain. The next section ans
 
 \subsection{Birth-Death-Move Metropolis-Hastings algorithm}
 In the last section we outlined how Markov chains may be used to sample from a distribution in general. Imagine now that we wish to sample from a finite point process with the unnormalized density $f$ with respect to $\Pi_\Lambda$. In this section we introduce a variation of the Metropolis-Hastings algorithm for points processes with a density, the algorithm used to construct a Markov chain with the required properties. 
-
+\unsure[inline]{Is it not a problem that these are marked sets?}
 We first describe the algorithm in general, adapted from \cite{MollerWaagepetersen2003}.  \newline
 \noindent Let $\Omega\subset \mathbf N_f$ be the state space. A natural choice is 
 $$\Omega=\{\gamma \in \mathbf N_f: f(\gamma)>0 \} = \mathbf N_f \cap \mathbf N_\infty.$$
@@ -181,25 +181,26 @@ Condition (i) ensures that the chain can remain in $\emptyset$. Condition (ii) e
 
 
 \section{Simulating Gibbs-Laguerre-Delaunay tetrahedrizations} 
-\subsection{Definition of the models}
-Our goal is to simulate examples of both smooth-interaction and hardcore-interaction potentials defined in Section \ref{sec:Existence} on $\mathcal D$ and $\mathcal {LD}$ models. To that end, we choose a particular parametric form of potentials depending on the parameters $\theta$ and $\alpha$.
+In this section, we present the details of the MCMC simulation in our setting.
+\subsection{Definition of the model}
+Our goal is to simulate a hardcore-interaction potentials defined in Section \ref{sec:Existence} on $\mathcal D$ and $\mathcal {LD}$ models. To that end, we choose a particular parametric form of potentials depending on the parameters $\theta$ and $\alpha$.
 
 \begin{align}\label{modelHC}
 &\varphi^{\theta,\alpha}_{HC}(\eta,\x) = 
 \left\{
     \begin{array}{ll}
-        \infty & \mbox{if } \delta(\eta)> \alpha, \\
+        \infty & \mbox{if } \chi(\eta)> \alpha, \\
         \theta \mathrm{Sur}(\eta) & \mbox{otherwise, }
     \end{array}
 \right. \\
-&\varphi^{\theta}_{S}(\eta,\x) =  \theta \mathrm{Sur}(\eta) 
+&\varphi^{\theta}_{S}(\eta,\x) =  \theta \mathrm{Sur}(\eta), 
 \end{align}
-where $\mathrm{Sur}(\eta)$ is the surface area of $\mathrm{conv}(\eta)$, $\alpha>0$, $\theta \in \mathbb R$. We then consider the models $(\mathcal D_4,\varphi^{\theta,\alpha}_{HC})$, $(\mathcal D_4,\varphi^{\theta}_{S})$, $(\mathcal {LD}_4,\varphi^{\theta,\alpha}_{HC})$ and $(\mathcal {LD}_4,\varphi^{\theta}_{S})$.
+where $\mathrm{Sur}(\eta)$ is the surface area of $\mathrm{conv}(\eta)$, $\alpha>0$, $\theta \in \mathbb R$. We then consider the models $(\mathcal D_4,\varphi^{\theta,\alpha}_{HC})$, $(\mathcal D_4,\varphi^{\theta}_{S})$, $(\mathcal {LD}_4,\varphi^{\theta,\alpha}_{HC})$ and $(\mathcal {LD}_4,\varphi^{\theta}_{S})$. We note that here $\varphi_S^{\theta}$ has the form suggested on Remark \ref{r:otherpotentials}, that is we are using $\mathrm{Sur}$ instead of the circumdiameter.
 
 
 
 \subsection{Simulation algorithm}
-We now present the variations of Algorithm A for our setting. The simulation window will be taken to be $[0,1]^3$ and we let $\Lambda \in \mathcal B_0(\Rt)$ be such that $[0,1]^3 \subset \Lambda$. All simulation takes place on $[0,1]^3$ and $\Lambda \setminus [0,1]^3$ contains the outside configuration, the boundary condition. 
+We now present the variations of Algorithm A for our setting. The simulation window will be taken to be $[0,1]^3$ and we let $\Lambda \in \mathcal B_0$ be such that $[0,1]^3 \subset \Lambda$. All simulation takes place on $[0,1]^3$ and $\Lambda \setminus [0,1]^3$ contains the outside configuration, the boundary condition. 
 
 The first algorithm simulates the Delaunay tetrahedrization. In the description, all unmarked points formally represent marked points with marks set to $0$. The state space thus is
 $$\Omega = \{\gamma \in \mathbf N_f: f(\gamma)>0, \gamma \subset \Lambda\times \{0\}\},$$
@@ -244,7 +245,8 @@ the set of permissible configurations with zero marks.
 
 The second algorithm is for the simulation of the Laguerre tetrahedrization. The algorithm functions in the same way with one significant difference. In Section \ref{sec:redundant} we introduced the notion of redundant points. It would be inconvenient to have a newly added point render other points redundant and vice versa. To prevent that, we define the set of point configurations producing Laguerre-Delaunay hypergraph structures with no redundant points,
 $$\mathbf N_{nr} = \{ \gamma \in \mathbf N_{lf}: \mathcal {LD}(\gamma) \text{ does not contain redundant points }\}.$$ 
-Note that $\mathbf N_{nr}$ is \unsure{check this} measurable in $(\mathbf N_{lf}, \mathcal N_{lf})$ due to measurability of the hypergraph structures.  Using this set, we set the state space of the chain to
+Using this set, we set the state space of the chain to
+\unsure[inline]{Note that $\mathbf N_{nr}$ is  measurable in $(\mathbf N_{lf}, \mathcal N_{lf})$ due to measurability of the hypergraph structures.}  
 $$\Omega = \mathbf N_f \cap \mathbf N_\infty \cap \mathbf N_{nr}.$$
 We further denote the set 
 $$A_\gamma = \{ x \in \Lambda \times S: \gamma\cup\{x\} \in N_{nr}\},$$
@@ -302,7 +304,7 @@ Recall that the mark space $S=[0,W]$ limits the maximum weight. It is worth noti
 
 
 \subsection{Simplified form of proposal densities}
-The Hastings ratios require us to calculate a ratio of densities $f$ both containing the energy function. Such calculation would be lengthy and would render the whole approach unfeasible. However, here again the locality of the tetrahedrization allows us to express the Hastings ratios with only those tetrahedra which are affected by the added, removed, or moved point. If we recall Remark \ref{r:addremove}, we obtain the following simplifications for the ratios in Algorithm A-$\mathcal {LD}$.
+The Hastings ratios require us to calculate a ratio of densities $f$ both containing the energy function. Such calculation would be lengthy and would render the whole approach unfeasible. However, here again the locality of the tetrahedrization allows us to express the Hastings ratios with only those tetrahedra which are affected by the added, removed, or moved point. If we recall Remark \ref{r:addremove}, we obtain the following simplifications for the ratios in Algorithm A-$\mathcal {LD}$. In the following, let $\varphi(\eta,\x)$ denote either of the potentials $\varphi_S^{\theta}$ and $\varphi_{HC}^(\theta,\alpha)$.
 
 The ratio of densities in birth step \eqref{birth} then becomes:
 \begin{align*}
@@ -330,7 +332,7 @@ These expressions simplify the energy calculation immensely. Whereas calculating
 We have presented the simplified ratios for Algorithm A-$\mathcal {LD}$. The case for Algorithm A-$\mathcal D$ is analogous, see Remark \ref{r:addremove}.
 
 \subsection{Practical implementation}\label{sec:practical}
-All simulations were done in C++ using CGAL \cite{cgal},\cite{cgal:3d-triang}\todoo{Definitely sell this more later}. More details can be found in Appendix \ref{appendix:implementation}.
+All simulations were written in C++. More details on the implementation can be found in Appendix \ref{appendix:implementation}.
 \subsubsection{Initial configuration}
 In~\cite{DereudreLavancier2011}, three options for the initial configuration are suggested: the empty configuration, a specific fixed outside configuration, and periodic configuration.
 We decided against using the periodic configuration since the CGAL implementation of 3D periodic triangulations~\cite{cgal:3d-period} has a much longer running time than in the non-periodic case. 
@@ -340,11 +342,10 @@ However, the method chosen was to fix a regular grid of points in and out of $\L
 
 
 \subsection{Convergence of the algorithm}\label{sec:convergence}
-By Propositions \ref{prop:MC1} and \ref{prop:MC2}, the convergence of Algorithms \textbf{A-}$\mathcal D$ and \textbf{A-}$\mathcal {LD}$ requires the generated Markov chain to be irreducible, aperiodic, and reversible with respect to $f$\todoo{Reversible implies Invariant should be clearer here}. Reversibility is given by point $1$ in Proposition \ref{prop:algorithmconverges}. Aperiodicity is satisfied since the chain can stay in any state with non-zero probability. It only remains to verify the irreducibility.
+By Propositions \ref{prop:MC1} and \ref{prop:MC2}, the convergence of Algorithms \textbf{A-}$\mathcal D$ and \textbf{A-}$\mathcal {LD}$ requires the generated Markov chain to be irreducible, aperiodic, and to have an invariant distribution given by $f$. Reversibility (and thus the invariant distribution property) is given by point $1$ in Proposition \ref{prop:algorithmconverges}. Aperiodicity is satisfied since the chain can stay in any state with non-zero probability. It only remains to verify the irreducibility.
 
-For irreducibility, all that remains is to prove \eqref{eq:irreducibility}. This assumption is trivially satisfied in the models $(\mathcal D_4,\varphi_S)$ and $(\mathcal {LD}_4,\varphi_S)$. However, for the hard-core interaction models, this assumption is in general not satisfied, as the empty configuration does not even have to be in the state space, as it might not be permissible. In order to prove the irreducibility, \cite{DereudreLavancier2011} utilized an algorithmic procedure which connected any two configurations $\gamma,\bar\gamma \in \mathbf N_\infty$ by a finite series of specific steps of point addition and removal, all of which produce permissible configurations.
+For irreducibility, all that remains is to prove \eqref{eq:irreducibility}. This assumption is trivially satisfied in the models $(\mathcal D_4,\varphi^{\theta}_S)$ and $(\mathcal {LD}_4,\varphi^{\theta}_S)$. However, for the hard-core interaction models, this assumption is in general not satisfied, as the empty configuration does not even have to be in the state space, as it might not be permissible. In order to prove the irreducibility, \cite{DereudreLavancier2011} utilized an algorithmic procedure which connected any two configurations $\gamma,\bar\gamma \in \mathbf N_\infty$ by a finite series of specific steps of point addition and removal, all of which produce permissible configurations.
 
-\todoo[inline]{Possibly mention second hard-core parameter, which might be necessary (which wouldn't be a problem for us)}
 Although it seems very plausible that a similar approach could be taken in our case, we have not succeeded in extending this result to our case. In $\mathbb R^2$, the geometric arguments rely on simple relationships between the lengths of sides of the triangles and their circumradii which no longer work in $\Rt$. Furthermore, the extension to the Laguerre-Delaunay case adds an additional constraint as the configurations now must not contain any redundant points.
 
 If the chain is indeed not irreducible, then the algorithms converge to a restriction of the limiting distribution to some connected component of the state space. The limiting distribution thus depends on the initial condition and never equals to the desired distribution.
