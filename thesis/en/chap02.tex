@@ -66,7 +66,7 @@ Note that this definition requires the realizations of the projection of the mar
 The most important example of a point process is the Poisson point process which formalizes the notion of a complete spatial randomness. Before we define the Poisson point process, we first define a process closely related it.
 
 \begin{definition} Let $\nu$ be a measure on $E$, $B \in \mathcal B_0(E)$ such that $0<\nu(B)<\infty$. For $n\in \mathbb N$ let $X_1,\dots,X_n$ be independent and $\nu$-uniformly distributed random variables on $B$, that is
-	$$P(X_i \in A) = \frac{\nu(A)}{\nu(B)},\; A\in\mathcal B(E), A \subset B$$
+	$$P(X_i \in A) = \frac{\nu(A)}{\nu(B)},\; A\in\mathcal B(E), A \subset B.$$
 Then we define the \textit{binomial point process} of $n$ points in $B$ according to $\nu$ by 
 $$\Phi(n) = \sum^{n}_{i=1}  \delta_{X_i}.$$
 We use the convention $\sum^0_{i=1} \delta_{X_i} = \varnothing$, where $\varnothing(E)=0$ is the \textit{empty point process}.
@@ -78,14 +78,14 @@ However, similarly to Chapter 1, we only specify the marks where needed, as this
 \begin{proposition}\label{bincalc}
 	Let $\Phi_n = \sum^{n}_{i=1}  \delta_{X_i}$ be a binomial point process on $B\in\mathcal B_0(E)$ according to the measure $\nu$. Then for a non-negative measurable function $f$ and $k = 1,\dots, n$ we have
 \begin{equation}\label{binom}
-	Ef(X_1,\dots, X_k) = \frac 1{\nu(B)^k} \int_B \cdots \int_B f(x_1,\dots, x_k) \nu(dx_1) \cdots \nu(dx_k)
+	Ef(X_1,\dots, X_k) = \frac 1{\nu(B)^k} \int_B \cdots \int_B f(x_1,\dots, x_k) \nu(dx_1) \cdots \nu(dx_k).
 \end{equation}
 \end{proposition}
 \begin{proof}
 From the definition of $\Phi_n$, we have for Borel $A_i \subset B, i=1,\dots,k$ that
 \begin{align*}
 P(X_1 \in A_1, \dots, X_k \in A_k) &= P(X_1\in A_1)\cdots P(X_k\in A_k) \\ 
-& = \frac 1{\nu(B)^k} \int_B \cdots \int_B 1_{A_1}(x_1) \cdots 1_{A_k}(x_k) \nu(dx_1) \cdots \nu(dx_k) \\
+& = \frac 1{\nu(B)^k} \int_B \cdots \int_B 1_{A_1}(x_1) \cdots 1_{A_k}(x_k) \nu(dx_1) \cdots \nu(dx_k). \\
 \end{align*}
 That is \eqref{binom} for $f(x_1,\dots,x_k)=1_{A_1}(x_1)\dots 1_{A_k}(x_k)$. By a standard argument, we first extend this to a general set $C \in \mathcal B^k(E), C\subset B^k$ using the Dynkin system 
 $$\{C \in \mathcal B^k(E): E 1_C (x_1,\dots,x_k) = \int \cdots \int 1_C(x_1,\dots, x_k) dx_1 \cdots dx_k \}$$
@@ -134,13 +134,13 @@ In this chapter, we limit ourselves entirely to the case $E=\Rt \times S$. At th
 
 \begin{definition}
 We say that a point process $\Psi$ on $\Rt \times S$ \textit{has the density $p$} with respect to the Poisson process if its distribution is absolutely continuous w.r.t. $\Pi_\Lambda$ with density function $p$. That is there exists a measurable function $p: \mathbf N_\Lambda \to \mathbb R^+$ such that $\int p(\gamma) \Pi_\Lambda (\gamma)=1$ and
-$$P(\Psi \in \Gamma) = \int_\Gamma p(\gamma) \Pi_\Lambda(d\gamma), \; \Gamma \in \mathcal N_{\Lambda}$$
+$$P(\Psi \in \Gamma) = \int_\Gamma p(\gamma) \Pi_\Lambda(d\gamma), \; \Gamma \in \mathcal N_{\Lambda}.$$
 \end{definition}
 
 \todoo[inline]{Make the calculations clearer, they're a bit scattered now}
 Notice that using the calculations in Proposition \ref{bincalc} and \eqref{eq:poiscalc} we have
 $$
-P(\Psi \in \Gamma) = \sum^\infty_{k=0} \frac{1}{k!} e^{-|\Lambda|} \int_{\Lambda\times S} \cdots \int_{\Lambda\times S} 1_{\Gamma} \left(\sum^k_{i=1} \delta_{X_i}\right) p\left(\sum^k_{i=1} \delta_{X_i}\right) \tau(dx_1) \dots \tau(dx_k)
+P(\Psi \in \Gamma) = \sum^\infty_{k=0} \frac{1}{k!} e^{-|\Lambda|} \int_{\Lambda\times S} \cdots \int_{\Lambda\times S} 1_{\Gamma} \left(\sum^k_{i=1} \delta_{X_i}\right) p\left(\sum^k_{i=1} \delta_{X_i}\right) \tau(dx_1) \dots \tau(dx_k). 
 $$
 
 	The equation above is a special case of 
@@ -149,13 +149,13 @@ for $\Pi_\Lambda$-measurable function $h$, where $\Phi \sim \Pi_\Lambda$.
 
 An example of a point process with a density, albeit uninteresting, is the Poisson process with intensity $z$, as the next proposition shows.\newline
 Denote the \textit{counting function} for $\Delta \in \mathcal B_0$ and $\gamma \in \mathbf N_{lf}$:
-$$N_\Delta(\gamma) = \gamma(\Delta \times S)$$ 
+$$N_\Delta(\gamma) = \gamma(\Delta \times S).$$ 
 
 \begin{proposition}\label{prop:poisabscont} $\Pi_\Lambda^z \ll \Pi_\Lambda$ with density $p(\gamma)=z^{N_\Lambda(\gamma)} \exp(|\Lambda|(1-z))$, $\gamma \in \mathbf N_{\Lambda}$.
 \end{proposition}
 \begin{proof}
 	Denote $\Phi \sim \Pi_\Lambda$, we have for $\Gamma\in \mathcal N_{f}$, using Proposition \ref{bincalc} and \eqref{eq:poiscalc}
-	$$\Pi^z_\Lambda(\Gamma) = E(1_\Gamma(\Phi)  z^{|\Phi|} e^{|\Lambda|} e^{-z|\Lambda|}) $$
+	$$\Pi^z_\Lambda(\Gamma) = E(1_\Gamma(\Phi)  z^{|\Phi|} e^{|\Lambda|} e^{-z|\Lambda|}) .$$
 \end{proof}
 
 
@@ -211,7 +211,7 @@ Before we proceed further, we must state one technical lemma.
 
 \begin{lemma}\label{lemma:DL07}
 	Let $\Delta,\Lambda \in \mathcal B_0$ such that $\Delta \subset \Lambda$. There exists a measurable function $\psi_{\Delta,\Lambda}:\mathbf N_{lf}\to \mathbb R\cup\{+\infty\}$ such that
-	$$\forall \gamma \in \mathbf N_{lf},\quad H_\Lambda(\gamma) = H_\Delta(\gamma) + \psi_{\Delta,\Lambda}(\gamma_{\Delta^c})$$
+	$$\forall \gamma \in \mathbf N_{lf},\quad H_\Lambda(\gamma) = H_\Delta(\gamma) + \psi_{\Delta,\Lambda}(\gamma_{\Delta^c}).$$
 \end{lemma}
 \begin{proof}
 	To find such function, we only need to realize that
@@ -303,7 +303,7 @@ the set of all permissible configurations.
 
 \begin{definition}\label{def:removable}
 	Let $\gamma \in \mathbf N_\infty$. We say $x\in\gamma$ is \textit{removable} if 
-	$$\text{there exist } \Lambda \in \mathcal B \text{ such that } x\in\Lambda \text{ and } H_\Lambda(\gamma - \delta_x)<\infty$$
+	$$\text{there exist } \Lambda \in \mathcal B \text{ such that } x\in\Lambda \text{ and } H_\Lambda(\gamma - \delta_x)<\infty.$$
 \end{definition}
 
 

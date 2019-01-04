@@ -14,6 +14,12 @@
 % \openright makes the following text appear on a right-hand page
 \let\openright=\clearpage
 
+\setlength{\emergencystretch}{10cm}
+\pretolerance=10000
+\tolerance=10000
+\hfuzz=5000pt
+\vfuzz=5000pt 
+
 %% Settings for two-sided (duplex) printing
 % \documentclass[12pt,a4paper,twoside,openright]{report}
 % \setlength\textwidth{145mm}
@@ -53,7 +59,7 @@
 
 
 % Packages added by Dahn
-\usepackage[colorinlistoftodos,prependcaption,textsize=tiny]{todonotes}
+\usepackage[colorinlistoftodos,prependcaption,textsize=tiny,disable]{todonotes} % disable
 \usepackage{xargs}
 \usepackage{bbm}	% For lowercase blackboard bold
 \usepackage{multicol}  	% ultiple columns
@@ -66,6 +72,7 @@
 \usepackage{pgf,tikz,pgfplots}
 \pgfplotsset{compat=1.15}
 \usetikzlibrary{arrows}
+\usepackage{breakcites}
 
 \newcommand\PlaceText[3]{%
 \begin{textblock*}{10in}(#1,#2)  %% change width of box from 10in as you wish
@@ -145,14 +152,13 @@
 
 % Study programme and specialization
 \def\StudyProgramme{Mathematics}
-\def\StudyBranch{Probability, mathematical statistics and econometrics}
 
 % An optional dedication: you can thank whomever you wish (your supervisor,
 % consultant, a person who lent the software, etc.)
 \def\Dedication{%
 I would like to thank my supervisor prof. RNDr. Viktor Bene\v{s}, DrSc. for all the time and effort he put into helping me on the often thorny path of writing this thesis. I am also grateful for all the opportunities he provided me with to present and discuss my work on seminars and conferences.
 
-If there is one other person without whom this thesis would have been much more difficult to write, it is my partner, Adela Nguy$\tilde{\hat{e}}$n. I am grateful for having her by my side throughout the whole process of writing this thesis and I could not imagine anyone do a better job. She has far surpassed the official requirements for the partner of a mathematician, that is to be emotionally supportive and understanding, especially when waking up in the middle of the night to find the said mathematician working, again. She has spent countless hours listening to me talk about circles and tetrahedrons and, on several occasions, picked up a pen and paper and actively helped me solve the problems. Thank you for everything.
+If there is one other person without whom this thesis would have been much more difficult to write, it is my partner, Adela Nguy$\tilde{\hat{e}}$n. I am grateful for having her by my side throughout the whole process of writing this thesis. She has far surpassed the official requirements for the partner of a mathematician, that is to be emotionally supportive and understanding, especially when waking up in the middle of the night to find the said mathematician working, again. She has spent countless hours listening to me talk about circles and tetrahedrons and, on several occasions, picked up a pen and paper and actively helped me solve the problems. Thank you for everything.
 
 For helping me with a difficult programming language I knew nothing about, as well as for general advice on programming, I thank my friend and an excellent programmer Jan Noha.
 
@@ -166,8 +172,8 @@ Finally, I'd like to thank the following people who have provided valuable insig
 
 % Abstract (recommended length around 80-200 words; this is not a copy of your thesis assignment!)
 \def\Abstract{%
-	The past few years have seen advances in modelling of polycrystalline materials using parametric tessellation models from stochastic geometry. A promising class of tessellation, the Gibbs-type tessellation, allows the user to specify a great variety of properties through the energy function. 
-	This text focuses solely on tetrahedrizations, a three-dimensional tessellation composed of tetrahedra. The existing results for two-dimensional Delaunay triangulations are extended to the case of three-dimensional Laguerre tetrahedrization. We provide a proof of existence, a \texttt{C++} implementation of the MCMC simulation and estimation of the models parameters through maximum pseudolikelihood.
+	The past few years have seen advances in modelling of polycrystalline materials using parametric tessellation models from stochastic geometry. A promising class of tessellations, the Gibbs-type tessellation, allows the user to specify a great variety of properties through the energy function. 
+	This text focuses solely on Gibbs-type tetrahedrizations, a three-dimensional tessellation composed of tetrahedra. The existing results for two-dimensional Delaunay triangulations are extended to the case of three-dimensional Laguerre tetrahedrization. We provide a proof of existence, a \texttt{C++} implementation of the MCMC simulation and estimation of the models parameters through maximum pseudolikelihood.
 }
 
 % 3 to 5 keywords (recommended), each enclosed in curly braces
@@ -197,8 +203,9 @@ Finally, I'd like to thank the following people who have provided valuable insig
 %%%% Glossary
 \chapwithtoc{Glossary of terms and abbreviations}
 \subsubsection{Mathematical operators and notation}
-The following list only serves as a reference. Most of the following terms are defined more precisely when they are being used in the text.
+The following list only serves as a reference. Most of the following terms are defined more precisely when they are first used in the text.
 
+\hspace*{-8mm}
 \begin{tabular}{ l l }
 	$\mathbb N_0$ & $\mathbb N \cup \{0\}$ \\
 	$B(x,r)$ & Open ball with center $x$ and radius $r$ \\
@@ -213,6 +220,7 @@ The following list only serves as a reference. Most of the following terms are d
 	$\propto$ & Proportional to \\
 	$\delta_x(A)$ & Dirac delta function at $x$. Equals to 1 if $x\in A$, 0 otherwise.\\ 
 	$\mathrm{det} M$ & Determinant of the matrix $M$ \\
+	$\| \cdot \|$ & Euclidean norm \\
 	$d(p,x)$ & Power distance of the point $x$ and weighted point $p$ \\
 	$\rho(p,q)$ & Power product of two weighted points $p$ and $q$ \\
 	$\chi(\eta)$ & For $\mathrm{card}(\eta)=4$, circumdiameter of the tetrahedron $\mathrm{conv}(\eta)$.\\

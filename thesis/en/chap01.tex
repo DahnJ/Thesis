@@ -3,8 +3,6 @@
 \todoo[inline]{Check for necessary non-degenerate assumptions such as $\mathrm{card}(\x) \geq 4$}
 \todoo[inline]{lf vs gp - check it! and perhaps more importantly - rgp vs gp!}
 \todoo[inline]{Check for line wraps}
-\todoo[inline]{Check for punctuation etc, especially in math}
-\todoo[inline]{Think about the usage of $\eta$ as synonymous to $\mathrm{conv}(\eta)$. Is it okay?}
 \todoo[inline]{$\gamma$ vs $\x$, especially around heredity section}
 
 
@@ -82,7 +80,7 @@ This section will shortly introduce the three dimensional equivalent of the well
 
 The set $\mathcal D_4$ contains the structure we would expect from the name tetrahedrization, namely it contains sets of 4-tuples of points whose convex hull are the tetrahedra forming the Delaunay tetrahedrization. The difference here is that we have allowed even cospherical points to form tetrahedra. The fact that we have defined the set $\mathcal D_k(\x)$ for any $k=1,\dots,4$ reflects the hypergraph approach to these structures presented in Section \ref{sec:hypergraphs}.
 
-Note that for $\x\in\mathbf N_{rpg}$ there is a relationship between the sets $\mathcal D_2(\x)$ and $\mathcal D_4(\x)$, namely
+Note that for $\x\in\mathbf N_{rpg}$ the following relationship between sets $\mathcal D_2(\x)$ and $\mathcal D_4(\x)$ holds:
 \begin{equation}\label{eq:d2d4}\eta \in \mathcal D_2(\x) \iff \text{there exists } \tilde\eta \in \mathcal D_4(\x) \text{ such that } \eta\subset \tilde \eta.\end{equation}
 
 
@@ -136,9 +134,9 @@ Much intuition can be gained from properly understanding the geometric interpret
 
 \definecolor{wrwrwr}{rgb}{0.3803921568627451,0.3803921568627451,0.3803921568627451}
 
-\begin{figure}
-	\begin{minipage}{0.45\textwidth}
-		\resizebox{1.2\textwidth}{!}{
+\begin{figure}[ht]
+	\begin{minipage}{0.49\textwidth}
+		\resizebox{1\textwidth}{!}{
 	\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1cm,y=1cm]
 \clip(-34.06221132360224,19.559143724639345) rectangle (-8.217986359569402,34.582776229682544);
 \draw [line width=4pt,color=wrwrwr] (-22.818487068133912,26.001637556556815) circle (5.131318559036773cm);
@@ -146,7 +144,7 @@ Much intuition can be gained from properly understanding the geometric interpret
 \draw [line width=4pt,color=wrwrwr] (-22.818487068133912,26.001637556556815)-- (-22.15663388793076,31.090093169232418);
 \draw [line width=4pt,color=wrwrwr] (-22.818487068133912,26.001637556556815)-- (-15.018487068133922,30.161637556556805);
 \draw (-23.57696780445743,29.46311574805324) node[anchor=north west] {\Huge$p''$};
-\draw (-19.93284265814484,32.36947322670743) node[anchor=north west] {\Huge$\sqrt{d(p,q')}$};
+\draw (-19.93284265814484,32.36947322670743) node[anchor=north west] {\Huge$\sqrt{d(q',p)}$};
 \draw (-14.567259620629372,30.804511507432096) node[anchor=north west] {\Huge$q'$};
 \draw (-23.800533764353904,26.08726975361645) node[anchor=north west] {\Huge$p'$};
 \draw (0.009240964620983672,0.35482776953204165) node[anchor=north west] {\Huge$p'$};
@@ -160,14 +158,14 @@ Much intuition can be gained from properly understanding the geometric interpret
 \end{tikzpicture}
 }
 \end{minipage}
-	\begin{minipage}{0.45\textwidth}
-		\resizebox{1.2\textwidth}{!}{
+\begin{minipage}{0.49\textwidth}
+		\resizebox{1\textwidth}{!}{
 \begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1cm,y=1cm]
 \clip(-34.06221132360224,19.559143724639345) rectangle (-8.039133591652211,34.582776229682544);
 \draw [line width=4pt,color=wrwrwr] (-22.818487068133912,26.001637556556815) circle (5.131318559036773cm);
 \draw [line width=4pt,color=wrwrwr] (-22.818487068133912,26.001637556556815)-- (-20.916532881689342,26.020199965647507);
 \draw (-23.10747928867482,29.485472344042886) node[anchor=north west] {\Huge$p''$};
-\draw (-20.89417628569969,28.077006796695088) node[anchor=north west] {\Huge$\sqrt{-d(p,q')}$};
+\draw (-20.89417628569969,28.077006796695088) node[anchor=north west] {\Huge$\sqrt{-d(q',p)}$};
 \draw (-20.737680113772154,26.199052733564688) node[anchor=north west] {\Huge$q'$};
 \draw (-23.8005337643539,26.221409329554334) node[anchor=north west] {\Huge$p'$};
 \draw (0.009240964620998927,0.4889673454699273) node[anchor=north west] {\Huge$p'$};
@@ -199,8 +197,8 @@ Much intuition can be gained from properly understanding the geometric interpret
 \begin{remark}[Geometric interpretation of the power distance]
 	We split the interpretation into two cases. 
 \begin{itemize}
-	\item $d(q',p) \geq 0$. The point $q'$ lies outside of $B_p$. The quantity $\sqrt{d(p,q')}$ can be understood as the length of the line segment from $q'$ to the point of tangency with $B_p$, see Figure \ref{fig:powerdist}. The power distance is equal to zero precisely when $q'$ lies on the boundary $B_p$.
-	\item $d(q',p) < 0$. The point $q'$ lies inside of $B_p$. The quantity $\sqrt{-d(p,q')}$ now describes the length of the segment $q's'$, where $s' \in S_p$ such that the triangle $\Delta p'q's'$ has a right angle $\angle p'q's'$, see Figure \ref{fig:powerdist}. 
+	\item $d(q',p) \geq 0$. The point $q'$ lies outside of $B_p$. The quantity $\sqrt{d(q',p)}$ can be understood as the length of the line segment from $q'$ to the point of tangency with $B_p$, see Figure \ref{fig:powerdist}. The power distance is equal to zero precisely when $q'$ lies on the boundary $B_p$.
+	\item $d(q',p) < 0$. The point $q'$ lies inside of $B_p$. The quantity $\sqrt{-d(q',p)}$ now describes the length of the segment $q's'$, where $s' \in S_p$ such that the triangle $\Delta p'q's'$ has a right angle $\angle p'q's'$, see Figure \ref{fig:powerdist}. 
 \end{itemize}
 \end{remark}
 \todoo[inline]{This whole section really needs figures.}
@@ -208,7 +206,7 @@ Much intuition can be gained from properly understanding the geometric interpret
 \begin{definition}
 	For two (marked) points $p=(p',p'')$ and $q=(q',q'')$, define their \textit{power product}\footnote{ The motivation for calling the quantity $\rho(p,q)$ a product is most fascinating. It was first introduced by G. Darboux in 1866 as a generalization of the power distance. However, it was later discovered that the spheres can be represented as vectors in a pseudo-Euclidean space where the power product plays the role of the quadratic form that defines the space, often called the inner product. The resulting space is then the Minkowski space --- the setting in which the special theory of relativity is formulated. The positions of the sphere centres are then the positions in space, whereas the radius denotes a position in time. More can be found in e.g. \cite{Kocik2007}.} by 
 $$\rho(p,q) = \|p'-q'\|^2 - p'' - q''.$$
-Notice that $\rho(p,q) = d(p,q') - q'' = d(q,p') - p''$ and that $\rho(p,(q',0)) = d(p,q')$.
+Notice that $\rho(p,q) = d(q',p) - q'' = d(p',q) - p''$ and that $\rho(p,(q',0)) = d(q',p)$.
 \end{definition}
 
 Similarly to the power distance, the power product has a geometric interpretation that is vital to the understanding of the geometry of Laguerre tessellations.
@@ -225,7 +223,7 @@ Similarly to the power distance, the power product has a geometric interpretatio
 \definecolor{wrwrwr}{rgb}{0.3803921568627451,0.3803921568627451,0.3803921568627451}
 
 
-\begin{figure}
+\begin{figure}[t]
 	\centering
 	\resizebox{1.3\textwidth}{!}{
 \begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1cm,y=1cm]
@@ -296,7 +294,7 @@ We are now well-equipped to define the central terms necessary for the definitio
 \definecolor{dtsfsf}{rgb}{0.8274509803921568,0.1843137254901961,0.1843137254901961}
 \definecolor{rvwvcq}{rgb}{0.08235294117647059,0.396078431372549,0.7529411764705882}
 
-\begin{figure}
+\begin{figure}[p]
 	\centering
 	\resizebox{1\textwidth}{!}{
 \begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1cm,y=1cm]
@@ -343,7 +341,7 @@ If its weight is positive, the characteristic point can be interpreted as a sphe
 \definecolor{wrwrwr}{rgb}{0.3803921568627451,0.3803921568627451,0.3803921568627451}
 
 
-\begin{figure}
+\begin{figure}[p]
 	\centering
 	\resizebox{1.3\textwidth}{!}{
 \begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1cm,y=1cm]
@@ -482,7 +480,7 @@ The regularity property ensures that no point of $\x$ is closer to the character
 \note[inline]{Cocircular points do not create multiplicities in the cliques, since we're limiting $k$ to max $4$}
 
 \begin{remark}[Invariance in weights]\label{rem:invariance}
-	Let $w\in \mathbb R$. Denote 
+	Let $w\in \mathbb R$. Let
 	$$\x_w = \{(p',p''+w): (p',p'')\in\x\}$$ be the set of points of $\x$ with added weight $w$. Take $\eta \in \mathcal {LD}(\x)$ and the corresponding $\eta_w \in \mathcal {LD}(\x_w)$ such that $\eta'= \eta'_w$. Then $\eta$ is regular in $\mathcal {LD}(\x)$ if and only if $\eta_w$ is  regular in $\mathcal {LD}(\x_w)$. This follows from the fact that the point $p_{\eta_w} = (p'_{\eta}, p''_{\eta} -w)$ is a characteristic point of $\eta_w$ and satisfies the definition of regularity for $\eta_w$. This implies that the Laguerre tetrahedrization is invariant under the map $\x \mapsto \x_w$ for any $w$ such that the marks of $\x_w$ still lie in $[0,W]$.
 \end{remark}
 
@@ -553,10 +551,10 @@ The benefit of this approach is that we do not need to impose any additional str
 \begin{definition}[Delaunay and Laguerre-Delaunay hypergraph structures]
 	Define the hypergraph structures
 	\begin{itemize}
-		\item $\mathcal D = \{(\eta,\x): \eta \in \mathcal D(\x)\}$
-		\item 	$\mathcal D_k = \{(\eta,\x): \eta \in \mathcal D_k(\x)\}, k=1,\dots,4$
-		\item 	$\mathcal {LD} = \{(\eta,\x): \eta \in \mathcal {LD}(\x)\}$
-		\item 	$\mathcal {LD}_k = \{(\eta,\x): \eta \in \mathcal {LD}(\x)\}, k=1,\dots,4$
+		\item $\mathcal D = \{(\eta,\x): \eta \in \mathcal D(\x)\}$,
+		\item 	$\mathcal D_k = \{(\eta,\x): \eta \in \mathcal D_k(\x)\}, k=1,\dots,4$,
+		\item 	$\mathcal {LD} = \{(\eta,\x): \eta \in \mathcal {LD}(\x)\}$,
+		\item 	$\mathcal {LD}_k = \{(\eta,\x): \eta \in \mathcal {LD}(\x)\}, k=1,\dots,4$.
 	\end{itemize}
 \end{definition}
 
@@ -591,8 +589,8 @@ The fact that the hyperedge potential contains $\x$ as a second argument suggest
 $$\varphi(\eta,\x) = \theta \bigg (\frac {\max ( |C_p|, |C_q|)}{\min(|C_p|,|C_q|)} - 1\bigg)$$
 where the potential now depends on the volume of neighboring Laguerre cells. Notice that $\theta$ can be negative, yielding a negative potential. \newline
 \textbf{Tetrahedral interaction}: In the present setting, we cannot specify interaction between tetrahedra in $\mathcal D_4$ or $\mathcal {LD}_4$ as easily as between Laguerre cells. This can be solved by for example defining a new hypergraph structure
-$$\mathcal {LD}^2_4 = \{(\eta,\x): \exists \eta_1,\eta_2\in\mathcal {LD}_4(\x), \mathrm{card}(\eta_1 \cap \eta_2)=3, \eta = \eta_1 \cup \eta_2\}$$
-Which contains the quintuples of points which form adjacent tetrahedra in $\mathcal {LD}_4(\x)$. Any hyperedge potential defined on this hypergraph structure would however need to take into account that the hyperedges can define two, three, or even four tetrahedra (see \cite{Joe91}).
+$$\mathcal {LD}^2_4 = \{(\eta,\x): \exists \eta_1,\eta_2\in\mathcal {LD}_4(\x), \mathrm{card}(\eta_1 \cap \eta_2)=3, \eta = \eta_1 \cup \eta_2\},$$
+which contains the quintuples of points which form adjacent tetrahedra in $\mathcal {LD}_4(\x)$. Any hyperedge potential defined on this hypergraph structure would however need to take into account that the hyperedges can define two, three, or even four tetrahedra (see \cite{Joe91}).
 \end{ex}
 
 \begin{definition}

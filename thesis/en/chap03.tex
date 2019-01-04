@@ -72,7 +72,7 @@ the set of all configurations whose restriction to $C(k)$, when shifted back to 
 	\item \textit{Upper regularity}. $M$ and $\Gamma$ can be chosen so that the following holds. 
 		\begin{enumerate}[(U1)]
 			\item \textit{Uniform confinement}: $\bar \Gamma \subset \mathbf N^\Lambda_\text{cr}$ for all $\Lambda \in \mathcal B_0$ and 
-				\begin{equation}\label{eq:U1}r_\Gamma := \sup_{\Lambda\in\mathcal B_0}\sup_{\x \in \bar\Gamma} r_{\Lambda, \x} < \infty\end{equation}
+				\begin{equation}\label{eq:U1}r_\Gamma := \sup_{\Lambda\in\mathcal B_0}\sup_{\x \in \bar\Gamma} r_{\Lambda, \x} < \infty. \end{equation}
 			\item \textit{Uniform summability}: 
 			$$c_\Gamma := \sup_{\x \in \bar\Gamma}  \sum_{\eta \in \mathcal E(\x): \eta' \cap C \neq \emptyset} \frac{\varphi(\eta,\x)}{\#(\hat\eta)} < \infty,$$
 where $\hat\eta := \{k \in \mathbb Z^3: \eta \cap C(k) \neq \emptyset\}$.
@@ -95,7 +95,9 @@ For some models it is possible to replace the upper regularity assumptions by th
 \begin{enumerate}[(\textbf{\^{U}})]
 	\item \textit{Alternative upper regularity}. $M$ and $\Gamma$ can be chosen so that the following holds.
 	\begin{enumerate}[(\^U1)]
-		\item \textit{Lower density bound}: There exist constants $c,d > 0$ such that $\mathrm{card}(\zeta) \geq c|\Lambda| - d$ whenever $\zeta \in \mathbf N_f\cap\mathbf  N_\Lambda$ is such that $H_{\Lambda,\x}(\zeta)<\infty$ for some $\Lambda \in \mathcal B_0$ and some $\x \in \bar\Gamma$.
+		\item \textit{Lower density bound}: There exist constants $c,d > 0$ such that 
+			$$\mathrm{card}(\zeta) \geq c|\Lambda| - d$$
+			whenever $\zeta \in \mathbf N_f\cap\mathbf  N_\Lambda$ is such that $H_{\Lambda,\x}(\zeta)<\infty$ for some $\Lambda \in \mathcal B_0$ and some $\x \in \bar\Gamma$.
 		\item = (U2) \textit{Uniform summability}.
 		\item \textit{Weak non-rigidity}: $\Pi^z_C(\Gamma) > 0$.
 	\end{enumerate}
@@ -114,7 +116,7 @@ In this section, we will verify the assumptions for the existence of Gibbs measu
 $$\varphi_S(\eta,\x) \leq K_0 + K_1 \chi(\eta)^{\beta}$$
 for some $K_0,K_1 \geq 0, \beta >0$\newline
 \textbf{Hard-core interaction}: For $\eta\in\mathcal E_4(\x)$ define the potential $\varphi_{HC}$ as a unary potential such that
-$$\sup_{\eta: d_0 \leq \chi(\eta) \leq d_1} \varphi_{HC}(\eta,\x)  < \infty \text{ and } \varphi_{HC}(\eta,\x)=\infty \text{ if } \chi(\eta)>\alpha.$$ 
+$$\sup_{\eta: d_0 \leq \chi(\eta) \leq d_1} \varphi_{HC}(\eta,\x)  < \infty \text{ and } \varphi_{HC}(\eta,\x)=\infty \text{ if } \chi(\eta)>\alpha$$ 
 for some $0\leq d_0 < d_1 \leq \alpha$. \unsure{How exactly does this look? Why?}
 
 \noindent We assume by Assumption 1 that $\varphi_S,\varphi_{HC}\geq 0$. Denote the four models as $(\mathcal D_4,\varphi_{S}),(\mathcal D_4,\varphi_{HC}),(\mathcal {LD}_4,\varphi_{S})$ and $(\mathcal {LD}_4, \varphi_{HC})$. \newline

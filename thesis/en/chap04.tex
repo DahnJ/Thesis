@@ -22,7 +22,8 @@ is called a \textit{probability kernel} on $(\Omega, \mathcal A)$.
 \end{definition}
 
 \begin{definition} A stochastic process $Y=\{Y_n,n \in \mathbb N_0\}$ defined on $(\Omega,\mathcal A)$ is called a \textit{time-homogeneous Markov chain} with \textit{initial distribution} $\mu$ and \textit{transition probability kernel} $P(x,A),x\in\Omega,A \in \mathcal A$, if for any $n\in \mathbb N_0$ and any sets $A_0,\dots,A_n$ we have
-$$P_\mu(Y_0\in A_0,\dots, Y_n \in A_n) = \int_{A_0} \cdots \int_{A_{n-1}} P(y_{n-1},A_n) P(y_{n-2},dy_{n-1}) \cdots P(y_0,dy_1)\mu(dy_0)$$
+	\begin{align*} P_\mu&(Y_0\in A_0,\dots, Y_n \in A_n) \\
+	& = \int_{A_0} \cdots \int_{A_{n-1}} P(y_{n-1},A_n) P(y_{n-2},dy_{n-1}) \cdots P(y_0,dy_1)\mu(dy_0)\end{align*}
 where $P_\mu(B), B \in \bigotimes^\infty_{n=0} \mathcal A$ is the probability of the event $[Y\in B]$.
 \end{definition}
 
@@ -31,7 +32,7 @@ Such process exists by Theorem $3.4.1$ in \cite{MeynTweedie1993} if $\mathcal A$
 The definition suggests that the probability kernel $P(x,A)$ can be interpreted as the probability that $Y_{m+1} \in A$ given that $Y_{m}=x$. Note that the probability is independent of $m$, which motivates the name \textit{time-homogeneous}.
 
 Next we iteratively define the \textit{m-step transition probability}. Set $P^0(x,A) = \delta_x(A)$ and for $n\geq 1$ define
-$$P^m(x,A) = \int_\Omega P(y,A) P^{m-1} (x,dy)$$
+$$P^m(x,A) = \int_\Omega P(y,A) P^{m-1} (x,dy).$$
 
 
 In the following, let $Y=\{Y_n, n\in \mathbb N_0\}$ always be a Markov chain and $\pi$ a probability distribution on $(\Omega,\mathcal A)$.
@@ -51,7 +52,7 @@ From the definition it is immediately observable that if $Y$ is reversible with 
 
 
 \begin{definition} Let $Y$ be $\psi$-irreducible. Then we call $Y$ \textit{periodic} if there exists a partitioning $D_0,\dots,D_{d-1},A$ of $\Omega$ such that $\psi(A)=0$ and 
-$$P(x,D_{j}) = 1, \; x\in D_i\; j=(i+1)\; \mathrm{mod} \;d$$
+$$P(x,D_{j}) = 1, \; x\in D_i\; j=(i+1)\; \mathrm{mod} \;d,$$
 with $d>1$. In the opposite case $Y$ is \textit{aperiodic}.
 \end{definition}
 The partitioning always exists for an irreducible Markov chain $Y$ by Theorem $5.4.4$ in \cite{MeynTweedie1993}. For the Markov chain to be aperiodic it is sufficient to have $P(x,\{x\})>0$ for some $x \in \Omega$.
@@ -97,10 +98,12 @@ The question, however, is how to build such a Markov chain. The next section ans
 \subsection{Birth-Death-Move Metropolis-Hastings algorithm}
 In the last section we outlined how Markov chains may be used to sample from a distribution in general. Imagine now that we wish to sample from a finite point process with the unnormalized density $f$ with respect to $\Pi_\Lambda$. In this section we introduce a variation of the Metropolis-Hastings algorithm for points processes with a density, the algorithm used to construct a Markov chain with the required properties. 
 \unsure[inline]{Is it not a problem that these are marked sets?}
-We first describe the algorithm in general, adapted from \cite{MollerWaagepetersen2003}.  \newline
+We first describe the algorithm in general, adapted from Section 7.1. in  \cite{MollerWaagepetersen2003}.  \newline
 \noindent Let $\Omega\subset \mathbf N_f$ be the state space. A natural choice is 
 $$\Omega=\{\gamma \in \mathbf N_f: f(\gamma)>0 \} = \mathbf N_f \cap \mathbf N_\infty.$$
-We first introduce the quantities to be used in the algorithm. Let $\gamma = \{x_1,\dots, x_n\} \in ~\Omega$ be the current state and denote $\bar\gamma = (x_1,\dots, x_n)$ the current state represented as a vector. We further denote 
+We first introduce the quantities to be used in the algorithm. 
+
+Let $\gamma = \{x_1,\dots, x_n\} \in ~\Omega$ be the current state and denote $\bar\gamma = (x_1,\dots, x_n)$ the current state represented as a vector. We further denote 
 
 \begin{tabular}{ll}
 $p(\gamma)$ & Probability of a birth proposal if the current state is $\gamma$.  \\
@@ -309,13 +312,13 @@ The Hastings ratios require us to calculate a ratio of densities $f$ both contai
 The ratio of densities in birth step \eqref{birth} then becomes:
 \begin{align*}
 \frac{f(\gamma_0 \cup\{x\})}{f(\gamma_0)} &= \exp\left({\sum_{\eta\in \mathcal E_\Lambda(\gamma_0 \cup\{x\})} \varphi(\eta,\gamma_0 \cup\{x\}) - \sum_{\eta\in \mathcal E_\Lambda(\gamma_0)}\varphi(\eta,\gamma_0)}\right) \\
-&= \exp\left(  \sum_{T \in \mathcal {LD}^\otimes (x,\gamma_0)} \varphi(\eta,\gamma_0)  - \sum_{T\in \mathcal {LD}^\ell (x,\gamma_0 \cup\{x\})} \varphi(\eta,\gamma_0 \cup\{x\}) \right)  
+&= \exp\left(  \sum_{T \in \mathcal {LD}^\otimes (x,\gamma_0)} \varphi(\eta,\gamma_0)  - \sum_{T\in \mathcal {LD}^\ell (x,\gamma_0 \cup\{x\})} \varphi(\eta,\gamma_0 \cup\{x\}) \right) . 
 \end{align*}
 
 Ratio for death step \eqref{death} becomes:
 \begin{align*}
 \frac{f(\gamma_0 \setminus\{x\})}{f(\gamma_0)}&= \exp\left({\sum_{\eta\in \mathcal E_\Lambda(\gamma_0 \setminus\{x\})} \varphi(\eta,\gamma_0 \setminus\{x\})- \sum_{\eta\in \mathcal E_\Lambda(\gamma_0)}\varphi(\eta,\gamma_0)}\right)\\
-&= \exp\left( \sum_{T\in \mathcal {LD}^\ell (x,\gamma_0)} \varphi(\eta,\gamma_0) - \sum_{T \in \mathcal {LD}^\otimes (x,\gamma_0 \setminus\{x\} )} \varphi(\eta,\gamma_0 \setminus\{x\})   \right)
+&= \exp\left( \sum_{T\in \mathcal {LD}^\ell (x,\gamma_0)} \varphi(\eta,\gamma_0) - \sum_{T \in \mathcal {LD}^\otimes (x,\gamma_0 \setminus\{x\} )} \varphi(\eta,\gamma_0 \setminus\{x\})   \right) .
 \end{align*}
 
 Ratio for move step \eqref{move} becomes:
@@ -323,7 +326,7 @@ Ratio for move step \eqref{move} becomes:
 & \frac{f(\gamma_0 \setminus\{x\} \cup\{y\})}{f(\gamma_0)}= 
 \frac{f(\gamma_0 \setminus\{x\} \cup\{y\})}{f(\gamma_0 \setminus\{x\})} \frac{f(\gamma_0 \setminus\{x\})}{f(\gamma_0)} \\ 
 &= \exp \Bigg(  \sum_{T \in \mathcal {LD}^\otimes (y,\gamma_0 \setminus\{x\})} \varphi(\eta,\gamma_0 \setminus\{x\})  - \sum_{T\in \mathcal {LD}^\ell (y,\gamma_0 \setminus\{x\} \cup\{y\})} \varphi(\eta,\gamma_0 \setminus\{x\} \cup\{y\})  \\
-&+ \sum_{T\in \mathcal {LD}^\ell (x,\gamma_0)} \varphi(\eta,\gamma_0) - \sum_{T \in \mathcal {LD}^\otimes (x,\gamma_0 \setminus\{x\})} \varphi(\eta,\gamma_0 \setminus\{x\}) \Bigg) \\
+&+ \sum_{T\in \mathcal {LD}^\ell (x,\gamma_0)} \varphi(\eta,\gamma_0) - \sum_{T \in \mathcal {LD}^\otimes (x,\gamma_0 \setminus\{x\})} \varphi(\eta,\gamma_0 \setminus\{x\}) \Bigg).  \\
 \end{align*}
 
 
