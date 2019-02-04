@@ -1,1 +1,0 @@
-pdflatex jahn_defense.tex
