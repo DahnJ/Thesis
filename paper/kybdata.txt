@@ -1,0 +1,30 @@
+@kybdata_begin:title
+Existence and simulation of \\ Gibbs-Laguerre-Delaunay tetrahedrizations
+@kybdata_end:title
+@kybdata_begin:authors
+Daniel Jahn
+@kybdata_end:authors
+@kybdata_begin:name
+Daniel
+@kybdata_end:name
+@kybdata_begin:surname
+Jahn
+@kybdata_end:surname
+@kybdata_begin:address
+Department of Probability and Mathematical Statistics, Charles University, Sokolovsk\'{a} 83, 186 75 Praha 8, Czech Republic
+@kybdata_end:address
+@kybdata_begin:email
+jahn@karlin.mff.cuni.cz
+@kybdata_end:email
+@kybdata_begin:keywords
+Gibbs point process, Laguerre-Delauay triangulation, tetrahedralization, MCMC simulation
+@kybdata_end:keywords
+@kybdata_begin:amses
+60K35, 60G55
+@kybdata_end:amses
+@kybdata_begin:lastpage
+3
+@kybdata_end:lastpage
+@kybdata_begin:hasBW
+
+@kybdata_end:hasBW

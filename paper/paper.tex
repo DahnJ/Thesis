@@ -1,0 +1,166 @@
+\documentclass{kybernetika}
+%the class kybernetika includes these packages:
+% graphicx, amssymb, amsmath
+
+% used environment for theorems:
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{fact}[theorem]{Fact}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{observation}[theorem]{Observation}
+
+\usepackage{xargs}  % newcommandx
+\usepackage{xcolor} % todonotes colors
+\usepackage{todonotes}
+
+\newcommandx{\problem}[2][1=]{\todo[linecolor=red,backgroundcolor=red!25,bordercolor=red,#1]{#2}}
+\newcommandx{\todoo}[2][1=]{\todo[linecolor=blue,backgroundcolor=blue!25,bordercolor=blue,#1]{#2}}
+\newcommandx{\note}[2][1=]{\todo[linecolor=OliveGreen,backgroundcolor=OliveGreen!25,bordercolor=OliveGreen,#1]{#2}}
+\newcommandx{\unsure}[2][1=]{\todo[linecolor=violet,backgroundcolor=violet!25,bordercolor=violet,#1]{#2}}
+
+
+
+
+\begin{document}
+\pagestyle{myheadings}
+
+
+
+
+\title{Existence and simulation of \\ Gibbs-Laguerre-Delaunay tetrahedrizations} 
+
+% all authors
+\author{Daniel Jahn}
+
+% contact information of authors. Use one \contact command per person.
+% Specify name(s), surname(s), postal address and e-mail.
+\contact{Daniel}{Jahn}{Department of Probability and Mathematical Statistics, Charles University, Sokolovsk\'{a} 83, 186 75 Praha 8, Czech Republic}{jahn@karlin.mff.cuni.cz}
+
+% heading contains authors and title of the paper, please shorten the title if necessary
+% (it will appear only at the heading of every even page)
+\markboth{D. Jahn} {Existence and simulation of GLD tetrahedrizations}
+
+\maketitle
+
+\begin{abstract}
+We present revolutionary unprecedented results using newly developed methods. Songs will be sung about this paper. 
+\end{abstract}
+
+
+% here please insert two or more keywords appropriate to the topic of your paper
+\keywords{Gibbs point process,
+Laguerre-Delauay triangulation,
+tetrahedralization,
+MCMC simulation}
+
+% here please insert one, two or more (5-digit) "Mathematics Subject Classification" codes appropriate to the topic of your paper
+% you can find and choose them at the web page of the American Mathematical Society: http://www.ams.org/msc/msc2010.html
+% \classification{00A01, 00M02, 00S03}
+\classification{60K35, 60G55}
+% 
+% 60K35  Interacting random processes; statistical mechanics type models; percolation theory 
+% 60G55  Point processes
+% 60D05  Geometric probability, stochastic geometry, random sets [See also 52A22, 53C65]
+
+\section{INTRODUCTION}
+This is an interesting field. We did some things in this interesting field. Here they are.
+
+\section{PRELIMINARIES}
+See \cite{D17}.
+\begin{itemize}
+\item Laguerre geometry
+\item Gibbs point process - already tie in \cite{DDG12}.
+\end{itemize}
+
+\section{EXISTENCE}
+Basically \cite{DDG12}.
+
+\begin{itemize}
+\item Specification of the model
+\item Proof of existence
+\end{itemize}
+
+\section{SIMULATION}
+Basically \cite{DL11}.
+
+\begin{itemize}
+\item Specification of the simulated model.
+\item Results
+\end{itemize}
+
+\section*{ACKNOWLEDGEMENT}
+\small
+This work was partially supported by GACR 17-00393J (investigator V. Bene\v{s}). This work was was fully supported by Panda.
+
+\makesubmdate
+
+\begin{thebibliography}{000}
+% References should be listed in alphabetical order.
+
+
+\bibitem{D17}
+D.~Dereudre:
+\newblock{Introduction to the theory of Gibbs point processes.}
+\newblock{ArXiv {\mi 1701.08105} [math.PR] (2017).}
+
+
+\bibitem{DDG12}
+D.~Dereudre, R.~Drouilhet, H.O.~Georgii:
+\newblock{Existence of Gibbsian point processes with geometry-dependent interactions.}
+\newblock{Probability Theory and Related Fields {\mi 153 (3)} (2012), 643--670.}
+
+\bibitem{DL11}
+D.~Dereudre and F.~Lavancier:
+\newblock{Practical simulation and estimation for Gibbs Delaunay-Voronoi tessellations with geometric hardcore interaction.}
+\newblock{Computational Statistics and Data Analyssi {\mi 55 (1)} (2011), 498--519.}
+
+
+
+
+
+% For books, research reports and proceedings
+% \bibitem{B}
+% Author(s):
+% \newblock{Title of book.}
+% \newblock{Edition (if other than first). Publisher's name, place and year of publication (For books, research reports and proceedings).}
+% 
+% % Example
+% \bibitem{HoTu96}
+% R.~Horst and H.~Tuy:
+% \newblock{Global Optimization.}
+% \newblock{Springer--Verlag, Berlin 1996.}
+% 
+% % For journal article
+% \bibitem{P}
+% Author(s):
+% \newblock{Title of paper.}
+% \newblock{Title of the journal (abbreviated in accordance with Math. Reviews), volume, year of publication in brackets, inclusive pagination (For journal article).}
+% 
+% % Example
+% \bibitem{No85}
+% M.~Nov\'{a}k:
+% \newblock{A note on the algorithms for determining the model structure.}
+% \newblock{Kybernetika {\mi 21} (1985), 164--178.}
+% 
+% % For a paper in a bound collection
+% \bibitem{PC}
+% Author(s):
+% \newblock{Title of paper.}
+% \newblock{In: Title of collection, editor name(s) (in brackets), publisher's name, place and year of publication, inclusive pagination (For a paper in a bound collection).}
+% 
+% % Example
+% \bibitem{Pe81}
+% V.~Peterka:
+% \newblock{Bayesian system identification.}
+% \newblock{In: Trends and Progress in System Identification (P.~Eykhoff, ed.), Pergamon Press, Oxford 1981, pp. 239--304.}
+
+\end{thebibliography}
+
+\makecontacts
+
+\end{document}

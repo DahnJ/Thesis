@@ -1,0 +1,165 @@
+\documentclass{kybernetika}
+%the class kybernetika includes these packages:
+% graphicx, amssymb, amsmath
+
+% used environment for theorems:
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{fact}[theorem]{Fact}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{observation}[theorem]{Observation}
+
+\begin{document}
+\pagestyle{myheadings}
+
+\title{Title of the paper and\\ second line of the title}
+
+% all authors
+\author{John von Neumann, Claude E. Shannon and G\"{o}sta Mittag-Leffler}
+
+% contact information of authors. Use one \contact command per person.
+% Specify name(s), surname(s), postal address and e-mail.
+\contact{John}{von Neumann}{complete postal addresses of author 1}{e-mail of author 1}
+\contact{Claude Elwood}{Shannon}{complete postal addresses of author 2}{e-mail of author 2}
+\contact{G\"{o}sta}{Mittag-Leffler}{complete postal addresses of author 3}{e-mail of author 3}
+
+% heading contains authors and title of the paper, please shorten the title if necessary
+% (it will appear only at the heading of every even page)
+\markboth{J. von Neumann, C. E. Shannon and G. Mittag-Leffler} {Short title of the paper}
+
+\maketitle
+
+\begin{abstract}
+Abstract of the paper (not exceeding 250 words) summarizing the principle
+technique and conclusions. Because the abstract must be able to stand independently, mathematical formulas and bibliographical references
+should be kept to a minimum.
+\end{abstract}
+
+% here please insert two or more keywords appropriate to the topic of your paper
+\keywords{keyword1, keyword2, keyword3}
+
+% here please insert one, two or more (5-digit) "Mathematics Subject Classification" codes appropriate to the topic of your paper
+% you can find and choose them at the web page of the American Mathematical Society: http://www.ams.org/msc/msc2010.html
+% \classification{00A01, 00M02, 00S03}
+\classification{code1, code2}
+
+\section{INTRODUCTION}
+Kybernetika will consider for publication papers presenting original results in the fields of Control Systems, Information Sciences, Statistical Decision Making, Applied Probability Theory, Random Processes, Operations Research, Fuzziness and Uncertainty Theories, as well as in topics closely related to the above fields.
+
+\section{Manuscript}
+Manuscripts should be submitted in electronic format only. To submit your paper, please log in {\it Kybernetika publishing system} and upload the manuscript in PDF format.
+The person submitting the paper will be referred to as the corresponding author.
+
+By submitting a manuscript to Kybernetika the author declares that the material presented in this manuscript has not been published or simultaneously submitted to publication elsewhere; this paper does not infringe on intellectual property rights of any third parties.
+
+\subsection{References}
+References should be cited within the text either by numerals in brackets or by author(s) followed by the respective numeral in brackets. References should be listed in alphabetical order. The following reference style should be used:
+
+\subsubsection{Journal article}
+Author(s):
+\newblock{Title of paper.}
+\newblock{Title of the journal (abbreviated in accordance with Math. Reviews), volume, year of publication in brackets, inclusive pagination.}
+\\
+For an example see \cite{P}.
+
+\subsubsection{Books, research reports and proceedings}
+Author(s): \newblock{Title of book.} \newblock{Edition (if other than first). Publisher's name, place and year of publication.}
+\\
+For an example see \cite{B}.
+
+\subsubsection{Paper in a bound collection}
+Author(s): \newblock{Title of paper.} \newblock{In: Title of collection, editor name(s) (in brackets), publisher's name, place and
+year of publication, inclusive pagination.}
+\\
+For an example, see \cite{PC}.
+
+\subsection{Figures}
+Figures (charts and diagrams) should be in the EPS, PDF or JPG format or originated in TeX. Note that Kybernetika is not printed in color, so please keep in mind that pictures should be readily recognizable in the black and white version.
+
+Tables and algorithms are not considered to be figures and should not be treated as such.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=5cm]{utia}
+\caption{example}
+\end{figure}
+
+\subsection{Use of the \texorpdfstring{{\it newtheorem}}{newtheorem} command}
+The standard {\LaTeX} environments created by the {\it newtheorem} command can be
+used.
+
+\begin{theorem}\label{main_thm}
+The theorem environment.
+\end{theorem}
+\begin{lemma}\label{my_lemma}
+The lemma environment.
+\end{lemma}
+\begin{Proof}
+The environment {\it Proof} is defined by the standard {\it newenvironment}
+command in the class file.
+\end{Proof}
+\begin{example}
+Above, you can see some examples of {\it newtheorem} environments: Lemma \ref{my_lemma} and Theorem \ref{main_thm}.
+\end{example}
+
+
+\section*{ACKNOWLEDGEMENT}
+\small
+This work was partially supported....
+
+\makesubmdate
+
+\begin{thebibliography}{000}
+% References should be listed in alphabetical order.
+
+% For books, research reports and proceedings
+\bibitem{B}
+Author(s):
+\newblock{Title of book.}
+\newblock{Edition (if other than first). Publisher's name, place and year of publication (For books, research reports and proceedings).}
+
+% Example
+\bibitem{HoTu96}
+R.~Horst and H.~Tuy:
+\newblock{Global Optimization.}
+\newblock{Springer--Verlag, Berlin 1996.}
+
+% For journal article
+\bibitem{P}
+Author(s):
+\newblock{Title of paper.}
+\newblock{Title of the journal (abbreviated in accordance with Math. Reviews), volume, year of publication in brackets, inclusive pagination (For journal article).}
+
+% Example
+\bibitem{No85}
+M.~Nov\'{a}k:
+\newblock{A note on the algorithms for determining the model structure.}
+\newblock{Kybernetika {\mi 21} (1985), 164--178.}
+
+% For a paper in a bound collection
+\bibitem{PC}
+Author(s):
+\newblock{Title of paper.}
+\newblock{In: Title of collection, editor name(s) (in brackets), publisher's name, place and year of publication, inclusive pagination (For a paper in a bound collection).}
+
+% Example
+\bibitem{Pe81}
+V.~Peterka:
+\newblock{Bayesian system identification.}
+\newblock{In: Trends and Progress in System Identification (P.~Eykhoff, ed.), Pergamon Press, Oxford 1981, pp. 239--304.}
+
+\end{thebibliography}
+
+\makecontacts
+
+\end{document}
+%
+% Kybernetika journal article template
+% 2010-04-27
+%
+
