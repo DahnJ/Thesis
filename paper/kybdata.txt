@@ -23,7 +23,7 @@ Gibbs point process, Laguerre-Delauay triangulation, tetrahedralization, MCMC si
 60K35, 60G55
 @kybdata_end:amses
 @kybdata_begin:lastpage
-3
+4
 @kybdata_end:lastpage
 @kybdata_begin:hasBW
 
