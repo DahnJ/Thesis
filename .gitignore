@@ -12,3 +12,4 @@
 *.tdo
 *.toc
 *~
+.ignore/

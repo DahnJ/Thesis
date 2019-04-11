@@ -17,12 +17,12 @@
 \usepackage{xargs}  % newcommandx
 \usepackage{xcolor} % todonotes colors
 \usepackage{enumerate}
-\usepackage[colorinlistoftodos,prependcaption,textsize=tiny]{todonotes}
+% \usepackage[colorinlistoftodos,prependcaption,textsize=tiny]{todonotes}
 
-\newcommandx{\problem}[2][1=]{\todo[linecolor=red,backgroundcolor=red!25,bordercolor=red,#1]{#2}}
-\newcommandx{\todoo}[2][1=]{\todo[linecolor=blue,backgroundcolor=blue!25,bordercolor=blue,#1]{#2}}
-\newcommandx{\note}[2][1=]{\todo[linecolor=OliveGreen,backgroundcolor=OliveGreen!25,bordercolor=OliveGreen,#1]{#2}}
-\newcommandx{\unsure}[2][1=]{\todo[linecolor=violet,backgroundcolor=violet!25,bordercolor=violet,#1]{#2}}
+% \newcommandx{\problem}[2][1=]{\todo[linecolor=red,backgroundcolor=red!25,bordercolor=red,#1]{#2}}
+% \newcommandx{\todoo}[2][1=]{\todo[linecolor=blue,backgroundcolor=blue!25,bordercolor=blue,#1]{#2}}
+% \newcommandx{\note}[2][1=]{\todo[linecolor=OliveGreen,backgroundcolor=OliveGreen!25,bordercolor=OliveGreen,#1]{#2}}
+% \newcommandx{\unsure}[2][1=]{\todo[linecolor=violet,backgroundcolor=violet!25,bordercolor=violet,#1]{#2}}
 
 
 \newcommand{\Rt}{{\mathbb R^3}}
@@ -90,13 +90,26 @@ Basically \cite{DDG12}.
 \item Proof of existence
 \end{itemize}
 
-
 \noindent \textbf{Smooth interaction}:  For $\eta\in\mathcal {LD}(\x)$ define the potential $\varphi_S$ as a unary potential such that
 $$\varphi_S(\eta,\x) \leq K_0 + K_1 \chi(\eta)^{\beta}$$
 for some $K_0,K_1 \geq 0, \beta >0$\newline
 \textbf{Hard-core interaction}: For $\eta\in\mathcal {LD}(\x)$ define the potential $\varphi_{HC}$ as a unary potential such that
 $$\sup_{\eta: d_0 \leq \chi(\eta) \leq d_1} \varphi_{HC}(\eta,\x)  < \infty \text{ and } \varphi_{HC}(\eta,\x)=\infty \text{ if } \chi(\eta)>\alpha$$ 
 for some $0\leq d_0 < d_1 \leq \alpha$. \unsure{How exactly does this look? Why?}
+
+\subsection{Existence theorems}
+
+
+\begin{theorem}
+	For every hypergraph structure $\mathcal E$, hyperedge potential $\varphi$ and activity $z>0$ satisfying \textbf{(S)}, \textbf{(R)} and \textbf{(U)} there exists at least one Gibbs measure.
+\end{theorem}
+
+\begin{theorem}
+	For every hypergraph structure $\mathcal E$, hyperedge potential $\varphi$ and activity $z>0$ satisfying \textbf{(S)}, \textbf{(R)} and \textbf{(\^{U})} there exists at least one Gibbs measure.
+\end{theorem}
+
+Proofs of both theorems can be found in \cite{DDG12}, see also Remark 3.7. in the same paper about the marked case.
+
 
 
 
@@ -115,6 +128,16 @@ for some $0\leq d_0 < d_1 \leq \alpha$. \unsure{How exactly does this look? Why?
 		\item for each $i$, either $\text{diam} B_i \leq \chi_R$ or $N_{B_i}(\x) \leq n_R$.
 	\end{enumerate}
 \end{enumerate}
+
+\noindent Fix some $A \subset C\times S$ and define
+$$\Gamma^A = \{\zeta \in \mathbf N_C: \zeta = \{p\}, p \in A\},$$
+the set of configurations consisting of exactly one point in the set $A$. The set of pseudo-periodic configurations $\bar\Gamma$ thus contains only one point in each $C(k), k~\in~\mathbb Z^3$.
+
+Let $M$ be such that $|M_i| = a > 0$ for $i=1,2,3$ and $\angle(M_i,M_j) = \pi / 3$ for $i\neq j$.
+For $\mathcal {LD}$ models we choose 
+\begin{equation}\label{eq:choiceA} A = B(0,b)\times \left[0, \sqrt{\frac a2(1-2\rho)}\right] \end{equation}
+in order for balls to never overlap. We further assume $\rho < 1/4$, see Appendix \ref{sec:boundingdiameter}.
+
 
 \begin{enumerate}[\textbf{(U)}] 
 	\item \textit{Upper regularity}. $M$ and $\Gamma$ can be chosen so that the following holds. 
@@ -142,6 +165,111 @@ For some models it is possible to replace the upper regularity assumptions by th
 \end{enumerate}
 
 
+\subsection{Verification}
+A useful mental model of how to think of the class $\bar \Gamma$ is to start from a configuration 
+$$\x_0 = \{(M_ak,0) \in \Rt\times S: k \in \mathbb Z^3\} \in \bar\Gamma,$$ 
+with points at the centers of the set $A$ and then imagine any configuration $\x \in \bar \Gamma$ as a perturbed version of $\x_0$.
+While in the two-dimensional case the point configuration forms a tessellation out of equilateral triangles (up to a perturbation), the three-dimensional case results into the so-called tetrahedral-octahedral honeycomb (up to a perturbation). 
+This tessellation, if tetrahedrized, contains two different types of tetrahedra: a regular tetrahedron with side length $a$ and an irregular tetrahedron with side lengths $(a,a,a,a,a,\sqrt 2a)$, again, up to a perturbation. We will refer to a tetrahedron that is a perturbed version fo the regular tetrahedron as $T_1$ and similarly $T_2$ for the irregular tetrahedron. 
+
+In the tetrahedron-octahedron tessellation, each \todoo{Reference, possibly using Schlafli symbols} vertex is incident to eight regular tetrahedra and six regular octahedra. 
+Since each octahedron contains four tetrahedra, we obtain the bound $n_T\leq 8+6\cdot 4 = 32$.
+
+
+To show that the range of interactions is limited for configurations in $\bar \Gamma$ two quantities need to be shown to be uniformly bounded. 
+The first is the circumdiameter of the tetrahedra. 
+For $T1$ tetrahedra, we obtain the bound
+
+$$\chi_1(\rho) := 2(\sqrt 6/4 + \rho)$$
+
+and for T2, we obtain the bound
+$$\chi_2(\rho) := 2 \frac{2\rho + \sqrt{2 - 32\rho^2 + 64 \rho^4}}{2-32\rho^2},$$
+where $\rho < 1/4$. 
+
+
+The second quantity to be bounded is the weight of a characteristic point. Since the perturbation happens on a bounded window and the points' weights are bounded, this amounts to proving that the points cannot come arbitrarily close to, or even attain, a coplanar position.
+ However, this is equivalent to the boundedness of the circumdiameter of the tetrahedron and is guaranteed by Theorem [ref].
+
+
+We first prove that a uniformly bounded finite horizons imply uniform confinement. 
+
+
+\begin{lemma}\label{lemma:U1}
+	Let $\Gamma \subset \mathbf N_{lf}$ be a class of configurations. If there exists $d_{max}>0$ such that $\mathrm{diam}\Delta < d_{max}$ for the horizon $\Delta$ of any $(\eta,\x), \eta \in \mathcal E(\x), \x \in \Gamma$, then 
+	$$r_\Gamma < d_{max}.$$
+\end{lemma}
+\begin{proof}
+	Choose $\Lambda\in \mathcal B_0$ and $\x \in \Gamma$. Let $\zeta \in \mathbf N_\Lambda$,  $\eta \in \mathcal E_\Lambda(\zeta \cup \x_{\Lambda^c})$ and denote $\Delta$ the finite horizon of $(\eta,\x)$. From Lemma \ref{lemma:horizEset} we obtain $\Delta\cap\Lambda \neq \emptyset$. Then $\Delta \subset \Lambda + B(0,d_{max})$. If we take $\tilde\x \in \Gamma$ such that $\tilde\x = \x$ on $\partial\Lambda(\x)$ then $\varphi(\eta,\zeta \cup \x_{\Lambda^c}) = \varphi(\eta,\zeta\cup \tilde \x_{\Lambda^c})$ since $\zeta\cup\x_{\Lambda^c}$ and $\zeta\cup\tilde\x_{\Lambda^c}$ differ only on $\Delta^c$.
+\end{proof}
+
+
+
+
+\begin{theorem}\label{thm:E3}
+	There exists at least one Gibbs measure for the model $(\mathcal {LD}_4,\varphi_S)$ and every activity 
+	$$z> \frac{3\sqrt 2}{4\pi}e^{14 K_0}   (4K_1 \beta e^{7/2}/7)^{1/\beta} \frac{(\chi_1(\rho)^\beta + 6\chi_2(\rho)^\beta)^{1/\beta}}{\rho^3 \sqrt{1-2\rho}}.$$
+\end{theorem}
+\begin{proof}
+\begin{enumerate}[]
+	\item \textbf{(R)} Take the horizon set $\Delta = B(p'_\eta, \sqrt{p''_\eta + W})$. $\Delta$ can be decomposed into the sphere $p_\eta$ and $\Delta \setminus p_\eta$, a 3-dimensional annulus with width 
+		$$\sqrt{p''_\eta+W} -\sqrt{p''_\eta}=W/(\sqrt{p''_\eta+W} + \sqrt{p''_\eta}).$$
+		By definition of $\mathcal {LD}$ and Remark \ref{r:horizons}, $p_\eta$  cannot contain any points of $\x$. Although the annulus $\Delta \setminus p_\eta$ does not have any bound on the number of points, its width is bounded by $\sqrt W \geq  W/(\sqrt{p''_\eta+W} + \sqrt{p''_\eta})$. This means that any $x,y\in \Delta$ can be connected by the spheres $B(x,\sqrt W), p_\eta, B(y,\sqrt W)$, yielding the parameters $\ell_R = 3,n_R=0,\chi_R=2\sqrt W$.
+	\item \textbf{(S)} Stability is satisfied because of $\varphi$ is non-negative.
+	\item \textbf{(U)} We choose $M$ and $\Gamma$ as in Section \ref{sec:MGamma}.
+		\begin{enumerate}[(U1)]
+			\item By Proposition \ref{prop:maxPeta} there is $C>0$ such that $p''_\eta\leq C$ for all $\eta \in \mathcal {LD}_4(\x), \x \in \bar\Gamma^A$. By Lemma \ref{lemma:U1} we have $r_\Gamma\leq \sqrt{C + W}$.
+			\item is trivial since $n_S<56$ and $\varphi_{S}$ is bounded by Proposition \ref{prop:maxcircum}.
+			\item We proceed similarly as in Theorem \ref{thm:E1} and obtain
+				$$z>C_0 e^{C_1 a^\beta} / a^{7/2}$$
+				where $C_0=3 \sqrt 2 e^{14K_0} / (4\pi \rho^3 \sqrt{1-2\rho})$, $C_1 = 2K_1(\chi_1^\beta + 6\chi_2^\beta)$. Optimizing over $a$ we obtain $a=(7/(2C_1\beta))^{1/\beta}$ arriving at the bound
+				$$z> C_0 (C_1 \beta e^{7/2} / (7/2))^{1/\beta}.$$
+		\end{enumerate}
+\end{enumerate}
+\end{proof}
+
+
+
+\begin{theorem}\label{thm:E4}
+	There exists at least one Gibbs measure for the model $(\mathcal {LD}_4,\varphi_{HC})$ and every activity $$z>0.$$
+\end{theorem}
+\begin{proof}
+\begin{enumerate}[]
+	\item \textbf{(R)} The horizon set is $\Delta = B(p'_\eta,\sqrt{p''_\eta +W})$. Parameters can be chosen as in Theorem \ref{thm:E3}. \unsure{Is it a problem that there's no $n_R$ circle? Cause the proof suggested something like that?}
+	\item \textbf{(S)} Stability is satisfied because of $\varphi$ is non-negative.
+	\item \textbf{(\^U)} We choose $M$ and $\Gamma$ as in Section \ref{sec:MGamma}.
+		\begin{enumerate}[(U1)]
+			\item The same as in Theorem \ref{thm:E2}. Although the underlying structure is different, the potential still depends on $\chi(\eta)$ and (\^U1) requires the configuration to have a non-infinite energy.
+			\item The same as in Theorem \ref{thm:E2}, $n_S<56$ and we choose an appropriate $a$ and $\rho$.
+			\item $\Pi^z_\Lambda(\Gamma)>0$ by Remark \ref{r:UA}.
+		\end{enumerate}
+\end{enumerate}
+\end{proof}
+
+
+
+Using the same approach and the same pseudo-periodic configurations $\bar\Gamma$, it is easy enough to prove the existence of many different forms of unary hyperedge potentials. In the following, we suggest some alternate hyperedge potentials. 
+
+
+\begin{remark}[Other smooth interaction potentials]\label{r:otherpotentials}
+	
+	Alternate smooth interaction models could be considered using characteristics of $k$-faces of $\eta$ instead of the circumdiameter. An example is the volume potential $\varphi_{V}$ defined as a unary potential such that for $\eta\in\mathcal E_4(\x), \x \in \bar\Gamma$  we have
+	$$\varphi_{V}(\eta,\x) \leq K_0 + K_1 \mathrm{V}(\eta)^{\beta}$$
+	for some $K_0,K_1 \geq 0, \beta >0$, where $\mathrm{V}(\eta)=|\mathrm{conv}(\eta)|$ is the volume of the tetrahedron $\mathrm{conv}(\eta)$. Volume of a $3-$simplex with positions $\eta'=\{x_0,x_1,x_2,x_3\}\subset \Rt$ can be calculated using the Cayley-Menger determinant (Appendix \ref{A:CM}), but the following expression (\cite{Stein1966}) lends itself better to finding a bound: 
+	$$V(\eta)=\left| \frac 1{n!} \mathrm{det}(x_1-x_0,x_2-x_0,x_3-x_0) \right|,$$
+	where the determinant is of a $3 \times 3$ matrix with column vectors $x_1-x_0,x_2-x_0,x_3-x_0$. This quantity can be bounded using Hadamard's inequality (\cite{Hadamard1893}),
+	$$\mathrm{det}(x_1-x_0,x_2-x_0,x_3-x_0) \leq \prod^3_{i=1} \|x_i - x_0\| .$$
+	Notice that we only need the length of three edges of the tetrahedron. Thanks to this, tetrahedra of type T1 and T2 both can be bounded by
+	$$\varphi_V(\eta,\x) \leq K_0 + K_1 \left(\tfrac 16 a(1+2\rho)^3\right)^{\beta}, \quad \eta\in\mathcal E_4(\x), \x\in \bar \Gamma.$$
+	The bound for the intensity $z$ in the model $(\mathcal {LD}_4, \varphi_V)$ then becomes
+	\begin{equation}\label{eq:volbound}z> \frac{3\sqrt 2}{4\pi}e^{14 K_0}   (4K_1 \beta e^{7/2})^{1/\beta} \frac{\frac 16 (1+2\rho)^3}{\rho^3 \sqrt{1-2\rho}}.\end{equation}
+	Note that the same approach could be used for e.g. surface area of the tetrahedron, where we would simply replace $\tfrac 16 (1+2\rho)^3$ for $\tfrac 42 (1+2\rho)^2$ in \eqref{eq:volbound}.  \newline
+
+\end{remark}
+
+
+\begin{remark}[Other hardcore interaction potentials]
+	Other forms of the hard-core potential can be obtained relatively easily. For example, additional constraints can be added, e.g. minimum edge length $\ell>0$. Finite horizons remain the same for all unary potentials, and therefore \textbf{(R)} holds. Stability \textbf{(S)} is satisfied, as the potential is still non-negative. The alternate upper regularity conditions \textbf{(\^{U}1)} and \textbf{(\^{U}3)} are satisfied for the same reasons. Care has to be taken for \textbf{(\^{U}2)} to hold, since the pseudo-periodic configurations $\x\in\bar \Gamma$ now must satisfy the new criterion. This can be done by choosing $a$ and $\rho$ such that $a(1-2\rho) < \ell$.
+\end{remark}
 
 
 
@@ -180,7 +308,7 @@ D.~Dereudre, R.~Drouilhet, H.O.~Georgii:
 \bibitem{DL11}
 D.~Dereudre and F.~Lavancier:
 \newblock{Practical simulation and estimation for Gibbs Delaunay-Voronoi tessellations with geometric hardcore interaction.}
-\newblock{Computational Statistics and Data Analyssi {\mi 55 (1)} (2011), 498--519.}
+\newblock{Computational Statistics and Data Analysis {\mi 55 (1)} (2011), 498--519.}
 
 
 

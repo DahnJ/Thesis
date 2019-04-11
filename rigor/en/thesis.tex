@@ -1,0 +1,285 @@
+%%% The main file. It contains definitions of basic parameters and includes all other parts.
+
+%% Settings for single-side (simplex) printing
+% Margins: left 40mm, right 25mm, top and bottom 25mm
+% (but beware, LaTeX adds 1in implicitly)
+\documentclass[12pt,a4paper]{report}
+\setlength\textwidth{145mm}
+\setlength\textheight{247mm}
+\setlength\oddsidemargin{15mm}
+\setlength\evensidemargin{15mm}
+\setlength\topmargin{0mm}
+\setlength\headsep{0mm}
+\setlength\headheight{0mm}
+% \openright makes the following text appear on a right-hand page
+\let\openright=\clearpage
+
+\setlength{\emergencystretch}{10cm}
+\pretolerance=10000
+\tolerance=10000
+\hfuzz=5000pt
+\vfuzz=5000pt 
+
+%% Settings for two-sided (duplex) printing
+% \documentclass[12pt,a4paper,twoside,openright]{report}
+% \setlength\textwidth{145mm}
+% \setlength\textheight{247mm}
+% \setlength\oddsidemargin{14.2mm}
+% \setlength\evensidemargin{0mm}
+% \setlength\topmargin{0mm}
+% \setlength\headsep{0mm}
+% \setlength\headheight{0mm}
+% \let\openright=\cleardoublepage
+
+%% Generate PDF/A-2u
+\usepackage[a-2u]{pdfx}
+
+%% Character encoding: usually latin2, cp1250 or utf8:
+\usepackage[utf8]{inputenc}
+
+%% Prefer Latin Modern fonts
+\usepackage{lmodern}
+
+%% Further useful packages (included in most LaTeX distributions)
+\usepackage{amsmath}        % extensions for typesetting of math
+\usepackage{amsfonts}       % math fonts
+\usepackage{amsthm}         % theorems, definitions, etc.
+\usepackage{bbding}         % various symbols (squares, asterisks, scissors, ...)
+\usepackage{bm}             % boldface symbols (\bm)
+\usepackage{graphicx}       % embedding of pictures
+\usepackage{fancyvrb}       % improved verbatim environment
+\usepackage{natbib}         % citation style AUTHOR (YEAR), or AUTHOR [NUMBER]
+\usepackage[nottoc]{tocbibind} % makes sure that bibliography and the lists
+			    % of figures/tables are included in the table
+			    % of contents
+\usepackage{dcolumn}        % improved alignment of table columns
+\usepackage{booktabs}       % improved horizontal lines in tables
+\usepackage[usenames, dvipsnames]{xcolor}  % typesetting in color
+
+
+
+% Packages added by Dahn
+\usepackage[colorinlistoftodos,prependcaption,textsize=tiny,disable]{todonotes} % disable
+\usepackage{xargs}
+\usepackage{bbm}	% For lowercase blackboard bold
+\usepackage{multicol}  	% ultiple columns
+\usepackage{enumerate}
+\usepackage{amssymb}	% \varnothing
+\usepackage{booktabs}
+\newcommand{\ra}[1]{\renewcommand{\arraystretch}{#1}} % For line stretching in booktabs
+\usepackage{lscape}
+\usepackage[overlay,absolute]{textpos}
+\usepackage{pgf,tikz,pgfplots}
+\pgfplotsset{compat=1.15}
+\usetikzlibrary{arrows}
+\usepackage{breakcites}
+
+\newcommand\PlaceText[3]{%
+\begin{textblock*}{10in}(#1,#2)  %% change width of box from 10in as you wish
+#3
+\end{textblock*}
+}%
+\textblockorigin{-5mm}{0mm} 
+
+% Dahn commands
+\newcommand{\Rd}{{\mathbb R^d}}
+\newcommand{\Rt}{{\mathbb R^3}}
+
+\newcommandx{\problem}[2][1=]{\todo[linecolor=red,backgroundcolor=red!25,bordercolor=red,#1]{#2}}
+\newcommandx{\todoo}[2][1=]{\todo[linecolor=blue,backgroundcolor=blue!25,bordercolor=blue,#1]{#2}}
+\newcommandx{\note}[2][1=]{\todo[linecolor=OliveGreen,backgroundcolor=OliveGreen!25,bordercolor=OliveGreen,#1]{#2}}
+\newcommandx{\unsure}[2][1=]{\todo[linecolor=Plum,backgroundcolor=Plum!25,bordercolor=Plum,#1]{#2}}
+
+\newtheorem{theorem}{Theorem}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}
+
+\theoremstyle{theorem}
+\newtheorem{proposition}{Proposition}
+
+\theoremstyle{remark}
+\newtheorem{ex}{Example}
+
+
+\newcommand{\tbd}{\textbf{{\color{red}~ TO BE DONE ~}}}
+
+\newcommand{\x}{{\mathbf{x}}}
+\newcommand{\p}{{\mathbbm{p}}}
+
+%% Augumented matrix 
+\newenvironment{amatrix}[1]{%
+  \left(\begin{array}{@{}*{#1}{c}|c@{}}
+}{%
+  \end{array}\right)
+}
+
+
+\newenvironment{tight_enumerate}{
+\begin{enumerate}
+  \setlength{\itemsep}{0pt}
+  \setlength{\parskip}{0pt}
+}{\end{enumerate}}
+
+%%% Basic information on the thesis
+
+% Thesis title in English (exactly as in the formal assignment)
+
+\def\ThesisTitle{Generalized random tessellations, their properties, simulation and applications}
+
+% Author of the thesis
+\def\ThesisAuthor{Daniel Jahn}
+
+% Year when the thesis is submitted
+\def\YearSubmitted{2019}
+
+% Name of the department or institute, where the work was officially assigned
+% (according to the Organizational Structure of MFF UK in English,
+% or a full name of a department outside MFF)
+\def\Department{Department of Probability and Mathematical Statistics}
+
+% Is it a department (katedra), or an institute (ústav)?
+\def\DeptType{Department}
+
+% Thesis supervisor: name, surname and titles
+\def\Supervisor{prof. RNDr. Viktor Bene\v{s}, DrSc.}
+
+% Supervisor's department (again according to Organizational structure of MFF)
+\def\SupervisorsDepartment{Department of Probability and Mathematical Statistics}
+
+% Study programme and specialization
+\def\StudyProgramme{Mathematics}
+
+% An optional dedication: you can thank whomever you wish (your supervisor,
+% consultant, a person who lent the software, etc.)
+\def\Dedication{%
+I would like to thank my supervisor prof. RNDr. Viktor Bene\v{s}, DrSc. for all the time and effort he put into helping me on the often thorny path of writing this thesis. I am also grateful for all the opportunities he provided me with to present and discuss my work on seminars and conferences.
+
+If there is one other person without whom this thesis would have been much more difficult to write, it is my partner, Adela Nguy$\tilde{\hat{e}}$n. I am grateful for having her by my side throughout the whole process of writing this thesis. She has far surpassed the official requirements for the partner of a mathematician, that is to be emotionally supportive and understanding, especially when waking up in the middle of the night to find the said mathematician working, again. She has spent countless hours listening to me talk about circles and tetrahedrons and, on several occasions, picked up a pen and paper and actively helped me solve the problems. Thank you for everything.
+
+For helping me with a difficult programming language I knew nothing about, as well as for general advice on programming, I thank my friend and an excellent programmer Jan Noha.
+
+I thank Colin Beet for helping me improve the linguistic aspects of this thesis. He would like the reader to know that, contrary to what Remark \ref{r:abuse} claims, abuse of any kind can never be justified.
+
+I thank my family for supporting my academic endeavours even though they still have no idea what it is I am actually doing. 
+
+Finally, I'd like to thank the following people who have provided valuable insights and comments: Prof. David Dereudre, Jeremy Tan, Mat\v{e}j Kov\'{a}\v{r}, Prof. Volker Schmidt, Prof. David Eppstein.
+}
+
+
+% Abstract (recommended length around 80-200 words; this is not a copy of your thesis assignment!)
+\def\Abstract{%
+	The past few years have seen advances in modelling of polycrystalline materials using parametric tessellation models from stochastic geometry. A promising class of tessellations, the Gibbs-type tessellation, allows the user to specify a great variety of properties through the energy function. 
+	This text focuses solely on Gibbs-type tetrahedrizations, a three-dimensional tessellation composed of tetrahedra. The existing results for two-dimensional Delaunay triangulations are extended to the case of three-dimensional Laguerre tetrahedrization. We provide a proof of existence, a \texttt{C++} implementation of the MCMC simulation and estimation of the models parameters through maximum pseudolikelihood.
+}
+
+% 3 to 5 keywords (recommended), each enclosed in curly braces
+\def\Keywords{%
+	{Gibbs point process} {tetrahedrization} {Laguerre}  {existence} {simulation} {maximum pseudolikelihood estimation}
+}
+
+%% The hyperref package for clickable links in PDF and also for storing
+%% metadata to PDF (including the table of contents).
+%% Most settings are pre-set by the pdfx package.
+\hypersetup{unicode}
+\hypersetup{breaklinks=true}
+
+% Definitions of macros (see description inside)
+\include{macros}
+
+% Title page and various mandatory informational pages
+\begin{document}
+\include{title}
+
+
+%%% A page with automatically generated table of contents of the master thesis
+\tableofcontents
+
+
+
+%%%% Glossary
+\chapwithtoc{Glossary of terms and abbreviations}
+\subsubsection{Mathematical operators and notation}
+The following list only serves as a reference. Most of the following terms are defined more precisely when they are first used in the text.
+
+\hspace*{-8mm}
+\begin{tabular}{ l l }
+	$\mathbb N_0$ & $\mathbb N \cup \{0\}$ \\
+	$B(x,r)$ & Open ball with center $x$ and radius $r$ \\
+	$\mathrm{diam}(A)$ & Diameter of the set $A$; $sup_{x,y\in A}\|x-y\|$ \\
+	$\mathrm{card}(A)$ & Cardinality of the set $A$ \\
+	$\mathrm{conv}(A)$ & Convex hull of the set $A$ \\
+	$\lambda(A), |A|$ & Lebesgue measure of the set A \\
+	$\partial$ & Topological boundary of a set \\
+	$A+B$ & Minkowski sum of the sets $A$ and $B$; the set $\{a+b: a\in A, b\in B\}$. \\
+	$\mathrm{pr}_{\Rt}(\cdot)$ & Projection from $\mathbb R^4$ to $\Rt$ \\
+	$\angle pqr$ & Angle formed by $pqr$ \\
+	$\propto$ & Proportional to \\
+	$\delta_x(A)$ & Dirac delta function at $x$. Equals to 1 if $x\in A$, 0 otherwise.\\ 
+	$\mathrm{det} M$ & Determinant of the matrix $M$ \\
+	$\| \cdot \|$ & Euclidean norm \\
+	$d(p,x)$ & Power distance of the point $x$ and weighted point $p$ \\
+	$\rho(p,q)$ & Power product of two weighted points $p$ and $q$ \\
+	$\chi(\eta)$ & For $\mathrm{card}(\eta)=4$, circumdiameter of the tetrahedron $\mathrm{conv}(\eta)$.\\
+\end{tabular}
+
+
+
+
+\subsubsection{Abbreviations}
+\begin{tabular}{ l l }
+	DLR & Dobrushin-Lanford-Ruelle (equations) \\
+	GNZ & Georgii-Nguyen-Zessin (equation) \\
+	MCMC & Markov chain Monte carlo \\
+	MPLE & Maximum pseudolikelihood estimation
+\end{tabular}
+
+
+
+
+%%% Each chapter is kept in a separate file
+\include{preface}
+\include{chap01}
+\include{chap02}
+\include{chap03}
+\include{chap04}
+\include{chap05}
+\include{chap06}
+
+\include{epilog}
+
+%%% Bibliography
+\include{bibliography}
+
+%%% Figures used in the thesis (consider if this is needed)
+\listoffigures
+
+%%% Tables used in the thesis (consider if this is needed)
+%%% In mathematical theses, it could be better to move the list of tables to the beginning of the thesis.
+\listoftables
+
+\include{appendix}
+\include{appendix2}
+%%% Abbreviations used in the thesis, if any, including their explanation
+%%% In mathematical theses, it could be better to move the list of abbreviations to the beginning of the thesis.
+
+
+%%% Attachments to the master thesis, if any. Each attachment must be
+%%% referred to at least once from the text of the thesis. Attachments
+%%% are numbered.
+%%%
+%%% The printed version should preferably contain attachments, which can be
+%%% read (additional tables and charts, supplementary text, examples of
+%%% program output, etc.). The electronic version is more suited for attachments
+%%% which will likely be used in an electronic form rather than read (program
+%%% source code, data files, interactive charts, etc.). Electronic attachments
+%%% should be uploaded to SIS and optionally also included in the thesis on a~CD/DVD.
+%%% Allowed file formats are specified in provision of the rector no. 72/2017.
+
+
+% \listoftodos
+\openright
+\end{document}
