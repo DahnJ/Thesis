@@ -2,7 +2,7 @@
 Existence and simulation of \\ Gibbs-Laguerre-Delaunay tetrahedrizations
 @kybdata_end:title
 @kybdata_begin:authors
-Daniel Jahn
+Daniel Jahn, Filip Seitl
 @kybdata_end:authors
 @kybdata_begin:name
 Daniel
@@ -16,6 +16,18 @@ Department of Probability and Mathematical Statistics, Charles University, Sokol
 @kybdata_begin:email
 jahn@karlin.mff.cuni.cz
 @kybdata_end:email
+@kybdata_begin:name
+Filip
+@kybdata_end:name
+@kybdata_begin:surname
+Seitl
+@kybdata_end:surname
+@kybdata_begin:address
+address
+@kybdata_end:address
+@kybdata_begin:email
+mail
+@kybdata_end:email
 @kybdata_begin:keywords
 Gibbs point process, Laguerre-Delauay triangulation, tetrahedralization, MCMC simulation
 @kybdata_end:keywords
@@ -23,7 +35,7 @@ Gibbs point process, Laguerre-Delauay triangulation, tetrahedralization, MCMC si
 60K35, 60G55
 @kybdata_end:amses
 @kybdata_begin:lastpage
-4
+3
 @kybdata_end:lastpage
 @kybdata_begin:hasBW
 
